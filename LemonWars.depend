@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1625585812 source:/home/vladyslav/LemonWars/src/Gamebooter.cpp
+	"Gamebooter.h"
+	<iostream>
+	"Menu.h"
+
+1625585574 /home/vladyslav/LemonWars/include/Gamebooter.h
+
+1625586066 source:/home/vladyslav/LemonWars/main.cpp
+	<iostream>
+	"Gamebooter.h"
+
+1625585624 /home/vladyslav/LemonWars/include/Menu.h
+
+1625585733 source:/home/vladyslav/LemonWars/src/Menu.cpp
+	"Menu.h"
+	<iostream>
+
