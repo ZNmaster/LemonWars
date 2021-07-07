@@ -14,6 +14,7 @@ void Gamebooter::Play()
 {
     std::cout << "Loading menu..." << std::endl;
     Menu MainMenu;
+    MainMenu.MenuRun();
 }
 
 

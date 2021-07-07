@@ -32,13 +32,16 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-std=c++11" />
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Gamebooter.h" />
 		<Unit filename="include/Menu.h" />
+		<Unit filename="include/Scanner.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Gamebooter.cpp" />
 		<Unit filename="src/Menu.cpp" />
+		<Unit filename="src/Scanner.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
