@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Gamebooter.h"
 #include "Scanner.h"
+#include "Wallbuilder.h"
 
 bool Scanner::up_pressed = 0;
 bool Scanner::down_pressed = 0;
@@ -23,6 +24,10 @@ int main()
     Game2->Play();
 
     delete Game2;
+
+    Wallbuilder wall0;
+
+    wall0.calc_ab(0);
 
 
     return 0;
