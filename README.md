@@ -1,4 +1,4 @@
 # LemonWars
 PS Vita school game project @2
 
-The first commit of the game under development
+First vita build to test 2d lib and soloud
