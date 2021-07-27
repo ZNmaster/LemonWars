@@ -18,7 +18,7 @@ Gamebooter::Gamebooter()
 	//pgf = vita2d_load_default_pgf();
 	pvf = vita2d_load_default_pvf();
 
-	image = vita2d_load_PNG_buffer(&_binary_ZN_png_start);
+	image = vita2d_load_PNG_file("app0:/Title_screen.png");
 
 	memset(&pad, 0, sizeof(pad));
 
@@ -42,13 +42,13 @@ void Gamebooter::Play()
         vita2d_start_drawing();
 		vita2d_clear_screen();
 
-        vita2d_draw_fill_circle(200, 420, 100, RGBA8(0, 255,0 ,255));
+        //vita2d_draw_fill_circle(200, 420, 100, RGBA8(0, 255,0 ,255));
 
-        vita2d_draw_texture_rotate(image, 940/2, 544/2, rad);
+        vita2d_draw_texture(image, 0, 0);
 
-        vita2d_draw_fill_circle(500, 220, 100, RGBA8(200, 255, 87 ,60));
+        //vita2d_draw_fill_circle(500, 220, 100, RGBA8(200, 255, 87 ,60));
 
-        vita2d_pvf_draw_text(pvf, 70, 80, RGBA8(0,255,0,255), 1.0f, "Waiting 8 ms");
+        //vita2d_pvf_draw_text(pvf, 70, 80, RGBA8(0,255,0,255), 1.0f, "Waiting 8 ms");
 
         vita2d_end_drawing();
         vita2d_swap_buffers();
