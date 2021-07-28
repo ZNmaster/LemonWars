@@ -1,6 +1,4 @@
 #include "Base_Init.h"
-#include <psp2/ctrl.h>
-#include <psp2/kernel/processmgr.h>
 
 
 

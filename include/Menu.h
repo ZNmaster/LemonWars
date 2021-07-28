@@ -1,8 +1,9 @@
 #ifndef MENU_H
 #define MENU_H
+#include "Base_Init.h"
 
 
-class Menu
+class Menu : public Base_Init
 {
     public:
         Menu();

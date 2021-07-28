@@ -8,17 +8,11 @@ Gamebooter::Gamebooter()
 {
     //ctor
 
-    //initializing 2d library
-
-    vita2d_init();
-	vita2d_set_clear_color(RGBA8(0x40, 0x40, 0x40, 0xFF));
-
-	//pgf = vita2d_load_default_pgf();
-	pvf = vita2d_load_default_pvf();
-
-    //GPU_init();
+    GPU_init();
 
 	image = vita2d_load_PNG_file("app0:/Title_screen.png");
+
+
 
 	memset(&pad, 0, sizeof(pad));
 
@@ -26,7 +20,7 @@ Gamebooter::Gamebooter()
 
 void Gamebooter::Play()
 {
-        //soloud
+    //soloud
     gSoloud.init(); // Initialize SoLoud
     gWave.load("app0:/music.ogg");
     gSoloud.play(gWave);
@@ -36,7 +30,9 @@ void Gamebooter::Play()
 
         sceCtrlPeekBufferPositive(0, &pad, 1);
         if (pad.buttons & SCE_CTRL_START)
-               {//GPU_finish();
+               {
+                   GPU_finish();
+                   vita2d_free_texture (image);
                    break;}
 
 
@@ -63,6 +59,9 @@ void Gamebooter::Play()
 
 
   }
+
+  Menu MainMenu;
+
 
   return;
 }
