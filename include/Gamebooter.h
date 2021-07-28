@@ -11,6 +11,7 @@
 
 
 class Gamebooter
+
 {
     public:
         Gamebooter();
@@ -18,14 +19,16 @@ class Gamebooter
 
     void Play ();
 
-    SoLoud::Soloud gSoloud; // SoLoud engine
-    SoLoud::Wav gWave;      // One wave file
-
     SceCtrlData pad;
     //vita2d_pgf *pgf;
     vita2d_pvf *pvf;
     vita2d_texture *image;
     float rad = 0.0f;
+
+    SoLoud::Soloud gSoloud; // SoLoud engine
+    SoLoud::Wav gWave;      // One wave file
+
+
 
 
     protected:

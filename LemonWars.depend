@@ -30,3 +30,46 @@
 	"Wallbuilder.h"
 	<iostream>
 
+1627410986 source:/home/iurii/LemonWars/main.cpp
+	<iostream>
+	"Gamebooter.h"
+	"Scanner.h"
+	"Wallbuilder.h"
+
+1627486398 /home/iurii/LemonWars/include/Gamebooter.h
+	"Base_Init.h"
+	"soloud.h"
+	"soloud_wav.h"
+
+1627486419 /home/iurii/LemonWars/include/Base_Init.h
+	<psp2/ctrl.h>
+	<psp2/kernel/processmgr.h>
+	<vita2d.h>
+
+1627406621 /home/iurii/LemonWars/include/Scanner.h
+
+1627406621 /home/iurii/LemonWars/include/Wallbuilder.h
+
+1627421676 source:/home/iurii/LemonWars/src/Gamebooter.cpp
+	"Gamebooter.h"
+	<iostream>
+	"Menu.h"
+	<string.h>
+
+1627406621 /home/iurii/LemonWars/include/Menu.h
+
+1627406621 source:/home/iurii/LemonWars/src/Menu.cpp
+	"Menu.h"
+	<iostream>
+	"Scanner.h"
+
+1627406621 source:/home/iurii/LemonWars/src/Scanner.cpp
+	"Scanner.h"
+
+1627406621 source:/home/iurii/LemonWars/src/Wallbuilder.cpp
+	"Wallbuilder.h"
+	<iostream>
+
+1627486979 source:/home/iurii/LemonWars/src/Base_Init.cpp
+	"Base_Init.h"
+
