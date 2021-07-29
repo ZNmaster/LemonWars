@@ -6,11 +6,11 @@
 
 1625585574 /home/vladyslav/LemonWars/include/Gamebooter.h
 
-1626467405 source:/home/vladyslav/LemonWars/main.cpp
+1627582831 source:/home/vladyslav/LemonWars/main.cpp
 	<iostream>
-	"Gamebooter.h"
+	<chrono>
 	"Scanner.h"
-	"Wallbuilder.h"
+	"Timer.h"
 
 1625685015 /home/vladyslav/LemonWars/include/Menu.h
 
@@ -26,7 +26,13 @@
 
 1626467405 /home/vladyslav/LemonWars/include/Wallbuilder.h
 
-1626467405 source:/home/vladyslav/LemonWars/src/Wallbuilder.cpp
+1626467503 source:/home/vladyslav/LemonWars/src/Wallbuilder.cpp
 	"Wallbuilder.h"
 	<iostream>
+
+1627583087 /home/vladyslav/LemonWars/include/Timer.h
+	<chrono>
+
+1627582802 source:/home/vladyslav/LemonWars/src/Timer.cpp
+	"Timer.h"
 
