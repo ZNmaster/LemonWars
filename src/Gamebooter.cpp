@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Menu.h"
 #include <string.h>
+#include "Timer.h"
 
 
 Gamebooter::Gamebooter()
@@ -16,6 +17,8 @@ Gamebooter::Gamebooter()
 
 	memset(&pad, 0, sizeof(pad));
 
+	grid_activated = 0;
+
 }
 
 void Gamebooter::Play()
@@ -24,6 +27,8 @@ void Gamebooter::Play()
     gSoloud.init(); // Initialize SoLoud
     gWave.load("app0:/music.ogg");
     gSoloud.play(gWave);
+
+  Timer grid_toggle_timer;
 
   while (1)
   {
@@ -35,6 +40,17 @@ void Gamebooter::Play()
                    vita2d_free_texture (image);
                    break;}
 
+        if (pad.buttons & SCE_CTRL_SELECT)
+        {
+            if (grid_toggle_timer.expired())
+            {
+                grid_activated = !grid_activated;
+                grid_toggle_timer.delay_mills(200);
+            }
+
+
+        }
+
 
         vita2d_start_drawing();
 		vita2d_clear_screen();
@@ -42,6 +58,11 @@ void Gamebooter::Play()
         //vita2d_draw_fill_circle(200, 420, 100, RGBA8(0, 255,0 ,255));
 
         vita2d_draw_texture(image, 0, 0);
+
+        if (grid_activated)
+        {
+            draw_grid();
+        }
 
         //vita2d_draw_fill_circle(500, 220, 100, RGBA8(200, 255, 87 ,60));
 

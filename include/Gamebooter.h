@@ -19,7 +19,7 @@ class Gamebooter : public Base_Init
     SoLoud::Soloud gSoloud; // SoLoud engine
     SoLoud::Wav gWave;      // One wave file
 
-
+    bool grid_activated;
 
 
     protected:

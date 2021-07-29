@@ -36,12 +36,12 @@
 	"Scanner.h"
 	"Wallbuilder.h"
 
-1627491939 /home/iurii/LemonWars/include/Gamebooter.h
+1627577998 /home/iurii/LemonWars/include/Gamebooter.h
 	"Base_Init.h"
 	"soloud.h"
 	"soloud_wav.h"
 
-1627491909 /home/iurii/LemonWars/include/Base_Init.h
+1627576288 /home/iurii/LemonWars/include/Base_Init.h
 	<psp2/ctrl.h>
 	<psp2/kernel/processmgr.h>
 	<vita2d.h>
@@ -59,10 +59,11 @@
 1627493391 /home/iurii/LemonWars/include/Menu.h
 	"Base_Init.h"
 
-1627406621 source:/home/iurii/LemonWars/src/Menu.cpp
+1627494013 source:/home/iurii/LemonWars/src/Menu.cpp
 	"Menu.h"
 	<iostream>
 	"Scanner.h"
+	<string.h>
 
 1627406621 source:/home/iurii/LemonWars/src/Scanner.cpp
 	"Scanner.h"
@@ -71,6 +72,6 @@
 	"Wallbuilder.h"
 	<iostream>
 
-1627493057 source:/home/iurii/LemonWars/src/Base_Init.cpp
+1627576288 source:/home/iurii/LemonWars/src/Base_Init.cpp
 	"Base_Init.h"
 
