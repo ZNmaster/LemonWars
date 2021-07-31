@@ -41,7 +41,7 @@
 	"soloud.h"
 	"soloud_wav.h"
 
-1627576288 /home/iurii/LemonWars/include/Base_Init.h
+1627746958 /home/iurii/LemonWars/include/Base_Init.h
 	<psp2/ctrl.h>
 	<psp2/kernel/processmgr.h>
 	<vita2d.h>
@@ -74,4 +74,10 @@
 
 1627576288 source:/home/iurii/LemonWars/src/Base_Init.cpp
 	"Base_Init.h"
+
+1627600233 source:/home/iurii/LemonWars/src/Timer.cpp
+	"Timer.h"
+
+1627599889 /home/iurii/LemonWars/include/Timer.h
+	<chrono>
 

@@ -19,6 +19,7 @@ class Base_Init
         //vita2d_pgf *pgf;
         vita2d_pvf *pvf;
         vita2d_texture *image;
+        vita2d_texture *image2;
         float rad = 0.0f;
         void draw_grid();
         void draw_grid(int stride);

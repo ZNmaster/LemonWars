@@ -12,6 +12,7 @@ Gamebooter::Gamebooter()
     GPU_init();
 
 	image = vita2d_load_PNG_file("app0:/Title_screen.png");
+	image2 = vita2d_load_PNG_file("app0:/assets/images/titlescreen/rocket.png");
 
 
 
@@ -29,16 +30,35 @@ void Gamebooter::Play()
     gSoloud.play(gWave);
 
   Timer grid_toggle_timer;
-
+  int pos_rocketx = 700;
+  int pos_rockety = 350;
+  int delta = 1;
+  bool started = 0;
   while (1)
   {
 
         sceCtrlPeekBufferPositive(0, &pad, 1);
         if (pad.buttons & SCE_CTRL_START)
                {
-                   GPU_finish();
-                   vita2d_free_texture (image);
-                   break;}
+                 started = 1;
+               }
+
+        if (started)
+        {
+          pos_rockety -= delta;
+
+          if (pos_rockety < -230)
+         {
+            GPU_finish();
+            vita2d_free_texture (image);
+            vita2d_free_texture (image2);
+            break;
+         }
+         delta += 1;
+
+        }
+
+
 
         if (pad.buttons & SCE_CTRL_SELECT)
         {
@@ -58,6 +78,7 @@ void Gamebooter::Play()
         //vita2d_draw_fill_circle(200, 420, 100, RGBA8(0, 255,0 ,255));
 
         vita2d_draw_texture(image, 0, 0);
+        vita2d_draw_texture(image2, pos_rocketx, pos_rockety);
 
         if (grid_activated)
         {
