@@ -1,6 +1,8 @@
 #ifndef SCANNER_H
 #define SCANNER_H
 
+#include <psp2/ctrl.h>
+#include <psp2/kernel/processmgr.h>
 
 class Scanner
 {
@@ -8,9 +10,16 @@ class Scanner
         Scanner();
         ~Scanner();
 
-        static bool up_pressed, down_pressed, right_pressed, left_pressed, start_pressed;
+        static bool up_pressed,
+                    down_pressed,
+                    right_pressed,
+                    left_pressed,
+                    start_pressed,
+                    select_pressed;
 
         void ResetAll();
+        void Scan();
+        SceCtrlData pad;
 
     protected:
 

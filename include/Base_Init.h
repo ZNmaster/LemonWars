@@ -1,8 +1,9 @@
 #ifndef BASE_INIT_H
 #define BASE_INIT_H
+#include <vector>
 
-#include <psp2/ctrl.h>
-#include <psp2/kernel/processmgr.h>
+#include "Timer.h"
+#include "Entity.h"
 
 #include <vita2d.h>
 
@@ -15,14 +16,21 @@ class Base_Init
         void GPU_init();
         void GPU_finish();
 
-        SceCtrlData pad;
         //vita2d_pgf *pgf;
         vita2d_pvf *pvf;
-        vita2d_texture *image;
-        vita2d_texture *image2;
         float rad = 0.0f;
+        bool grid_activated;
+
         void draw_grid();
         void draw_grid(int stride);
+
+        bool draw_frame(std::vector<Entity *> obj);
+        void free_textures(std::vector<Entity *> &obj);
+
+
+        Timer grid_toggle_timer;
+
+
 
     protected:
 

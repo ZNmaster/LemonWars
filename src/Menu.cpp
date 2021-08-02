@@ -17,11 +17,11 @@ Menu::Menu()
     //test image
     GPU_init();
 
-	image = vita2d_load_PNG_file("app0:/Title_screen.png");
+	//image = vita2d_load_PNG_file("app0:/Title_screen.png");
 
-	memset(&pad, 0, sizeof(pad));
+	//memset(&pad, 0, sizeof(pad));
 
-	while (1)
+	/*while (1)
   {
 
         sceCtrlPeekBufferPositive(0, &pad, 1);
@@ -37,7 +37,7 @@ Menu::Menu()
 
         //vita2d_draw_fill_circle(200, 420, 100, RGBA8(0, 255,0 ,255));
 
-        vita2d_draw_texture_tint(image, 0, 0, RGBA8(0, 255,0 ,255));
+        //vita2d_draw_texture_tint(image, 0, 0, RGBA8(0, 255,0 ,255));
 
         //vita2d_draw_fill_circle(500, 220, 100, RGBA8(200, 255, 87 ,60));
 
@@ -57,7 +57,7 @@ Menu::Menu()
   }
 
 
-
+*/
 }
 
 void Menu::MenuRun()

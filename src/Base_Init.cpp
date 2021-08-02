@@ -1,15 +1,11 @@
 #include "Base_Init.h"
-
+#include "Scanner.h"
 
 
 Base_Init::Base_Init()
 {
+    grid_activated = 0;
     //ctor
-}
-
-Base_Init::~Base_Init()
-{
-    //dtor
 }
 
 void Base_Init::GPU_init()
@@ -19,6 +15,7 @@ void Base_Init::GPU_init()
 
 	//pgf = vita2d_load_default_pgf();
 	pvf = vita2d_load_default_pvf();
+
 }
 void Base_Init::GPU_finish()
 {
@@ -34,6 +31,24 @@ void Base_Init::draw_grid()
 
 void Base_Init::draw_grid(int stride)
 {
+
+//toggle grid if timer expired
+        if (Scanner::select_pressed)
+        {
+            if (grid_toggle_timer.expired())
+            {
+                grid_activated = !grid_activated;
+                grid_toggle_timer.delay_mills(200);
+            }
+
+
+        }
+
+    if (grid_activated)
+  {
+
+
+
     //drawing vertical lines of the grid
     int x_start = stride;
 
@@ -59,5 +74,44 @@ void Base_Init::draw_grid(int stride)
     y_start = y_start + stride;
 
     }
+  }
 
+}
+bool Base_Init::draw_frame(std::vector<Entity *> obj)
+{
+        vita2d_start_drawing();
+		vita2d_clear_screen();
+
+        for (auto objimage : obj)
+        {
+
+         if (objimage->terminated)
+            {
+                return 1;
+            }
+
+            vita2d_draw_texture(objimage->image, objimage->pos_x, objimage->pos_y);
+
+            objimage->go_move();
+
+        }
+
+        draw_grid();
+
+        vita2d_end_drawing();
+        vita2d_swap_buffers();
+        return 0;
+}
+void Base_Init::free_textures(std::vector<Entity *> &obj)
+{
+    for (auto objimage : obj)
+    {
+        delete objimage;
+    }
+    obj.clear();
+}
+
+Base_Init::~Base_Init()
+{
+    //dtor
 }

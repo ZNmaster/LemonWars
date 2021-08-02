@@ -1,10 +1,16 @@
 #ifndef GAMEBOOTER_H
 #define GAMEBOOTER_H
-#include "Base_Init.h"
 
-
+#include <vector>
 #include "soloud.h"
 #include "soloud_wav.h"
+
+#include "Base_Init.h"
+#include "Entity.h"
+#include "GamePlayObj.h"
+#include "Rocket.h"
+
+#include "Scanner.h"
 
 
 class Gamebooter : public Base_Init
@@ -19,7 +25,10 @@ class Gamebooter : public Base_Init
     SoLoud::Soloud gSoloud; // SoLoud engine
     SoLoud::Wav gWave;      // One wave file
 
-    bool grid_activated;
+    std::vector<Entity *> obj;
+
+
+    Scanner *scanner1;
 
 
     protected:

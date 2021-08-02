@@ -1,24 +1,28 @@
 #include "Gamebooter.h"
 #include <iostream>
 #include "Menu.h"
-#include <string.h>
-#include "Timer.h"
+
 
 
 Gamebooter::Gamebooter()
 {
     //ctor
 
+    //GPU initialization
     GPU_init();
 
-	image = vita2d_load_PNG_file("app0:/Title_screen.png");
-	image2 = vita2d_load_PNG_file("app0:/assets/images/titlescreen/rocket.png");
+    //Input scanner
+    scanner1 = new Scanner;
+    scanner1->Scan();
 
+    // create obj title screen and rocket
 
+    GamePlayObj * title_screen = new GamePlayObj ("app0:/Title_screen.png");
+    obj.push_back (title_screen);
 
-	memset(&pad, 0, sizeof(pad));
+    Rocket *rocket = new Rocket("app0:/assets/images/titlescreen/rocket.png");
+    obj.push_back (rocket);
 
-	grid_activated = 0;
 
 }
 
@@ -29,80 +33,18 @@ void Gamebooter::Play()
     gWave.load("app0:/music.ogg");
     gSoloud.play(gWave);
 
-  Timer grid_toggle_timer;
-  int pos_rocketx = 700;
-  int pos_rockety = 350;
-  int delta = 1;
-  bool started = 0;
-  while (1)
+
+
+  // draw a frame until any game object tells us to stop
+  while (!draw_frame(obj))
   {
-
-        sceCtrlPeekBufferPositive(0, &pad, 1);
-        if (pad.buttons & SCE_CTRL_START)
-               {
-                 started = 1;
-               }
-
-        if (started)
-        {
-          pos_rockety -= delta;
-
-          if (pos_rockety < -230)
-         {
-            GPU_finish();
-            vita2d_free_texture (image);
-            vita2d_free_texture (image2);
-            break;
-         }
-         delta += 1;
-
-        }
-
-
-
-        if (pad.buttons & SCE_CTRL_SELECT)
-        {
-            if (grid_toggle_timer.expired())
-            {
-                grid_activated = !grid_activated;
-                grid_toggle_timer.delay_mills(200);
-            }
-
-
-        }
-
-
-        vita2d_start_drawing();
-		vita2d_clear_screen();
-
-        //vita2d_draw_fill_circle(200, 420, 100, RGBA8(0, 255,0 ,255));
-
-        vita2d_draw_texture(image, 0, 0);
-        vita2d_draw_texture(image2, pos_rocketx, pos_rockety);
-
-        if (grid_activated)
-        {
-            draw_grid();
-        }
-
-        //vita2d_draw_fill_circle(500, 220, 100, RGBA8(200, 255, 87 ,60));
-
-        //vita2d_pvf_draw_text(pvf, 70, 80, RGBA8(0,255,0,255), 1.0f, "Waiting 8 ms");
-
-        vita2d_end_drawing();
-        vita2d_swap_buffers();
-        //std::this_thread::sleep_for (std::chrono::milliseconds(100));
-
-        if (pad.buttons & SCE_CTRL_RIGHT){
-                rad += 0.1f;
-        } else if (pad.buttons & SCE_CTRL_LEFT){
-                rad -= 0.1f;;
-            }
-
-
+   scanner1->Scan();
   }
+  GPU_finish();
 
-  Menu MainMenu;
+  free_textures(obj);
+
+  //Menu MainMenu;
 
 
   return;
@@ -115,5 +57,7 @@ void Gamebooter::Play()
 
 Gamebooter::~Gamebooter()
 {
+    free_textures(obj);
     //dtor
+
 }
