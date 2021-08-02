@@ -1,7 +1,8 @@
 #include <iostream>
-#include <chrono>
 #include "Scanner.h"
-#include "Timer.h"
+#include "Entity.h"
+#include "GamePlayObj.h"
+#include "Title.h"
 
 bool Scanner::up_pressed = 0;
 bool Scanner::down_pressed = 0;
@@ -11,7 +12,21 @@ bool Scanner::start_pressed = 0;
 
 int main()
 {
- Scanner::start_pressed = 1;
+ //Table of pointers
+ Entity *ptr[5];
+
+ Title *ent1 = new Title;
+
+ ptr[0] = ent1;
+
+
+ float a = ptr[0]->distance(3,4);
+
+ std::cout << "The distance is: " << a << std::endl;
+ ptr[0]->go_move();
+
+
+ delete ent1;
 
 
 
@@ -19,8 +34,15 @@ int main()
 
 
 
- Timer timer1;
+
+
+
+ //Scanner::start_pressed = 1;
+
+
+ /*Timer timer1;
  timer1.start();
+ timer1.delay_mills(500);
 
  std::string mystring = "10 ";
  int a = 10;
@@ -33,10 +55,16 @@ int main()
  std::cout << &mystring << &a << &b << &c << std::endl;
 
 
- timer1.stop();
+ while (!timer1.expired())
+ {
+     timer1.stop();
 
  //std::cout << << std::endl;
 
  std::cout << timer1.duration_int << std::endl;
  std::cout << timer1.duration_float << std::endl;
+ }*/
+
+ return 0;
+
 }

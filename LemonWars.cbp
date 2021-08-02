@@ -35,16 +35,22 @@
 			<Add option="-std=c++11" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Entity.h" />
+		<Unit filename="include/GamePlayObj.h" />
 		<Unit filename="include/Gamebooter.h" />
 		<Unit filename="include/Menu.h" />
 		<Unit filename="include/Scanner.h" />
 		<Unit filename="include/Timer.h" />
+		<Unit filename="include/Title.h" />
 		<Unit filename="include/Wallbuilder.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Entity.cpp" />
+		<Unit filename="src/GamePlayObj.cpp" />
 		<Unit filename="src/Gamebooter.cpp" />
 		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/Scanner.cpp" />
 		<Unit filename="src/Timer.cpp" />
+		<Unit filename="src/Title.cpp" />
 		<Unit filename="src/Wallbuilder.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

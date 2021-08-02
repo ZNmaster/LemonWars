@@ -1,16 +1,18 @@
 # depslib dependency file v1.0
-1625685421 source:/home/vladyslav/LemonWars/src/Gamebooter.cpp
+1627854949 source:/home/vladyslav/LemonWars/src/Gamebooter.cpp
 	"Gamebooter.h"
 	<iostream>
 	"Menu.h"
+	"Scanner.h"
 
 1625585574 /home/vladyslav/LemonWars/include/Gamebooter.h
 
-1627582831 source:/home/vladyslav/LemonWars/main.cpp
+1627854851 source:/home/vladyslav/LemonWars/main.cpp
 	<iostream>
-	<chrono>
 	"Scanner.h"
-	"Timer.h"
+	"Entity.h"
+	"GamePlayObj.h"
+	"Title.h"
 
 1625685015 /home/vladyslav/LemonWars/include/Menu.h
 
@@ -19,10 +21,10 @@
 	<iostream>
 	"Scanner.h"
 
-1625681396 source:/home/vladyslav/LemonWars/src/Scanner.cpp
+1627854851 source:/home/vladyslav/LemonWars/src/Scanner.cpp
 	"Scanner.h"
 
-1625683445 /home/vladyslav/LemonWars/include/Scanner.h
+1627855085 /home/vladyslav/LemonWars/include/Scanner.h
 
 1626467405 /home/vladyslav/LemonWars/include/Wallbuilder.h
 
@@ -30,9 +32,30 @@
 	"Wallbuilder.h"
 	<iostream>
 
-1627583087 /home/vladyslav/LemonWars/include/Timer.h
+1627598007 /home/vladyslav/LemonWars/include/Timer.h
 	<chrono>
 
-1627582802 source:/home/vladyslav/LemonWars/src/Timer.cpp
+1627598028 source:/home/vladyslav/LemonWars/src/Timer.cpp
 	"Timer.h"
+
+1627833684 source:/home/vladyslav/LemonWars/src/Entity.cpp
+	"Entity.h"
+	<iostream>
+	<cmath>
+
+1627835184 /home/vladyslav/LemonWars/include/Entity.h
+
+1627834118 /home/vladyslav/LemonWars/include/GamePlayObj.h
+	<Entity.h>
+
+1627834119 source:/home/vladyslav/LemonWars/src/GamePlayObj.cpp
+	"GamePlayObj.h"
+	<iostream>
+
+1627834118 /home/vladyslav/LemonWars/include/Title.h
+	<GamePlayObj.h>
+
+1627834145 source:/home/vladyslav/LemonWars/src/Title.cpp
+	"Title.h"
+	<iostream>
 
