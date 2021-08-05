@@ -1,6 +1,7 @@
 #ifndef BASE_INIT_H
 #define BASE_INIT_H
 #include <vector>
+#include <string>
 
 #include "Timer.h"
 #include "Entity.h"
@@ -27,6 +28,11 @@ class Base_Init
         bool draw_frame(std::vector<Entity *> obj);
         void free_textures(std::vector<Entity *> &obj);
 
+        void create_text_from_font(std::string text, int x, int y,
+                                   const char *filename, std::vector<Entity *> &obj);
+
+        //vector of pointers to gameplay objects (images)
+        std::vector<Entity *> obj;
 
         Timer grid_toggle_timer;
 

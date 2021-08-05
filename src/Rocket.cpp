@@ -5,7 +5,7 @@ Rocket::Rocket()
 {
     //ctor
 }
-Rocket::Rocket(char *filename)
+Rocket::Rocket(const char *filename)
         : GamePlayObj::GamePlayObj (filename)
 {
   started = 0;

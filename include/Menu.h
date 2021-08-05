@@ -1,6 +1,7 @@
 #ifndef MENU_H
 #define MENU_H
 #include "Base_Init.h"
+#include "Scanner.h"
 
 
 class Menu : public Base_Init
@@ -18,15 +19,18 @@ class Menu : public Base_Init
         void StartLoad();
         void StartCredits();
         void StartControls();
+        void StartExit();
         void ActivatePlay();
         void ActivateLoad();
         void ActivateCredits();
         void ActivateControls();
+
         unsigned int MenuItem;
+        Scanner *scanner2;
 
         // array of the start func pointers
 
-        void (Menu::*MenuFuncPtr[3])();
+        void (Menu::*MenuFuncPtr[5])();
 
         // func call pointer
         void ( Menu::*StartActiveMenuItem) ();

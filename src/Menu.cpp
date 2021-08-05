@@ -1,69 +1,78 @@
 #include "Menu.h"
-#include <iostream>
-#include "Scanner.h"
 #include <string.h>
+#include "GamePlayObj.h"
 
 Menu::Menu()
 {
     //ctor
-    std::cout << "Menu Loaded!" << std::endl;
+
+    GPU_init();
+
+    scanner2 = new Scanner;
+    scanner2->Scan();
 
     // assigning func pointers
     MenuFuncPtr [0] = &Menu::StartPlay;
     MenuFuncPtr [1] = &Menu::StartLoad;
     MenuFuncPtr [2] = &Menu::StartCredits;
     MenuFuncPtr [3] = &Menu::StartControls;
+    MenuFuncPtr [4] = &Menu::StartExit;
 
-    //test image
-    GPU_init();
-
-	//image = vita2d_load_PNG_file("app0:/Title_screen.png");
-
-	//memset(&pad, 0, sizeof(pad));
-
-	/*while (1)
-  {
-
-        sceCtrlPeekBufferPositive(0, &pad, 1);
-        if (pad.buttons & SCE_CTRL_START)
-               {
-                   GPU_finish();
-                   vita2d_free_texture (image);
-                   break;}
+    //creating menu objects
 
 
-        vita2d_start_drawing();
-		vita2d_clear_screen();
-
-        //vita2d_draw_fill_circle(200, 420, 100, RGBA8(0, 255,0 ,255));
-
-        //vita2d_draw_texture_tint(image, 0, 0, RGBA8(0, 255,0 ,255));
-
-        //vita2d_draw_fill_circle(500, 220, 100, RGBA8(200, 255, 87 ,60));
-
-        //vita2d_pvf_draw_text(pvf, 70, 80, RGBA8(0,255,0,255), 1.0f, "Waiting 8 ms");
-
-        vita2d_end_drawing();
-        vita2d_swap_buffers();
-        //std::this_thread::sleep_for (std::chrono::milliseconds(100));
-
-        if (pad.buttons & SCE_CTRL_RIGHT){
-                rad += 0.1f;
-        } else if (pad.buttons & SCE_CTRL_LEFT){
-                rad -= 0.1f;;
-            }
+    GamePlayObj * background_1 = new GamePlayObj ("app0:/assets/images/main_menu/Background.png");
+    obj.push_back (background_1);
 
 
-  }
+
+    GamePlayObj * play_button = new GamePlayObj ("app0:/assets/images/main_menu/play.png");
+    play_button->pos_x = 200;
+    play_button->pos_y = 200;
+    obj.push_back (play_button);
+
+    GamePlayObj * load_button = new GamePlayObj ("app0:/assets/images/main_menu/load.png");
+    load_button->pos_x = 600;
+    load_button->pos_y = 200;
+    obj.push_back (load_button);
+
+    GamePlayObj * controls_button = new GamePlayObj ("app0:/assets/images/main_menu/controls.png");
+    controls_button->pos_x = 600;
+    controls_button->pos_y = 330;
+    obj.push_back (controls_button);
+
+    GamePlayObj * credits_button = new GamePlayObj ("app0:/assets/images/main_menu/credits.png");
+    credits_button->pos_x = 200;
+    credits_button->pos_y = 330;
+    obj.push_back (credits_button);
+
+    GamePlayObj * exit_button = new GamePlayObj ("app0:/assets/images/main_menu/exit.png");
+    exit_button->pos_x = 400;
+    exit_button->pos_y = 420;
+    obj.push_back (exit_button);
+
+    create_text_from_font("LemonWars", 56, 54, "app0:/assets/fonts/default_font.png", obj);
 
 
-*/
 }
 
 void Menu::MenuRun()
 {
-    std::cout << "Menu is running" << std::endl;
 
+    while (!draw_frame(obj))
+    {
+     scanner2->Scan();
+    }
+    //deleting title screen objects and input scanner
+
+    GPU_finish();
+    free_textures(obj);
+    delete scanner2;
+
+
+    return;
+
+    /*
     ActivatePlay();
       if (Scanner::start_pressed)
     {
@@ -73,6 +82,7 @@ void Menu::MenuRun()
         (this->*StartActiveMenuItem) ();
 
     }
+    */
 
 
 }
@@ -82,19 +92,23 @@ void Menu::MenuRun()
 
 void Menu::StartPlay()
 {
-        std::cout << "StartPlay func" << std::endl;
+
 }
 void Menu::StartLoad()
 {
-        std::cout << "StartLoad func" << std::endl;
 }
 void Menu::StartCredits()
 {
-        std::cout << "StartCredits func" << std::endl;
+
 }
 void Menu::StartControls()
 {
-        std::cout << "StartControls func" << std::endl;
+
+}
+
+void Menu::StartExit()
+{
+
 }
 void Menu::ActivatePlay()
 {

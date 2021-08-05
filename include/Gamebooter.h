@@ -25,7 +25,7 @@ class Gamebooter : public Base_Init
     SoLoud::Soloud gSoloud; // SoLoud engine
     SoLoud::Wav gWave;      // One wave file
 
-    std::vector<Entity *> obj;
+
 
 
     Scanner *scanner1;

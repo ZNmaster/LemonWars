@@ -8,7 +8,7 @@ class Rocket : public GamePlayObj
 {
     public:
         Rocket();
-        Rocket(char *filename);
+        Rocket(const char *filename);
         virtual ~Rocket();
         void go_move();
         bool started;

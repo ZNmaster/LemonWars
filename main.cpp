@@ -1,4 +1,4 @@
-#include <iostream>
+#include "Menu.h"
 #include "Gamebooter.h"
 #include "Scanner.h"
 #include "Wallbuilder.h"
@@ -15,6 +15,9 @@ int main()
 {
 
     //Scanner::start_pressed = 1;
+    //Menu MainMenu;
+    //MainMenu.MenuRun();
+
     Gamebooter Game;
 
     Game.Play();

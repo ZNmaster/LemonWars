@@ -1,5 +1,4 @@
 #include "Gamebooter.h"
-#include <iostream>
 #include "Menu.h"
 
 
@@ -17,7 +16,9 @@ Gamebooter::Gamebooter()
 
     // create obj title screen and rocket
 
-    GamePlayObj * title_screen = new GamePlayObj ("app0:/Title_screen.png");
+
+
+    GamePlayObj * title_screen = new GamePlayObj ("app0:Title_screen.png");
     obj.push_back (title_screen);
 
     Rocket *rocket = new Rocket("app0:/assets/images/titlescreen/rocket.png");
@@ -34,25 +35,23 @@ void Gamebooter::Play()
     gSoloud.play(gWave);
 
 
+    // draw a new frame until any game object tells us to stop
+    while (!draw_frame(obj))
+    {
+     scanner1->Scan();
+    }
+    GPU_finish();
 
-  // draw a frame until any game object tells us to stop
-  while (!draw_frame(obj))
-  {
-   scanner1->Scan();
-  }
-  GPU_finish();
+    //deleting title screen objects and input scanner
+    free_textures(obj);
+    delete scanner1;
 
-  free_textures(obj);
-
-  //Menu MainMenu;
+    Menu MainMenu;
+    MainMenu.MenuRun();
 
 
-  return;
+    return;
 }
-
-
-    //Menu MainMenu;
-    //MainMenu.MenuRun();
 
 
 Gamebooter::~Gamebooter()

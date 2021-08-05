@@ -7,6 +7,9 @@ Entity::Entity()
     abs_y = 0;
     pos_x = 0;
     pos_y = 0;
+    part_x = 0;
+    part_y = 0;
+    partial = 0;
 
     //ctor
 

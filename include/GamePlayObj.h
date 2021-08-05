@@ -8,7 +8,7 @@ class GamePlayObj : public Entity
 {
     public:
         GamePlayObj();
-        GamePlayObj(char *filename);
+        GamePlayObj(const char *filename);
         virtual ~GamePlayObj();
         //virtual void go_move();
 
