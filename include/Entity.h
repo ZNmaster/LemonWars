@@ -22,6 +22,9 @@ class Entity
         int res_of_sprites_x;
         int res_of_sprites_y;
 
+        //scaling factor (k)
+        int k;
+
         //calculate the distance between the object and a point on the map
         float distance(int x1, int y1);
 
@@ -36,6 +39,11 @@ class Entity
 
         //for the objects which will be displayed partially (e.g. spritessheets)
         bool partial;
+
+        bool scaled;
+
+        bool waved;
+
 
     protected:
 

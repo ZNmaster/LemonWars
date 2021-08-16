@@ -1,10 +1,13 @@
 #include "Menu.h"
 #include <string.h>
-#include "GamePlayObj.h"
+
 
 Menu::Menu()
 {
     //ctor
+
+    //current menu item
+    current = 0;
 
     GPU_init();
 
@@ -30,28 +33,33 @@ Menu::Menu()
     play_button->pos_x = 200;
     play_button->pos_y = 200;
     obj.push_back (play_button);
+    menuitem[1] = play_button;
 
     GamePlayObj * load_button = new GamePlayObj ("app0:/assets/images/main_menu/load.png");
     load_button->pos_x = 600;
     load_button->pos_y = 200;
     obj.push_back (load_button);
+    menuitem[4] = load_button;
 
     GamePlayObj * controls_button = new GamePlayObj ("app0:/assets/images/main_menu/controls.png");
     controls_button->pos_x = 600;
     controls_button->pos_y = 330;
     obj.push_back (controls_button);
+    menuitem[5] = controls_button;
 
     GamePlayObj * credits_button = new GamePlayObj ("app0:/assets/images/main_menu/credits.png");
     credits_button->pos_x = 200;
     credits_button->pos_y = 330;
     obj.push_back (credits_button);
+    menuitem[2] = credits_button;
 
     GamePlayObj * exit_button = new GamePlayObj ("app0:/assets/images/main_menu/exit.png");
     exit_button->pos_x = 400;
     exit_button->pos_y = 420;
     obj.push_back (exit_button);
+    menuitem[3] = exit_button;
 
-    create_text_from_font("LemonWars", 56, 54, "app0:/assets/fonts/default_font.png", obj);
+    create_text_from_font("LemonWars", 250, 80, "app0:/assets/fonts/default_font.png", obj);
 
 
 }
@@ -62,6 +70,19 @@ void Menu::MenuRun()
     while (!draw_frame(obj))
     {
      scanner2->Scan();
+
+
+     if (current == 0)
+     {
+         if (Scanner::up_pressed)//||Scanner::down_pressed||Scanner::left_pressed||Scanner::right_pressed)
+         {
+             current = 1;
+             menuitem[current]->waved = 1;
+             //obj[1]->waved = 1;
+             //obj[2]->waved = 1;
+         }
+
+     }
     }
     //deleting title screen objects and input scanner
 

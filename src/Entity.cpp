@@ -10,6 +10,8 @@ Entity::Entity()
     part_x = 0;
     part_y = 0;
     partial = 0;
+    scaled = 0;
+    waved = 0;
 
     //ctor
 

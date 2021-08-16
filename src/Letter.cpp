@@ -1,4 +1,5 @@
 #include "Letter.h"
+#include <cmath>
 
 Letter::Letter()
 {
@@ -10,6 +11,7 @@ Letter::Letter(const char *filename, int res_x, int res_y, int num_horizontal_sp
                                 num_vertical_sprites, x0, y0)
 {
     sprite_coord_calc(char_pos_calc(letter));
+    effect_jump = 0;
 
 }
 
@@ -29,6 +31,30 @@ int Letter::char_pos_calc(int letter_ascii)
       }
    return char_position;
 }
+
+void Letter::set_effect(int effect_num, int delta1, int i)
+{
+    effect_jump = 1;
+    x0 = pos_x;
+    y0 = pos_y;
+    int odd = i % 2;
+    direction = pow((-1),odd);
+    delta = delta1;
+}
+
+void Letter::go_move()
+{
+   if (effect_jump)
+   {
+       pos_y += delta*direction;
+       if (pos_y < (y0 - res_of_sprites_y*k/2) || pos_y > (y0 + res_of_sprites_y*k/2))
+       {
+           direction = -direction;
+       }
+
+   }
+}
+
 
 Letter::~Letter()
 {

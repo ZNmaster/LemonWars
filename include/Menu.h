@@ -2,6 +2,7 @@
 #define MENU_H
 #include "Base_Init.h"
 #include "Scanner.h"
+#include "GamePlayObj.h"
 
 
 class Menu : public Base_Init
@@ -15,6 +16,10 @@ class Menu : public Base_Init
     protected:
 
     private:
+
+        GamePlayObj *menuitem[10];
+
+        int current;
         void StartPlay();
         void StartLoad();
         void StartCredits();
@@ -34,6 +39,8 @@ class Menu : public Base_Init
 
         // func call pointer
         void ( Menu::*StartActiveMenuItem) ();
+
+
 };
 
 #endif // MENU_H

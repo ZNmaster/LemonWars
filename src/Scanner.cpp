@@ -47,5 +47,9 @@ void Scanner::Scan()
             {
                  select_pressed = 1;
             }
+        if (pad.buttons & SCE_CTRL_UP)
+            {
+                 up_pressed = 1;
+            }
 
 }

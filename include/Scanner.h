@@ -18,12 +18,14 @@ class Scanner
                     select_pressed;
 
         void ResetAll();
-        void Scan();
         SceCtrlData pad;
+        void Scan();
+
 
     protected:
 
     private:
+
 };
 
 #endif // SCANNER_H

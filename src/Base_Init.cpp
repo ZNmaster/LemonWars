@@ -1,11 +1,13 @@
 #include "Base_Init.h"
 #include "Scanner.h"
 #include "Letter.h"
+#include <cmath>
 
 
 Base_Init::Base_Init()
 {
     grid_activated = 0;
+    rad = 0;
     //ctor
 }
 
@@ -99,15 +101,37 @@ bool Base_Init::draw_frame(std::vector<Entity *> obj)
 
             if (objimage->partial)
             {
-               vita2d_draw_texture_part(objimage->image, objimage->pos_x, objimage->pos_y,
+               // check if the object is partial and scaled
+               if (objimage->scaled)
+               {
+                   vita2d_draw_texture_part_scale(objimage->image, objimage->pos_x, objimage->pos_y,
+                                        objimage->part_x, objimage->part_y,
+                                        objimage->res_of_sprites_x,
+                                        objimage->res_of_sprites_y, objimage->k, objimage->k);
+               }
+
+               // check if the object is only partial
+               else
+
+               {
+                   vita2d_draw_texture_part(objimage->image, objimage->pos_x, objimage->pos_y,
                                         objimage->part_x, objimage->part_y,
                                         objimage->res_of_sprites_x,
                                         objimage->res_of_sprites_y);
+
+
+               }
             }
-            else
-            {
-                vita2d_draw_texture(objimage->image, objimage->pos_x, objimage->pos_y);
-            }
+            // check if the object needs the waved effect enabled
+            else if (objimage->waved)
+               {
+                   draw_texture_waved(objimage->image,objimage->pos_x, objimage->pos_y, 200, 100);
+               }
+               // for everything else don't apply anything and draw the whole image
+               else
+               {
+                   vita2d_draw_texture(objimage->image, objimage->pos_x, objimage->pos_y);
+               }
 
 
             //calling move method of each object
@@ -138,23 +162,68 @@ void Base_Init::free_textures(std::vector<Entity *> &obj)
 void Base_Init::create_text_from_font(std::string text, int x, int y,
                                 const char *filename, std::vector<Entity *> &obj)
 {
+    int k = 4;
     int res_x = 128;
     int res_y = 256;
     int num_h = 8;
     int num_v = 16;
-    int x0 = 300;
-    int y0 = 50;
+    int x0 = x;
+    int y0 = y;
     int offset = res_x / num_h;
 
     for(unsigned int i = 0; i<text.length(); i++)
     {
         Letter *title = new Letter(filename, res_x, res_y, num_h, num_v,
-                                   (x0+i*offset), y0, (int)text[i]);
+                                   (x0+i*offset*k), y0, (int)text[i]);
+        title->k = k;
+        title->scaled = 1;
+        title->set_effect(1, 1, i);
         obj.push_back (title);
     }
 
 
 }
+
+void Base_Init::draw_texture_waved(vita2d_texture *image, int pos_x, int pos_y, int scale_x, int scale_y)
+{
+
+
+		size_t nslices = 50;
+		size_t n_tvertices = 6 * nslices;
+		vita2d_texture_vertex *tvertices = (vita2d_texture_vertex *)vita2d_pool_memalign(
+			n_tvertices * sizeof(vita2d_texture_vertex),
+			sizeof(vita2d_texture_vertex));
+
+		for (int slice=0; slice<nslices; slice++) {
+			float a = (float)slice/(float)nslices;
+			float b = (float)(slice+1)/(float)nslices;
+
+			vita2d_texture_vertex *v = &tvertices[slice*6];
+			(v++)->u = a; (v++)->u = a; (v++)->u = b;
+			(v++)->u = a; (v++)->u = b; (v++)->u = b;
+		}
+
+
+
+        for (int i=0; i<n_tvertices; ++i) {
+
+
+            tvertices[i].v = i % 2;
+			tvertices[i].x = pos_x*1.f + scale_x*1.f * tvertices[i].u + 10.f * sinf(tvertices[i].u*(3.f+40.f*fabsf(sinf(rad*0.1f)))+rad);
+			tvertices[i].y = pos_y*1.f + scale_y*1.f * tvertices[i].v + 10.f * sinf(tvertices[i].u*(3.f+40.f*fabsf(sinf(rad*0.1f)))+rad);
+			tvertices[i].z = 0.5f;
+		}
+
+		vita2d_draw_array_textured(image, SCE_GXM_PRIMITIVE_TRIANGLES, tvertices, n_tvertices, RGBA8(0xFF, 0xFF, 0xFF, 0xFF));
+
+		rad += delta_rad;
+		if ((rad > 3.2f) || (rad < 0.f))
+        {
+            delta_rad = -delta_rad;
+        }
+
+}
+
 
 Base_Init::~Base_Init()
 {
