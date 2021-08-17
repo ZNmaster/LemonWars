@@ -2,44 +2,14 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="include/Rocket.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="238" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/Scanner.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="785" topLine="28" />
-		</Cursor>
-	</File>
-	<File name="include/Sprite.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="396" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/Menu.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2186" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="src/Entity.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="196" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="include/Gamebooter.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="425" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="include/Scanner.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/Scanner.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="443" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="include/Entity.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/Rocket.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1011" topLine="21" />
+			<Cursor1 position="238" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src/Rocket.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -47,24 +17,14 @@
 			<Cursor1 position="273" topLine="13" />
 		</Cursor>
 	</File>
-	<File name="include/GamePlayObj.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/Base_Init.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="164" topLine="0" />
+			<Cursor1 position="945" topLine="18" />
 		</Cursor>
 	</File>
-	<File name="src/Letter.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/Gamebooter.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1225" topLine="33" />
-		</Cursor>
-	</File>
-	<File name="include/Base_Init.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="373" topLine="13" />
-		</Cursor>
-	</File>
-	<File name="include/Timer.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="391" topLine="0" />
+			<Cursor1 position="425" topLine="9" />
 		</Cursor>
 	</File>
 	<File name="src/Sprite.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -72,18 +32,19 @@
 			<Cursor1 position="477" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/Base_Init.cpp" open="1" top="1" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/Letter.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="5517" topLine="151" />
+			<Cursor1 position="459" topLine="0" />
 		</Cursor>
-		<Folding>
-			<Collapse line="31" />
-			<Collapse line="37" />
-		</Folding>
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/Letter.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="211" topLine="0" />
+			<Cursor1 position="1225" topLine="33" />
+		</Cursor>
+	</File>
+	<File name="include/Sprite.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="396" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src/GamePlayObj.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -91,9 +52,29 @@
 			<Cursor1 position="182" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="include/Menu.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/Base_Init.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="290" topLine="6" />
+			<Cursor1 position="868" topLine="27" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="211" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include/GamePlayObj.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="164" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include/Menu.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="575" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="include/Entity.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1011" topLine="21" />
 		</Cursor>
 	</File>
 	<File name="src/Gamebooter.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -101,14 +82,29 @@
 			<Cursor1 position="238" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="include/Letter.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/Timer.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="459" topLine="0" />
+			<Cursor1 position="391" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/Entity.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="196" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="src/Scanner.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1094" topLine="40" />
 		</Cursor>
 	</File>
 	<File name="src/Timer.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="88" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/Menu.cpp" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2726" topLine="132" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

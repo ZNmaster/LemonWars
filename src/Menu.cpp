@@ -70,19 +70,9 @@ void Menu::MenuRun()
     while (!draw_frame(obj))
     {
      scanner2->Scan();
+     navigate();
 
 
-     if (current == 0)
-     {
-         if (Scanner::up_pressed)//||Scanner::down_pressed||Scanner::left_pressed||Scanner::right_pressed)
-         {
-             current = 1;
-             menuitem[current]->waved = 1;
-             //obj[1]->waved = 1;
-             //obj[2]->waved = 1;
-         }
-
-     }
     }
     //deleting title screen objects and input scanner
 
@@ -146,6 +136,77 @@ void Menu::ActivateCredits()
 void Menu::ActivateControls()
 {
    MenuItem = 3;
+}
+void Menu::navigate()
+{
+
+    if (grid_toggle_timer.expired())
+    {
+    grid_toggle_timer.delay_mills(100);
+
+    if (current == 0)
+     {
+         if (Scanner::up_pressed||
+             Scanner::down_pressed||
+             Scanner::left_pressed||
+             Scanner::right_pressed)
+         {
+             current = 1;
+             menuitem[current]->waved = 1;
+         }
+
+     }
+     else if (Scanner::down_pressed)
+     {
+         if (current == 1 || current == 2 || current == 4)
+         {
+             menuitem[current]->waved = 0;
+             current ++;
+             menuitem[current]->waved = 1;
+         }
+         else if (current == 5)
+         {
+             menuitem[current]->waved = 0;
+             current -= 2;
+             menuitem[current]->waved = 1;
+         }
+     }
+     else if (Scanner::up_pressed)
+     {
+         if (current == 3 || current == 2 || current == 5)
+         {
+             menuitem[current]->waved = 0;
+             current --;
+             menuitem[current]->waved = 1;
+         }
+
+
+     }
+     else if (Scanner::right_pressed)
+     {
+         if (current == 1 || current == 2)
+         {
+             menuitem[current]->waved = 0;
+             current += 3;
+             menuitem[current]->waved = 1;
+         }
+           else if (current == 3)
+           {
+             menuitem[current]->waved = 0;
+             current += 2;
+             menuitem[current]->waved = 1;
+           }
+     }
+     else if (Scanner::left_pressed)
+     {
+         if (current == 4 || current == 5)
+         {
+             menuitem[current]->waved = 0;
+             current -= 3;
+             menuitem[current]->waved = 1;
+         }
+     }
+    }
 }
 Menu::~Menu()
 {

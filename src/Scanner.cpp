@@ -51,5 +51,17 @@ void Scanner::Scan()
             {
                  up_pressed = 1;
             }
+        if (pad.buttons & SCE_CTRL_DOWN)
+            {
+                 down_pressed = 1;
+            }
+        if (pad.buttons & SCE_CTRL_RIGHT)
+            {
+                 right_pressed = 1;
+            }
+        if (pad.buttons & SCE_CTRL_LEFT)
+            {
+                 left_pressed = 1;
+            }
 
 }

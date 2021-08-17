@@ -29,7 +29,7 @@ class Menu : public Base_Init
         void ActivateLoad();
         void ActivateCredits();
         void ActivateControls();
-
+        void navigate();
         unsigned int MenuItem;
         Scanner *scanner2;
 
