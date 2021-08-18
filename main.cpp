@@ -10,6 +10,7 @@ bool Scanner::left_pressed = 0;
 bool Scanner::right_pressed = 0;
 bool Scanner::start_pressed = 0;
 bool Scanner::select_pressed = 0;
+bool Scanner::go_pressed = 0;
 
 int main()
 {

@@ -9,6 +9,7 @@ GamePlayObj::GamePlayObj()
 GamePlayObj::GamePlayObj(const char *filename)
 {
     image = vita2d_load_PNG_file(filename);
+    started = 0;
     terminated = 0;
 }
 

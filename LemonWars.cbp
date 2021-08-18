@@ -59,6 +59,7 @@
 		<Unit filename="include/Gamebooter.h" />
 		<Unit filename="include/Letter.h" />
 		<Unit filename="include/Menu.h" />
+		<Unit filename="include/MenuItem.h" />
 		<Unit filename="include/Rocket.h" />
 		<Unit filename="include/Scanner.h" />
 		<Unit filename="include/Sprite.h" />
@@ -71,6 +72,7 @@
 		<Unit filename="src/Gamebooter.cpp" />
 		<Unit filename="src/Letter.cpp" />
 		<Unit filename="src/Menu.cpp" />
+		<Unit filename="src/MenuItem.cpp" />
 		<Unit filename="src/Rocket.cpp" />
 		<Unit filename="src/Scanner.cpp" />
 		<Unit filename="src/Sprite.cpp" />

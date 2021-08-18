@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include <string.h>
+#include "GamePlayObj.h"
 
 
 Menu::Menu()
@@ -29,31 +30,31 @@ Menu::Menu()
 
 
 
-    GamePlayObj * play_button = new GamePlayObj ("app0:/assets/images/main_menu/play.png");
+    MenuItem * play_button = new MenuItem ("app0:/assets/images/main_menu/play.png");
     play_button->pos_x = 200;
     play_button->pos_y = 200;
     obj.push_back (play_button);
     menuitem[1] = play_button;
 
-    GamePlayObj * load_button = new GamePlayObj ("app0:/assets/images/main_menu/load.png");
+    MenuItem * load_button = new MenuItem ("app0:/assets/images/main_menu/load.png");
     load_button->pos_x = 600;
     load_button->pos_y = 200;
     obj.push_back (load_button);
     menuitem[4] = load_button;
 
-    GamePlayObj * controls_button = new GamePlayObj ("app0:/assets/images/main_menu/controls.png");
+    MenuItem * controls_button = new MenuItem ("app0:/assets/images/main_menu/controls.png");
     controls_button->pos_x = 600;
     controls_button->pos_y = 330;
     obj.push_back (controls_button);
     menuitem[5] = controls_button;
 
-    GamePlayObj * credits_button = new GamePlayObj ("app0:/assets/images/main_menu/credits.png");
+    MenuItem * credits_button = new MenuItem ("app0:/assets/images/main_menu/credits.png");
     credits_button->pos_x = 200;
     credits_button->pos_y = 330;
     obj.push_back (credits_button);
     menuitem[2] = credits_button;
 
-    GamePlayObj * exit_button = new GamePlayObj ("app0:/assets/images/main_menu/exit.png");
+    MenuItem * exit_button = new MenuItem ("app0:/assets/images/main_menu/exit.png");
     exit_button->pos_x = 400;
     exit_button->pos_y = 420;
     obj.push_back (exit_button);
@@ -69,16 +70,32 @@ void Menu::MenuRun()
 
     while (!draw_frame(obj))
     {
-     scanner2->Scan();
+
+     if (scanner2)
+     {
+         scanner2->Scan();
+     }
+
+     if (Scanner::go_pressed)
+     {
+         menuitem[current]->started = 1;
+         delete scanner2;
+         scanner2 = nullptr;
+     }
      navigate();
 
 
     }
+
     //deleting title screen objects and input scanner
 
     GPU_finish();
     free_textures(obj);
-    delete scanner2;
+
+    if (scanner2)
+    {
+        delete scanner2;
+    }
 
 
     return;
@@ -123,26 +140,27 @@ void Menu::StartExit()
 }
 void Menu::ActivatePlay()
 {
-   MenuItem = 0;
+   MenuItemO = 0;
 }
 void Menu::ActivateLoad()
 {
-   MenuItem = 1;
+   MenuItemO = 1;
 }
 void Menu::ActivateCredits()
 {
-   MenuItem = 2;
+   MenuItemO = 2;
 }
 void Menu::ActivateControls()
 {
-   MenuItem = 3;
+   MenuItemO = 3;
 }
+
 void Menu::navigate()
 {
 
-    if (grid_toggle_timer.expired())
+    if (navigate_timer.expired())
     {
-    grid_toggle_timer.delay_mills(100);
+    navigate_timer.delay_mills(100);
 
     if (current == 0)
      {
@@ -205,6 +223,12 @@ void Menu::navigate()
              current -= 3;
              menuitem[current]->waved = 1;
          }
+         else if(current == 3)
+           {
+             menuitem[current]->waved = 0;
+             current --;
+             menuitem[current]->waved = 1;
+           }
      }
     }
 }

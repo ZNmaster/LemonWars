@@ -47,7 +47,7 @@ void Letter::go_move()
    if (effect_jump)
    {
        pos_y += delta*direction;
-       if (pos_y < (y0 - res_of_sprites_y*k/2) || pos_y > (y0 + res_of_sprites_y*k/2))
+       if (pos_y < (y0 - res_of_sprites_y*k_y/2) || pos_y > (y0 + res_of_sprites_y*k_y/2))
        {
            direction = -direction;
        }

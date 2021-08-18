@@ -11,8 +11,6 @@ class Rocket : public GamePlayObj
         Rocket(const char *filename);
         virtual ~Rocket();
         void go_move();
-        bool started;
-        int delta;
 
     protected:
 

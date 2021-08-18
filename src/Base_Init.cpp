@@ -107,7 +107,7 @@ bool Base_Init::draw_frame(std::vector<Entity *> obj)
                    vita2d_draw_texture_part_scale(objimage->image, objimage->pos_x, objimage->pos_y,
                                         objimage->part_x, objimage->part_y,
                                         objimage->res_of_sprites_x,
-                                        objimage->res_of_sprites_y, objimage->k, objimage->k);
+                                        objimage->res_of_sprites_y, objimage->k_x, objimage->k_y);
                }
 
                // check if the object is only partial
@@ -125,7 +125,7 @@ bool Base_Init::draw_frame(std::vector<Entity *> obj)
             // check if the object needs the waved effect enabled
             else if (objimage->waved)
                {
-                   draw_texture_waved(objimage->image,objimage->pos_x, objimage->pos_y, 200, 100);
+                   draw_texture_waved(objimage->image,objimage->pos_x, objimage->pos_y, objimage->k_x, objimage->k_y);
                }
                // for everything else don't apply anything and draw the whole image
                else
@@ -175,7 +175,8 @@ void Base_Init::create_text_from_font(std::string text, int x, int y,
     {
         Letter *title = new Letter(filename, res_x, res_y, num_h, num_v,
                                    (x0+i*offset*k), y0, (int)text[i]);
-        title->k = k;
+        title->k_x = k;
+        title->k_y = k;
         title->scaled = 1;
         title->set_effect(1, 1, i);
         obj.push_back (title);

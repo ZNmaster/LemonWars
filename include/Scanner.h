@@ -15,7 +15,8 @@ class Scanner
                     right_pressed,
                     left_pressed,
                     start_pressed,
-                    select_pressed;
+                    select_pressed,
+                    go_pressed;
 
         void ResetAll();
         SceCtrlData pad;

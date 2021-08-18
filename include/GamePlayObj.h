@@ -12,6 +12,10 @@ class GamePlayObj : public Entity
         virtual ~GamePlayObj();
         //virtual void go_move();
 
+        //for moving objects
+        bool started;//if moving enabled
+        int delta;// moving step
+
     protected:
 
     private:

@@ -38,6 +38,7 @@ float Entity::distance(int x1, int y1)
     return sqrt(pow((abs_x-x1), 2) + pow((abs_y-y1), 2));
 }
 
+//interface
 void Entity::go_move()
 {
 

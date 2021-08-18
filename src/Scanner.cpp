@@ -2,21 +2,18 @@
 #include <string.h>
 
 
-
-
-
 Scanner::Scanner()
 {
     //ctor
     ResetAll();
     memset(&pad, 0, sizeof(pad));
 
-
 }
 
 Scanner::~Scanner()
 {
     //dtor
+    ResetAll();
 
 }
 void Scanner::ResetAll()
@@ -28,6 +25,7 @@ void Scanner::ResetAll()
     Scanner::right_pressed = 0;
     Scanner::start_pressed = 0;
     Scanner::select_pressed = 0;
+    Scanner::go_pressed = 0;
 
     return;
 }
@@ -62,6 +60,10 @@ void Scanner::Scan()
         if (pad.buttons & SCE_CTRL_LEFT)
             {
                  left_pressed = 1;
+            }
+        if (pad.buttons & SCE_CTRL_CROSS)
+            {
+                 go_pressed = 1;
             }
 
 }

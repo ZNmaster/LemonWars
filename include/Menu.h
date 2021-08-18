@@ -2,7 +2,7 @@
 #define MENU_H
 #include "Base_Init.h"
 #include "Scanner.h"
-#include "GamePlayObj.h"
+#include "MenuItem.h"
 
 
 class Menu : public Base_Init
@@ -17,28 +17,41 @@ class Menu : public Base_Init
 
     private:
 
-        GamePlayObj *menuitem[10];
+        //Menu item pointers array (interactable)
+        MenuItem *menuitem[10];
 
+        //the current number of selected menu item
         int current;
+
         void StartPlay();
         void StartLoad();
         void StartCredits();
         void StartControls();
         void StartExit();
+
         void ActivatePlay();
         void ActivateLoad();
         void ActivateCredits();
         void ActivateControls();
+
+        //menu navigation method
         void navigate();
-        unsigned int MenuItem;
+
+
+        unsigned int MenuItemO;
+
+        //input scanner
         Scanner *scanner2;
 
-        // array of the start func pointers
 
+        // array of the start func pointers
         void (Menu::*MenuFuncPtr[5])();
 
         // func call pointer
         void ( Menu::*StartActiveMenuItem) ();
+
+        //navigation input timer
+        Timer navigate_timer;
 
 
 };

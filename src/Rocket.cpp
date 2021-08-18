@@ -8,7 +8,6 @@ Rocket::Rocket()
 Rocket::Rocket(const char *filename)
         : GamePlayObj::GamePlayObj (filename)
 {
-  started = 0;
   pos_x = 700;
   pos_y = 300;
   delta = 1;

@@ -8,6 +8,7 @@ class Entity
     public:
         Entity();
         Entity(int a);
+
         virtual ~Entity();
 
         //abs_x, abs_y - absolute position on the map
@@ -23,7 +24,7 @@ class Entity
         int res_of_sprites_y;
 
         //scaling factor (k)
-        int k;
+        int k_x, k_y;
 
         //calculate the distance between the object and a point on the map
         float distance(int x1, int y1);
