@@ -1,5 +1,4 @@
 #include "Menu.h"
-#include <string.h>
 #include "GamePlayObj.h"
 
 
@@ -16,11 +15,11 @@ Menu::Menu()
     scanner2->Scan();
 
     // assigning func pointers
-    MenuFuncPtr [0] = &Menu::StartPlay;
-    MenuFuncPtr [1] = &Menu::StartLoad;
+    MenuFuncPtr [1] = &Menu::StartPlay;
+    MenuFuncPtr [4] = &Menu::StartLoad;
     MenuFuncPtr [2] = &Menu::StartCredits;
-    MenuFuncPtr [3] = &Menu::StartControls;
-    MenuFuncPtr [4] = &Menu::StartExit;
+    MenuFuncPtr [5] = &Menu::StartControls;
+    MenuFuncPtr [3] = &Menu::StartExit;
 
     //creating menu objects
 
@@ -79,6 +78,7 @@ void Menu::MenuRun()
      if (Scanner::go_pressed)
      {
          menuitem[current]->started = 1;
+
          delete scanner2;
          scanner2 = nullptr;
      }
@@ -97,20 +97,14 @@ void Menu::MenuRun()
         delete scanner2;
     }
 
-
-    return;
-
-    /*
-    ActivatePlay();
-      if (Scanner::start_pressed)
-    {
-        //assigning and calling a test method
-        StartActiveMenuItem = MenuFuncPtr[MenuItem];
+        StartActiveMenuItem = MenuFuncPtr[current];
 
         (this->*StartActiveMenuItem) ();
 
-    }
-    */
+
+
+
+    return;
 
 
 }
@@ -120,10 +114,11 @@ void Menu::MenuRun()
 
 void Menu::StartPlay()
 {
-
+  level1_1();
 }
 void Menu::StartLoad()
 {
+
 }
 void Menu::StartCredits()
 {

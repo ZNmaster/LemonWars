@@ -45,13 +45,17 @@ class Menu : public Base_Init
 
 
         // array of the start func pointers
-        void (Menu::*MenuFuncPtr[5])();
+        void (Menu::*MenuFuncPtr[6])();
 
         // func call pointer
         void ( Menu::*StartActiveMenuItem) ();
 
         //navigation input timer
         Timer navigate_timer;
+
+        // level methods
+        void level1_1();
+
 
 
 };

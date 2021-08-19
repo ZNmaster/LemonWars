@@ -19,9 +19,9 @@ int main()
     //Menu MainMenu;
     //MainMenu.MenuRun();
 
-    Gamebooter Game;
+    Gamebooter Game1;
 
-    Game.Play();
+    Game1.Play();
 
     return 0;
 }

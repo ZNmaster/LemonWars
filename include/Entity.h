@@ -11,6 +11,9 @@ class Entity
 
         virtual ~Entity();
 
+        const int vitares_x = 960;
+        const int vitares_y = 544;
+
         //abs_x, abs_y - absolute position on the map
         // pos_x, pos_y - position on the screen
         // part_x, part_y - position of the sprite to display
