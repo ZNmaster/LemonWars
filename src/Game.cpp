@@ -6,20 +6,33 @@
 Game::Game()
 {
     //ctor
+
+}
+
+Game::Game(const char *filename)
+
+{
     GPU_init();
 
-    Scanner *scanner2 = new Scanner;
-    scanner2->Scan();
-
-    LevelMap *level = new LevelMap("app0:/assets/images/levels/1_1/Level1_1.png");
+    LevelMap *level = new LevelMap(filename);
     obj.push_back (level);
+}
+
+bool Game::StartGame()
+
+{
+
+    scanner = new Scanner;
+    scanner->Scan();
+
+
 
     while (!draw_frame(obj))
     {
 
-     if (scanner2)
+     if (scanner)
      {
-         scanner2->Scan();
+         scanner->Scan();
      }
 
     }
@@ -27,14 +40,13 @@ Game::Game()
     GPU_finish();
     free_textures(obj);
 
-    if (scanner2)
+    if (scanner)
     {
-        delete scanner2;
+        delete scanner;
     }
-
+    return 0;
 
 }
-
 
 Game::~Game()
 {

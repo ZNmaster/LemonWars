@@ -8,7 +8,10 @@ class Game : public Base_Init
 {
     public:
         Game();
+        Game(const char *filename);
         ~Game();
+
+        bool StartGame();
 
     protected:
 

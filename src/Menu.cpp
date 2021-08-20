@@ -4,15 +4,13 @@
 
 Menu::Menu()
 {
+
+    GPU_init();
     //ctor
 
     //current menu item
     current = 0;
 
-    GPU_init();
-
-    scanner2 = new Scanner;
-    scanner2->Scan();
 
     // assigning func pointers
     MenuFuncPtr [1] = &Menu::StartPlay;
@@ -67,20 +65,23 @@ Menu::Menu()
 void Menu::MenuRun()
 {
 
+    scanner = new Scanner;
+    scanner->Scan();
+
     while (!draw_frame(obj))
     {
 
-     if (scanner2)
+     if (scanner)
      {
-         scanner2->Scan();
+         scanner->Scan();
      }
 
-     if (Scanner::go_pressed)
+     if (Scanner::go_pressed && current >0)
      {
          menuitem[current]->started = 1;
 
-         delete scanner2;
-         scanner2 = nullptr;
+         delete scanner;
+         scanner = nullptr;
      }
      navigate();
 
@@ -92,9 +93,9 @@ void Menu::MenuRun()
     GPU_finish();
     free_textures(obj);
 
-    if (scanner2)
+    if (scanner)
     {
-        delete scanner2;
+        delete scanner;
     }
 
         StartActiveMenuItem = MenuFuncPtr[current];

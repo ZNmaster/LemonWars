@@ -11,8 +11,8 @@ Gamebooter::Gamebooter()
     GPU_init();
 
     //Input scanner
-    scanner1 = new Scanner;
-    scanner1->Scan();
+    scanner = new Scanner;
+    scanner->Scan();
 
     // create obj title screen and rocket
 
@@ -38,13 +38,13 @@ void Gamebooter::Play()
     // draw a new frame until any game object tells us to stop
     while (!draw_frame(obj))
     {
-     scanner1->Scan();
+     scanner->Scan();
     }
     GPU_finish();
 
     //deleting title screen objects and input scanner
     free_textures(obj);
-    delete scanner1;
+    delete scanner;
 
     Menu MainMenu;
     MainMenu.MenuRun();

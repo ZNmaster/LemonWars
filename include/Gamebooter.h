@@ -10,8 +10,6 @@
 #include "GamePlayObj.h"
 #include "Rocket.h"
 
-#include "Scanner.h"
-
 
 class Gamebooter : public Base_Init
 
@@ -25,10 +23,6 @@ class Gamebooter : public Base_Init
     SoLoud::Soloud gSoloud; // SoLoud engine
     SoLoud::Wav gWave;      // One wave file
 
-
-
-
-    Scanner *scanner1;
 
 
     protected:

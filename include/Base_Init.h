@@ -5,6 +5,7 @@
 
 #include "Timer.h"
 #include "Entity.h"
+#include "Scanner.h"
 
 #include <vita2d.h>
 
@@ -36,6 +37,9 @@ class Base_Init
 
         //vector of pointers to gameplay objects (images)
         std::vector<Entity *> obj;
+
+        //input scanner
+        Scanner *scanner;
 
         Timer grid_toggle_timer;
 

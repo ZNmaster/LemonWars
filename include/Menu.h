@@ -40,9 +40,6 @@ class Menu : public Base_Init
 
         unsigned int MenuItemO;
 
-        //input scanner
-        Scanner *scanner2;
-
 
         // array of the start func pointers
         void (Menu::*MenuFuncPtr[6])();
