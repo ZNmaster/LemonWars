@@ -1,12 +1,12 @@
 #include "Game.h"
 #include "Scanner.h"
 #include "LevelMap.h"
+#include "Player.h"
 
 
 Game::Game()
 {
     //ctor
-
 }
 
 Game::Game(const char *filename)
@@ -16,6 +16,10 @@ Game::Game(const char *filename)
 
     LevelMap *level = new LevelMap(filename);
     obj.push_back (level);
+
+    Player *player = new Player(level, "app0:/assets/images/characters/tank_sprite.png", 400, 400, 2, 2,
+                                200, 200);
+    obj.push_back (player);
 }
 
 bool Game::StartGame()
