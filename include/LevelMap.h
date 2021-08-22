@@ -3,7 +3,6 @@
 
 #include <GamePlayObj.h>
 
-
 class LevelMap : public GamePlayObj
 {
     public:
@@ -11,10 +10,24 @@ class LevelMap : public GamePlayObj
         LevelMap(const char *filename);
         virtual ~LevelMap();
         bool valid_pos(int abs_x, int abs_y, int radius);
+
         int mapres_x,
             mapres_y;
+
         void set_map_res();
-        void go_move();
+
+        virtual void go_move();
+
+        int map_min_x,
+            map_min_y,
+            map_max_x,
+            map_max_y;
+
+        int player_pos_x,
+            player_pos_y;
+
+
+
 
 
     protected:

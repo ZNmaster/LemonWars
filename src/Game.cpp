@@ -19,6 +19,7 @@ Game::Game(const char *filename)
 
     Player *player = new Player(level, "app0:/assets/images/characters/tank_sprite.png", 400, 400, 2, 2,
                                 200, 200);
+
     obj.push_back (player);
 }
 

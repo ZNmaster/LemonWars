@@ -19,14 +19,19 @@ Player::Player(LevelMap *mymap, const char *filename, int res_x, int res_y, int 
 
 void Player::go_move()
 {
+    //reset new position
+    new_abs_y = abs_y;
+    new_abs_x = abs_x;
+
     move_timer.stop();
     move_delta = (int)(speed*move_timer.duration_float+1);
     move_timer.start();
 
-    //move_delta = 5;
+
     if (Scanner::up_pressed)
     {
         new_abs_y = abs_y - move_delta;
+
     }
     if (Scanner::down_pressed)
     {
@@ -40,14 +45,39 @@ void Player::go_move()
     {
         new_abs_x = abs_x + move_delta;
     }
+
     if (level->valid_pos(new_abs_x, new_abs_y, radius))
     {
         abs_x = new_abs_x;
         abs_y = new_abs_y;
     }
 
-        pos_x = abs_x - radius;
-        pos_y = abs_y - radius;
+        //set new coordinates to draw
+        pos_x = vitares_x/2;
+        pos_y = vitares_y/2;
+
+        if (abs_x < vitares_x/2)
+        {
+            pos_x = abs_x - radius;
+        }
+        else if (abs_x > (level->mapres_x - vitares_x))
+        {
+            pos_x = abs_x - level->map_max_x - radius;
+        }
+
+        if (abs_y < vitares_y/2)
+        {
+            pos_y = abs_y - radius;
+        }
+
+        else if (abs_y > (level->mapres_y - vitares_y))
+        {
+            pos_y = abs_y - level->map_max_y - radius;
+        }
+
+        level->player_pos_y = abs_y;
+        level->player_pos_x = abs_x;
+
 
 }
 
