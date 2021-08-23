@@ -164,7 +164,7 @@ void Base_Init::create_text_from_font(std::string text, int x, int y,
 {
     int k = 4;
     int res_x = 128;
-    int res_y = 256;
+    //int res_y = 256;
     int num_h = 8;
     int num_v = 16;
     int x0 = x;
@@ -173,7 +173,7 @@ void Base_Init::create_text_from_font(std::string text, int x, int y,
 
     for(unsigned int i = 0; i<text.length(); i++)
     {
-        Letter *title = new Letter(filename, res_x, res_y, num_h, num_v,
+        Letter *title = new Letter(filename, num_h, num_v,
                                    (x0+i*offset*k), y0, (int)text[i]);
         title->k_x = k;
         title->k_y = k;

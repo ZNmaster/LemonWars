@@ -1,5 +1,8 @@
 #include "GamePlayObj.h"
 
+extern unsigned char _binary_missing_png_start;
+
+
 GamePlayObj::GamePlayObj()
 {
     //ctor
@@ -9,8 +12,16 @@ GamePlayObj::GamePlayObj()
 GamePlayObj::GamePlayObj(const char *filename)
 {
     image = vita2d_load_PNG_file(filename);
+
+    if (!image)
+    {
+        image = vita2d_load_PNG_buffer(&_binary_missing_png_start);
+    }
+
+
     started = 0;
     terminated = 0;
+    set_res();
 }
 
 GamePlayObj::~GamePlayObj()
@@ -19,7 +30,12 @@ GamePlayObj::~GamePlayObj()
     vita2d_free_texture (image);
 }
 
-/*void GamePlayObj::go_move()
+void GamePlayObj::set_res()
 {
-std::cout << "move of GPO" << std::endl;
-}*/
+    res_x = vita2d_texture_get_width (image);
+    res_y = vita2d_texture_get_height (image);
+    mapres_x = res_x;
+    mapres_y = res_y;
+}
+
+

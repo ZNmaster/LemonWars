@@ -12,14 +12,13 @@ LevelMap::LevelMap(const char *filename)
     part_x = 0;
     part_y = 0;
 
-    set_map_res();
 
     map_min_x = 0;
     map_min_y = 0;
     map_max_x = mapres_x - vitares_x;
     map_max_y = mapres_y - vitares_y;
 
-
+    //to render only visibble part of the map
     res_of_sprites_x = vitares_x;
     res_of_sprites_y = vitares_y;
 
@@ -41,11 +40,11 @@ bool LevelMap::valid_pos(int abs_x, int abs_y, int radius)
 
 }
 
-void LevelMap::set_map_res()
+/*void LevelMap::set_map_res()
 {
     mapres_x = 2250;
     mapres_y = 1940;
-}
+}*/
 
 void LevelMap::go_move()
 {

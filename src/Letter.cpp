@@ -5,9 +5,9 @@ Letter::Letter()
 {
     //ctor
 }
-Letter::Letter(const char *filename, int res_x, int res_y, int num_horizontal_sprites,
+Letter::Letter(const char *filename, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0, int letter)
-               : Sprite::Sprite(filename, res_x, res_y, num_horizontal_sprites,
+               : Sprite::Sprite(filename, num_horizontal_sprites,
                                 num_vertical_sprites, x0, y0)
 {
     sprite_coord_calc(char_pos_calc(letter));

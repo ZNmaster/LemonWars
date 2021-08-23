@@ -11,10 +11,6 @@ class LevelMap : public GamePlayObj
         virtual ~LevelMap();
         bool valid_pos(int abs_x, int abs_y, int radius);
 
-        int mapres_x,
-            mapres_y;
-
-        void set_map_res();
 
         virtual void go_move();
 

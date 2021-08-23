@@ -10,11 +10,20 @@ class GamePlayObj : public Entity
         GamePlayObj();
         GamePlayObj(const char *filename);
         virtual ~GamePlayObj();
-        //virtual void go_move();
+
+        //ressolution of the texture loaded
+        int mapres_x,
+            mapres_y;
+
+            //used for spritesheet resolution
+        int res_x,
+            res_y;
 
         //for moving objects
         bool started;//if moving enabled
         int delta;// moving step
+
+        void set_res();
 
     protected:
 

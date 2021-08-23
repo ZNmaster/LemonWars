@@ -9,7 +9,7 @@ class Character : public Sprite
 {
     public:
         Character();
-        Character(const char *filename, int res_x, int res_y, int num_horizontal_sprites,
+        Character(const char *filename, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0);
 
         virtual ~Character();

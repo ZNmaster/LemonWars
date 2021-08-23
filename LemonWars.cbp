@@ -23,7 +23,7 @@
 			<Add directory="/home/vlad/libvita2d/libvita2d/include" />
 		</Compiler>
 		<Linker>
-			<Add option="obj/image.o" />
+			<Add option="obj/missing.o" />
 			<Add option="-Wl,-q -Wall -fno-lto" />
 			<Add library="soloud" />
 			<Add library="stdc++" />
