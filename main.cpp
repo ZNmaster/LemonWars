@@ -1,8 +1,7 @@
 #include <iostream>
+#include <array>
 #include "Scanner.h"
-#include "Entity.h"
-#include "GamePlayObj.h"
-#include "Title.h"
+#include "Wallbuilder.h"
 
 bool Scanner::up_pressed = 0;
 bool Scanner::down_pressed = 0;
@@ -12,6 +11,21 @@ bool Scanner::start_pressed = 0;
 
 int main()
 {
+  Wallbuilder LevelWall (1);
+
+
+  if (LevelWall.pos_valid(100, 500, 50))
+  {
+      std::cout << "Position is valid" << std::endl;
+  }
+  else {std::cout << "Position is NOT valid" << std::endl;}
+
+
+
+
+  return 0;
+
+ /*
  //Table of pointers
  Entity *ptr[5];
 
@@ -27,7 +41,7 @@ int main()
 
 
  delete ent1;
-
+*/
 
 
 
@@ -65,6 +79,6 @@ int main()
  std::cout << timer1.duration_float << std::endl;
  }*/
 
- return 0;
+
 
 }
