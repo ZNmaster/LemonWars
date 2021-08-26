@@ -57,7 +57,8 @@
 	<psp2/ctrl.h>
 	<psp2/kernel/processmgr.h>
 
-1627406621 /home/iurii/LemonWars/include/Wallbuilder.h
+1630002858 /home/iurii/LemonWars/include/Wallbuilder.h
+	<array>
 
 1629467806 source:/home/iurii/LemonWars/src/Gamebooter.cpp
 	"Gamebooter.h"
@@ -76,11 +77,13 @@
 	"Scanner.h"
 	<string.h>
 
-1627406621 source:/home/iurii/LemonWars/src/Wallbuilder.cpp
+1630003094 source:/home/iurii/LemonWars/src/Wallbuilder.cpp
 	"Wallbuilder.h"
 	<iostream>
+	<cmath>
+	<algorithm>
 
-1629735739 source:/home/iurii/LemonWars/src/Base_Init.cpp
+1629754412 source:/home/iurii/LemonWars/src/Base_Init.cpp
 	"Base_Init.h"
 	"Scanner.h"
 	"Letter.h"
@@ -147,8 +150,9 @@
 1629735141 source:/home/iurii/LemonWars/src/LevelMap.cpp
 	"LevelMap.h"
 
-1629657581 /home/iurii/LemonWars/include/LevelMap.h
-	<GamePlayObj.h>
+1630018559 /home/iurii/LemonWars/include/LevelMap.h
+	"GamePlayObj.h"
+	"Wallbuilder.h"
 
 1629474919 source:/home/iurii/LemonWars/src/NPC.cpp
 	"NPC.h"

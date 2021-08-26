@@ -22,12 +22,20 @@ LevelMap::LevelMap(const char *filename)
     res_of_sprites_x = vitares_x;
     res_of_sprites_y = vitares_y;
 
+    levelwalls = Wallbuilder{1};
+
 
 }
 
 bool LevelMap::valid_pos(int abs_x, int abs_y, int radius)
 {
     //check if the map position is valid
+
+    if (!levelwalls.pos_valid(abs_x, abs_y, touch_radius))
+    {
+        return 0;
+    }
+
     if ((abs_x - radius) < 0 || (abs_y - radius) < 0)
     {
         return 0;

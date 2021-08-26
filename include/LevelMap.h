@@ -1,7 +1,9 @@
 #ifndef LEVELMAP_H
 #define LEVELMAP_H
 
-#include <GamePlayObj.h>
+#include "GamePlayObj.h"
+#include "Wallbuilder.h"
+
 
 class LevelMap : public GamePlayObj
 {
@@ -10,6 +12,9 @@ class LevelMap : public GamePlayObj
         LevelMap(const char *filename);
         virtual ~LevelMap();
         bool valid_pos(int abs_x, int abs_y, int radius);
+
+        Wallbuilder levelwalls;
+        int touch_radius = 50;
 
 
         virtual void go_move();
