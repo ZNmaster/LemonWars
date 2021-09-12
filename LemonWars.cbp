@@ -38,6 +38,7 @@
 		<Unit filename="include/Entity.h" />
 		<Unit filename="include/GamePlayObj.h" />
 		<Unit filename="include/Gamebooter.h" />
+		<Unit filename="include/Memory.h" />
 		<Unit filename="include/Menu.h" />
 		<Unit filename="include/Scanner.h" />
 		<Unit filename="include/Sprite.h" />

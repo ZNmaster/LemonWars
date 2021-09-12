@@ -7,13 +7,11 @@
 
 1625585574 /home/vladyslav/LemonWars/include/Gamebooter.h
 
-1629999553 source:/home/vladyslav/LemonWars/main.cpp
+1630003440 source:/home/vladyslav/LemonWars/main.cpp
 	<iostream>
 	<array>
 	"Scanner.h"
-	"Entity.h"
-	"GamePlayObj.h"
-	"Title.h"
+	"Wallbuilder.h"
 
 1625685015 /home/vladyslav/LemonWars/include/Menu.h
 

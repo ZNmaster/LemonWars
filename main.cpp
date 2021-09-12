@@ -2,6 +2,8 @@
 #include <array>
 #include "Scanner.h"
 #include "Wallbuilder.h"
+#include "Memory.h"
+
 
 bool Scanner::up_pressed = 0;
 bool Scanner::down_pressed = 0;
@@ -11,6 +13,8 @@ bool Scanner::start_pressed = 0;
 
 int main()
 {
+  Memory level1;
+
   Wallbuilder LevelWall (1);
 
 
