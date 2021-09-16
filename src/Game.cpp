@@ -2,6 +2,7 @@
 #include "Scanner.h"
 #include "LevelMap.h"
 #include "Player.h"
+#include "SpawnPoint.h"
 
 
 Game::Game()
@@ -13,6 +14,9 @@ Game::Game(const char *filename)
 
 {
     GPU_init();
+
+    SpawnPoint *spawn = new SpawnPoint(650, 1200, &obj);
+    obj.push_back (spawn);
 
     LevelMap *level = new LevelMap(filename);
     obj.push_back (level);

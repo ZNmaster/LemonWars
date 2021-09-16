@@ -67,6 +67,7 @@
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/Rocket.h" />
 		<Unit filename="include/Scanner.h" />
+		<Unit filename="include/SpawnPoint.h" />
 		<Unit filename="include/Sprite.h" />
 		<Unit filename="include/Timer.h" />
 		<Unit filename="include/Wallbuilder.h" />
@@ -86,6 +87,7 @@
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/Rocket.cpp" />
 		<Unit filename="src/Scanner.cpp" />
+		<Unit filename="src/SpawnPoint.cpp" />
 		<Unit filename="src/Sprite.cpp" />
 		<Unit filename="src/Timer.cpp" />
 		<Unit filename="src/Wallbuilder.cpp" />

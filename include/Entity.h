@@ -38,7 +38,7 @@ class Entity
         //image texture
         vita2d_texture *image;
 
-        //for the objects which can stop drawin
+        //for the objects which can stop drawing
         bool terminated;
 
         //for the objects which will be displayed partially (e.g. spritessheets)

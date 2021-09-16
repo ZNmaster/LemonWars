@@ -99,7 +99,7 @@
 	"Entity.h"
 	<cmath>
 
-1629408745 /home/iurii/LemonWars/include/Entity.h
+1631832602 /home/iurii/LemonWars/include/Entity.h
 	<vita2d.h>
 
 1629754166 source:/home/iurii/LemonWars/src/GamePlayObj.cpp
@@ -147,7 +147,7 @@
 1629470126 /home/iurii/LemonWars/include/Game.h
 	<Base_Init.h>
 
-1629735141 source:/home/iurii/LemonWars/src/LevelMap.cpp
+1630018559 source:/home/iurii/LemonWars/src/LevelMap.cpp
 	"LevelMap.h"
 
 1630018559 /home/iurii/LemonWars/include/LevelMap.h
@@ -178,4 +178,11 @@
 1629641116 /home/iurii/LemonWars/include/PlayerMap.h
 	<Character.h>
 	<GamePlayObj.h>
+
+1631832833 source:/home/iurii/LemonWars/src/SpawnPoint.cpp
+	"SpawnPoint.h"
+
+1631832867 /home/iurii/LemonWars/include/SpawnPoint.h
+	<Entity.h>
+	<vector>
 
