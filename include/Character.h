@@ -2,6 +2,7 @@
 #define CHARACTER_H
 
 #include <Sprite.h>
+#include "LevelMap.h"
 #include <Timer.h>
 
 
@@ -13,6 +14,9 @@ class Character : public Sprite
                int num_vertical_sprites, int x0, int y0);
 
         virtual ~Character();
+
+        //pointer to level map
+        LevelMap *level;
 
         //moving speed in pixels per second
         int speed;

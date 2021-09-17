@@ -51,16 +51,18 @@
 			<Add after="vita-elf-create $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME) $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).velf" />
 			<Add after="vita-make-fself -s $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).velf $(TARGET_OUTPUT_DIR)eboot.bin" />
 			<Add after='vita-mksfoex -s TITLE_ID=&quot;ZNMS00003&quot; &quot;$(TARGET_OUTPUT_BASENAME)&quot; $(TARGET_OUTPUT_DIR)param.sfo' />
-			<Add after="vita-pack-vpk -s $(TARGET_OUTPUT_DIR)param.sfo -b $(TARGET_OUTPUT_DIR)eboot.bin --add assets/images/characters/tank_sprite.png=assets/images/characters/tank_sprite.png --add assets/images/levels/1_1/Level1_1.png=assets/images/levels/1_1/Level1_1.png --add sce_sys/icon0.png=sce_sys/icon0.png --add Title_screen.png=Title_screen.png --add music.ogg=music.ogg --add assets/images/main_menu/controls.png=assets/images/main_menu/controls.png --add assets/images/main_menu/credits.png=assets/images/main_menu/credits.png --add assets/images/main_menu/exit.png=assets/images/main_menu/exit.png --add assets/images/main_menu/load.png=assets/images/main_menu/load.png --add assets/images/main_menu/play.png=assets/images/main_menu/play.png --add assets/images/main_menu/Background.png=assets/images/main_menu/Background.png --add assets/fonts/default_font.png=assets/fonts/default_font.png --add assets/images/titlescreen/rocket.png=assets/images/titlescreen/rocket.png --add sce_sys/livearea/contents/bg.png=sce_sys/livearea/contents/bg.png --add sce_sys/livearea/contents/startup.png=sce_sys/livearea/contents/startup.png --add sce_sys/livearea/contents/template.xml=sce_sys/livearea/contents/template.xml $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).vpk" />
+			<Add after="vita-pack-vpk -s $(TARGET_OUTPUT_DIR)param.sfo -b $(TARGET_OUTPUT_DIR)eboot.bin --add assets/images/characters/npc/lemon_sprite.png=assets/images/characters/npc/lemon_sprite.png --add assets/images/characters/tank_sprite.png=assets/images/characters/tank_sprite.png --add assets/images/levels/1_1/Level1_1.png=assets/images/levels/1_1/Level1_1.png --add sce_sys/icon0.png=sce_sys/icon0.png --add Title_screen.png=Title_screen.png --add music.ogg=music.ogg --add assets/images/main_menu/controls.png=assets/images/main_menu/controls.png --add assets/images/main_menu/credits.png=assets/images/main_menu/credits.png --add assets/images/main_menu/exit.png=assets/images/main_menu/exit.png --add assets/images/main_menu/load.png=assets/images/main_menu/load.png --add assets/images/main_menu/play.png=assets/images/main_menu/play.png --add assets/images/main_menu/Background.png=assets/images/main_menu/Background.png --add assets/fonts/default_font.png=assets/fonts/default_font.png --add assets/images/titlescreen/rocket.png=assets/images/titlescreen/rocket.png --add sce_sys/livearea/contents/bg.png=sce_sys/livearea/contents/bg.png --add sce_sys/livearea/contents/startup.png=sce_sys/livearea/contents/startup.png --add sce_sys/livearea/contents/template.xml=sce_sys/livearea/contents/template.xml $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).vpk" />
 		</ExtraCommands>
 		<Unit filename="include/Base_Init.h" />
 		<Unit filename="include/Character.h" />
+		<Unit filename="include/Common_Lemon.h" />
 		<Unit filename="include/Entity.h" />
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/GamePlayObj.h" />
 		<Unit filename="include/Gamebooter.h" />
 		<Unit filename="include/Letter.h" />
 		<Unit filename="include/LevelMap.h" />
+		<Unit filename="include/MemoryAI.h" />
 		<Unit filename="include/Menu.h" />
 		<Unit filename="include/MenuItem.h" />
 		<Unit filename="include/NPC.h" />
@@ -74,6 +76,7 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Base_Init.cpp" />
 		<Unit filename="src/Character.cpp" />
+		<Unit filename="src/Common_Lemon.cpp" />
 		<Unit filename="src/Entity.cpp" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/GamePlayObj.cpp" />

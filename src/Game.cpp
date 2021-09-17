@@ -3,6 +3,7 @@
 #include "LevelMap.h"
 #include "Player.h"
 #include "SpawnPoint.h"
+#include "Common_Lemon.h"
 
 
 Game::Game()
@@ -21,9 +22,13 @@ Game::Game(const char *filename)
     LevelMap *level = new LevelMap(filename);
     obj.push_back (level);
 
+    //save level map pointer in spawn point
+    spawn->set_levelmap(level);
+
     Player *player = new Player(level, "app0:/assets/images/characters/tank_sprite.png", 2, 2, 100, 100);
 
     obj.push_back (player);
+
 }
 
 bool Game::StartGame()

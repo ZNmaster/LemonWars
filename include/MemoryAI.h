@@ -1,7 +1,7 @@
-#ifndef MEMORY_H
-#define MEMORY_H
+#ifndef MEMORYAI_H
+#define MEMORYAI_H
 
-struct Memory
+struct MemoryAI
 
 {
     //the number of nav points on the map
@@ -18,4 +18,4 @@ struct Memory
     int path[100][100];
 };
 
-#endif // MEMORY_H
+#endif // MEMORYAI_H

@@ -17,7 +17,7 @@ class Player : public Character
         void go_move();
 
         virtual ~Player();
-        LevelMap *level;
+
 
     protected:
 
