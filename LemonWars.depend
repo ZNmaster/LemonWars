@@ -7,11 +7,10 @@
 
 1625585574 /home/vladyslav/LemonWars/include/Gamebooter.h
 
-1630003440 source:/home/vladyslav/LemonWars/main.cpp
+1632954207 source:/home/vladyslav/LemonWars/main.cpp
 	<iostream>
-	<array>
+	"RNG.h"
 	"Scanner.h"
-	"Wallbuilder.h"
 
 1625685015 /home/vladyslav/LemonWars/include/Menu.h
 
@@ -40,12 +39,12 @@
 1627598028 source:/home/vladyslav/LemonWars/src/Timer.cpp
 	"Timer.h"
 
-1627833684 source:/home/vladyslav/LemonWars/src/Entity.cpp
+1631655343 source:/home/vladyslav/LemonWars/src/Entity.cpp
 	"Entity.h"
 	<iostream>
 	<cmath>
 
-1629915077 /home/vladyslav/LemonWars/include/Entity.h
+1631655734 /home/vladyslav/LemonWars/include/Entity.h
 
 1627834118 /home/vladyslav/LemonWars/include/GamePlayObj.h
 	<Entity.h>
@@ -66,4 +65,12 @@
 
 1628093318 /home/vladyslav/LemonWars/include/Sprite.h
 	<GamePlayObj.h>
+
+1632954085 /home/vladyslav/LemonWars/include/RNG.h
+
+1632954164 source:/home/vladyslav/LemonWars/src/RNG.cpp
+	"RNG.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
 

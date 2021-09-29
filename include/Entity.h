@@ -10,6 +10,7 @@ class Entity
         virtual ~Entity();
         int abs_x, abs_y;
         float distance(int x1, int y1);
+        float distance(int x1, int y1, int x2, int y2);
         virtual void go_move();
         int pos_x, pos_y, part_x, part_y;
 

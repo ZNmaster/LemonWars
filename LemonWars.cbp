@@ -40,6 +40,8 @@
 		<Unit filename="include/Gamebooter.h" />
 		<Unit filename="include/Memory.h" />
 		<Unit filename="include/Menu.h" />
+		<Unit filename="include/Pathfinder.h" />
+		<Unit filename="include/RNG.h" />
 		<Unit filename="include/Scanner.h" />
 		<Unit filename="include/Sprite.h" />
 		<Unit filename="include/Timer.h" />
@@ -50,6 +52,8 @@
 		<Unit filename="src/GamePlayObj.cpp" />
 		<Unit filename="src/Gamebooter.cpp" />
 		<Unit filename="src/Menu.cpp" />
+		<Unit filename="src/Pathfinder.cpp" />
+		<Unit filename="src/RNG.cpp" />
 		<Unit filename="src/Scanner.cpp" />
 		<Unit filename="src/Sprite.cpp" />
 		<Unit filename="src/Timer.cpp" />

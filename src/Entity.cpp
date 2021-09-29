@@ -32,6 +32,11 @@ float Entity::distance(int x1, int y1)
     return sqrt(pow((abs_x-x1), 2) + pow((abs_y-y1), 2));
 }
 
+float Entity::distance(int x1, int y1, int x2, int y2)
+{
+    return sqrt(pow((x2-x1), 2) + pow((y2-y1), 2));
+}
+
 void Entity::go_move()
 {
 std::cout << "move of entity" << std::endl;
