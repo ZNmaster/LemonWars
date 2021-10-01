@@ -7,9 +7,9 @@
 
 1625585574 /home/vladyslav/LemonWars/include/Gamebooter.h
 
-1632954207 source:/home/vladyslav/LemonWars/main.cpp
+1633126389 source:/home/vladyslav/LemonWars/main.cpp
 	<iostream>
-	"RNG.h"
+	"Pathfinder.h"
 	"Scanner.h"
 
 1625685015 /home/vladyslav/LemonWars/include/Menu.h
@@ -73,4 +73,11 @@
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
+
+1633126508 source:/home/vladyslav/LemonWars/src/Pathfinder.cpp
+	"Pathfinder.h"
+	<cmath>
+	<iostream>
+
+1633125762 /home/vladyslav/LemonWars/include/Pathfinder.h
 

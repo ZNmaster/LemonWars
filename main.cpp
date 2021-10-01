@@ -1,5 +1,5 @@
 #include <iostream>
-#include "RNG.h"
+#include "Pathfinder.h"
 #include "Scanner.h"
 
 
@@ -11,31 +11,19 @@ bool Scanner::start_pressed = 0;
 
 int main()
 {
-    RNG rnd;
+  Pathfinder path(56,43,2,41);
+
+  while (!path.arrived)
+  {
+      std::cout << path.current_x << ", " << path.current_y << std::endl;
+      path.move_by(3);
+  }
 
 
-        std::cout << std::endl;
-
-
-    for(int i = 0; i < 30; i++)
-    {
-
-      int randnum = rnd.int_random(100, 110);
-      std::cout << randnum << std::endl;
-    }
-
-
-
+  std::cout << path.current_x << ", " << path.current_y << std::endl;
 
 
   return 0;
-
-
-
-
-
-
-
 
 
 

@@ -6,14 +6,29 @@ class Pathfinder
 {
     public:
         Pathfinder();
-        Pathfinder(int x1, int y1, int x2, int y2);
+        Pathfinder(float x1, float y1, float x2, float y2);
         ~Pathfinder();
 
-        void reinit(int x1, int y1, int x2, int y2);
+        void move_by(int distance);
 
+        // called by constructor and then any time we need to reinit the class
+        void reinit(float x1, float y1, float x2, float y2);
+
+        // resets all bool variables
         void reset();
 
+        // current and targen coordinates
         int current_x, current_y, target_x, target_y;
+
+        void calc_path(float x1, float y1, float x2, float y2);
+
+        bool arrived;
+
+
+
+    protected:
+
+    private:
 
         //for y=ax+b
         float a_x, b_x;
@@ -25,11 +40,17 @@ class Pathfinder
         bool vertical,
              horizontal;
 
-        void calc_path(int x1, int y1, int x2, int y2);
 
-    protected:
+        float delta_x, delta_y;
+        float sin_a, cos_a;
 
-    private:
+        void go_high(int distance);
+        void go_low(int distance);
+
+        void (Pathfinder::*calc_coord) (int);
+
+        void arrival();
+
 };
 
 #endif // PATHFINDER_H
