@@ -198,3 +198,11 @@
 1631907103 /home/iurii/LemonWars/include/Common_Lemon.h
 	<NPC.h>
 
+1632870525 source:/home/iurii/LemonWars/src/RNG.cpp
+	"RNG.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1632870489 /home/iurii/LemonWars/include/RNG.h
+
