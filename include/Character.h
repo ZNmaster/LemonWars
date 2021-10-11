@@ -33,6 +33,8 @@ class Character : public Sprite
         int new_abs_x,
             new_abs_y;
 
+        int get_move_delta();
+
 
     protected:
 

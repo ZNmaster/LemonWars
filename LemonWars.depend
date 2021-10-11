@@ -77,7 +77,7 @@
 	"Scanner.h"
 	<string.h>
 
-1630003094 source:/home/iurii/LemonWars/src/Wallbuilder.cpp
+1633959404 source:/home/iurii/LemonWars/src/Wallbuilder.cpp
 	"Wallbuilder.h"
 	<iostream>
 	<cmath>
@@ -102,10 +102,10 @@
 1631832602 /home/iurii/LemonWars/include/Entity.h
 	<vita2d.h>
 
-1629754166 source:/home/iurii/LemonWars/src/GamePlayObj.cpp
+1633957179 source:/home/iurii/LemonWars/src/GamePlayObj.cpp
 	"GamePlayObj.h"
 
-1629754166 /home/iurii/LemonWars/include/GamePlayObj.h
+1633957179 /home/iurii/LemonWars/include/GamePlayObj.h
 	<Entity.h>
 
 1629297418 /home/iurii/LemonWars/include/Rocket.h
@@ -115,10 +115,10 @@
 	"Rocket.h"
 	"Scanner.h"
 
-1629735184 source:/home/iurii/LemonWars/src/Sprite.cpp
+1633957179 source:/home/iurii/LemonWars/src/Sprite.cpp
 	"Sprite.h"
 
-1629735184 /home/iurii/LemonWars/include/Sprite.h
+1633957179 /home/iurii/LemonWars/include/Sprite.h
 	<GamePlayObj.h>
 
 1629735219 source:/home/iurii/LemonWars/src/Letter.cpp
@@ -134,11 +134,11 @@
 1629297418 source:/home/iurii/LemonWars/src/MenuItem.cpp
 	"MenuItem.h"
 
-1629475026 source:/home/iurii/LemonWars/src/Levels.cpp
+1633730789 source:/home/iurii/LemonWars/src/Levels.cpp
 	"Menu.h"
 	"Game.h"
 
-1631910340 source:/home/iurii/LemonWars/src/Game.cpp
+1633731108 source:/home/iurii/LemonWars/src/Game.cpp
 	"Game.h"
 	"Scanner.h"
 	"LevelMap.h"
@@ -146,32 +146,35 @@
 	"SpawnPoint.h"
 	"Common_Lemon.h"
 
-1629470126 /home/iurii/LemonWars/include/Game.h
+1633730789 /home/iurii/LemonWars/include/Game.h
 	<Base_Init.h>
 
-1630018559 source:/home/iurii/LemonWars/src/LevelMap.cpp
+1633959956 source:/home/iurii/LemonWars/src/LevelMap.cpp
 	"LevelMap.h"
+	<fstream>
 
-1630018559 /home/iurii/LemonWars/include/LevelMap.h
+1633959956 /home/iurii/LemonWars/include/LevelMap.h
 	"GamePlayObj.h"
 	"Wallbuilder.h"
+	"MemoryAI.h"
 
-1632869502 source:/home/iurii/LemonWars/src/NPC.cpp
+1633964109 source:/home/iurii/LemonWars/src/NPC.cpp
 	"NPC.h"
 
-1632869502 /home/iurii/LemonWars/include/NPC.h
+1633964109 /home/iurii/LemonWars/include/NPC.h
 	<Character.h>
 	"LevelMap.h"
+	"Pathfinder.h"
 
-1631907554 /home/iurii/LemonWars/include/Character.h
+1633957562 /home/iurii/LemonWars/include/Character.h
 	<Sprite.h>
 	"LevelMap.h"
 	<Timer.h>
 
-1629735648 source:/home/iurii/LemonWars/src/Character.cpp
+1633958808 source:/home/iurii/LemonWars/src/Character.cpp
 	"Character.h"
 
-1629735295 source:/home/iurii/LemonWars/src/Player.cpp
+1633958031 source:/home/iurii/LemonWars/src/Player.cpp
 	"Player.h"
 	"Scanner.h"
 
@@ -192,17 +195,26 @@
 	"LevelMap.h"
 	<vector>
 
-1631910588 source:/home/iurii/LemonWars/src/Common_Lemon.cpp
+1633963239 source:/home/iurii/LemonWars/src/Common_Lemon.cpp
 	"Common_Lemon.h"
 
 1631907103 /home/iurii/LemonWars/include/Common_Lemon.h
 	<NPC.h>
 
-1632870525 source:/home/iurii/LemonWars/src/RNG.cpp
+1633525922 source:/home/iurii/LemonWars/src/RNG.cpp
 	"RNG.h"
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
 
-1632870489 /home/iurii/LemonWars/include/RNG.h
+1632954084 /home/iurii/LemonWars/include/RNG.h
+
+1633186670 source:/home/iurii/LemonWars/src/Pathfinder.cpp
+	"Pathfinder.h"
+	<cmath>
+	<iostream>
+
+1633964109 /home/iurii/LemonWars/include/Pathfinder.h
+
+1631905847 /home/iurii/LemonWars/include/MemoryAI.h
 

@@ -13,13 +13,45 @@ NPC::NPC(LevelMap *mymap, const char *filename, int num_horizontal_sprites,
     level = mymap;
 }
 
-void NPC::calc_path_func(int x1, int y1, int x2, int y2)
+void NPC::set_path()
 {
-    a_x = (y2 - y1)/(x2 - x1);
-    b_x = y2 - a_x*x2;
+   path = Pathfinder(abs_x, abs_y, level->levelmem.coord_x[target_nav_pos], level->levelmem.coord_y[target_nav_pos]);
+   carry_on = &NPC::walk;
 
-    a_y = (x2 - x1)/(y2 - y1);
-    b_y = x2 - a_y*y2;
+
+
+}
+
+void NPC::find_nearest()
+{
+  target_nav_pos = 12;
+  carry_on = &NPC::set_path;
+}
+
+void NPC::find_next()
+{
+
+}
+
+void NPC::wait_a_sec()
+{
+
+}
+
+void NPC::walk()
+{
+    //get the distance to move
+    move_delta = get_move_delta();
+    path.move_by(move_delta);
+
+    abs_x = path.current_x;
+    abs_y = path.current_y;
+
+    if (path.arrived)
+    {
+        carry_on = &NPC::wait_a_sec;
+    }
+
 
 
 }

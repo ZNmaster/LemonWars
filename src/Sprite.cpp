@@ -10,12 +10,11 @@ Sprite::Sprite(const char *filename, int num_horizontal_sprites,
                : GamePlayObj::GamePlayObj(filename)
 {
     //custom ctor
-    res_of_sprites_x = res_x / num_horizontal_sprites;
-    res_of_sprites_y = res_y / num_vertical_sprites;
+    res_of_sprites_x = loaded_image_res_x / num_horizontal_sprites;
+    res_of_sprites_y = loaded_image_res_y / num_vertical_sprites;
     pos_x = x0;
     pos_y = y0;
-    res_of_spritesheet_x = res_x;
-    res_of_spritesheet_y = res_y;
+
     partial = 1;
 
 }

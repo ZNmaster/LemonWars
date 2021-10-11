@@ -1,13 +1,24 @@
 #include "LevelMap.h"
+#include <fstream>
 
 LevelMap::LevelMap()
 {
     //ctor
 }
 
-LevelMap::LevelMap(const char *filename)
-          : GamePlayObj::GamePlayObj(filename)
+LevelMap::LevelMap(const char *MapFilename, const char *MemFilename)
+          : GamePlayObj::GamePlayObj(MapFilename)
 {
+    mapres_x = loaded_image_res_x;
+    mapres_y = loaded_image_res_y;
+
+    std::fstream myFile2;
+    myFile2.open(MemFilename, std::ios::in | std::ios::binary);
+
+    myFile2.read((char *)&levelmem, sizeof(MemoryAI));
+
+    myFile2.close();
+
     partial = 1;
     part_x = 0;
     part_y = 0;
@@ -48,11 +59,6 @@ bool LevelMap::valid_pos(int abs_x, int abs_y, int radius)
 
 }
 
-/*void LevelMap::set_map_res()
-{
-    mapres_x = 2250;
-    mapres_y = 1940;
-}*/
 
 void LevelMap::go_move()
 {

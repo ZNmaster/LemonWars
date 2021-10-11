@@ -14,9 +14,6 @@ Player::Player(LevelMap *mymap, const char *filename, int num_horizontal_sprites
     //set the speed in pixels per second
     speed = 200;
 
-    //start timer to count the time between the frames
-    move_timer.start();
-
     //select sprite #0
     sprite_coord_calc(0);
 
@@ -30,13 +27,8 @@ void Player::go_move()
     new_abs_y = abs_y;
     new_abs_x = abs_x;
 
-    //stop the timer and calculate thhe time between current and previous frame
-    move_timer.stop();
-    move_delta = (int)(speed*move_timer.duration_float+1);
-
-    //reset timer
-    move_timer.start();
-
+    //get the distance to move
+    move_delta = get_move_delta();
 
     //assign move directions
     if (Scanner::up_pressed)

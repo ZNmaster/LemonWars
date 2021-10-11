@@ -12,14 +12,13 @@ Common_Lemon::Common_Lemon(LevelMap *mymap, const char *filename, int num_horizo
 {
 
     //set the speed in pixels per second
-    speed = 200;
-
-    //start timer to count the time between the frames
-    move_timer.start();
+    speed = 100;
 
     //select sprite #0
     sprite_coord_calc(0);
 
+
+    carry_on = &Common_Lemon::find_nearest;
 
 
 }
@@ -27,8 +26,11 @@ Common_Lemon::Common_Lemon(LevelMap *mymap, const char *filename, int num_horizo
 
 void Common_Lemon::go_move()
 {
-  pos_x = abs_x - level->part_x;
-  pos_y = abs_y - level->part_y;
+
+  (this->*carry_on) ();
+
+  pos_x = abs_x - level->part_x - res_of_sprites_x;
+  pos_y = abs_y - level->part_y - res_of_sprites_y;
 }
 
 Common_Lemon::~Common_Lemon()

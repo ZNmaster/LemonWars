@@ -13,8 +13,7 @@ class Sprite : public GamePlayObj
         virtual ~Sprite();
         void spritesheet();
 
-        int res_of_spritesheet_x;
-        int res_of_spritesheet_y;
+
         void sprite_coord_calc(int num);
 
     protected:

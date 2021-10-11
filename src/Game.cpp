@@ -11,7 +11,7 @@ Game::Game()
     //ctor
 }
 
-Game::Game(const char *filename)
+Game::Game(const char *MapFilename, const char *MemFilename)
 
 {
     GPU_init();
@@ -19,7 +19,7 @@ Game::Game(const char *filename)
     SpawnPoint *spawn = new SpawnPoint(650, 1200, &obj);
     obj.push_back (spawn);
 
-    LevelMap *level = new LevelMap(filename);
+    LevelMap *level = new LevelMap(MapFilename, MemFilename);
     obj.push_back (level);
 
     //save level map pointer in spawn point

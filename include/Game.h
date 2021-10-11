@@ -8,7 +8,7 @@ class Game : public Base_Init
 {
     public:
         Game();
-        Game(const char *filename);
+        Game(const char *MapFilename, const char *MemFilename);
         ~Game();
 
         bool StartGame();

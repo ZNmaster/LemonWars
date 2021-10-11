@@ -11,13 +11,13 @@ class GamePlayObj : public Entity
         GamePlayObj(const char *filename);
         virtual ~GamePlayObj();
 
-        //ressolution of the texture loaded
-        int mapres_x,
-            mapres_y;
 
-            //used for spritesheet resolution
-        int res_x,
-            res_y;
+
+        //ressolution of the texture loaded
+        //used for spritesheet resolution
+        int loaded_image_res_x,
+            loaded_image_res_y;
+
 
         //for moving objects
         bool started;//if moving enabled

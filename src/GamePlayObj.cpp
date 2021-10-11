@@ -32,10 +32,9 @@ GamePlayObj::~GamePlayObj()
 
 void GamePlayObj::set_res()
 {
-    res_x = vita2d_texture_get_width (image);
-    res_y = vita2d_texture_get_height (image);
-    mapres_x = res_x;
-    mapres_y = res_y;
+    loaded_image_res_x = vita2d_texture_get_width (image);
+    loaded_image_res_y = vita2d_texture_get_height (image);
+
 }
 
 
