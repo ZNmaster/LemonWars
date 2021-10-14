@@ -9,7 +9,7 @@ class Pathfinder
         Pathfinder(float x1, float y1, float x2, float y2);
         ~Pathfinder();
 
-        void move_by(int distance);
+        void move_by(float distance);
 
         // called by constructor and then any time we need to reinit the class
         void reinit(float x1, float y1, float x2, float y2);
@@ -44,10 +44,10 @@ class Pathfinder
         float delta_x, delta_y;
         float sin_a, cos_a;
 
-        void go_high(int distance);
-        void go_low(int distance);
+        void go_high(float distance);
+        void go_low(float distance);
 
-        void (Pathfinder::*calc_coord) (int);
+        void (Pathfinder::*calc_coord) (float);
 
         void arrival();
 

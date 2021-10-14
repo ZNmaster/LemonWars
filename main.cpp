@@ -11,12 +11,13 @@ bool Scanner::start_pressed = 0;
 
 int main()
 {
-  Pathfinder path(56,43,2,41);
+  Pathfinder path(500,500,50,50);
+
 
   while (!path.arrived)
   {
       std::cout << path.current_x << ", " << path.current_y << std::endl;
-      path.move_by(3);
+      path.move_by(9);
   }
 
 
