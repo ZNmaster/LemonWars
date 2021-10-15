@@ -29,8 +29,7 @@ void Common_Lemon::go_move()
 
   (this->*carry_on) ();
 
-  pos_x = abs_x - level->part_x - res_of_sprites_x;
-  pos_y = abs_y - level->part_y - res_of_sprites_y;
+  calc_screen_pos();
 }
 
 Common_Lemon::~Common_Lemon()

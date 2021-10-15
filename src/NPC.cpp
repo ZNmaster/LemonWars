@@ -18,8 +18,6 @@ void NPC::set_path()
    path = Pathfinder(abs_x, abs_y, level->levelmem.coord_x[target_nav_pos], level->levelmem.coord_y[target_nav_pos]);
    carry_on = &NPC::walk;
 
-
-
 }
 
 void NPC::find_nearest()
@@ -52,8 +50,12 @@ void NPC::walk()
         carry_on = &NPC::wait_a_sec;
     }
 
+}
 
-
+void NPC::calc_screen_pos()
+{
+      pos_x = abs_x - level->part_x - res_of_sprites_x/2;
+      pos_y = abs_y - level->part_y - res_of_sprites_y/2;
 }
 
 NPC::~NPC()
