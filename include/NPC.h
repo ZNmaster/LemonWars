@@ -2,8 +2,11 @@
 #define NPC_H
 
 #include <Character.h>
+
+#include "Timer.h"
 #include "LevelMap.h"
 #include "Pathfinder.h"
+#include "RNG.h"
 
 
 class NPC : public Character
@@ -39,6 +42,12 @@ class NPC : public Character
 
         //target nav point
         int target_nav_pos;
+
+        //current nav point
+        int current_nav_pos;
+
+        RNG rand;
+        Timer npc_wait_timer;
 
 
         /*

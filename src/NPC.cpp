@@ -1,3 +1,5 @@
+#include <vector>
+
 #include "NPC.h"
 
 NPC::NPC()
@@ -11,12 +13,22 @@ NPC::NPC(LevelMap *mymap, const char *filename, int num_horizontal_sprites,
 {
     //save the pointer to the Map
     level = mymap;
+
+    current_nav_pos = -1;
 }
 
 void NPC::set_path()
 {
-   path = Pathfinder(abs_x, abs_y, level->levelmem.coord_x[target_nav_pos], level->levelmem.coord_y[target_nav_pos]);
-   carry_on = &NPC::walk;
+   if (target_nav_pos == current_nav_pos)
+   {
+       carry_on = &NPC::wait_a_sec;
+       npc_wait_timer.delay_mills(rand.int_random(7000));
+   }
+   else
+   {
+       path = Pathfinder(abs_x, abs_y, level->levelmem.coord_x[target_nav_pos], level->levelmem.coord_y[target_nav_pos]);
+       carry_on = &NPC::walk;
+   }
 
 }
 
@@ -28,12 +40,29 @@ void NPC::find_nearest()
 
 void NPC::find_next()
 {
+    std::vector<int> possible_nav_points;
+    for(int i = 0; i < level->levelmem.number_of_points; i++)
+    {
+        if (level->levelmem.path[i][current_nav_pos] == -1)
+        {
+            possible_nav_points.push_back(i);
+        }
+    }
+    int pos = rand.int_random(possible_nav_points.size() - 1);
+    target_nav_pos = possible_nav_points[pos];
+
+    carry_on = &NPC::set_path;
 
 }
 
 void NPC::wait_a_sec()
 {
 
+   if (npc_wait_timer.expired())
+   {
+       carry_on = &NPC::find_next;
+       move_timer.start();
+   }
 }
 
 void NPC::walk()
@@ -47,7 +76,8 @@ void NPC::walk()
 
     if (path.arrived)
     {
-        carry_on = &NPC::wait_a_sec;
+        current_nav_pos = target_nav_pos;
+        carry_on = &NPC::find_next;
     }
 
 }

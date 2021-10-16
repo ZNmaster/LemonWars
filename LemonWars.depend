@@ -161,10 +161,12 @@
 1633964109 source:/home/iurii/LemonWars/src/NPC.cpp
 	"NPC.h"
 
-1634310370 /home/iurii/LemonWars/include/NPC.h
+1634404337 /home/iurii/LemonWars/include/NPC.h
 	<Character.h>
+	"Timer.h"
 	"LevelMap.h"
 	"Pathfinder.h"
+	"RNG.h"
 
 1633957562 /home/iurii/LemonWars/include/Character.h
 	<Sprite.h>
@@ -195,7 +197,7 @@
 	"LevelMap.h"
 	<vector>
 
-1633963239 source:/home/iurii/LemonWars/src/Common_Lemon.cpp
+1634310370 source:/home/iurii/LemonWars/src/Common_Lemon.cpp
 	"Common_Lemon.h"
 
 1631907103 /home/iurii/LemonWars/include/Common_Lemon.h
