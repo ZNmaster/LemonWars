@@ -17,18 +17,18 @@ Character::Character(const char *filename, int num_horizontal_sprites,
   abs_y = y0+radius;
 }
 
-int Character::get_move_delta()
+float Character::get_move_delta()
 {
     //stop the timer and calculate the time between current and previous frame
     move_timer.stop();
 
 
-    int delta = (int)(speed*move_timer.duration_float+1);
+    //int delta = (int)(speed*move_timer.duration_float+1);
 
     //reset timer
     move_timer.start();
 
-    return delta;
+    return speed*move_timer.duration_float;
 }
 
 Character::~Character()

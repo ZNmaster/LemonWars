@@ -19,13 +19,13 @@ class Character : public Sprite
         LevelMap *level;
 
         //moving speed in pixels per second
-        int speed;
+        float speed;
 
         //timer to calculate delta in pixels
         Timer move_timer;
 
         //delta in pixels
-        int move_delta;
+        float move_delta;
 
         //radius of the Character
         int radius;
@@ -33,7 +33,7 @@ class Character : public Sprite
         int new_abs_x,
             new_abs_y;
 
-        int get_move_delta();
+        float get_move_delta();
 
 
     protected:

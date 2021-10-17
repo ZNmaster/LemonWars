@@ -18,7 +18,7 @@ class Pathfinder
         void reset();
 
         // current and target coordinates
-        int current_x, current_y, target_x, target_y;
+        float current_x, current_y, target_x, target_y;
 
         void calc_path(float x1, float y1, float x2, float y2);
 

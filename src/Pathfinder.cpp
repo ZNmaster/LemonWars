@@ -96,8 +96,8 @@ void Pathfinder::go_high(float distance)
 {
    delta_y = distance*sin_a;
 
-   if (delta_y < 1 && delta_y > 0) delta_y = 1;
-   if (delta_y < 0 && delta_y > -1) delta_y = -1;
+   //if (delta_y < 1 && delta_y > 0) delta_y = 1;
+   //if (delta_y < 0 && delta_y > -1) delta_y = -1;
 
    current_y += delta_y;
 
@@ -127,8 +127,8 @@ void Pathfinder::go_high(float distance)
 void Pathfinder::go_low(float distance)
 {
    delta_x = distance*cos_a;
-   if (delta_x < 1 && delta_x > 0) delta_x = 1;
-   if (delta_x < 0 && delta_x > -1) delta_x = -1;
+   //if (delta_x < 1 && delta_x > 0) delta_x = 1;
+   //if (delta_x < 0 && delta_x > -1) delta_x = -1;
 
    current_x += delta_x;
 
