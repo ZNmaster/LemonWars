@@ -3,6 +3,9 @@
 #include "Letter.h"
 #include <cmath>
 
+//#include <sstream>
+//#include <psp2/kernel/threadmgr.h>
+
 
 Base_Init::Base_Init()
 {
@@ -10,6 +13,14 @@ Base_Init::Base_Init()
     rad = 0;
     //ctor
 }
+
+void Base_Init::GPU_init(unsigned int megabytes)
+{
+    // initializing libvita and setting background color
+    vita2d_init_advanced(megabytes * 1024 * 1024);
+	vita2d_set_clear_color(RGBA8(0x40, 0x40, 0x40, 0xFF));
+}
+
 
 void Base_Init::GPU_init()
 {
@@ -26,6 +37,7 @@ void Base_Init::GPU_finish()
     //stop drawing
     vita2d_wait_rendering_done();
     vita2d_fini();
+    //vita2d_free_pvf(pvf);
 }
 
 void Base_Init::draw_grid()
@@ -52,7 +64,11 @@ void Base_Init::draw_grid(int stride)
     if (grid_activated)
   {
 
+    /*size_t stack_size = sceKernelGetThreadStackFreeSize(0);
+    std::stringstream o;
+    o << "Stack available: " << stack_size;
 
+    vita2d_pvf_draw_text(pvf, 50, 50, RGBA8(0,255,0,255), 1.0f, o.str().c_str());*/
 
     //drawing vertical lines of the grid
     int x_start = stride;

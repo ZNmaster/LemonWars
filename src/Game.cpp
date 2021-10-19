@@ -14,16 +14,20 @@ Game::Game()
 Game::Game(const char *MapFilename, const char *MemFilename)
 
 {
-    GPU_init();
+    GPU_init(2);
 
     SpawnPoint *spawn = new SpawnPoint(650, 1200, &obj);
     obj.push_back (spawn);
+
+    SpawnPoint *spawn2 = new SpawnPoint(650, 1600, &obj);
+    obj.push_back (spawn2);
 
     LevelMap *level = new LevelMap(MapFilename, MemFilename);
     obj.push_back (level);
 
     //save level map pointer in spawn point
     spawn->set_levelmap(level);
+    spawn2->set_levelmap(level);
 
     Player *player = new Player(level, "app0:/assets/images/characters/tank_sprite.png", 2, 2, 100, 100);
 

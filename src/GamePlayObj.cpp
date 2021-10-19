@@ -18,9 +18,7 @@ GamePlayObj::GamePlayObj(const char *filename)
         image = vita2d_load_PNG_buffer(&_binary_missing_png_start);
     }
 
-
     started = 0;
-    terminated = 0;
     set_res();
 }
 

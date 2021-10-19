@@ -13,7 +13,7 @@ bool Scanner::start_pressed = 0;
 bool Scanner::select_pressed = 0;
 bool Scanner::go_pressed = 0;
 
-int LevelMap::number_of_enemies = 12;
+//int LevelMap::number_of_enemies = 12;
 
 int main()
 {

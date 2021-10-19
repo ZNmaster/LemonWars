@@ -3,6 +3,7 @@
 
 Entity::Entity()
 {
+    //reset flags
     abs_x = 0;
     abs_y = 0;
     pos_x = 0;
@@ -12,6 +13,7 @@ Entity::Entity()
     partial = 0;
     scaled = 0;
     waved = 0;
+    terminated = 0;
 
     //ctor
 

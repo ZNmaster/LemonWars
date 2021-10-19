@@ -1,11 +1,13 @@
 #ifndef SPAWNPOINT_H
 #define SPAWNPOINT_H
 
-#include <Entity.h>
+#include <vector>
+
+#include "Entity.h"
 #include "LevelMap.h"
 #include "Timer.h"
 
-#include <vector>
+
 
 
 class SpawnPoint : public Entity
@@ -13,10 +15,14 @@ class SpawnPoint : public Entity
     public:
         SpawnPoint();
         SpawnPoint(int x, int y, std::vector<Entity *> *obj);
-        void go_move();
+        virtual void go_move();
         void set_levelmap(LevelMap *mymap);
         Timer *enemy_spawn_timer;
-        //int number_of_enemies;
+
+        //number of enemies to spawn
+        int number_of_enemies;
+
+
 
 
         virtual ~SpawnPoint();

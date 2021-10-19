@@ -8,16 +8,20 @@ SpawnPoint::SpawnPoint()
 
 SpawnPoint::SpawnPoint(int x, int y, std::vector<Entity *> *obj)
 {
+    activated = 0;
+    spawned = 0;
+
     abs_x = x;
     abs_y = y;
     objvector = obj;
 
-
+    //image = nullptr;
     image = vita2d_create_empty_texture(1, 1);
-    activated = 0;
-    spawned = 0;
+
 
     enemy_spawn_timer = new Timer();
+    number_of_enemies = 12;
+
 
 }
 
@@ -52,10 +56,10 @@ void SpawnPoint::go_move()
 
             enemy_spawn_timer->delay_mills(900);
 
-            LevelMap::number_of_enemies--;
+            number_of_enemies--;
         }
 
-        if(LevelMap::number_of_enemies == 0)
+        if(number_of_enemies == 0)
         {
             spawned = 1;
             delete enemy_spawn_timer;
@@ -66,4 +70,5 @@ void SpawnPoint::go_move()
 SpawnPoint::~SpawnPoint()
 {
     //dtor
+    //vita2d_free_texture (image);
 }

@@ -16,6 +16,7 @@ class Base_Init
         Base_Init();
         ~Base_Init();
         void GPU_init();
+        void GPU_init(unsigned int megabytes);
         void GPU_finish();
 
         //vita2d_pgf *pgf;

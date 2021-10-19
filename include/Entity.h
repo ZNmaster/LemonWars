@@ -11,6 +11,7 @@ class Entity
 
         virtual ~Entity();
 
+
         const int vitares_x = 960;
         const int vitares_y = 544;
 

@@ -9,7 +9,7 @@
 class LevelMap : public GamePlayObj
 {
     public:
-        static int number_of_enemies;
+        //int number_of_enemies;
 
         LevelMap();
         LevelMap(const char *MapFilename, const char *MemFilename);
