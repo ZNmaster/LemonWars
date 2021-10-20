@@ -45,6 +45,7 @@ class NPC : public Character
 
         //current nav point
         int current_nav_pos;
+        int nearest, second_nearest;
 
         RNG rand;
         Timer npc_wait_timer;

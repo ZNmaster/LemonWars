@@ -70,5 +70,5 @@ void SpawnPoint::go_move()
 SpawnPoint::~SpawnPoint()
 {
     //dtor
-    //vita2d_free_texture (image);
+    vita2d_free_texture (image);
 }

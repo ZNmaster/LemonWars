@@ -6,6 +6,7 @@ Menu::Menu()
 {
 
     //ctor
+    GPU_init();
 
     //current menu item
     current = 0;
@@ -88,7 +89,6 @@ void Menu::MenuRun()
     }
 
     //deleting title screen objects and input scanner
-
 
     GPU_finish();
     free_textures(obj);

@@ -34,7 +34,22 @@ void NPC::set_path()
 
 void NPC::find_nearest()
 {
-  target_nav_pos = 12;
+  float ref_dist = 99000;
+
+  for (int i=0; i<level->levelmem.number_of_points; i++)
+  {
+       float dist = distance(level->levelmem.coord_x[i], level->levelmem.coord_y[i]);
+       if (dist <= ref_dist)
+       {
+           ref_dist = dist;
+           second_nearest = nearest;
+           nearest = i;
+       }
+
+  }
+
+  target_nav_pos = nearest;
+
   carry_on = &NPC::set_path;
 }
 
@@ -84,8 +99,8 @@ void NPC::walk()
 
 void NPC::calc_screen_pos()
 {
-      pos_x = abs_x - level->part_x - res_of_sprites_x/2;
-      pos_y = abs_y - level->part_y - res_of_sprites_y/2;
+      pos_x = abs_x - level->part_x - res_of_sprites_x;
+      pos_y = abs_y - level->part_y - res_of_sprites_y;
 }
 
 NPC::~NPC()

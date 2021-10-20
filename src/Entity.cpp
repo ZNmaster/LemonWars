@@ -14,6 +14,7 @@ Entity::Entity()
     scaled = 0;
     waved = 0;
     terminated = 0;
+    dead = 0;
 
     //ctor
 
@@ -21,8 +22,6 @@ Entity::Entity()
 
 Entity::Entity(int a)
 {
-    abs_x = 0;
-    abs_y = 0;
 
     //ctor
 

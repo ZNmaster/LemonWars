@@ -49,6 +49,9 @@ class Entity
 
         bool waved;
 
+        //for the objects to be deleted from the rendering vector
+        bool dead;
+
 
     protected:
 

@@ -3,9 +3,6 @@
 #include "Letter.h"
 #include <cmath>
 
-//#include <sstream>
-//#include <psp2/kernel/threadmgr.h>
-
 
 Base_Init::Base_Init()
 {

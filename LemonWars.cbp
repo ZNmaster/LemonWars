@@ -44,7 +44,6 @@
 			<Add library="m" />
 			<Add library="c" />
 			<Add library="SceAppMgr_stub" />
-			<Add library="SceKernelThreadMgr_stub" />
 			<Add directory="/home/vlad/libvita2d/libvita2d/include" />
 		</Linker>
 		<ExtraCommands>

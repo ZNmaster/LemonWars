@@ -1,6 +1,5 @@
 #include "Gamebooter.h"
 #include "Menu.h"
-#include <vita2d.h>
 
 
 
@@ -42,8 +41,7 @@ void Gamebooter::Play()
      scanner->Scan();
     }
 
-    vita2d_wait_rendering_done();
-    //GPU_finish();
+    GPU_finish();
 
     //deleting title screen objects and input scanner
     free_textures(obj);
