@@ -1,6 +1,4 @@
 #include "MemoryBuilder.h"
-#include "Memory.h"
-#include "Entity.h"
 #include <array>
 #include <iostream>
 #include <fstream>
@@ -8,8 +6,7 @@
 MemoryBuilder::MemoryBuilder()
 {
     //ctor
-  Memory level1;
-  Entity calc_dist;
+
 
   int number_of_points = 53;
 
@@ -377,11 +374,6 @@ MemoryBuilder::MemoryBuilder()
         for(int b = 0; b < number_of_points; b++)
         {
 
-            if (path[a][b] < 0)
-            {
-                level1.distance[a][b] = calc_dist.distance(coord_x[a], coord_y[a], coord_x[b], coord_y[b]);
-            }
-
             level1.path[a][b] = path[a][b];
             std::cout << path[a][b] << " ";
         }
@@ -395,13 +387,38 @@ MemoryBuilder::MemoryBuilder()
     }
     level1.number_of_points = number_of_points;
 
+     for(int a = 0; a < number_of_points; a++)
+    {
+        for(int b = 0; b < number_of_points; b++)
+        {
+            level1.distance[b][a] = nav_dist(b, a);
+        }
+
+    }
+
+
+
+
+
+
     std::fstream myFile;
     myFile.open("level1.dat", std::ios::out | std::ios::binary);
     myFile.write((char *)&level1, sizeof(Memory));
     myFile.close();
 
 
+}
 
+float MemoryBuilder::nav_dist(int point_1, int point_2)
+{
+    if (level1.path[point_2][point_1] < 0)
+    {
+        return calc_dist.distance(level1.coord_x[point_2], level1.coord_y[point_2], level1.coord_x[point_1], level1.coord_y[point_1]);
+    }
+    else
+    {
+        return nav_dist(point_1, level1.path[point_2][point_1]) + nav_dist(level1.path[point_2][point_1], point_2);
+    }
 }
 
 MemoryBuilder::~MemoryBuilder()
