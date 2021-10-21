@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Pathfinder.h"
+#include "MemoryBuilder.h"
 #include "Scanner.h"
 
 
@@ -11,6 +11,12 @@ bool Scanner::start_pressed = 0;
 
 int main()
 {
+
+
+
+
+  //checking path
+  /*
   Pathfinder path(500,500,50,50);
 
 
@@ -21,7 +27,7 @@ int main()
   }
 
 
-  std::cout << path.current_x << ", " << path.current_y << std::endl;
+  std::cout << path.current_x << ", " << path.current_y << std::endl;*/
 
 
   return 0;

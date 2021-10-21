@@ -7,10 +7,9 @@
 
 1625585574 /home/vladyslav/LemonWars/include/Gamebooter.h
 
-1633186609 source:/home/vladyslav/LemonWars/main.cpp
+1634821214 source:/home/vladyslav/LemonWars/main.cpp
 	<iostream>
-	"Pathfinder.h"
-	"Scanner.h"
+	"MemoryBuilder.h"
 
 1625685015 /home/vladyslav/LemonWars/include/Menu.h
 
@@ -74,10 +73,22 @@
 	<stdlib.h>
 	<time.h>
 
-1633186297 source:/home/vladyslav/LemonWars/src/Pathfinder.cpp
+1633186671 source:/home/vladyslav/LemonWars/src/Pathfinder.cpp
 	"Pathfinder.h"
 	<cmath>
 	<iostream>
 
 1633186182 /home/vladyslav/LemonWars/include/Pathfinder.h
+
+1634820810 /home/vladyslav/LemonWars/include/MemoryBuilder.h
+
+1634821300 source:/home/vladyslav/LemonWars/src/MemoryBuilder.cpp
+	"MemoryBuilder.h"
+	"Memory.h"
+	"Entity.h"
+	<array>
+	<iostream>
+	<fstream>
+
+1631474856 /home/vladyslav/LemonWars/include/Memory.h
 
