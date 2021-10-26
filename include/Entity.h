@@ -33,6 +33,8 @@ class Entity
         //calculate the distance between the object and a point on the map
         float distance(int x1, int y1);
 
+        float distance(int x1, int y1, int x2, int y2);
+
         //call each frame to recalculate position of the object
         virtual void go_move();
 

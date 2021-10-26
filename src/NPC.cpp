@@ -15,6 +15,8 @@ NPC::NPC(LevelMap *mymap, const char *filename, int num_horizontal_sprites,
     level = mymap;
 
     current_nav_pos = -1;
+
+    final_nav_pos = 0;
 }
 
 void NPC::set_path()
@@ -34,23 +36,45 @@ void NPC::set_path()
 
 void NPC::find_nearest()
 {
+  target_nav_pos = find_nearest_to(abs_x, abs_y);
+  if (level->levelmem.distance[final_nav_pos][second_nearest] < level->levelmem.distance[final_nav_pos][target_nav_pos])
+  {
+      target_nav_pos = second_nearest;
+  }
+
+  carry_on = &NPC::set_path;
+}
+
+int NPC::find_nearest_to(int x1, int y1)
+{
   float ref_dist = 99000;
+  float ref_dist_sec = 99000;
 
   for (int i=0; i<level->levelmem.number_of_points; i++)
   {
-       float dist = distance(level->levelmem.coord_x[i], level->levelmem.coord_y[i]);
+       float dist = distance(x1, y1, level->levelmem.coord_x[i], level->levelmem.coord_y[i]);
        if (dist <= ref_dist)
        {
+           ref_dist_sec = ref_dist;
            ref_dist = dist;
            second_nearest = nearest;
            nearest = i;
        }
+       else if(dist<=ref_dist_sec)
+       {
+           ref_dist_sec = dist;
+           second_nearest = i;
+       }
 
   }
 
-  target_nav_pos = nearest;
+  return nearest;
+}
 
-  carry_on = &NPC::set_path;
+void NPC::find_nearest_to_player()
+{
+    final_nav_pos = find_nearest_to(level->player_pos_x, level->player_pos_y);
+    carry_on = &NPC::find_nearest;
 }
 
 void NPC::find_next()
@@ -92,8 +116,26 @@ void NPC::walk()
     if (path.arrived)
     {
         current_nav_pos = target_nav_pos;
-        carry_on = &NPC::find_next;
+        carry_on = what_after_arrival;
     }
+
+}
+
+void NPC::set_roam()
+{
+    //set the speed in pixels per second
+    speed = 100;
+
+    //first action is find nearest
+    carry_on = &NPC::find_nearest;
+
+    //
+    what_after_arrival = &NPC::find_next;
+
+}
+
+void NPC::set_chase()
+{
 
 }
 

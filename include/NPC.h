@@ -19,17 +19,27 @@ class NPC : public Character
 
         //pointer to a current action func (the func is called by it each frame from go_move)
         void ( NPC::*carry_on) ();
+        void ( NPC::*what_after_arrival) ();
 
         //action funcs:
 
-        //find nearest nav point
+        //find nearest nav point to current object
         void find_nearest();
+        //find nearest nav point to a position on the map
+        int find_nearest_to(int x1, int x2);
+        //find nearest nav point to player
+        void find_nearest_to_player();
+
         //find next nav point
         void find_next();
         //wait at the current nav point
         void wait_a_sec();
         //walking to a target point
         void walk();
+        //set roaming mode
+        void set_roam();
+        //set chasing mode
+        void set_chase();
 
 
         //calculates path between 2 nav points
@@ -42,6 +52,8 @@ class NPC : public Character
 
         //target nav point
         int target_nav_pos;
+        //final destination
+        int final_nav_pos;
 
         //current nav point
         int current_nav_pos;

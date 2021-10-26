@@ -10,16 +10,10 @@ Common_Lemon::Common_Lemon(LevelMap *mymap, const char *filename, int num_horizo
                : NPC::NPC(mymap, filename, num_horizontal_sprites,
                                       num_vertical_sprites, x0, y0)
 {
-
-    //set the speed in pixels per second
-    speed = 100;
+    set_roam();
 
     //select sprite #0
     sprite_coord_calc(0);
-
-
-    carry_on = &Common_Lemon::find_nearest;
-
 
 }
 
