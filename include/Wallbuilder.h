@@ -31,11 +31,13 @@ class Wallbuilder
 
         bool pos_valid(int x0, int y0, int radius);
 
+        bool visible(int x1, int y1, int x2, int y2);
+
 
     protected:
 
     private:
-
+    float y_intersec, x_intersec;
 
 };
 

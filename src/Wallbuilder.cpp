@@ -104,6 +104,69 @@ bool Wallbuilder::pos_valid(int x0, int y0, int radius)
 }
 
 
+bool Wallbuilder::visible(int x1, int y1, int x2, int y2)
+{
+    if (x1 == x2)
+    {
+
+    }
+    else if (y1 == y2)
+    {
+
+    }
+    else
+    {
+        float a = (y2 - y1)/(x2 - x1);
+        float b = y2 - (a*x2);
+
+
+     for(unsigned int i = 0; i<array_size; i++)
+     {
+        //vertical walls
+        if (x_start[i] == x_end[i])
+        {
+
+           x_intersec = x_start[i];
+           y_intersec = a*x_intersec + b;
+           if (y_intersec > std::min(y_start[i], y_end[i]) && y_intersec < std::max(y_start[i], y_end[i]))
+           {
+               return 0;
+           }
+
+
+
+        }
+
+        //horizontal walls
+        else if (y_start[i] == y_end[i])
+        {
+
+            y_intersec = y_start[i];
+            x_intersec = (y_intersec - b) / a;
+            if (x_intersec > std::min(x_start[i], x_end[i]) && x_intersec < std::max(x_start[i], x_end[i]))
+            {
+                return 0;
+            }
+
+
+        }
+
+        //other walls
+        else
+        {
+
+        }
+
+
+
+     }
+
+    }
+
+    return 1;
+}
+
+
 
 Wallbuilder::~Wallbuilder()
 {

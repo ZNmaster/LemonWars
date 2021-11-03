@@ -14,8 +14,10 @@ NPC::NPC(LevelMap *mymap, const char *filename, int num_horizontal_sprites,
     //save the pointer to the Map
     level = mymap;
 
+    //set current nav pos to none
     current_nav_pos = -1;
 
+    //set reference nav point for find nearest
     final_nav_pos = 0;
 }
 

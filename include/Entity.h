@@ -23,6 +23,9 @@ class Entity
         int abs_x, abs_y, pos_x, pos_y, part_x, part_y;
 
 
+        //rotation angle in radians
+        float angle;
+
         //size of the sprite to display
         int res_of_sprites_x;
         int res_of_sprites_y;
@@ -32,7 +35,6 @@ class Entity
 
         //calculate the distance between the object and a point on the map
         float distance(int x1, int y1);
-
         float distance(int x1, int y1, int x2, int y2);
 
         //call each frame to recalculate position of the object
@@ -50,6 +52,9 @@ class Entity
         bool scaled;
 
         bool waved;
+
+        //for projectiles to distinguish the enemies
+        bool enemy;
 
         //for the objects to be deleted from the rendering vector
         bool dead;
