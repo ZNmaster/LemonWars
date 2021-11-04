@@ -1,6 +1,7 @@
 #include "Entity.h"
 #include <cmath>
 
+
 Entity::Entity()
 {
     //reset flags, factors and coordinates

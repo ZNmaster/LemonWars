@@ -58,8 +58,9 @@
 	<psp2/ctrl.h>
 	<psp2/kernel/processmgr.h>
 
-1635975710 /home/iurii/LemonWars/include/Wallbuilder.h
+1636046809 /home/iurii/LemonWars/include/Wallbuilder.h
 	<array>
+	"LineEq.h"
 
 1634772527 source:/home/iurii/LemonWars/src/Gamebooter.cpp
 	"Gamebooter.h"
@@ -78,7 +79,7 @@
 	"Scanner.h"
 	<string.h>
 
-1633959404 source:/home/iurii/LemonWars/src/Wallbuilder.cpp
+1636046467 source:/home/iurii/LemonWars/src/Wallbuilder.cpp
 	"Wallbuilder.h"
 	<iostream>
 	<cmath>
@@ -96,7 +97,7 @@
 1634562786 /home/iurii/LemonWars/include/Timer.h
 	<chrono>
 
-1635342198 source:/home/iurii/LemonWars/src/Entity.cpp
+1636034790 source:/home/iurii/LemonWars/src/Entity.cpp
 	"Entity.h"
 	<cmath>
 
@@ -214,12 +215,24 @@
 
 1632954084 /home/iurii/LemonWars/include/RNG.h
 
-1634481055 source:/home/iurii/LemonWars/src/Pathfinder.cpp
+1636036675 source:/home/iurii/LemonWars/src/Pathfinder.cpp
 	"Pathfinder.h"
-	<cmath>
 	<iostream>
 
-1634480797 /home/iurii/LemonWars/include/Pathfinder.h
+1636036053 /home/iurii/LemonWars/include/Pathfinder.h
+	"Line.h"
 
 1631905847 /home/iurii/LemonWars/include/MemoryAI.h
+
+1636036675 /home/iurii/LemonWars/include/Line.h
+
+1636046618 source:/home/iurii/LemonWars/src/LineEq.cpp
+	"LineEq.h"
+
+1636046618 /home/iurii/LemonWars/include/LineEq.h
+	<Line.h>
+
+1636045663 source:/home/iurii/LemonWars/src/Line.cpp
+	"Line.h"
+	<cmath>
 

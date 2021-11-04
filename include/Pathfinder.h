@@ -1,8 +1,10 @@
 #ifndef PATHFINDER_H
 #define PATHFINDER_H
+#include "Line.h"
 
 
-class Pathfinder
+
+class Pathfinder : public Line
 {
     public:
         Pathfinder();
@@ -18,7 +20,7 @@ class Pathfinder
         void reset();
 
         // current and target coordinates
-        float current_x, current_y, target_x, target_y;
+        float current_x, current_y;//, target_x, target_y;
 
         void calc_path(float x1, float y1, float x2, float y2);
 
@@ -36,13 +38,6 @@ class Pathfinder
         //for x=ay+b
         float a_y, b_y;
 
-        //flag for vertical or horizontal lines.
-        bool vertical,
-             horizontal;
-
-
-        float delta_x, delta_y;
-        float sin_a, cos_a;
 
         void go_high(float distance);
         void go_low(float distance);

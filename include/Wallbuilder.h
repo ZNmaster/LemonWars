@@ -1,6 +1,7 @@
 #ifndef WALLBUILDER_H
 #define WALLBUILDER_H
 #include <array>
+#include "LineEq.h"
 
 
 class Wallbuilder
@@ -27,17 +28,20 @@ class Wallbuilder
         float a [max_array_size];
         float b [max_array_size];
 
-        void calc_ab (unsigned int wall_num);
+        //void calc_ab (unsigned int wall_num);
 
         bool pos_valid(int x0, int y0, int radius);
 
+        //check the visibility between 2 points on the map
         bool visible(int x1, int y1, int x2, int y2);
+        //line of view
+        LineEq ab;
 
 
     protected:
 
     private:
-    float y_intersec, x_intersec;
+
 
 };
 

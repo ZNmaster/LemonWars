@@ -64,6 +64,7 @@ bool Wallbuilder::pos_valid(int x0, int y0, int radius)
                 int y1 = (-b_vert + sqrt(disc))/2;
                 int y2 = (-b_vert - sqrt(disc))/2;
                 if(
+                   //checking two intersection points
                    (y1>std::min(y_start[i], y_end[i]) && y1<std::max(y_start[i], y_end[i])) ||
                    (y2>std::min(y_start[i], y_end[i]) && y2<std::max(y_start[i], y_end[i]))
                    )
@@ -86,6 +87,7 @@ bool Wallbuilder::pos_valid(int x0, int y0, int radius)
                 int x1 = (-b_hor + sqrt(disc))/2;
                 int x2 = (-b_hor - sqrt(disc))/2;
                 if(
+                   //checking two intersection points
                    (x1>std::min(x_start[i], x_end[i]) && x1<std::max(x_start[i], x_end[i])) ||
                    (x2>std::min(x_start[i], x_end[i]) && x2<std::max(x_start[i], x_end[i]))
                    )
@@ -106,18 +108,24 @@ bool Wallbuilder::pos_valid(int x0, int y0, int radius)
 
 bool Wallbuilder::visible(int x1, int y1, int x2, int y2)
 {
+
+    //intersection point coordinates
+    float y_intersec, x_intersec;
+
+    //connecting line is vertical
     if (x1 == x2)
     {
 
     }
+    //connecting lie is horzontal
     else if (y1 == y2)
     {
 
     }
+    //other connecting line
     else
     {
-        float a = (y2 - y1)/(x2 - x1);
-        float b = y2 - (a*x2);
+        ab = LineEq(x1, y1, x2, y2);
 
 
      for(unsigned int i = 0; i<array_size; i++)
@@ -127,13 +135,11 @@ bool Wallbuilder::visible(int x1, int y1, int x2, int y2)
         {
 
            x_intersec = x_start[i];
-           y_intersec = a*x_intersec + b;
+           y_intersec = ab.a*x_intersec + ab.b;
            if (y_intersec > std::min(y_start[i], y_end[i]) && y_intersec < std::max(y_start[i], y_end[i]))
            {
                return 0;
            }
-
-
 
         }
 
@@ -142,12 +148,11 @@ bool Wallbuilder::visible(int x1, int y1, int x2, int y2)
         {
 
             y_intersec = y_start[i];
-            x_intersec = (y_intersec - b) / a;
+            x_intersec = (y_intersec - ab.b) / ab.a;
             if (x_intersec > std::min(x_start[i], x_end[i]) && x_intersec < std::max(x_start[i], x_end[i]))
             {
                 return 0;
             }
-
 
         }
 
@@ -156,8 +161,6 @@ bool Wallbuilder::visible(int x1, int y1, int x2, int y2)
         {
 
         }
-
-
 
      }
 
@@ -173,10 +176,12 @@ Wallbuilder::~Wallbuilder()
     //dtor
 }
 
-void Wallbuilder::calc_ab (unsigned int wall_num)
+//LineEQ to be used here
+
+/*void Wallbuilder::calc_ab (unsigned int wall_num)
 {
  a [wall_num] = (y_end [wall_num] - y_start [wall_num]) / (x_end [wall_num]-x_start [wall_num]);
  b [wall_num] = y_end [wall_num] - a[wall_num] * x_end [wall_num];
 
  //std::cout << "y= " << a[wall_num] << "x" << "+" << b[wall_num] << std::endl;
-}
+}*/
