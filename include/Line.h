@@ -8,8 +8,8 @@ class Line
         Line();
         Line(float x1, float y1, float x2,  float y2);
         void calcline(float x1, float y1, float x2,  float y2);
-        static float length (float x1, float y1, float x2,  float y2);
-        float length (float dx, float dy);
+        static float length(float x1, float y1, float x2,  float y2);
+        float length(float dx, float dy);
         virtual ~Line();
 
         //flag for vertical or horizontal lines.

@@ -112,34 +112,54 @@ bool Wallbuilder::visible(int x1, int y1, int x2, int y2)
     //intersection point coordinates
     float y_intersec, x_intersec;
 
-    //connecting line is vertical
-    if (x1 == x2)
-    {
 
-    }
-    //connecting lie is horzontal
-    else if (y1 == y2)
-    {
-
-    }
-    //other connecting line
-    else
-    {
-        ab = LineEq(x1, y1, x2, y2);
-
+     AB = LineEq(x1, y1, x2, y2);
 
      for(unsigned int i = 0; i<array_size; i++)
      {
+        //visibility line is vertical
+        if (AB.vertical)
+        {
+            //horizontal walls
+            if(y_start[i] == y_end[i])
+            {
+                if(y_start[i] > std::min(AB.y_start, AB.y_end) && y_start[i] < std::max(AB.y_start, AB.y_end) &&
+                   AB.x_start > std::min(x_start[i], x_end[i]) && AB.x_start < std::max(x_start[i], x_end[i]))
+                   {
+                       return 0;
+                   }
+
+            }
+        }
+        //visibility line is horizontal
+        else if (AB.horizontal)
+        {
+            if(x_start[i] == x_end[i])
+            {
+                   if(x_start[i] > std::min(AB.x_start, AB.x_end) && x_start[i] < std::max(AB.x_start, AB.x_end) &&
+                   AB.y_start > std::min(y_start[i], y_end[i]) && AB.y_start < std::max(y_start[i], y_end[i]))
+                   {
+                       return 0;
+                   }
+            }
+
+        }
+        //other visibility line
+        else
+        {
+
         //vertical walls
         if (x_start[i] == x_end[i])
         {
-
-           x_intersec = x_start[i];
-           y_intersec = ab.a*x_intersec + ab.b;
-           if (y_intersec > std::min(y_start[i], y_end[i]) && y_intersec < std::max(y_start[i], y_end[i]))
-           {
-               return 0;
-           }
+            if(x_start[i] > std::min(AB.x_start, AB.x_end) && x_start[i] < std::max(AB.x_start, AB.x_end))
+            {
+                x_intersec = x_start[i];
+                y_intersec = AB.a*x_intersec + AB.b;
+                if (y_intersec > std::min(y_start[i], y_end[i]) && y_intersec < std::max(y_start[i], y_end[i]))
+                {
+                  return 0;
+                }
+            }
 
         }
 
@@ -147,24 +167,28 @@ bool Wallbuilder::visible(int x1, int y1, int x2, int y2)
         else if (y_start[i] == y_end[i])
         {
 
-            y_intersec = y_start[i];
-            x_intersec = (y_intersec - ab.b) / ab.a;
-            if (x_intersec > std::min(x_start[i], x_end[i]) && x_intersec < std::max(x_start[i], x_end[i]))
+            if(y_start[i] > std::min(AB.y_start, AB.y_end) && y_start[i] < std::max(AB.y_start, AB.y_end))
             {
-                return 0;
+                y_intersec = y_start[i];
+                x_intersec = (y_intersec - AB.b) / AB.a;
+
+                if (x_intersec > std::min(x_start[i], x_end[i]) && x_intersec < std::max(x_start[i], x_end[i]))
+                {
+                    return 0;
+                }
             }
 
         }
 
-        //other walls
-        else
-        {
+           //other walls
+           else
+           {
+
+           }
 
         }
 
-     }
-
-    }
+      }
 
     return 1;
 }

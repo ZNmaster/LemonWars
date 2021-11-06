@@ -17,12 +17,12 @@ Line::Line(float x1, float y1, float x2,  float y2)
     //ctor
 }
 
-float Line::length (float dx, float dy)
+float Line::length(float dx, float dy)
 {
     return sqrt(dx*dx + dy*dy);
 }
 
-float Line::length (float x1, float y1, float x2,  float y2)
+float Line::length(float x1, float y1, float x2,  float y2)
 {
      return sqrt(pow((x2-x1), 2) + pow((y2-y1), 2));
 }

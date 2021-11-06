@@ -8,6 +8,7 @@ SpawnPoint::SpawnPoint()
 
 SpawnPoint::SpawnPoint(int x, int y, std::vector<Entity *> *obj)
 {
+    visibility_distance = 500;
     activated = 0;
     spawned = 0;
 
@@ -40,7 +41,7 @@ void SpawnPoint::go_move()
 
     if (!activated)
     {
-        if (distance(level->player_pos_x, level->player_pos_y) < 200)
+        if (distance(level->player_pos_x, level->player_pos_y) < visibility_distance)
         {
             activated = 1;
         }

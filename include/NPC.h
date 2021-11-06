@@ -59,8 +59,13 @@ class NPC : public Character
         int current_nav_pos;
         int nearest, second_nearest;
 
+        bool spotted();
+
         RNG rand;
+
         Timer npc_wait_timer;
+
+        Timer spot_timer;
 
 
         /*

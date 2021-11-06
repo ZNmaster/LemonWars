@@ -35,6 +35,7 @@ class SpawnPoint : public Entity
         LevelMap *level;
         bool activated, spawned;
         std::vector<Entity *> *objvector;
+        float visibility_distance;
 
 };
 

@@ -108,6 +108,16 @@ void NPC::wait_a_sec()
 
 void NPC::walk()
 {
+    if(spot_timer.expired())
+    {
+        if(spotted())
+        {
+        sprite_coord_calc(1);
+        }
+    spot_timer.start();
+
+    }
+
     //get the distance to move
     move_delta = get_move_delta();
     path.move_by(move_delta);
@@ -145,6 +155,16 @@ void NPC::calc_screen_pos()
 {
       pos_x = abs_x - level->part_x - res_of_sprites_x/2;
       pos_y = abs_y - level->part_y - res_of_sprites_y/2;
+}
+
+bool NPC::spotted()
+{
+    if(level->levelwalls.visible(abs_x, abs_y, level->player_pos_x, level->player_pos_y))
+    {
+        return 1;
+    }
+
+    return 0;
 }
 
 NPC::~NPC()

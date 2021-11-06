@@ -35,7 +35,7 @@ class Wallbuilder
         //check the visibility between 2 points on the map
         bool visible(int x1, int y1, int x2, int y2);
         //line of view
-        LineEq ab;
+        LineEq AB;
 
 
     protected:
