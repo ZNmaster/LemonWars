@@ -3,6 +3,9 @@
 
 #include <psp2/ctrl.h>
 #include <psp2/kernel/processmgr.h>
+#include <psp2/touch.h>
+
+#include "Point_int.h"
 
 class Scanner
 {
@@ -16,10 +19,19 @@ class Scanner
                     left_pressed,
                     start_pressed,
                     select_pressed,
-                    go_pressed;
+                    go_pressed,
+                    left_stick_moved,
+                    right_stick_moved,
+                    front_touch;
+
 
         void ResetAll();
+
         SceCtrlData pad;
+        SceTouchData touch;
+
+        Point_int front_touch_point;
+
         void Scan();
 
 

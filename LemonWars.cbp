@@ -37,6 +37,7 @@
 			<Add library="ScePgf_stub" />
 			<Add library="ScePvf_stub" />
 			<Add library="SceCommonDialog_stub" />
+			<Add library="SceTouch_stub" />
 			<Add library="freetype" />
 			<Add library="png" />
 			<Add library="jpeg" />
@@ -70,9 +71,12 @@
 		<Unit filename="include/NPC.h" />
 		<Unit filename="include/Pathfinder.h" />
 		<Unit filename="include/Player.h" />
+		<Unit filename="include/Point_float.h" />
+		<Unit filename="include/Point_int.h" />
 		<Unit filename="include/RNG.h" />
 		<Unit filename="include/Rocket.h" />
 		<Unit filename="include/Scanner.h" />
+		<Unit filename="include/Scanner.ini" />
 		<Unit filename="include/SpawnPoint.h" />
 		<Unit filename="include/Sprite.h" />
 		<Unit filename="include/Timer.h" />

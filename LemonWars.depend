@@ -30,12 +30,12 @@
 	"Wallbuilder.h"
 	<iostream>
 
-1634504838 source:/home/iurii/LemonWars/main.cpp
+1636472344 source:/home/iurii/LemonWars/main.cpp
 	"Menu.h"
 	"Gamebooter.h"
-	"Scanner.h"
 	"Wallbuilder.h"
 	"LevelMap.h"
+	"Scanner.ini"
 
 1629467959 /home/iurii/LemonWars/include/Gamebooter.h
 	<vector>
@@ -54,9 +54,11 @@
 	"Scanner.h"
 	<vita2d.h>
 
-1629297437 /home/iurii/LemonWars/include/Scanner.h
+1636754319 /home/iurii/LemonWars/include/Scanner.h
 	<psp2/ctrl.h>
 	<psp2/kernel/processmgr.h>
+	<psp2/touch.h>
+	"Point_int.h"
 
 1636150665 /home/iurii/LemonWars/include/Wallbuilder.h
 	<array>
@@ -66,7 +68,7 @@
 	"Gamebooter.h"
 	"Menu.h"
 
-1629467805 /home/iurii/LemonWars/include/Menu.h
+1636759765 /home/iurii/LemonWars/include/Menu.h
 	"Base_Init.h"
 	"Scanner.h"
 	"MenuItem.h"
@@ -75,7 +77,7 @@
 	"Menu.h"
 	"GamePlayObj.h"
 
-1629295725 source:/home/iurii/LemonWars/src/Scanner.cpp
+1636754319 source:/home/iurii/LemonWars/src/Scanner.cpp
 	"Scanner.h"
 	<string.h>
 
@@ -130,7 +132,7 @@
 1629735219 /home/iurii/LemonWars/include/Letter.h
 	<Sprite.h>
 
-1629230073 /home/iurii/LemonWars/include/MenuItem.h
+1636758351 /home/iurii/LemonWars/include/MenuItem.h
 	<GamePlayObj.h>
 
 1629297418 source:/home/iurii/LemonWars/src/MenuItem.cpp
@@ -160,7 +162,7 @@
 	"Wallbuilder.h"
 	"MemoryAI.h"
 
-1636211696 source:/home/iurii/LemonWars/src/NPC.cpp
+1636392815 source:/home/iurii/LemonWars/src/NPC.cpp
 	<vector>
 	"NPC.h"
 
@@ -235,4 +237,9 @@
 1636150666 source:/home/iurii/LemonWars/src/Line.cpp
 	"Line.h"
 	<cmath>
+
+1636584273 /home/iurii/LemonWars/include/Point_int.h
+
+1636754319 /home/iurii/LemonWars/include/Scanner.ini
+	"Scanner.h"
 

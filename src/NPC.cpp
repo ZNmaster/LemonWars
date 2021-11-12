@@ -114,7 +114,7 @@ void NPC::walk()
         {
         sprite_coord_calc(1);
         }
-    spot_timer.start();
+    spot_timer.delay_mills(300);
 
     }
 

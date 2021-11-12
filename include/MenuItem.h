@@ -10,6 +10,7 @@ class MenuItem : public GamePlayObj
         MenuItem(const char *filename);
         void go_move();
         virtual ~MenuItem();
+        int item_num;
 
     protected:
 

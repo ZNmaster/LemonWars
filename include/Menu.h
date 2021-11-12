@@ -19,6 +19,7 @@ class Menu : public Base_Init
 
         //Menu item pointers array (interactable)
         MenuItem *menuitem[10];
+        int menu_item_count;
 
         //the current number of selected menu item
         int current;
