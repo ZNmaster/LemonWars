@@ -23,12 +23,28 @@ Player::Player(LevelMap *mymap, const char *filename, int num_horizontal_sprites
 
 void Player::go_move()
 {
+    Scanner::stick_nav = 1;
     //reset new position
     new_abs_y = abs_y;
     new_abs_x = abs_x;
 
     //get the distance to move
     move_delta = get_move_delta();
+
+
+    if (Scanner::left_stick_moved)
+    {
+        new_abs_y = abs_y + move_delta*Scanner::lstick_y;
+        new_abs_x = abs_x + move_delta*Scanner::lstick_x;
+    }
+
+    else
+
+    {
+    if (Scanner::pad_multiple_pressed)
+    {
+        move_delta = move_delta/sqrt2;
+    }
 
     //assign move directions
     if (Scanner::up_pressed)
@@ -47,6 +63,8 @@ void Player::go_move()
     if (Scanner::right_pressed)
     {
         new_abs_x = abs_x + move_delta;
+    }
+
     }
 
     //if the new position is valid, assigning it as a current position

@@ -20,9 +20,18 @@ class Scanner
                     start_pressed,
                     select_pressed,
                     go_pressed,
+                    pad_multiple_pressed,
+                    stick_nav,
                     left_stick_moved,
                     right_stick_moved,
                     front_touch;
+
+        // touch point coordinates
+        static int front_touch_point_x, front_touch_point_y;
+
+        //relative stick readings
+        static float lstick_x, lstick_y, rstick_x, rstick_y;
+
 
 
         void ResetAll();
@@ -30,7 +39,8 @@ class Scanner
         SceCtrlData pad;
         SceTouchData touch;
 
-        Point_int front_touch_point;
+        unsigned int hyst, stick_zero;
+
 
         void Scan();
 
@@ -38,6 +48,9 @@ class Scanner
     protected:
 
     private:
+
+        Point_int read_stick(unsigned int x, unsigned int y);
+
 
 };
 

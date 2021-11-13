@@ -8,6 +8,8 @@
 class Player : public Character
 {
     public:
+        float sqrt2 = 1.414213562;
+
         Player();
 
         Player(LevelMap *mymap, const char *filename,

@@ -73,6 +73,7 @@ void Menu::MenuRun()
 {
 
     scanner = new Scanner;
+    scanner->stick_nav = 1;
     scanner->Scan();
 
     while (!draw_frame(obj))
@@ -100,8 +101,8 @@ void Menu::MenuRun()
          for (int i=1; i<=menu_item_count; i++)
          {
              //checking the coordinates
-             if (scanner->front_touch_point.x > menuitem[i]->pos_x && scanner->front_touch_point.x < (menuitem[i]->pos_x + menuitem[i]->loaded_image_res_x) &&
-                 scanner->front_touch_point.y > menuitem[i]->pos_y && scanner->front_touch_point.y < (menuitem[i]->pos_y + menuitem[i]->loaded_image_res_y))
+             if (scanner->front_touch_point_x > menuitem[i]->pos_x && scanner->front_touch_point_x < (menuitem[i]->pos_x + menuitem[i]->loaded_image_res_x) &&
+                 scanner->front_touch_point_y > menuitem[i]->pos_y && scanner->front_touch_point_y < (menuitem[i]->pos_y + menuitem[i]->loaded_image_res_y))
                  {
                     current = menuitem[i]->item_num;
                     menuitem[current]->started = 1;

@@ -20,7 +20,8 @@ class Entity
         // part_x, part_y - position of the sprite to display
 
 
-        int abs_x, abs_y, pos_x, pos_y, part_x, part_y;
+        float abs_x, abs_y;
+        int pos_x, pos_y, part_x, part_y;
 
 
         //rotation angle in radians
