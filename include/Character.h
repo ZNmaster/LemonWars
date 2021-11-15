@@ -27,9 +27,6 @@ class Character : public Sprite
         //delta in pixels
         float move_delta;
 
-        //radius of the Character
-        int radius;
-
         int new_abs_x,
             new_abs_y;
 

@@ -1,6 +1,8 @@
 #include "Player.h"
 #include "Scanner.h"
 
+#include <cmath>
+
 Player::Player()
 {
     //ctor
@@ -36,6 +38,16 @@ void Player::go_move()
     {
         new_abs_y = abs_y + move_delta*Scanner::lstick_y;
         new_abs_x = abs_x + move_delta*Scanner::lstick_x;
+    }
+
+    if (Scanner::right_stick_moved)
+    {
+        calc_stick_rad(Scanner::rstick_x, Scanner::rstick_y);
+        angle = asin(sin_a);
+        if (cos_a < 0)
+        {
+            angle = pi - angle;
+        }
     }
 
     else
@@ -101,6 +113,13 @@ void Player::go_move()
         level->player_pos_x = abs_x;
 
 
+}
+
+void Player::calc_stick_rad(float x, float y)
+{
+    float r = sqrt(x*x + y*y);
+    sin_a = y/r;
+    cos_a = x/r;
 }
 
 Player::~Player()

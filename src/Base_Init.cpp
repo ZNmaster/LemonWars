@@ -123,6 +123,14 @@ bool Base_Init::draw_frame(std::vector<Entity *> obj)
                                         objimage->res_of_sprites_y, objimage->k_x, objimage->k_y);
                }
 
+               else if (objimage->angle != 0)
+               {
+                   vita2d_draw_texture_part_scale_rotate(objimage->image, objimage->pos_x+objimage->radius, objimage->pos_y+objimage->radius,
+                                        objimage->part_x, objimage->part_y,
+                                        objimage->res_of_sprites_x,
+                                        objimage->res_of_sprites_y, 1, 1, objimage->angle);
+               }
+
                // check if the object is only partial
                else
 

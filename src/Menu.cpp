@@ -105,6 +105,7 @@ void Menu::MenuRun()
                  scanner->front_touch_point_y > menuitem[i]->pos_y && scanner->front_touch_point_y < (menuitem[i]->pos_y + menuitem[i]->loaded_image_res_y))
                  {
                     current = menuitem[i]->item_num;
+                    menuitem[current]->waved = 1;
                     menuitem[current]->started = 1;
                     delete scanner;
                     scanner = nullptr;

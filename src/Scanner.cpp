@@ -10,6 +10,10 @@ Scanner::Scanner()
 
     hyst = 15;
     stick_zero = 127;
+    stick_zero_lx = 127;
+    stick_zero_ly = 127;
+    stick_zero_rx = 127;
+    stick_zero_ry = 127;
 
     sceTouchSetSamplingState(SCE_TOUCH_PORT_FRONT, SCE_TOUCH_SAMPLING_STATE_START);
     sceTouchEnableTouchForce(SCE_TOUCH_PORT_FRONT);
@@ -72,57 +76,18 @@ void Scanner::Scan()
     sceCtrlPeekBufferPositive(0, &pad, 1);
     sceTouchPeek(0, &touch, 1);
 
-    unsigned int pad_treshold = 20;
-
-    int count_pressed = 0;
+    count_pressed = 0;
 
     Point_int stick = read_stick(pad.lx, pad.ly);
 
-    if (stick.x > stick_zero)
-    {
-        left_stick_moved = 1;
-        lstick_x = ((float)stick.x - (float)stick_zero)/(float)stick_zero;
-        if (stick_nav && (stick.x > (2*stick_zero-pad_treshold)))
-        {
-            right_pressed = 1;
-            count_pressed++;
-        }
+    calc_stick_relative(stick, lstick_x, lstick_y, left_stick_moved);
 
-    }
+    int old_hyst = hyst;
 
-    else if (stick.x < stick_zero)
-    {
-        left_stick_moved = 1;
-        lstick_x = ((float)stick.x - (float)stick_zero)/(float)stick_zero;
-        if (stick_nav && stick.x < pad_treshold)
-        {
-            left_pressed = 1;
-            count_pressed++;
-        }
-    }
+    stick = read_stick(pad.rx, pad.ry);
 
-    if (stick.y > stick_zero)
-    {
-        left_stick_moved = 1;
-        lstick_y = ((float)stick.y - (float)stick_zero)/(float)stick_zero;
-        if (stick_nav && (stick.y > (2*stick_zero-pad_treshold)))
-        {
-            down_pressed = 1;
-            count_pressed++;
-        }
 
-    }
-
-    if (stick.y < stick_zero)
-    {
-        left_stick_moved = 1;
-        lstick_y = ((float)stick.y - (float)stick_zero)/(float)stick_zero;
-        if (stick_nav && stick.y < pad_treshold)
-        {
-            up_pressed = 1;
-            count_pressed++;
-        }
-    }
+    calc_stick_relative(stick, rstick_x, rstick_y, right_stick_moved);
 
 
     if (count_pressed == 0)
@@ -176,6 +141,59 @@ void Scanner::Scan()
             front_touch_point_y = touch.report[0].y/2;
         }
 
+
+}
+
+void Scanner::calc_stick_relative(Point_int stick, float &stick_x, float &stick_y, bool &stick_moved)
+{
+    unsigned int pad_treshold = 20;
+
+    stick_x = ((float)stick.x - (float)stick_zero)/(float)stick_zero;
+    stick_y = ((float)stick.y - (float)stick_zero)/(float)stick_zero;
+
+
+    if (stick.x > stick_zero)
+    {
+        stick_moved = 1;
+
+        if (stick_nav && (stick.x > (2*stick_zero-pad_treshold)))
+        {
+            right_pressed = 1;
+            count_pressed++;
+        }
+
+    }
+
+    else if (stick.x < stick_zero)
+    {
+        stick_moved = 1;
+        if (stick_nav && stick.x < pad_treshold)
+        {
+            left_pressed = 1;
+            count_pressed++;
+        }
+    }
+
+    if (stick.y > stick_zero)
+    {
+        stick_moved = 1;
+        if (stick_nav && (stick.y > (2*stick_zero-pad_treshold)))
+        {
+            down_pressed = 1;
+            count_pressed++;
+        }
+
+    }
+
+    if (stick.y < stick_zero)
+    {
+        stick_moved = 1;
+        if (stick_nav && stick.y < pad_treshold)
+        {
+            up_pressed = 1;
+            count_pressed++;
+        }
+    }
 
 }
 

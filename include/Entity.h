@@ -15,6 +15,8 @@ class Entity
         const int vitares_x = 960;
         const int vitares_y = 544;
 
+        const float pi = 3.1415926;
+
         //abs_x, abs_y - absolute position on the map
         // pos_x, pos_y - position on the screen
         // part_x, part_y - position of the sprite to display
@@ -37,6 +39,9 @@ class Entity
         //calculate the distance between the object and a point on the map
         float distance(int x1, int y1);
         float distance(int x1, int y1, int x2, int y2);
+
+        //radius of the Character
+        int radius;
 
         //call each frame to recalculate position of the object
         virtual void go_move();

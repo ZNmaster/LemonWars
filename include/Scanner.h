@@ -39,7 +39,7 @@ class Scanner
         SceCtrlData pad;
         SceTouchData touch;
 
-        unsigned int hyst, stick_zero;
+        unsigned int hyst, stick_zero, stick_zero_rx, stick_zero_ry, stick_zero_lx, stick_zero_ly;
 
 
         void Scan();
@@ -50,6 +50,8 @@ class Scanner
     private:
 
         Point_int read_stick(unsigned int x, unsigned int y);
+        void calc_stick_relative(Point_int stick, float &stick_x, float &stick_y, bool &stick_moved);
+        int count_pressed;
 
 
 };

@@ -16,6 +16,7 @@ class Player : public Character
                int num_horizontal_sprites, int num_vertical_sprites,
                int x0, int y0);
 
+
         void go_move();
 
         virtual ~Player();
@@ -24,6 +25,9 @@ class Player : public Character
     protected:
 
     private:
+
+        void calc_stick_rad(float x, float y);
+        float sin_a, cos_a;
 };
 
 #endif // PLAYER_H
