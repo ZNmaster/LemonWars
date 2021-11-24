@@ -125,7 +125,7 @@ bool Base_Init::draw_frame(std::vector<Entity *> obj)
 
                else if (objimage->angle != 0)
                {
-                   vita2d_draw_texture_part_scale_rotate(objimage->image, objimage->pos_x+objimage->radius, objimage->pos_y+objimage->radius,
+                   vita2d_draw_texture_part_scale_rotate(objimage->image, objimage->pos_x+(objimage->res_of_sprites_x / 2), objimage->pos_y+(objimage->res_of_sprites_y / 2),
                                         objimage->part_x, objimage->part_y,
                                         objimage->res_of_sprites_x,
                                         objimage->res_of_sprites_y, 1, 1, objimage->angle);

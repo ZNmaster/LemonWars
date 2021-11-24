@@ -41,6 +41,7 @@ LevelMap::LevelMap(const char *MapFilename, const char *MemFilename)
 bool LevelMap::valid_pos(int abs_x, int abs_y, int radius)
 {
     //check if the map position is valid
+    touch_radius = radius - 10;
 
     if (!levelwalls.pos_valid(abs_x, abs_y, touch_radius))
     {

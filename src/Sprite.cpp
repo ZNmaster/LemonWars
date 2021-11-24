@@ -12,8 +12,8 @@ Sprite::Sprite(const char *filename, int num_horizontal_sprites,
     //custom ctor
     res_of_sprites_x = loaded_image_res_x / num_horizontal_sprites;
     res_of_sprites_y = loaded_image_res_y / num_vertical_sprites;
-    pos_x = x0;
-    pos_y = y0;
+    pos_x = x0 - res_of_sprites_x/2;
+    pos_y = y0- res_of_sprites_y/2;
 
     partial = 1;
 

@@ -13,8 +13,8 @@ Character::Character(const char *filename, int num_horizontal_sprites,
   move_timer.start();
 
   radius = res_of_sprites_x / 2;
-  abs_x = x0+radius;
-  abs_y = y0+radius;
+  abs_x = x0;
+  abs_y = y0;
 }
 
 float Character::get_move_delta()

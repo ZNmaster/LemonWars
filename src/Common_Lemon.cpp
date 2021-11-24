@@ -10,7 +10,7 @@ Common_Lemon::Common_Lemon(LevelMap *mymap, const char *filename, int num_horizo
                : NPC::NPC(mymap, filename, num_horizontal_sprites,
                                       num_vertical_sprites, x0, y0)
 {
-    angle = 0.01;
+    angle = 0;
     set_roam();
 
     //select sprite #0
