@@ -2,6 +2,8 @@
 
 #include "NPC.h"
 
+#define VISIBILITY 1
+
 NPC::NPC()
 {
     //ctor
@@ -19,6 +21,15 @@ NPC::NPC(LevelMap *mymap, const char *filename, int num_horizontal_sprites,
 
     //set reference nav point for find nearest
     final_nav_pos = 0;
+
+    //copy of nav points
+    for (int i=0; i<level->levelmem.number_of_points; i++)
+    {
+      Point_int p;
+      p.x = level->levelmem.coord_x[i];
+      p.y = level->levelmem.coord_y[i];
+      p_vec.push_back(p);
+    }
 }
 
 void NPC::set_path()
@@ -38,7 +49,7 @@ void NPC::set_path()
 
 void NPC::find_nearest()
 {
-  target_nav_pos = find_nearest_to(abs_x, abs_y);
+  target_nav_pos = find_nearest_to(abs_x, abs_y, p_vec);
   if (level->levelmem.distance[final_nav_pos][second_nearest] < level->levelmem.distance[final_nav_pos][target_nav_pos])
   {
       target_nav_pos = second_nearest;
@@ -47,14 +58,14 @@ void NPC::find_nearest()
   carry_on = &NPC::set_path;
 }
 
-int NPC::find_nearest_to(int x1, int y1)
+/*int NPC::find_nearest_to(int from_x, int from_y, std::vector<Point_int> target_points)
 {
   float ref_dist = 99000;
   float ref_dist_sec = 99000;
 
-  for (int i=0; i<level->levelmem.number_of_points; i++)
+  for (std::vector<Point_int>::size_type i = 0; i < target_points.size(); i++)
   {
-       float dist = distance(x1, y1, level->levelmem.coord_x[i], level->levelmem.coord_y[i]);
+       float dist = distance(from_x, from_y, target_points[i].x, target_points[i].y);
        if (dist <= ref_dist)
        {
            ref_dist_sec = ref_dist;
@@ -71,11 +82,11 @@ int NPC::find_nearest_to(int x1, int y1)
   }
 
   return nearest;
-}
+}*/
 
 void NPC::find_nearest_to_player()
 {
-    final_nav_pos = find_nearest_to(level->player_pos_x, level->player_pos_y);
+    final_nav_pos = find_nearest_to(level->player_pos_x, level->player_pos_y, p_vec);
     carry_on = &NPC::find_nearest;
 }
 
@@ -159,7 +170,11 @@ void NPC::calc_screen_pos()
 
 bool NPC::spotted()
 {
-    if(level->levelwalls.visible(abs_x, abs_y, level->player_pos_x, level->player_pos_y))
+    //we're gonna add some code for distance and the angle of view here
+
+
+
+    if(level->levelwalls.intersection(abs_x, abs_y, level->player_pos_x, level->player_pos_y, VISIBILITY))
     {
         return 1;
     }

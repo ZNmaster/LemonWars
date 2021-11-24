@@ -1,15 +1,18 @@
 #ifndef NPC_H
 #define NPC_H
 
-#include <Character.h>
+#include <vector>
 
+#include "Character.h"
 #include "Timer.h"
 #include "LevelMap.h"
 #include "Pathfinder.h"
 #include "RNG.h"
+#include "Point_int.h"
+#include "NearestPoint.h"
 
 
-class NPC : public Character
+class NPC : public Character, public NearestPoint
 {
     public:
         NPC();
@@ -26,7 +29,7 @@ class NPC : public Character
         //find nearest nav point to current object
         void find_nearest();
         //find nearest nav point to a position on the map
-        int find_nearest_to(int x1, int x2);
+        //int find_nearest_to(int from_x, int from_y, std::vector<Point_int> target_points);
         //find nearest nav point to player
         void find_nearest_to_player();
 
@@ -57,7 +60,7 @@ class NPC : public Character
 
         //current nav point
         int current_nav_pos;
-        int nearest, second_nearest;
+        //int nearest, second_nearest;
 
         bool spotted();
 
@@ -87,6 +90,8 @@ class NPC : public Character
     protected:
 
     private:
+        //copy of nav points
+        std::vector<Point_int> p_vec;
 };
 
 #endif // NPC_H

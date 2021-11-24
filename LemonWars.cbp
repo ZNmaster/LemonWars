@@ -69,6 +69,7 @@
 		<Unit filename="include/Menu.h" />
 		<Unit filename="include/MenuItem.h" />
 		<Unit filename="include/NPC.h" />
+		<Unit filename="include/NearestPoint.h" />
 		<Unit filename="include/Pathfinder.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/Point_float.h" />
@@ -97,6 +98,7 @@
 		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/MenuItem.cpp" />
 		<Unit filename="src/NPC.cpp" />
+		<Unit filename="src/NearestPoint.cpp" />
 		<Unit filename="src/Pathfinder.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/RNG.cpp" />

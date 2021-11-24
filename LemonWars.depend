@@ -60,9 +60,11 @@
 	<psp2/touch.h>
 	"Point_int.h"
 
-1637767599 /home/iurii/LemonWars/include/Wallbuilder.h
+1637786586 /home/iurii/LemonWars/include/Wallbuilder.h
 	<array>
+	<vector>
 	"LineEq.h"
+	"Point_int.h"
 
 1637767599 source:/home/iurii/LemonWars/src/Gamebooter.cpp
 	"Gamebooter.h"
@@ -153,7 +155,7 @@
 1637767599 /home/iurii/LemonWars/include/Game.h
 	<Base_Init.h>
 
-1637767599 source:/home/iurii/LemonWars/src/LevelMap.cpp
+1637771451 source:/home/iurii/LemonWars/src/LevelMap.cpp
 	"LevelMap.h"
 	<fstream>
 
@@ -162,16 +164,19 @@
 	"Wallbuilder.h"
 	"MemoryAI.h"
 
-1637768884 source:/home/iurii/LemonWars/src/NPC.cpp
+1637786586 source:/home/iurii/LemonWars/src/NPC.cpp
 	<vector>
 	"NPC.h"
 
-1637767599 /home/iurii/LemonWars/include/NPC.h
-	<Character.h>
+1637774495 /home/iurii/LemonWars/include/NPC.h
+	<vector>
+	"Character.h"
 	"Timer.h"
 	"LevelMap.h"
 	"Pathfinder.h"
 	"RNG.h"
+	"Point_int.h"
+	"NearestPoint.h"
 
 1637767599 /home/iurii/LemonWars/include/Character.h
 	<Sprite.h>
@@ -243,4 +248,12 @@
 
 1637767599 /home/iurii/LemonWars/include/Scanner.ini
 	"Scanner.h"
+
+1637266693 /home/iurii/LemonWars/include/NearestPoint.h
+	<vector>
+	<Point_int.h>
+
+1637267303 source:/home/iurii/LemonWars/src/NearestPoint.cpp
+	"NearestPoint.h"
+	"Line.h"
 
