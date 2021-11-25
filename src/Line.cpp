@@ -45,12 +45,17 @@ void Line::calcline (float x1, float y1, float x2,  float y2)
     cos_a = delta_x/len;
     }
 
-    if (x2 == x1)
+    setVH();
+}
+
+void Line::setVH()
+{
+    if (x_end == x_start)
     {
         vertical = 1;
     }
 
-    else if (y2 == y1)
+    else if (y_end == y_start)
     {
         horizontal = 1;
     }

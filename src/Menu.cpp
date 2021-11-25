@@ -104,6 +104,7 @@ void Menu::MenuRun()
              if (scanner->front_touch_point_x > menuitem[i]->pos_x && scanner->front_touch_point_x < (menuitem[i]->pos_x + menuitem[i]->loaded_image_res_x) &&
                  scanner->front_touch_point_y > menuitem[i]->pos_y && scanner->front_touch_point_y < (menuitem[i]->pos_y + menuitem[i]->loaded_image_res_y))
                  {
+                    menuitem[current]->waved = 0;
                     current = menuitem[i]->item_num;
                     menuitem[current]->waved = 1;
                     menuitem[current]->started = 1;

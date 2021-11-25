@@ -174,7 +174,7 @@ bool NPC::spotted()
 
 
 
-    if(level->levelwalls.intersection(abs_x, abs_y, level->player_pos_x, level->player_pos_y, VISIBILITY))
+    if(level->levelwalls.visible(abs_x, abs_y, level->player_pos_x, level->player_pos_y))
     {
         return 1;
     }

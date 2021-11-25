@@ -216,7 +216,7 @@ void Base_Init::draw_texture_waved(vita2d_texture *image, int pos_x, int pos_y, 
 			n_tvertices * sizeof(vita2d_texture_vertex),
 			sizeof(vita2d_texture_vertex));
 
-		for (int slice=0; slice<nslices; slice++) {
+		for (unsigned int slice=0; slice<nslices; slice++) {
 			float a = (float)slice/(float)nslices;
 			float b = (float)(slice+1)/(float)nslices;
 
@@ -227,7 +227,7 @@ void Base_Init::draw_texture_waved(vita2d_texture *image, int pos_x, int pos_y, 
 
 
 
-        for (int i=0; i<n_tvertices; ++i) {
+        for (unsigned int i=0; i<n_tvertices; ++i) {
 
 
             tvertices[i].v = i % 2;

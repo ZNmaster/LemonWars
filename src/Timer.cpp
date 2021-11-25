@@ -25,7 +25,7 @@ void Timer::stop()
 
 void Timer::calculate_dur(const std::chrono::high_resolution_clock::time_point &starttime_point,
                             const std::chrono::high_resolution_clock::time_point &endtime_point,
-                            int &dur_mills, float &dur_sec)
+                            unsigned int &dur_mills, float &dur_sec)
 {
     auto dur = endtime_point - starttime_point;
 

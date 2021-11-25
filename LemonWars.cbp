@@ -65,6 +65,7 @@
 		<Unit filename="include/LevelMap.h" />
 		<Unit filename="include/Line.h" />
 		<Unit filename="include/LineEq.h" />
+		<Unit filename="include/LineVec.h" />
 		<Unit filename="include/MemoryAI.h" />
 		<Unit filename="include/Menu.h" />
 		<Unit filename="include/MenuItem.h" />
@@ -95,6 +96,7 @@
 		<Unit filename="src/Levels.cpp" />
 		<Unit filename="src/Line.cpp" />
 		<Unit filename="src/LineEq.cpp" />
+		<Unit filename="src/LineVec.cpp" />
 		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/MenuItem.cpp" />
 		<Unit filename="src/NPC.cpp" />

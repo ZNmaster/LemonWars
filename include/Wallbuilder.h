@@ -35,16 +35,22 @@ class Wallbuilder
         bool pos_valid(int x0, int y0, int radius);
 
         //check the visibility between 2 points on the map
-        bool intersection(int x1, int y1, int x2, int y2, bool visibility);
+        bool visible(int x1, int y1, int x2, int y2);
+
+        //check intersection points
+        bool intersected(int x1, int y1, int x2, int y2);
+        std::vector<Point_int> intersection_points;
         //line of view
+
         LineEq AB;
 
-        std::vector<Point_int> intersection_points;
+
 
 
     protected:
 
     private:
+        bool intersection(int x1, int y1, int x2, int y2, bool visibility_only);
 
 
 };
