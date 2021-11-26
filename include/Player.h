@@ -1,8 +1,9 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <Character.h>
-#include <LevelMap.h>
+#include "Character.h"
+#include "LevelMap.h"
+#include "Timer.h"
 
 
 class Player : public Character
@@ -17,6 +18,7 @@ class Player : public Character
                int x0, int y0);
 
 
+
         void go_move();
 
         virtual ~Player();
@@ -25,9 +27,18 @@ class Player : public Character
     protected:
 
     private:
+        //fire delay
+        Timer fire_timer, charge_timer;
 
+        //charged weapon flag
+        bool charged;
+
+        void fire();
         void calc_stick_rad(float x, float y);
         float sin_a, cos_a;
+
+        //sprite num in the spritesheet
+        unsigned int position;
 };
 
 #endif // PLAYER_H

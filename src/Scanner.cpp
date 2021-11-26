@@ -55,6 +55,7 @@ void Scanner::ResetAll()
     Scanner::select_pressed = 0;
     Scanner::go_pressed = 0;
     //Scanner::stick_nav = 0;
+    Scanner::fire_pressed = 0;
     Scanner::pad_multiple_pressed = 0;
     Scanner::left_stick_moved = 0;
     Scanner::right_stick_moved = 0;
@@ -90,17 +91,30 @@ void Scanner::Scan()
     calc_stick_relative(stick, rstick_x, rstick_y, right_stick_moved);
 
 
+    if (pad.buttons & SCE_CTRL_START)
+    {
+            start_pressed = 1;
+            //count_pressed++;
+    }
+
+    if (pad.buttons & SCE_CTRL_SELECT)
+    {
+            select_pressed = 1;
+    }
+
+    if (pad.buttons & SCE_CTRL_CROSS)
+    {
+            go_pressed = 1;
+    }
+
+    if(pad.buttons & SCE_CTRL_RTRIGGER)
+    {
+        fire_pressed = 1;
+    }
+
     if (count_pressed == 0)
     {
-        if (pad.buttons & SCE_CTRL_START)
-            {
-                 start_pressed = 1;count_pressed++;
-            }
 
-        if (pad.buttons & SCE_CTRL_SELECT)
-            {
-                 select_pressed = 1;
-            }
         if (pad.buttons & SCE_CTRL_UP)
             {
                  up_pressed = 1;
@@ -121,10 +135,7 @@ void Scanner::Scan()
                  left_pressed = 1;
                  count_pressed++;
             }
-        if (pad.buttons & SCE_CTRL_CROSS)
-            {
-                 go_pressed = 1;
-            }
+
     }
 
     if (count_pressed > 1)

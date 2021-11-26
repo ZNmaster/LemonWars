@@ -20,6 +20,7 @@ class Scanner
                     start_pressed,
                     select_pressed,
                     go_pressed,
+                    fire_pressed,
                     pad_multiple_pressed,
                     stick_nav,
                     left_stick_moved,
@@ -51,6 +52,8 @@ class Scanner
 
         Point_int read_stick(unsigned int x, unsigned int y);
         void calc_stick_relative(Point_int stick, float &stick_x, float &stick_y, bool &stick_moved);
+
+        //the number of pressed D-pad buttons
         int count_pressed;
 
 

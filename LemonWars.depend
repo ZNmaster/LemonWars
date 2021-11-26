@@ -54,7 +54,7 @@
 	"Scanner.h"
 	<vita2d.h>
 
-1637767599 /home/iurii/LemonWars/include/Scanner.h
+1637887344 /home/iurii/LemonWars/include/Scanner.h
 	<psp2/ctrl.h>
 	<psp2/kernel/processmgr.h>
 	<psp2/touch.h>
@@ -75,11 +75,11 @@
 	"Scanner.h"
 	"MenuItem.h"
 
-1637767599 source:/home/iurii/LemonWars/src/Menu.cpp
+1637862930 source:/home/iurii/LemonWars/src/Menu.cpp
 	"Menu.h"
 	"GamePlayObj.h"
 
-1637767599 source:/home/iurii/LemonWars/src/Scanner.cpp
+1637887584 source:/home/iurii/LemonWars/src/Scanner.cpp
 	"Scanner.h"
 	<string.h>
 
@@ -191,9 +191,10 @@
 	"Scanner.h"
 	<cmath>
 
-1637767599 /home/iurii/LemonWars/include/Player.h
-	<Character.h>
-	<LevelMap.h>
+1637958722 /home/iurii/LemonWars/include/Player.h
+	"Character.h"
+	"LevelMap.h"
+	"Timer.h"
 
 1629641116 /home/iurii/LemonWars/include/PlayerMap.h
 	<Character.h>
@@ -246,7 +247,7 @@
 
 1637767599 /home/iurii/LemonWars/include/Point_int.h
 
-1637767599 /home/iurii/LemonWars/include/Scanner.ini
+1637887133 /home/iurii/LemonWars/include/Scanner.ini
 	"Scanner.h"
 
 1637266693 /home/iurii/LemonWars/include/NearestPoint.h

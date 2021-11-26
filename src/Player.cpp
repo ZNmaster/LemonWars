@@ -13,11 +13,21 @@ Player::Player(LevelMap *mymap, const char *filename, int num_horizontal_sprites
                : Character::Character(filename, num_horizontal_sprites,
                                       num_vertical_sprites, x0, y0)
 {
+    //set sprite to #0
+    position = 0;
+
     //set the speed in pixels per second
     speed = 200;
 
+    charged = 1;
+
+    //set fire timer
+    fire_timer.delay_mills(10);
+
+    charge_timer.delay_mills(10);
+
     //select sprite #0
-    sprite_coord_calc(0);
+    sprite_coord_calc(position);
 
     //save the pointer to the Map
     level = mymap;
@@ -113,6 +123,40 @@ void Player::go_move()
         level->player_pos_x = abs_x;
 
 
+        //fire
+        if (Scanner::fire_pressed && charged)
+        {
+            charged = 0;
+            fire_timer.delay_mills(50);
+            charge_timer.delay_mills(500);
+            fire();
+        }
+
+        if (position == 1)
+        {
+            if (fire_timer.expired())
+            {
+                position = 0;
+                //charged = 1;
+                sprite_coord_calc(position);
+            }
+
+        }
+
+        if(charge_timer.expired() || !Scanner::fire_pressed)
+        {
+            charged = 1;
+        }
+
+
+
+
+}
+
+void Player::fire()
+{
+    position = 1;
+    sprite_coord_calc(position);
 }
 
 void Player::calc_stick_rad(float x, float y)
