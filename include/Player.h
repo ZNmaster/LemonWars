@@ -4,6 +4,7 @@
 #include "Character.h"
 #include "LevelMap.h"
 #include "Timer.h"
+#include "Weapons.h"
 
 
 class Player : public Character
@@ -19,6 +20,8 @@ class Player : public Character
 
 
 
+        Weapons gun;
+
         void go_move();
 
         virtual ~Player();
@@ -27,18 +30,13 @@ class Player : public Character
     protected:
 
     private:
-        //fire delay
-        Timer fire_timer, charge_timer;
 
-        //charged weapon flag
-        bool charged;
 
-        void fire();
         void calc_stick_rad(float x, float y);
         float sin_a, cos_a;
 
         //sprite num in the spritesheet
-        unsigned int position;
+        unsigned int position = 0;
 };
 
 #endif // PLAYER_H

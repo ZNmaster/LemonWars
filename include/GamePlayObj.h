@@ -9,6 +9,7 @@ class GamePlayObj : public Entity
     public:
         GamePlayObj();
         GamePlayObj(const char *filename);
+        GamePlayObj(vita2d_texture *im);
         virtual ~GamePlayObj();
 
 
@@ -28,6 +29,7 @@ class GamePlayObj : public Entity
     protected:
 
     private:
+        void init();
 };
 
 #endif // GAMEPLAYOBJ_H
