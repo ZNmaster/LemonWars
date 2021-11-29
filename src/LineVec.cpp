@@ -49,7 +49,7 @@ void LineVec::calcline(float length, float rad)
     delta_x = len * cos_a;
     delta_y = len * sin_a;
     x_end = x_start + delta_x;
-    y_end = y_end + delta_y;
+    y_end = y_start + delta_y;
 }
 
 void LineVec::calcangle()

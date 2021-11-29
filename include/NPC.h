@@ -50,9 +50,6 @@ class NPC : public Character, public NearestPoint
         //init pathfinder ant set a path to a target nav point
         void set_path();
 
-        //calculates position on the screen based on abs_x and abs_y
-        void calc_screen_pos();
-
         //target nav point
         int target_nav_pos;
         //final destination

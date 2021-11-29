@@ -14,7 +14,7 @@ class Player : public Character
 
         Player();
 
-        Player(LevelMap *mymap, const char *filename,
+        Player(LevelMap *mymap, std::vector<Entity*> *objvec, const char *filename,
                int num_horizontal_sprites, int num_vertical_sprites,
                int x0, int y0);
 

@@ -3,6 +3,9 @@
 #include "Wallbuilder.h"
 #include "LevelMap.h"
 #include "Scanner.ini"
+#include "Weapons.h"
+
+unsigned int Weapons::weapon_type = 1;
 
 
 

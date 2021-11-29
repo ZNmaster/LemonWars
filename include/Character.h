@@ -12,6 +12,10 @@ class Character : public Sprite
         Character();
         Character(const char *filename, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0);
+        Character(vita2d_texture *im, int num_horizontal_sprites,
+               int num_vertical_sprites, int x0, int y0);
+
+
 
         virtual ~Character();
 
@@ -32,10 +36,14 @@ class Character : public Sprite
 
         float get_move_delta();
 
+        //calculates position on the screen based on abs_x and abs_y
+        void calc_screen_pos();
+
 
     protected:
 
     private:
+        void set_pos(int x0, int y0);
 };
 
 #endif // CHARACTER_H

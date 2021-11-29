@@ -8,15 +8,15 @@ Player::Player()
     //ctor
 }
 
-Player::Player(LevelMap *mymap, const char *filename, int num_horizontal_sprites,
+Player::Player(LevelMap *mymap, std::vector<Entity*> *objvec, const char *filename, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0)
                : Character::Character(filename, num_horizontal_sprites,
                                       num_vertical_sprites, x0, y0)
 {
-    gun = Weapons (1);
+    gun = Weapons (1, mymap, objvec);
 
     //set the sprite according to the gun used
-    position = gun.act(position);
+    position = gun.act(position, angle);
 
     //set the speed in pixels per second
     speed = 200;
@@ -120,7 +120,7 @@ void Player::go_move()
 
         //fire
 
-        position = gun.act(position);
+        position = gun.act(position, angle);
         sprite_coord_calc(position);
 
 

@@ -1,6 +1,7 @@
 #include "Weapons.h"
 #include "Scanner.h"
 #include "LineVec.h"
+#include "Projectile.h"
 
 
 Weapons::Weapons()
@@ -8,17 +9,17 @@ Weapons::Weapons()
     //ctor
 }
 
-Weapons::Weapons(unsigned int type)
+Weapons::Weapons(unsigned int type, LevelMap *mymap, std::vector<Entity*> *objvec)
 {
+    level = mymap;
+    obj = objvec;
+
     charged = 1;
 
     //set fire timer
     fire_timer.delay_mills(10);
 
     charge_timer.delay_mills(10);
-
-
-
 
 
    switch(type)
@@ -28,7 +29,7 @@ Weapons::Weapons(unsigned int type)
         default_player_sprite = 0;
         fire_player_sprite = 1;
         current_player_sprite = default_player_sprite;
-        image = vita2d_load_PNG_file("app0:assets/images/projectiles/bullet.png");
+        image = vita2d_load_PNG_file("app0:/assets/images/projectiles/bullet.png");
 
         {
             Point_float gun_end_point;
@@ -56,9 +57,10 @@ Weapons::Weapons(unsigned int type)
 
 }
 
-unsigned int Weapons::act(unsigned int sprite_num)
+unsigned int Weapons::act(unsigned int sprite_num, float alpha)
 
 {
+    player_alpha = alpha;
 
    if (Scanner::fire_pressed && charged)
         {
@@ -91,8 +93,30 @@ void Weapons::fire()
 {
    current_player_sprite = fire_player_sprite;
 
-   return;
+   Point_int projectile_coords;
 
+   Point_float start_point;
+
+   start_point.x = (float)level->player_pos_x;
+   start_point.y = (float)level->player_pos_y;
+
+   LineVec gun_vector(start_point, gun_vector_len, gun_vector_alpha + player_alpha);
+
+   start_point.x = gun_vector.x_end;
+   start_point.y = gun_vector.y_end;
+
+   LineVec projectile_vector(start_point, 5.5, player_alpha);
+
+   projectile_coords.x = (int)projectile_vector.x_end;
+   projectile_coords.y = (int)projectile_vector.y_end;
+
+   if (image)
+   {
+      Projectile *bullet = new Projectile(image, projectile_coords, level, obj, player_alpha);
+      obj->push_back(bullet);
+   }
+
+   return;
 
 }
 

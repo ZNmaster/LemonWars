@@ -162,12 +162,6 @@ void NPC::set_chase()
 
 }
 
-void NPC::calc_screen_pos()
-{
-      pos_x = abs_x - level->part_x - res_of_sprites_x/2;
-      pos_y = abs_y - level->part_y - res_of_sprites_y/2;
-}
-
 bool NPC::spotted()
 {
     //we're gonna add some code for distance and the angle of view here

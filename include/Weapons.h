@@ -1,17 +1,21 @@
 #ifndef WEAPONS_H
 #define WEAPONS_H
-#include "Timer.h"
+
 #include <vita2d.h>
+#include <vector>
+
+#include "Timer.h"
+#include "LevelMap.h"
 
 
 class Weapons
 {
     public:
         Weapons();
-        Weapons(unsigned int type);
+        Weapons(unsigned int type, LevelMap *mymap, std::vector<Entity*> *objvec);
 
         static unsigned int weapon_type;
-        unsigned int act(unsigned int sprite_num);
+        unsigned int act(unsigned int sprite_num, float alpha);
 
 
         virtual ~Weapons();
@@ -32,6 +36,11 @@ class Weapons
 
         //charged weapon flag
         bool charged;
+
+        LevelMap *level;
+        std::vector<Entity*> *obj;
+
+        float player_alpha;
 };
 
 #endif // WEAPONS_H

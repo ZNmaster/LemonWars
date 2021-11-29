@@ -4,6 +4,9 @@
 #include "Player.h"
 #include "SpawnPoint.h"
 #include "Common_Lemon.h"
+#include "Projectile.h"
+
+
 
 
 Game::Game()
@@ -14,6 +17,8 @@ Game::Game()
 Game::Game(const char *MapFilename, const char *MemFilename)
 
 {
+
+
     GPU_init(2);
 
     SpawnPoint *spawn = new SpawnPoint(650, 1200, &obj);
@@ -29,9 +34,22 @@ Game::Game(const char *MapFilename, const char *MemFilename)
     spawn->set_levelmap(level);
     spawn2->set_levelmap(level);
 
-    Player *player = new Player(level, "app0:/assets/images/characters/player.png", 2, 2, 150, 150);
+    Player *player = new Player(level, &obj, "app0:/assets/images/characters/player.png", 2, 2, 150, 150);
 
     obj.push_back (player);
+
+
+
+    vita2d_texture *testim = vita2d_load_PNG_file("app0:/assets/images/projectiles/bullet.png");
+
+
+    Point_int a;
+    a.x =100;
+    a.y = 200;
+    Projectile * test = new Projectile(testim, a, level, &obj, 0);
+    test->pos_x = 140;
+    test->pos_y = 160;
+    obj.push_back (test);
 
 }
 

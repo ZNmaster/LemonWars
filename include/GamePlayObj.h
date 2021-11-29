@@ -29,7 +29,7 @@ class GamePlayObj : public Entity
     protected:
 
     private:
-        void init();
+        void set_texture();
 };
 
 #endif // GAMEPLAYOBJ_H

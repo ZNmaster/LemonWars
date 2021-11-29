@@ -12,16 +12,16 @@ GamePlayObj::GamePlayObj()
 GamePlayObj::GamePlayObj(const char *filename)
 {
     image = vita2d_load_PNG_file(filename);
-    init();
+    set_texture();
 }
 
 GamePlayObj::GamePlayObj(vita2d_texture *im)
 {
     image = im;
-    init();
+    set_texture();
 }
 
-void GamePlayObj::init()
+void GamePlayObj::set_texture()
 {
     if (!image)
     {
