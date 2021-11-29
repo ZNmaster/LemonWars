@@ -2,6 +2,7 @@
 #include "Scanner.h"
 #include "Letter.h"
 #include <cmath>
+#include <sstream>
 
 
 Base_Init::Base_Init()
@@ -16,6 +17,7 @@ void Base_Init::GPU_init(unsigned int megabytes)
     // initializing libvita and setting background color
     vita2d_init_advanced(megabytes * 1024 * 1024);
 	vita2d_set_clear_color(RGBA8(0x40, 0x40, 0x40, 0xFF));
+	pvf = vita2d_load_default_pvf();
 }
 
 
@@ -26,7 +28,7 @@ void Base_Init::GPU_init()
 	vita2d_set_clear_color(RGBA8(0x40, 0x40, 0x40, 0xFF));
 
 	//pgf = vita2d_load_default_pgf();
-	//pvf = vita2d_load_default_pvf();
+	pvf = vita2d_load_default_pvf();
 
 }
 void Base_Init::GPU_finish()
@@ -106,6 +108,25 @@ bool Base_Init::draw_frame(std::vector<Entity *> obj)
         for (auto objimage : obj)
         {
 
+         //We won't draw anything outside the boundaries
+         if (objimage->pos_x < -1000 || objimage->pos_y < -1000 || objimage->pos_x > 2500 || objimage->pos_y > 2400)
+         {
+             if(objimage->pos_x < -4000 || objimage->pos_y < -4000 || objimage->pos_x > 4950 || objimage->pos_y > 5400)
+             {
+                 std::stringstream o;
+                 o << "X out of range " << objimage->pos_x;
+                 o << "    Y out of range " << objimage->pos_y;
+
+                 vita2d_pvf_draw_text(pvf, 50, 50, RGBA8(0,255,0,255), 1.0f, o.str().c_str());
+
+
+             }
+
+             continue;
+
+         }
+
+
          //if some object tells us to stop we stop
          if (objimage->terminated)
             {
@@ -158,6 +179,7 @@ bool Base_Init::draw_frame(std::vector<Entity *> obj)
             //calling move method of each object
             objimage->go_move();
 
+
         }
 
         //debug grid
@@ -168,6 +190,7 @@ bool Base_Init::draw_frame(std::vector<Entity *> obj)
         vita2d_swap_buffers();
 
         return 0;
+
 }
 void Base_Init::free_textures(std::vector<Entity *> &obj)
 {

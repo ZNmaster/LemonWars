@@ -46,8 +46,8 @@ float Character::get_move_delta()
 
 void Character::calc_screen_pos()
 {
-      pos_x = abs_x - level->part_x - res_of_sprites_x/2;
-      pos_y = abs_y - level->part_y - res_of_sprites_y/2;
+      pos_x = int(abs_x - (float)(level->part_x) - (float)(res_of_sprites_x)/2.0);
+      pos_y = int(abs_y - (float)(level->part_y) - (float)(res_of_sprites_y)/2.0);
 }
 
 

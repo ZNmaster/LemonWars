@@ -9,6 +9,9 @@ class GamePlayObj : public Entity
     public:
         GamePlayObj();
         GamePlayObj(const char *filename);
+
+        /* !!!!!!!!!!!!!!!!!!!!! be careful with this constructor. For some reason GPU crashes if you pass the
+                                 pointer of the texture to create an object. To avoid this you must to load the texture TWICE!!!!!!!!!!!!!*/
         GamePlayObj(vita2d_texture *im);
         virtual ~GamePlayObj();
 

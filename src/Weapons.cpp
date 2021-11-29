@@ -29,12 +29,11 @@ Weapons::Weapons(unsigned int type, LevelMap *mymap, std::vector<Entity*> *objve
         default_player_sprite = 0;
         fire_player_sprite = 1;
         current_player_sprite = default_player_sprite;
-        image = vita2d_load_PNG_file("app0:/assets/images/projectiles/bullet.png");
 
         {
             Point_float gun_end_point;
             gun_end_point.x = 49;
-            gun_end_point.y = -8;
+            gun_end_point.y = 8;
 
             LineVec fire_point(gun_end_point);
 
@@ -52,8 +51,6 @@ Weapons::Weapons(unsigned int type, LevelMap *mymap, std::vector<Entity*> *objve
     default :
         current_player_sprite = 0;
     }
-
-
 
 }
 
@@ -84,8 +81,6 @@ unsigned int Weapons::act(unsigned int sprite_num, float alpha)
             charged = 1;
         }
 
-
-
    return current_player_sprite;
 }
 
@@ -93,12 +88,12 @@ void Weapons::fire()
 {
    current_player_sprite = fire_player_sprite;
 
-   Point_int projectile_coords;
-
    Point_float start_point;
 
-   start_point.x = (float)level->player_pos_x;
-   start_point.y = (float)level->player_pos_y;
+   start_point.x = level->player_pos_x;
+   start_point.y = level->player_pos_y;
+
+
 
    LineVec gun_vector(start_point, gun_vector_len, gun_vector_alpha + player_alpha);
 
@@ -107,14 +102,11 @@ void Weapons::fire()
 
    LineVec projectile_vector(start_point, 5.5, player_alpha);
 
-   projectile_coords.x = (int)projectile_vector.x_end;
-   projectile_coords.y = (int)projectile_vector.y_end;
+   int x0 = (int)projectile_vector.x_end;
+   int y0 = (int)projectile_vector.y_end;
 
-   if (image)
-   {
-      Projectile *bullet = new Projectile(image, projectile_coords, level, obj, player_alpha);
+      Projectile *bullet = new Projectile("app0:/assets/images/projectiles/bullet.png", level, obj, x0, y0, player_alpha);
       obj->push_back(bullet);
-   }
 
    return;
 
@@ -123,8 +115,5 @@ void Weapons::fire()
 Weapons::~Weapons()
 {
     //dtor
-    if (image)
-    {
-        vita2d_free_texture (image);
-    }
+
 }

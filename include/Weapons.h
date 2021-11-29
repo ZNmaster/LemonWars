@@ -17,10 +17,7 @@ class Weapons
         static unsigned int weapon_type;
         unsigned int act(unsigned int sprite_num, float alpha);
 
-
         virtual ~Weapons();
-
-        vita2d_texture *image;
 
     protected:
 

@@ -40,8 +40,8 @@ class LevelMap : public GamePlayObj
             mapres_y;
 
         //position of the player
-        int player_pos_x,
-            player_pos_y;
+        float player_pos_x,
+              player_pos_y;
 
 
 
