@@ -10,7 +10,7 @@ Player::Player()
 
 Player::Player(LevelMap *mymap, std::vector<Entity*> *objvec, const char *filename, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0)
-               : Character::Character(filename, num_horizontal_sprites,
+               : MovObj::MovObj(filename, num_horizontal_sprites,
                                       num_vertical_sprites, x0, y0)
 {
     gun = Weapons (1, mymap, objvec);

@@ -1,14 +1,14 @@
 #ifndef PROJECTILE_H
 #define PROJECTILE_H
 
-#include <Character.h>
+#include <MovObj.h>
 #include <vector>
 #include "LevelMap.h"
 #include "Point_int.h"
 
 
 
-class Projectile : public Character
+class Projectile : public MovObj
 {
     public:
         Projectile();
@@ -19,13 +19,19 @@ class Projectile : public Character
 
 
         Projectile(const char *filename, LevelMap *mymap, std::vector<Entity*> *objvec, int x0, int y0, float rad);
-        virtual ~Projectile();
+
+
+
         virtual void go_move();
+
+        virtual ~Projectile();
 
     protected:
 
     private:
         std::vector<Entity*> *obj;
+
+        void set_scene (LevelMap *mymap, std::vector<Entity*> *objvec, float rad);
 };
 
 #endif // PROJECTILE_H

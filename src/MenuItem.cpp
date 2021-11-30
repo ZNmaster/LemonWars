@@ -18,7 +18,7 @@ void MenuItem::go_move()
           k_x -= 2*delta;
           k_y -= delta;
 
-            if (delta > 50)
+            if (delta > 40)
            {
               terminated = 1;
            }

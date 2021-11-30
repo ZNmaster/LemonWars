@@ -1,13 +1,13 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Character.h"
+#include "MovObj.h"
 #include "LevelMap.h"
 #include "Timer.h"
 #include "Weapons.h"
 
 
-class Player : public Character
+class Player : public MovObj
 {
     public:
         float sqrt2 = 1.414213562;

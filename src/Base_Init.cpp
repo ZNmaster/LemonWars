@@ -109,7 +109,7 @@ bool Base_Init::draw_frame(std::vector<Entity *> obj)
         {
 
          //We won't draw anything outside the boundaries
-         if (objimage->pos_x < -1000 || objimage->pos_y < -1000 || objimage->pos_x > 2500 || objimage->pos_y > 2400)
+         if (objimage->pos_x < -500 || objimage->pos_y < -500 || objimage->pos_x > 1500 || objimage->pos_y > 1400)
          {
              if(objimage->pos_x < -4000 || objimage->pos_y < -4000 || objimage->pos_x > 4950 || objimage->pos_y > 5400)
              {
@@ -118,14 +118,10 @@ bool Base_Init::draw_frame(std::vector<Entity *> obj)
                  o << "    Y out of range " << objimage->pos_y;
 
                  vita2d_pvf_draw_text(pvf, 50, 50, RGBA8(0,255,0,255), 1.0f, o.str().c_str());
-
-
              }
-
+             objimage->go_move();
              continue;
-
          }
-
 
          //if some object tells us to stop we stop
          if (objimage->terminated)
@@ -179,7 +175,6 @@ bool Base_Init::draw_frame(std::vector<Entity *> obj)
             //calling move method of each object
             objimage->go_move();
 
-
         }
 
         //debug grid
@@ -225,7 +220,6 @@ void Base_Init::create_text_from_font(std::string text, int x, int y,
         title->set_effect(1, 1, i);
         obj.push_back (title);
     }
-
 
 }
 

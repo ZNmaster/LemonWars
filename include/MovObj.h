@@ -1,27 +1,27 @@
-#ifndef CHARACTER_H
-#define CHARACTER_H
+#ifndef MOVOBJ_H
+#define MOVOBJ_H
 
 #include <Sprite.h>
 #include "LevelMap.h"
 #include <Timer.h>
 
 
-class Character : public Sprite
+class MovObj : public Sprite
 {
     public:
-        Character();
-        Character(const char *filename, int num_horizontal_sprites,
+        MovObj();
+        MovObj(const char *filename, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0);
 
 
         /* !!!!!!!!!!!!!!!!!!!!! be careful with this constructor. For some reason GPU crashes if you pass the
                                  pointer of the texture to create an object. To avoid this you must to load the texture TWICE!!!!!!!!!!!!!*/
-        Character(vita2d_texture *im, int num_horizontal_sprites,
+        MovObj(vita2d_texture *im, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0);
 
 
 
-        virtual ~Character();
+        virtual ~MovObj();
 
         //pointer to level map
         LevelMap *level;
@@ -50,4 +50,4 @@ class Character : public Sprite
         void set_pos(int x0, int y0);
 };
 
-#endif // CHARACTER_H
+#endif // MOVOBJ_H

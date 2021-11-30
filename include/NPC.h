@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "Character.h"
+#include "MovObj.h"
 #include "Timer.h"
 #include "LevelMap.h"
 #include "Pathfinder.h"
@@ -12,7 +12,7 @@
 #include "NearestPoint.h"
 
 
-class NPC : public Character, public NearestPoint
+class NPC : public MovObj, public NearestPoint
 {
     public:
         NPC();
