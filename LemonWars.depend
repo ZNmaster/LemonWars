@@ -90,7 +90,7 @@
 	<cmath>
 	<algorithm>
 
-1638282104 source:/home/iurii/LemonWars/src/Base_Init.cpp
+1638282580 source:/home/iurii/LemonWars/src/Base_Init.cpp
 	"Base_Init.h"
 	"Scanner.h"
 	"Letter.h"
@@ -126,7 +126,7 @@
 1638129288 source:/home/iurii/LemonWars/src/Sprite.cpp
 	"Sprite.h"
 
-1638204070 /home/iurii/LemonWars/include/Sprite.h
+1638287232 /home/iurii/LemonWars/include/Sprite.h
 	<GamePlayObj.h>
 
 1637767598 source:/home/iurii/LemonWars/src/Letter.cpp

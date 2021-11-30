@@ -21,13 +21,18 @@ class Sprite : public GamePlayObj
         void spritesheet();
 
 
-
+        //sets the current sprite by its number
         void sprite_coord_calc(int num);
 
     protected:
 
     private:
+        //constructor delegee - sets the sprite resolution and initial screen position
         void set_sprites(int num_horizontal_sprites, int num_vertical_sprites, int x0, int y0);
+
+        //defines if the image texture passed from outside
+        bool image_loaded;
+
 };
 
 #endif // SPRITE_H
