@@ -84,7 +84,7 @@
 	"Scanner.h"
 	<string.h>
 
-1638324328 source:/home/iurii/LemonWars/src/Wallbuilder.cpp
+1638325571 source:/home/iurii/LemonWars/src/Wallbuilder.cpp
 	"Wallbuilder.h"
 	<iostream>
 	<cmath>
@@ -123,7 +123,7 @@
 	"Rocket.h"
 	"Scanner.h"
 
-1638315710 source:/home/iurii/LemonWars/src/Sprite.cpp
+1638324716 source:/home/iurii/LemonWars/src/Sprite.cpp
 	"Sprite.h"
 
 1638324584 /home/iurii/LemonWars/include/Sprite.h
@@ -166,7 +166,7 @@
 	"Wallbuilder.h"
 	"MemoryAI.h"
 
-1638315710 source:/home/iurii/LemonWars/src/NPC.cpp
+1638367363 source:/home/iurii/LemonWars/src/NPC.cpp
 	<vector>
 	"NPC.h"
 
@@ -186,14 +186,13 @@
 1638195649 source:/home/iurii/LemonWars/src/Character.cpp
 	"Character.h"
 
-1638315710 source:/home/iurii/LemonWars/src/Player.cpp
+1638367363 source:/home/iurii/LemonWars/src/Player.cpp
 	"Player.h"
 	"Scanner.h"
 	<cmath>
 
-1638281153 /home/iurii/LemonWars/include/Player.h
+1638367363 /home/iurii/LemonWars/include/Player.h
 	"MovObj.h"
-	"LevelMap.h"
 	"Timer.h"
 	"Weapons.h"
 
@@ -286,19 +285,19 @@
 	"LineVec.h"
 	"Point_float.h"
 
-1638318619 /home/iurii/LemonWars/include/Projectile.h
+1638367363 /home/iurii/LemonWars/include/Projectile.h
 	<MovObj.h>
 	<vector>
 	"LevelMap.h"
 	"Point_int.h"
 
-1638317398 /home/iurii/LemonWars/include/MovObj.h
+1638367363 /home/iurii/LemonWars/include/MovObj.h
 	"Sprite.h"
 	"LevelMap.h"
 	"Timer.h"
 	"Pathfinder.h"
 	"NearestPoint.h"
 
-1638288365 source:/home/iurii/LemonWars/src/MovObj.cpp
+1638367393 source:/home/iurii/LemonWars/src/MovObj.cpp
 	"MovObj.h"
 

@@ -10,11 +10,9 @@ NPC::NPC()
 }
 NPC::NPC(LevelMap *mymap, const char *filename, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0)
-               : MovObj::MovObj(filename, num_horizontal_sprites,
+               : MovObj::MovObj(filename, mymap, num_horizontal_sprites,
                                       num_vertical_sprites, x0, y0)
 {
-    //save the pointer to the Map
-    level = mymap;
 
     //set current nav pos to none
     current_nav_pos = -1;

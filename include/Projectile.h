@@ -41,7 +41,7 @@ class Projectile : public MovObj
     private:
         std::vector<Entity*> *obj;
 
-        void set_scene (LevelMap *mymap, std::vector<Entity*> *objvec, float rad);
+        void set_scene (std::vector<Entity*> *objvec, float rad);
 
         int dest_x, dest_y;
 

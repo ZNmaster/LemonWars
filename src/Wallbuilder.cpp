@@ -131,8 +131,8 @@ bool Wallbuilder::intersection(int x1, int y1, int x2, int y2, bool visibility_o
             //horizontal walls
             if(y_start[i] == y_end[i])
             {
-                if(y_start[i] > std::min(AB.y_start, AB.y_end) && y_start[i] < std::max(AB.y_start, AB.y_end) &&
-                   AB.x_start > std::min(x_start[i], x_end[i]) && AB.x_start < std::max(x_start[i], x_end[i]))
+                if(y_start[i] >= std::min(AB.y_start, AB.y_end) && y_start[i] <= std::max(AB.y_start, AB.y_end) &&
+                   AB.x_start >= std::min(x_start[i], x_end[i]) && AB.x_start <= std::max(x_start[i], x_end[i]))
                    {
                        if (visibility_only) return 1;
                        p.x = AB.x_start;
@@ -146,8 +146,8 @@ bool Wallbuilder::intersection(int x1, int y1, int x2, int y2, bool visibility_o
         {
             if(x_start[i] == x_end[i])
             {
-                   if(x_start[i] > std::min(AB.x_start, AB.x_end) && x_start[i] < std::max(AB.x_start, AB.x_end) &&
-                   AB.y_start > std::min(y_start[i], y_end[i]) && AB.y_start < std::max(y_start[i], y_end[i]))
+                   if(x_start[i] >= std::min(AB.x_start, AB.x_end) && x_start[i] <= std::max(AB.x_start, AB.x_end) &&
+                   AB.y_start >= std::min(y_start[i], y_end[i]) && AB.y_start <= std::max(y_start[i], y_end[i]))
                    {
                        if (visibility_only) return 1;
                        p.x = x_start[i];
@@ -163,11 +163,11 @@ bool Wallbuilder::intersection(int x1, int y1, int x2, int y2, bool visibility_o
         //vertical walls
         if (x_start[i] == x_end[i])
         {
-            if(x_start[i] > std::min(AB.x_start, AB.x_end) && x_start[i] < std::max(AB.x_start, AB.x_end))
+            if(x_start[i] >= std::min(AB.x_start, AB.x_end) && x_start[i] <= std::max(AB.x_start, AB.x_end))
             {
                 x_intersec = x_start[i];
                 y_intersec = AB.a*x_intersec + AB.b;
-                if (y_intersec > std::min(y_start[i], y_end[i]) && y_intersec < std::max(y_start[i], y_end[i]))
+                if (y_intersec >= std::min(y_start[i], y_end[i]) && y_intersec <= std::max(y_start[i], y_end[i]))
                 {
                   if (visibility_only) return 1;
                   p.x = x_intersec;
@@ -181,12 +181,12 @@ bool Wallbuilder::intersection(int x1, int y1, int x2, int y2, bool visibility_o
         else if (y_start[i] == y_end[i])
         {
 
-            if(y_start[i] > std::min(AB.y_start, AB.y_end) && y_start[i] < std::max(AB.y_start, AB.y_end))
+            if(y_start[i] >= std::min(AB.y_start, AB.y_end) && y_start[i] <= std::max(AB.y_start, AB.y_end))
             {
                 y_intersec = y_start[i];
                 x_intersec = (y_intersec - AB.b) / AB.a;
 
-                if (x_intersec > std::min(x_start[i], x_end[i]) && x_intersec < std::max(x_start[i], x_end[i]))
+                if (x_intersec >= std::min(x_start[i], x_end[i]) && x_intersec <= std::max(x_start[i], x_end[i]))
                 {
                     if (visibility_only) return 1;
                     p.x = x_intersec;

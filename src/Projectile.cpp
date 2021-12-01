@@ -8,20 +8,19 @@ Projectile::Projectile()
 }
 
 Projectile::Projectile(vita2d_texture *im, LevelMap *mymap, std::vector<Entity*> *objvec, int x0, int y0, float rad)
-                       : MovObj::MovObj(im, 2, 3, x0, y0)
+                       : MovObj::MovObj(im, mymap, 2, 3, x0, y0)
 {
-   set_scene(mymap, objvec, rad);
+   set_scene(objvec, rad);
 }
 
 Projectile::Projectile(const char *filename, LevelMap *mymap, std::vector<Entity*> *objvec, int x0, int y0, float rad)
-                       : MovObj::MovObj(filename, 2, 3, x0, y0)
+                       : MovObj::MovObj(filename, mymap, 2, 3, x0, y0)
 {
-   set_scene(mymap, objvec, rad);
+   set_scene(objvec, rad);
 }
 
-void Projectile::set_scene (LevelMap *mymap, std::vector<Entity*> *objvec, float rad)
+void Projectile::set_scene (std::vector<Entity*> *objvec, float rad)
 {
-   level = mymap;
    obj = objvec;
    speed = 500;
    angle = rad;
@@ -30,6 +29,7 @@ void Projectile::set_scene (LevelMap *mymap, std::vector<Entity*> *objvec, float
 
    if (!level->levelwalls.visible(abs_x, abs_y, level->player_pos_x, level->player_pos_y))
    {
+       set_sprite(1);
        carry_on = &Projectile::explode;
        explosion_timer.delay_mills(50);
    }

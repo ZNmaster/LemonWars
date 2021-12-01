@@ -10,7 +10,7 @@ Player::Player()
 
 Player::Player(LevelMap *mymap, std::vector<Entity*> *objvec, const char *filename, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0)
-               : MovObj::MovObj(filename, num_horizontal_sprites,
+               : MovObj::MovObj(filename, mymap, num_horizontal_sprites,
                                       num_vertical_sprites, x0, y0)
 {
     gun = Weapons (1, mymap, objvec);
@@ -24,8 +24,6 @@ Player::Player(LevelMap *mymap, std::vector<Entity*> *objvec, const char *filena
     //select sprite #0
     set_sprite(position);
 
-    //save the pointer to the Map
-    level = mymap;
 }
 
 void Player::go_move()

@@ -2,7 +2,6 @@
 #define PLAYER_H
 
 #include "MovObj.h"
-#include "LevelMap.h"
 #include "Timer.h"
 #include "Weapons.h"
 
