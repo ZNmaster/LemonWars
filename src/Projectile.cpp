@@ -1,4 +1,6 @@
 #include "Projectile.h"
+#include "LineVec.h"
+#include "Point_float.h"
 
 Projectile::Projectile()
 {
@@ -23,19 +25,97 @@ void Projectile::set_scene (LevelMap *mymap, std::vector<Entity*> *objvec, float
    obj = objvec;
    speed = 500;
    angle = rad;
-   sprite_coord_calc(0);
+   set_sprite(0);
    calc_screen_pos();
+
+   if (!level->levelwalls.visible(abs_x, abs_y, level->player_pos_x, level->player_pos_y))
+   {
+       carry_on = &Projectile::explode;
+       explosion_timer.delay_mills(50);
+   }
+   else
+   {
+       carry_on = &Projectile::find_destination;
+   }
+
+   sprite_num = 1;
+}
+
+void Projectile::find_destination()
+{
+
+    Point_float start_point;
+    start_point.x = abs_x;
+    start_point.y = abs_y;
+    LineVec destination(start_point, 5000, angle);
+
+    dest_x = destination.x_end;
+    dest_y = destination.y_end;
+    if (level->levelwalls.intersected(abs_x, abs_y, dest_x, dest_y))
+    {
+         int point_index = find_nearest_to(abs_x, abs_y, level->levelwalls.intersection_points);
+
+         Point_int dest;
+         dest = level->levelwalls.intersection_points[point_index];
+         dest_x = dest.x;
+         dest_y = dest.y;
+    }
+    carry_on = &Projectile::set_path;
+
+}
+
+void Projectile::set_path()
+{
+    path = Pathfinder(abs_x, abs_y, dest_x, dest_y);
+    move_timer.start();
+    set_sprite(1);
+    carry_on = &Projectile::fly;
+}
+
+void Projectile::fly()
+{
+    move_delta = get_move_delta();
+    path.move_by(move_delta);
+
+    abs_x = path.current_x;
+    abs_y = path.current_y;
+
+    if (path.arrived)
+    {
+        explosion_timer.delay_mills(50);
+        carry_on = &Projectile::explode;
+    }
+}
+
+void Projectile::explode()
+{
+
+   if (explosion_timer.expired())
+   {
+       sprite_num ++;
+       set_sprite(sprite_num);
+       explosion_timer.delay_mills(80);
+   }
+
+   if (sprite_num == 5)
+   {
+       carry_on = &Projectile::finish;
+   }
+
+}
+
+void Projectile::finish()
+{
+
 }
 
 void Projectile::go_move()
 {
+   (this->*carry_on) ();
    calc_screen_pos();
 }
 
 Projectile::~Projectile()
 {
     //dtor
-
-    //uncomment if you want to pass the loaded image to MovObj constructor to ensure it is not deleted in GamePlayObj
-    //image = nullptr;
 }

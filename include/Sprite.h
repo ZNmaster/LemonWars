@@ -22,7 +22,7 @@ class Sprite : public GamePlayObj
 
 
         //sets the current sprite by its number
-        void sprite_coord_calc(int num);
+        void set_sprite(int num);
 
     protected:
 

@@ -5,19 +5,30 @@
 Entity::Entity()
 {
     //reset flags, factors and coordinates
+
+    //int and float
     abs_x = 0;
     abs_y = 0;
     pos_x = 0;
     pos_y = 0;
-    angle = 0;
+
     part_x = 0;
     part_y = 0;
+
+    //bool flags
     partial = 0;
     scaled = 0;
     waved = 0;
     terminated = 0;
     enemy = 0;
     dead = 0;
+
+
+    angle = 0;
+
+    //scaling factors
+    k_x = 1;
+    k_y = 1;
 
     //ctor
 

@@ -35,9 +35,6 @@ float MovObj::get_move_delta()
     //stop the timer and calculate the time between current and previous frame
     move_timer.stop();
 
-
-    //int delta = (int)(speed*move_timer.duration_float+1);
-
     //reset timer
     move_timer.start();
 

@@ -6,13 +6,11 @@
 #include "MovObj.h"
 #include "Timer.h"
 #include "LevelMap.h"
-#include "Pathfinder.h"
 #include "RNG.h"
 #include "Point_int.h"
-#include "NearestPoint.h"
 
 
-class NPC : public MovObj, public NearestPoint
+class NPC : public MovObj
 {
     public:
         NPC();
@@ -28,8 +26,7 @@ class NPC : public MovObj, public NearestPoint
 
         //find nearest nav point to current object
         void find_nearest();
-        //find nearest nav point to a position on the map
-        //int find_nearest_to(int from_x, int from_y, std::vector<Point_int> target_points);
+
         //find nearest nav point to player
         void find_nearest_to_player();
 
@@ -44,9 +41,6 @@ class NPC : public MovObj, public NearestPoint
         //set chasing mode
         void set_chase();
 
-
-        //calculates path between 2 nav points
-        Pathfinder path;
         //init pathfinder ant set a path to a target nav point
         void set_path();
 
@@ -67,19 +61,7 @@ class NPC : public MovObj, public NearestPoint
 
         Timer spot_timer;
 
-
-        /*
-        //for y=ax+b
-        float a_x, b_x;
-
-        //for x=ay+b
-        float a_y, b_y;
-        */
-
-
-
-
-
+        virtual void hit(int hitpoints);
 
 
         virtual ~NPC();

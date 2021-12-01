@@ -14,7 +14,7 @@ Common_Lemon::Common_Lemon(LevelMap *mymap, const char *filename, int num_horizo
     set_roam();
 
     //select sprite #0
-    sprite_coord_calc(0);
+    set_sprite(0);
 
 }
 

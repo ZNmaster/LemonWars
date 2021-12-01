@@ -20,6 +20,16 @@ class Projectile : public MovObj
 
         Projectile(const char *filename, LevelMap *mymap, std::vector<Entity*> *objvec, int x0, int y0, float rad);
 
+        void ( Projectile::*carry_on) ();
+
+        void find_destination();
+        void set_path();
+        void fly();
+        void explode();
+        void finish();
+
+        Timer explosion_timer;
+        Pathfinder path;
 
 
         virtual void go_move();
@@ -32,6 +42,10 @@ class Projectile : public MovObj
         std::vector<Entity*> *obj;
 
         void set_scene (LevelMap *mymap, std::vector<Entity*> *objvec, float rad);
+
+        int dest_x, dest_y;
+
+        int sprite_num;
 };
 
 #endif // PROJECTILE_H

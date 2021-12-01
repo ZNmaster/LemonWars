@@ -14,14 +14,14 @@ class Base_Init
 {
     public:
         Base_Init();
-        ~Base_Init();
+        virtual ~Base_Init();
         void GPU_init();
         void GPU_init(unsigned int megabytes);
         void GPU_finish();
 
         //vita2d_pgf *pgf;
         vita2d_pvf *pvf;
-        float rad = 1.f;
+        float rad;
         float delta_rad = 0.015f;
         bool grid_activated;
 
@@ -33,6 +33,8 @@ class Base_Init
 
         void draw_texture_waved(vita2d_texture *image, int pos_x, int pos_y, int scale_x, int scale_y);
 
+
+        //creates several letter objects using font spritesheet
         void create_text_from_font(std::string text, int x, int y,
                                    const char *filename, std::vector<Entity *> &obj);
 
@@ -43,6 +45,9 @@ class Base_Init
         Scanner *scanner;
 
         Timer grid_toggle_timer;
+
+        //vita2d_texture *loaded_image;
+
 
 
 

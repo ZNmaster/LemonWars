@@ -10,7 +10,17 @@ Letter::Letter(const char *filename, int num_horizontal_sprites,
                : Sprite::Sprite(filename, num_horizontal_sprites,
                                 num_vertical_sprites, x0, y0)
 {
-    sprite_coord_calc(char_pos_calc(letter));
+    set_sprite(char_pos_calc(letter));
+    effect_jump = 0;
+
+}
+
+Letter::Letter(vita2d_texture *image, int num_horizontal_sprites,
+               int num_vertical_sprites, int x0, int y0, int letter)
+               : Sprite::Sprite(image, num_horizontal_sprites,
+                                num_vertical_sprites, x0, y0)
+{
+    set_sprite(char_pos_calc(letter));
     effect_jump = 0;
 
 }

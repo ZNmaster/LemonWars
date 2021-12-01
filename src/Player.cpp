@@ -22,7 +22,7 @@ Player::Player(LevelMap *mymap, std::vector<Entity*> *objvec, const char *filena
     speed = 200;
 
     //select sprite #0
-    sprite_coord_calc(position);
+    set_sprite(position);
 
     //save the pointer to the Map
     level = mymap;
@@ -121,7 +121,7 @@ void Player::go_move()
         //fire
 
         position = gun.act(position, angle);
-        sprite_coord_calc(position);
+        set_sprite(position);
 
 
 

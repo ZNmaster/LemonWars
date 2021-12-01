@@ -55,8 +55,11 @@ class Entity
         //for the objects which will be displayed partially (e.g. spritessheets)
         bool partial;
 
+        //the image to display should be scaled
         bool scaled;
 
+
+        //waved effect flag
         bool waved;
 
         //for projectiles to distinguish the enemies

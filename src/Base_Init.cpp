@@ -9,6 +9,7 @@ Base_Init::Base_Init()
 {
     grid_activated = 0;
     rad = 0;
+    //loaded_image = nullptr;
     //ctor
 }
 
@@ -196,11 +197,19 @@ void Base_Init::free_textures(std::vector<Entity *> &obj)
         delete objimage;
     }
     obj.clear();
+
+    /*if (loaded_image)
+    {
+        vita2d_free_texture (loaded_image);
+        loaded_image = nullptr;
+    }*/
 }
 
 void Base_Init::create_text_from_font(std::string text, int x, int y,
                                 const char *filename, std::vector<Entity *> &obj)
 {
+
+    //loaded_image = vita2d_load_PNG_file(filename);
     int k = 4;
     int res_x = 128;
     //int res_y = 256;
@@ -220,6 +229,7 @@ void Base_Init::create_text_from_font(std::string text, int x, int y,
         title->set_effect(1, 1, i);
         obj.push_back (title);
     }
+
 
 }
 
@@ -262,7 +272,6 @@ void Base_Init::draw_texture_waved(vita2d_texture *image, int pos_x, int pos_y, 
         }
 
 }
-
 
 Base_Init::~Base_Init()
 {

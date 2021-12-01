@@ -97,7 +97,7 @@ void NPC::walk()
     {
         if(spotted())
         {
-        sprite_coord_calc(1);
+        set_sprite(1);
         }
     spot_timer.delay_mills(300);
 
@@ -148,6 +148,11 @@ bool NPC::spotted()
     }
 
     return 0;
+}
+
+void NPC::hit(int hitpoints)
+{
+
 }
 
 NPC::~NPC()

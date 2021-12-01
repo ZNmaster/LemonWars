@@ -1,12 +1,14 @@
 #ifndef MOVOBJ_H
 #define MOVOBJ_H
 
-#include <Sprite.h>
+#include "Sprite.h"
 #include "LevelMap.h"
-#include <Timer.h>
+#include "Timer.h"
+#include "Pathfinder.h"
+#include "NearestPoint.h"
 
 
-class MovObj : public Sprite
+class MovObj : public Sprite, public NearestPoint
 {
     public:
         MovObj();
@@ -18,10 +20,6 @@ class MovObj : public Sprite
                                  pointer of the texture to create an object. To avoid this you must to load the texture TWICE!!!!!!!!!!!!!*/
         MovObj(vita2d_texture *im, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0);
-
-
-
-        virtual ~MovObj();
 
         //pointer to level map
         LevelMap *level;
@@ -43,10 +41,17 @@ class MovObj : public Sprite
         //calculates position on the screen based on abs_x and abs_y
         void calc_screen_pos();
 
+        //calculates path between 2 nav points
+        Pathfinder path;
+
+        virtual ~MovObj();
+
 
     protected:
 
     private:
+
+        //constructor delegee - sets initial position and starts the mov_timer
         void set_pos(int x0, int y0);
 };
 

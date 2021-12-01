@@ -36,8 +36,7 @@ void Sprite::set_sprites(int num_horizontal_sprites, int num_vertical_sprites, i
     partial = 1;
 }
 
-
-void Sprite::sprite_coord_calc(int num)
+void Sprite::set_sprite(int num)
 {
     part_x = (num % 8)*res_of_sprites_x;
     part_y = (num / 8)*res_of_sprites_y;
@@ -47,7 +46,7 @@ void Sprite::sprite_coord_calc(int num)
 Sprite::~Sprite()
 {
     //dtor
-    //
+    //to ensure the image texture is not deleted in GamePlayObj
     if (image_loaded)
     {
         image = nullptr;
