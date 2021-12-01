@@ -84,7 +84,7 @@
 	"Scanner.h"
 	<string.h>
 
-1637850332 source:/home/iurii/LemonWars/src/Wallbuilder.cpp
+1638324328 source:/home/iurii/LemonWars/src/Wallbuilder.cpp
 	"Wallbuilder.h"
 	<iostream>
 	<cmath>
@@ -126,7 +126,7 @@
 1638315710 source:/home/iurii/LemonWars/src/Sprite.cpp
 	"Sprite.h"
 
-1638315710 /home/iurii/LemonWars/include/Sprite.h
+1638324584 /home/iurii/LemonWars/include/Sprite.h
 	<GamePlayObj.h>
 
 1638315710 source:/home/iurii/LemonWars/src/Letter.cpp

@@ -113,6 +113,8 @@ bool Wallbuilder::intersected(int x1, int y1, int x2, int y2)
 bool Wallbuilder::intersection(int x1, int y1, int x2, int y2, bool visibility_only)
 {
 
+    intersection_points.clear();
+
     //intersection point coordinates
     float y_intersec, x_intersec;
 

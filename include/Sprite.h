@@ -32,6 +32,8 @@ class Sprite : public GamePlayObj
 
         //defines if the image texture passed from outside
         bool image_loaded;
+        int sprites_x, sprites_y;
+
 
 };
 
