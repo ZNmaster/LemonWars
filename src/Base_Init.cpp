@@ -258,18 +258,19 @@ void Base_Init::draw_texture_waved(vita2d_texture *image, int pos_x, int pos_y, 
 
 
             tvertices[i].v = i % 2;
-			tvertices[i].x = pos_x*1.f + scale_x*1.f * tvertices[i].u + 5.f * sinf(tvertices[i].u*(3.f+20.f*fabsf(sinf(rad*0.1f)))+rad);
-			tvertices[i].y = pos_y*1.f + scale_y*1.f * tvertices[i].v + 5.f * sinf(tvertices[i].u*(3.f+20.f*fabsf(sinf(rad*0.1f)))+rad);
+			tvertices[i].x = pos_x*1.f + scale_x*1.f * tvertices[i].u + 2.f * sinf(tvertices[i].u*(3.f+20.f*fabsf(sinf(rad)))+rad);
+			tvertices[i].y = pos_y*1.f + scale_y*1.f * tvertices[i].v + 2.f * sinf(tvertices[i].u*(3.f+20.f*fabsf(sinf(rad)))+rad);
 			tvertices[i].z = 0.5f;
 		}
 
 		vita2d_draw_array_textured(image, SCE_GXM_PRIMITIVE_TRIANGLES, tvertices, n_tvertices, RGBA8(0xFF, 0xFF, 0xFF, 0xFF));
 
 		rad += delta_rad;
-		if ((rad > 3.2f) || (rad < 0.f))
+
+		/*if ((rad > 3.2f) || (rad < 0.f))
         {
             delta_rad = -delta_rad;
-        }
+        }*/
 
 }
 
