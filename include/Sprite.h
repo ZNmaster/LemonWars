@@ -31,7 +31,6 @@ class Sprite : public GamePlayObj
         void set_sprites(int num_horizontal_sprites, int num_vertical_sprites, int x0, int y0);
 
         //defines if the image texture passed from outside
-        bool image_loaded;
         int sprites_x, sprites_y;
 
 

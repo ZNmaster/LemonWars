@@ -6,17 +6,20 @@ extern unsigned char _binary_missing_png_start;
 GamePlayObj::GamePlayObj()
 {
     //ctor
+    external_image = 0;
 
 }
 
 GamePlayObj::GamePlayObj(const char *filename)
 {
+    external_image = 0;
     image = vita2d_load_PNG_file(filename);
     set_texture();
 }
 
 GamePlayObj::GamePlayObj(vita2d_texture *im)
 {
+    external_image = 1;
     image = im;
     set_texture();
 }
@@ -25,6 +28,7 @@ void GamePlayObj::set_texture()
 {
     if (!image)
     {
+        external_image = 0;
         image = vita2d_load_PNG_buffer(&_binary_missing_png_start);
     }
 
@@ -43,7 +47,7 @@ void GamePlayObj::set_res()
 GamePlayObj::~GamePlayObj()
 {
     //dtor
-    if (image)
+    if (image && !external_image)
     {
         vita2d_free_texture (image);
     }

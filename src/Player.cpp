@@ -6,6 +6,7 @@
 Player::Player()
 {
     //ctor
+    gun = nullptr;
 }
 
 Player::Player(LevelMap *mymap, std::vector<Entity*> *objvec, const char *filename, int num_horizontal_sprites,
@@ -13,10 +14,10 @@ Player::Player(LevelMap *mymap, std::vector<Entity*> *objvec, const char *filena
                : MovObj::MovObj(filename, mymap, num_horizontal_sprites,
                                       num_vertical_sprites, x0, y0)
 {
-    gun = Weapons (1, mymap, objvec);
+    gun = new Weapons (1, mymap, objvec);
 
     //set the sprite according to the gun used
-    position = gun.act(position, angle);
+    position = gun->act(position, angle);
 
     //set the speed in pixels per second
     speed = 200;
@@ -118,7 +119,7 @@ void Player::go_move()
 
         //fire
 
-        position = gun.act(position, angle);
+        position = gun->act(position, angle);
         set_sprite(position);
 
 
@@ -138,4 +139,8 @@ void Player::calc_stick_rad(float x, float y)
 Player::~Player()
 {
     //dtor
+    if (gun)
+    {
+        delete gun;
+    }
 }

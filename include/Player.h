@@ -19,7 +19,7 @@ class Player : public MovObj
 
 
 
-        Weapons gun;
+        Weapons *gun;
 
         void go_move();
 

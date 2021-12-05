@@ -13,11 +13,13 @@ Weapons::Weapons()
 {
     //ctor
     fire_sound_initialized = 0;
+    projectile_image = nullptr;
 }
 
 Weapons::Weapons(unsigned int type, LevelMap *mymap, std::vector<Entity*> *objvec)
 {
     fire_sound_initialized = 0;
+    projectile_image = nullptr;
 
     level = mymap;
     obj = objvec;
@@ -43,7 +45,7 @@ Weapons::Weapons(unsigned int type, LevelMap *mymap, std::vector<Entity*> *objve
 
 
         {
-            //filename = "app0:/assets/sounds/gun1_fire.ogg";
+            projectile_image = vita2d_load_PNG_file("app0:/assets/images/projectiles/bullet.png");
             Point_float gun_end_point;
             gun_end_point.x = 49;
             gun_end_point.y = 8;
@@ -128,7 +130,7 @@ void Weapons::fire()
 
    //weapon_sounds.deinit();
 
-      Projectile *bullet = new Projectile("app0:/assets/images/projectiles/bullet.png", level, obj, x0, y0, player_alpha);
+      Projectile *bullet = new Projectile(projectile_image, level, obj, x0, y0, player_alpha);
       obj->push_back(bullet);
 
    return;
@@ -139,7 +141,7 @@ void Weapons::firesound()
 
 {
 
-   fire_sound.load (filename);
+   fire_sound.load ("app0:/assets/sounds/gun1_fire.ogg");
 
    Gamebooter::soundengine->SoloudSound.play(fire_sound);
 }
@@ -147,5 +149,11 @@ void Weapons::firesound()
 Weapons::~Weapons()
 {
     //dtor
+
+    if (projectile_image)
+    {
+        vita2d_free_texture(projectile_image);
+    }
+
 
 }

@@ -33,6 +33,7 @@ class GamePlayObj : public Entity
 
     private:
         void set_texture();
+        bool external_image;
 };
 
 #endif // GAMEPLAYOBJ_H

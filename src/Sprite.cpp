@@ -3,7 +3,6 @@
 Sprite::Sprite()
 {
     //ctor
-    image_loaded = 0;
 }
 
 Sprite::Sprite(const char *filename, int num_horizontal_sprites,
@@ -12,8 +11,6 @@ Sprite::Sprite(const char *filename, int num_horizontal_sprites,
 {
     //custom ctor
     set_sprites(num_horizontal_sprites, num_vertical_sprites, x0, y0);
-    image_loaded = 0;
-
 }
 
 Sprite::Sprite(vita2d_texture *im, int num_horizontal_sprites,
@@ -22,7 +19,6 @@ Sprite::Sprite(vita2d_texture *im, int num_horizontal_sprites,
 {
     //custom ctor
     set_sprites(num_horizontal_sprites, num_vertical_sprites, x0, y0);
-    image_loaded = 1;
 
 }
 
@@ -49,9 +45,4 @@ void Sprite::set_sprite(int num)
 Sprite::~Sprite()
 {
     //dtor
-    //to ensure the image texture is not deleted in GamePlayObj
-    if (image_loaded)
-    {
-        image = nullptr;
-    }
 }

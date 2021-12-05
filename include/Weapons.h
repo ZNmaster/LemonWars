@@ -51,7 +51,9 @@ class Weapons
         void firesound();
 
         bool fire_sound_initialized;
-        const char *filename = "app0:/assets/sounds/gun1_fire.ogg";
+        vita2d_texture *projectile_image;
+
+        //const char *filename = "app0:/assets/sounds/gun1_fire.ogg";
 
 };
 
