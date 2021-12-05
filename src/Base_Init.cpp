@@ -9,6 +9,9 @@ Base_Init::Base_Init()
 {
     grid_activated = 0;
     rad = 0;
+
+    //we need to reserve enough room for our pointers to avoid GPU crash when auto expanding vector
+    obj.reserve(1000);
     //loaded_image = nullptr;
     //ctor
 }

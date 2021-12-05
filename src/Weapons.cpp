@@ -2,15 +2,19 @@
 #include "Scanner.h"
 #include "LineVec.h"
 #include "Projectile.h"
+#include <thread>
 
 
 Weapons::Weapons()
 {
     //ctor
+    fire_sound_initialized = 0;
 }
 
 Weapons::Weapons(unsigned int type, LevelMap *mymap, std::vector<Entity*> *objvec)
 {
+    fire_sound_initialized = 0;
+
     level = mymap;
     obj = objvec;
 
@@ -22,6 +26,9 @@ Weapons::Weapons(unsigned int type, LevelMap *mymap, std::vector<Entity*> *objve
     charge_timer.delay_mills(10);
 
 
+
+
+
    switch(type)
     {
     //simple gun
@@ -30,7 +37,9 @@ Weapons::Weapons(unsigned int type, LevelMap *mymap, std::vector<Entity*> *objve
         fire_player_sprite = 1;
         current_player_sprite = default_player_sprite;
 
+
         {
+            //filename = "app0:/assets/sounds/gun1_fire.ogg";
             Point_float gun_end_point;
             gun_end_point.x = 49;
             gun_end_point.y = 8;
@@ -39,7 +48,9 @@ Weapons::Weapons(unsigned int type, LevelMap *mymap, std::vector<Entity*> *objve
 
             gun_vector_len = fire_point.len;
             gun_vector_alpha = fire_point.angle;
+
         }
+
 
 
     break;
@@ -105,11 +116,30 @@ void Weapons::fire()
    int x0 = (int)projectile_vector.x_end;
    int y0 = (int)projectile_vector.y_end;
 
+   std::thread t1(&Weapons::firesound, this);
+   if (t1.joinable())
+   {
+       t1.detach();
+   }
+
+   //weapon_sounds.deinit();
+
       Projectile *bullet = new Projectile("app0:/assets/images/projectiles/bullet.png", level, obj, x0, y0, player_alpha);
       obj->push_back(bullet);
 
    return;
 
+}
+
+void Weapons::firesound()
+
+{
+
+   fire_sound.load (filename);
+
+   weapon_sounds.init();
+   fire_sound_initialized = 1;
+   weapon_sounds.play(fire_sound);
 }
 
 Weapons::~Weapons()

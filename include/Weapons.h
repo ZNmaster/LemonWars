@@ -6,6 +6,8 @@
 
 #include "Timer.h"
 #include "LevelMap.h"
+#include "soloud.h"
+#include "soloud_wav.h"
 
 
 class Weapons
@@ -19,11 +21,17 @@ class Weapons
 
         virtual ~Weapons();
 
+        SoLoud::Soloud weapon_sounds;
+
+        SoLoud::Wav fire_sound;
+
     protected:
 
     private:
         unsigned int current_player_sprite, default_player_sprite, fire_player_sprite;
         void fire();
+
+
 
         float gun_vector_len;
         float gun_vector_alpha;
@@ -38,6 +46,13 @@ class Weapons
         std::vector<Entity*> *obj;
 
         float player_alpha;
+
+        //we run this func in a separate thread to avoid the lag
+        void firesound();
+
+        bool fire_sound_initialized;
+        const char *filename = "app0:/assets/sounds/gun1_fire.ogg";
+
 };
 
 #endif // WEAPONS_H
