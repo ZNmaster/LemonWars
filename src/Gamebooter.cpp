@@ -5,6 +5,8 @@
 
 Gamebooter::Gamebooter()
 {
+
+    soundengine = &s;
     //ctor
 
     //GPU initialization
@@ -30,9 +32,9 @@ Gamebooter::Gamebooter()
 void Gamebooter::Play()
 {
     //soloud
-    gSoloud.init(); // Initialize SoLoud
+
     gWave.load("app0:/music.ogg");
-    gSoloud.play(gWave);
+    s.SoloudSound.play(gWave);
 
 
     // draw a new frame until any game object tells us to stop

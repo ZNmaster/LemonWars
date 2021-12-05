@@ -4,8 +4,14 @@
 #include "LevelMap.h"
 #include "Scanner.ini"
 #include "Weapons.h"
+#include "Sounds.h"
+
+
 
 unsigned int Weapons::weapon_type = 1;
+Sounds *Gamebooter::soundengine = nullptr;
+
+
 
 
 

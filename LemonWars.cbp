@@ -80,6 +80,7 @@
 		<Unit filename="include/Rocket.h" />
 		<Unit filename="include/Scanner.h" />
 		<Unit filename="include/Scanner.ini" />
+		<Unit filename="include/Sounds.h" />
 		<Unit filename="include/SpawnPoint.h" />
 		<Unit filename="include/Sprite.h" />
 		<Unit filename="include/Timer.h" />
@@ -109,6 +110,7 @@
 		<Unit filename="src/RNG.cpp" />
 		<Unit filename="src/Rocket.cpp" />
 		<Unit filename="src/Scanner.cpp" />
+		<Unit filename="src/Sounds.cpp" />
 		<Unit filename="src/SpawnPoint.cpp" />
 		<Unit filename="src/Sprite.cpp" />
 		<Unit filename="src/Timer.cpp" />

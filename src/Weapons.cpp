@@ -2,7 +2,11 @@
 #include "Scanner.h"
 #include "LineVec.h"
 #include "Projectile.h"
+#include "Sounds.h"
+#include "Gamebooter.h"
 #include <thread>
+
+
 
 
 Weapons::Weapons()
@@ -137,9 +141,7 @@ void Weapons::firesound()
 
    fire_sound.load (filename);
 
-   weapon_sounds.init();
-   fire_sound_initialized = 1;
-   weapon_sounds.play(fire_sound);
+   Gamebooter::soundengine->SoloudSound.play(fire_sound);
 }
 
 Weapons::~Weapons()

@@ -30,18 +30,18 @@
 	"Wallbuilder.h"
 	<iostream>
 
-1638199991 source:/home/iurii/LemonWars/main.cpp
+1638671241 source:/home/iurii/LemonWars/main.cpp
 	"Menu.h"
 	"Gamebooter.h"
 	"Wallbuilder.h"
 	"LevelMap.h"
 	"Scanner.ini"
 	"Weapons.h"
+	"Sounds.h"
 
-1638669478 /home/iurii/LemonWars/include/Gamebooter.h
+1638671241 /home/iurii/LemonWars/include/Gamebooter.h
 	<vector>
-	"soloud.h"
-	"soloud_wav.h"
+	"Sounds.h"
 	"Base_Init.h"
 	"Entity.h"
 	"GamePlayObj.h"
@@ -67,7 +67,7 @@
 	"LineEq.h"
 	"Point_int.h"
 
-1638662843 source:/home/iurii/LemonWars/src/Gamebooter.cpp
+1638671316 source:/home/iurii/LemonWars/src/Gamebooter.cpp
 	"Gamebooter.h"
 	"Menu.h"
 
@@ -90,7 +90,7 @@
 	<cmath>
 	<algorithm>
 
-1638460073 source:/home/iurii/LemonWars/src/Base_Init.cpp
+1638669478 source:/home/iurii/LemonWars/src/Base_Init.cpp
 	"Base_Init.h"
 	"Scanner.h"
 	"Letter.h"
@@ -303,4 +303,11 @@
 
 1638367393 source:/home/iurii/LemonWars/src/MovObj.cpp
 	"MovObj.h"
+
+1638671103 /home/iurii/LemonWars/include/Sounds.h
+	"soloud.h"
+	"soloud_wav.h"
+
+1638670415 source:/home/iurii/LemonWars/src/Sounds.cpp
+	"Sounds.h"
 
