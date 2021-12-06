@@ -7,7 +7,7 @@
 #include "Entity.h"
 #include "Scanner.h"
 
-#include <vita2d.h>
+//#include <vita2d.h>
 
 
 class Base_Init

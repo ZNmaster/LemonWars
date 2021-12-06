@@ -10,6 +10,7 @@
 #include "soloud_wav.h"
 
 
+
 class Weapons
 {
     public:
@@ -22,7 +23,6 @@ class Weapons
         virtual ~Weapons();
 
         SoLoud::Soloud weapon_sounds;
-
         SoLoud::Wav fire_sound;
 
     protected:

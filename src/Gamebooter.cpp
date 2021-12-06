@@ -1,5 +1,6 @@
 #include "Gamebooter.h"
 #include "Menu.h"
+#include "Rocket.h"
 
 
 
@@ -33,7 +34,7 @@ void Gamebooter::Play()
 {
     //soloud
 
-    gWave.load("app0:/music.ogg");
+    gWave.loadToMem("app0:/music.ogg");
     s.SoloudSound.play(gWave);
 
 

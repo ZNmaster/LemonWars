@@ -1,13 +1,9 @@
 #ifndef GAMEBOOTER_H
 #define GAMEBOOTER_H
 
-#include <vector>
-
 #include "Sounds.h"
 #include "Base_Init.h"
-#include "Entity.h"
-#include "GamePlayObj.h"
-#include "Rocket.h"
+#include "soloud_wavstream.h"
 
 
 class Gamebooter : public Base_Init
@@ -18,7 +14,7 @@ class Gamebooter : public Base_Init
         ~Gamebooter();
         Sounds s; // Initialize SoLoud
         static Sounds *soundengine;
-        SoLoud::Wav gWave;      // One wave file
+        SoLoud::WavStream gWave;      // One wave file
 
     void Play ();
 

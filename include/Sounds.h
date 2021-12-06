@@ -2,7 +2,7 @@
 #define SOUNDS_H
 
 #include "soloud.h"
-#include "soloud_wav.h"
+
 
 
 class Sounds
