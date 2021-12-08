@@ -1,13 +1,10 @@
 #ifndef WEAPONS_H
 #define WEAPONS_H
 
-#include <vita2d.h>
 #include <vector>
 
 #include "Timer.h"
 #include "LevelMap.h"
-#include "soloud.h"
-#include "soloud_wav.h"
 
 
 
@@ -22,8 +19,6 @@ class Weapons
 
         virtual ~Weapons();
 
-        SoLoud::Soloud weapon_sounds;
-        SoLoud::Wav fire_sound;
 
     protected:
 

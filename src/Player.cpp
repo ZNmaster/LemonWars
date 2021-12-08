@@ -29,6 +29,13 @@ Player::Player(LevelMap *mymap, std::vector<Entity*> *objvec, const char *filena
 
 void Player::go_move()
 {
+    if (Scanner::start_pressed)
+    {
+        terminated = 1;
+        return;
+    }
+
+
     Scanner::stick_nav = 1;
     //reset new position
     new_abs_y = abs_y;

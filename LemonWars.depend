@@ -39,10 +39,9 @@
 	"Weapons.h"
 	"Sounds.h"
 
-1638822824 /home/iurii/LemonWars/include/Gamebooter.h
+1638927707 /home/iurii/LemonWars/include/Gamebooter.h
 	"Sounds.h"
 	"Base_Init.h"
-	"soloud_wavstream.h"
 
 1638822676 /home/iurii/LemonWars/include/Base_Init.h
 	<vector>
@@ -63,7 +62,7 @@
 	"LineEq.h"
 	"Point_int.h"
 
-1638821986 source:/home/iurii/LemonWars/src/Gamebooter.cpp
+1638928165 source:/home/iurii/LemonWars/src/Gamebooter.cpp
 	"Gamebooter.h"
 	"Menu.h"
 	"Rocket.h"
@@ -182,7 +181,7 @@
 1638195649 source:/home/iurii/LemonWars/src/Character.cpp
 	"Character.h"
 
-1638741546 source:/home/iurii/LemonWars/src/Player.cpp
+1638884257 source:/home/iurii/LemonWars/src/Player.cpp
 	"Player.h"
 	"Scanner.h"
 	<cmath>
@@ -263,15 +262,12 @@
 
 1637767598 /home/iurii/LemonWars/include/Point_float.h
 
-1638822987 /home/iurii/LemonWars/include/Weapons.h
-	<vita2d.h>
+1638975139 /home/iurii/LemonWars/include/Weapons.h
 	<vector>
 	"Timer.h"
 	"LevelMap.h"
-	"soloud.h"
-	"soloud_wav.h"
 
-1638741546 source:/home/iurii/LemonWars/src/Weapons.cpp
+1638972251 source:/home/iurii/LemonWars/src/Weapons.cpp
 	"Weapons.h"
 	"Scanner.h"
 	"LineVec.h"
@@ -280,15 +276,19 @@
 	"Gamebooter.h"
 	<thread>
 
-1638367401 source:/home/iurii/LemonWars/src/Projectile.cpp
+1638974251 source:/home/iurii/LemonWars/src/Projectile.cpp
 	"Projectile.h"
 	"LineVec.h"
 	"Point_float.h"
+	"Gamebooter.h"
+	<thread>
+	<chrono>
 
-1638822676 /home/iurii/LemonWars/include/Projectile.h
+1638974730 /home/iurii/LemonWars/include/Projectile.h
 	<MovObj.h>
 	<vector>
 	"LevelMap.h"
+	"soloud_wav.h"
 
 1638367363 /home/iurii/LemonWars/include/MovObj.h
 	"Sprite.h"
@@ -300,9 +300,11 @@
 1638367393 source:/home/iurii/LemonWars/src/MovObj.cpp
 	"MovObj.h"
 
-1638822824 /home/iurii/LemonWars/include/Sounds.h
+1638973332 /home/iurii/LemonWars/include/Sounds.h
 	"soloud.h"
+	"soloud_wavstream.h"
+	"soloud_wav.h"
 
-1638670415 source:/home/iurii/LemonWars/src/Sounds.cpp
+1638974730 source:/home/iurii/LemonWars/src/Sounds.cpp
 	"Sounds.h"
 

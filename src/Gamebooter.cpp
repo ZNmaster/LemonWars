@@ -34,8 +34,7 @@ void Gamebooter::Play()
 {
     //soloud
 
-    gWave.loadToMem("app0:/music.ogg");
-    s.SoloudSound.play(gWave);
+    //s.SoloudSound.play(background_music);
 
 
     // draw a new frame until any game object tells us to stop

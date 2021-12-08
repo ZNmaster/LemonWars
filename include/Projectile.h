@@ -3,6 +3,7 @@
 
 #include <MovObj.h>
 #include <vector>
+
 #include "LevelMap.h"
 
 
@@ -31,6 +32,8 @@ class Projectile : public MovObj
         Pathfinder path;
 
 
+
+
         virtual void go_move();
 
         virtual ~Projectile();
@@ -45,6 +48,7 @@ class Projectile : public MovObj
         int dest_x, dest_y;
 
         int sprite_num;
+
 };
 
 #endif // PROJECTILE_H

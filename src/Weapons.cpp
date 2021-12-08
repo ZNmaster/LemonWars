@@ -4,9 +4,6 @@
 #include "Projectile.h"
 #include "Sounds.h"
 #include "Gamebooter.h"
-#include <thread>
-
-
 
 
 Weapons::Weapons()
@@ -122,29 +119,15 @@ void Weapons::fire()
    int x0 = (int)projectile_vector.x_end;
    int y0 = (int)projectile_vector.y_end;
 
-   std::thread t1(&Weapons::firesound, this);
-   if (t1.joinable())
-   {
-       t1.detach();
-   }
+   Gamebooter::soundengine->play_fire_sound();
 
-   //weapon_sounds.deinit();
-
-      Projectile *bullet = new Projectile(projectile_image, level, obj, x0, y0, player_alpha);
-      obj->push_back(bullet);
+   Projectile *bullet = new Projectile(projectile_image, level, obj, x0, y0, player_alpha);
+   obj->push_back(bullet);
 
    return;
 
 }
 
-void Weapons::firesound()
-
-{
-
-   fire_sound.load ("app0:/assets/sounds/gun1_fire.ogg");
-
-   Gamebooter::soundengine->SoloudSound.play(fire_sound);
-}
 
 Weapons::~Weapons()
 {

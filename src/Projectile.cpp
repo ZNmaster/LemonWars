@@ -1,6 +1,7 @@
 #include "Projectile.h"
 #include "LineVec.h"
 #include "Point_float.h"
+#include "Gamebooter.h"
 
 Projectile::Projectile()
 {
@@ -21,6 +22,7 @@ Projectile::Projectile(const char *filename, LevelMap *mymap, std::vector<Entity
 
 void Projectile::set_scene (std::vector<Entity*> *objvec, float rad)
 {
+
    obj = objvec;
    speed = 500;
    angle = rad;
@@ -39,6 +41,12 @@ void Projectile::set_scene (std::vector<Entity*> *objvec, float rad)
    }
 
    sprite_num = 1;
+
+   /*std::thread loading_explosion_sound(&Projectile::load_explosion_sound, this);
+   if (loading_explosion_sound.joinable())
+   {
+       loading_explosion_sound.detach();
+   }*/
 }
 
 void Projectile::find_destination()
@@ -84,6 +92,7 @@ void Projectile::fly()
     {
         explosion_timer.delay_mills(50);
         carry_on = &Projectile::explode;
+        Gamebooter::soundengine->play_projectile_explosion_sound();
     }
 }
 
@@ -114,6 +123,7 @@ void Projectile::go_move()
    (this->*carry_on) ();
    calc_screen_pos();
 }
+
 
 Projectile::~Projectile()
 {
