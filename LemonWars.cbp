@@ -60,6 +60,7 @@
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/GamePlayObj.h" />
 		<Unit filename="include/Gamebooter.h" />
+		<Unit filename="include/Layers.h" />
 		<Unit filename="include/Letter.h" />
 		<Unit filename="include/LevelMap.h" />
 		<Unit filename="include/Line.h" />

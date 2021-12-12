@@ -6,6 +6,7 @@
 #include "Timer.h"
 #include "Entity.h"
 #include "Scanner.h"
+#include "Layers.h"
 
 //#include <vita2d.h>
 
@@ -29,6 +30,9 @@ class Base_Init
         void draw_grid(int stride);
 
         bool draw_frame(std::vector<Entity *> obj);
+        bool draw_frame(Layers &lay);
+
+
         void free_textures(std::vector<Entity *> &obj);
 
         void draw_texture_waved(vita2d_texture *image, int pos_x, int pos_y, int scale_x, int scale_y);
@@ -38,8 +42,7 @@ class Base_Init
         void create_text_from_font(std::string text, int x, int y,
                                    const char *filename, std::vector<Entity *> &obj);
 
-        //vector of pointers to gameplay objects (images)
-        std::vector<Entity *> obj;
+        Layers layers;
 
         //input scanner
         Scanner *scanner;
@@ -54,6 +57,7 @@ class Base_Init
     protected:
 
     private:
+        bool show(std::vector<Entity *> obj);
 
 };
 

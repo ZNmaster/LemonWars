@@ -22,10 +22,10 @@ Gamebooter::Gamebooter()
 
 
     GamePlayObj * title_screen = new GamePlayObj ("app0:Title_screen.png");
-    obj.push_back (title_screen);
+    layers.layer0_obj.push_back (title_screen);
 
     Rocket *rocket = new Rocket("app0:/assets/images/titlescreen/rocket.png");
-    obj.push_back (rocket);
+    layers.layer0_obj.push_back (rocket);
 
 
 }
@@ -38,7 +38,7 @@ void Gamebooter::Play()
 
 
     // draw a new frame until any game object tells us to stop
-    while (!draw_frame(obj))
+    while (!draw_frame(layers.layer0_obj))
     {
      scanner->Scan();
     }
@@ -46,7 +46,7 @@ void Gamebooter::Play()
     GPU_finish();
 
     //deleting title screen objects and input scanner
-    free_textures(obj);
+    free_textures(layers.layer0_obj);
     delete scanner;
 
     Menu MainMenu;
@@ -59,7 +59,7 @@ void Gamebooter::Play()
 
 Gamebooter::~Gamebooter()
 {
-    free_textures(obj);
+    free_textures(layers.layer0_obj);
     //dtor
 
 }

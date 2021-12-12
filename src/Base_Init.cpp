@@ -11,7 +11,9 @@ Base_Init::Base_Init()
     rad = 0;
 
     //we need to reserve enough room for our pointers to avoid GPU crash when auto expanding vector
-    obj.reserve(1000);
+    layers.layer0_obj.reserve(1000);
+    layers.layer1_obj.reserve(1000);
+
     //loaded_image = nullptr;
     //ctor
 }
@@ -101,6 +103,30 @@ void Base_Init::draw_grid(int stride)
   }
 
 }
+
+bool Base_Init::draw_frame(Layers &lay)
+{
+        vita2d_start_drawing();
+		vita2d_clear_screen();
+
+
+        bool result = show(lay.layer0_obj);
+        if (result) return result;
+
+        result = show(lay.layer1_obj);
+
+
+        //debug grid
+        draw_grid();
+
+        //calling funcs at the end of each frame
+        vita2d_end_drawing();
+        vita2d_swap_buffers();
+
+        return result;
+}
+
+
 bool Base_Init::draw_frame(std::vector<Entity *> obj)
 {
         //calling funcs at the start of each frame
@@ -108,7 +134,22 @@ bool Base_Init::draw_frame(std::vector<Entity *> obj)
 		vita2d_clear_screen();
 
 
-        //taking object pointers one by one and drawing their images
+        bool result = show(obj);
+
+        //debug grid
+        draw_grid();
+
+        //calling funcs at the end of each frame
+        vita2d_end_drawing();
+        vita2d_swap_buffers();
+
+        return result;
+
+}
+
+bool Base_Init::show(std::vector<Entity *> obj)
+{
+     //taking object pointers one by one and drawing their images
         for (auto objimage : obj)
         {
 
@@ -181,15 +222,7 @@ bool Base_Init::draw_frame(std::vector<Entity *> obj)
 
         }
 
-        //debug grid
-        draw_grid();
-
-        //calling funcs at the end of each frame
-        vita2d_end_drawing();
-        vita2d_swap_buffers();
-
         return 0;
-
 }
 void Base_Init::free_textures(std::vector<Entity *> &obj)
 {
