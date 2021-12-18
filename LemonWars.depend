@@ -166,13 +166,14 @@
 	<vector>
 	"NPC.h"
 
-1638317398 /home/iurii/LemonWars/include/NPC.h
+1639857124 /home/iurii/LemonWars/include/NPC.h
 	<vector>
 	"MovObj.h"
 	"Timer.h"
 	"LevelMap.h"
 	"RNG.h"
 	"Point_int.h"
+	"Rotator.h"
 
 1638204070 /home/iurii/LemonWars/include/Character.h
 	<Sprite.h>
@@ -315,5 +316,13 @@
 
 1639789022 source:/home/iurii/LemonWars/src/Angle.cpp
 	"Angle.h"
+	<cmath>
+
+1639857124 /home/iurii/LemonWars/include/Rotator.h
+	"Timer.h"
+	"Angle.h"
+
+1639857124 source:/home/iurii/LemonWars/src/Rotator.cpp
+	"Rotator.h"
 	<cmath>
 

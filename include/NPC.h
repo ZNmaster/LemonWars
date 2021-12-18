@@ -8,6 +8,7 @@
 #include "LevelMap.h"
 #include "RNG.h"
 #include "Point_int.h"
+#include "Rotator.h"
 
 
 class NPC : public MovObj
@@ -60,6 +61,8 @@ class NPC : public MovObj
         Timer npc_wait_timer;
 
         Timer spot_timer;
+
+        Rotator rot;
 
         virtual void hit(int hitpoints);
 

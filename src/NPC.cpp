@@ -41,6 +41,8 @@ void NPC::set_path()
    {
        path = Pathfinder(abs_x, abs_y, level->levelmem.coord_x[target_nav_pos], level->levelmem.coord_y[target_nav_pos]);
        carry_on = &NPC::walk;
+       rot = Rotator(angle, path.sin_a, path.cos_a, 8);
+
    }
 
 }
@@ -113,6 +115,10 @@ void NPC::walk()
         current_nav_pos = target_nav_pos;
         carry_on = what_after_arrival;
     }
+
+
+        angle = rot.get_angle();
+
 
 }
 
