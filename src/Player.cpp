@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Scanner.h"
 
+#include "Angle.h"
 #include <cmath>
 
 Player::Player()
@@ -54,11 +55,13 @@ void Player::go_move()
     if (Scanner::right_stick_moved)
     {
         calc_stick_rad(Scanner::rstick_x, Scanner::rstick_y);
-        angle = asin(sin_a);
+        angle = Angle::calcangle(sin_a, cos_a);
+
+        /*asin(sin_a);
         if (cos_a < 0)
         {
             angle = pi - angle;
-        }
+        }*/
     }
 
     else

@@ -54,6 +54,7 @@
 			<Add after='vita-mksfoex -s TITLE_ID=&quot;ZNMS00003&quot; &quot;$(TARGET_OUTPUT_BASENAME)&quot; $(TARGET_OUTPUT_DIR)param.sfo' />
 			<Add after="vita-pack-vpk -s $(TARGET_OUTPUT_DIR)param.sfo -b $(TARGET_OUTPUT_DIR)eboot.bin -a assets=assets -a sce_sys=sce_sys -a music.ogg=music.ogg -a Title_screen.png=Title_screen.png $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).vpk" />
 		</ExtraCommands>
+		<Unit filename="include/Angle.h" />
 		<Unit filename="include/Base_Init.h" />
 		<Unit filename="include/Common_Lemon.h" />
 		<Unit filename="include/Entity.h" />
@@ -79,6 +80,7 @@
 		<Unit filename="include/Projectile.h" />
 		<Unit filename="include/RNG.h" />
 		<Unit filename="include/Rocket.h" />
+		<Unit filename="include/Rotator.h" />
 		<Unit filename="include/Scanner.h" />
 		<Unit filename="include/Scanner.ini" />
 		<Unit filename="include/Sounds.h" />
@@ -88,6 +90,7 @@
 		<Unit filename="include/Wallbuilder.h" />
 		<Unit filename="include/Weapons.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Angle.cpp" />
 		<Unit filename="src/Base_Init.cpp" />
 		<Unit filename="src/Common_Lemon.cpp" />
 		<Unit filename="src/Entity.cpp" />
@@ -110,6 +113,7 @@
 		<Unit filename="src/Projectile.cpp" />
 		<Unit filename="src/RNG.cpp" />
 		<Unit filename="src/Rocket.cpp" />
+		<Unit filename="src/Rotator.cpp" />
 		<Unit filename="src/Scanner.cpp" />
 		<Unit filename="src/Sounds.cpp" />
 		<Unit filename="src/SpawnPoint.cpp" />

@@ -33,6 +33,7 @@ void Projectile::set_scene (std::vector<Entity*> *objvec, float rad)
    {
        set_sprite(1);
        carry_on = &Projectile::explode;
+       Gamebooter::soundengine->play_projectile_explosion_sound();
        explosion_timer.delay_mills(50);
    }
    else

@@ -86,7 +86,7 @@
 	<cmath>
 	<algorithm>
 
-1638669478 source:/home/iurii/LemonWars/src/Base_Init.cpp
+1639318471 source:/home/iurii/LemonWars/src/Base_Init.cpp
 	"Base_Init.h"
 	"Scanner.h"
 	"Letter.h"
@@ -103,7 +103,7 @@
 	"Entity.h"
 	<cmath>
 
-1638288365 /home/iurii/LemonWars/include/Entity.h
+1639789546 /home/iurii/LemonWars/include/Entity.h
 	<vita2d.h>
 
 1638717507 source:/home/iurii/LemonWars/src/GamePlayObj.cpp
@@ -182,9 +182,10 @@
 1638195649 source:/home/iurii/LemonWars/src/Character.cpp
 	"Character.h"
 
-1638884257 source:/home/iurii/LemonWars/src/Player.cpp
+1639789229 source:/home/iurii/LemonWars/src/Player.cpp
 	"Player.h"
 	"Scanner.h"
+	"Angle.h"
 	<cmath>
 
 1638822676 /home/iurii/LemonWars/include/Player.h
@@ -253,12 +254,13 @@
 	"NearestPoint.h"
 	"Line.h"
 
-1638146580 source:/home/iurii/LemonWars/src/LineVec.cpp
+1639789204 source:/home/iurii/LemonWars/src/LineVec.cpp
 	"LineVec.h"
 	<cmath>
 
-1637862256 /home/iurii/LemonWars/include/LineVec.h
+1639789022 /home/iurii/LemonWars/include/LineVec.h
 	"Point_float.h"
+	"Angle.h"
 	"Line.h"
 
 1637767598 /home/iurii/LemonWars/include/Point_float.h
@@ -276,7 +278,7 @@
 	"Sounds.h"
 	"Gamebooter.h"
 
-1638975139 source:/home/iurii/LemonWars/src/Projectile.cpp
+1639343170 source:/home/iurii/LemonWars/src/Projectile.cpp
 	"Projectile.h"
 	"LineVec.h"
 	"Point_float.h"
@@ -308,4 +310,10 @@
 1639318289 /home/iurii/LemonWars/include/Layers.h
 	"Entity.h"
 	<vector>
+
+1639789022 /home/iurii/LemonWars/include/Angle.h
+
+1639789022 source:/home/iurii/LemonWars/src/Angle.cpp
+	"Angle.h"
+	<cmath>
 

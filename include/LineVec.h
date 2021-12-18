@@ -1,9 +1,11 @@
 #ifndef LINEVEC_H
 #define LINEVEC_H
+
 #include "Point_float.h"
+#include "Angle.h"
 #include "Line.h"
 
-class LineVec : public Line
+class LineVec : public Line, public Angle
 {
     public:
         LineVec();
@@ -13,11 +15,11 @@ class LineVec : public Line
         LineVec(Point_float start_point, float length, float rad);
 
         void calcline(float length, float rad);
-        void calcangle();
+        //void calcangle();
 
 
         float angle;
-        const float pi = 3.1415926;
+        //const float pi = 3.1415926;
 
         ~LineVec();
     protected:

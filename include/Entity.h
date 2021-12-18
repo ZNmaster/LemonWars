@@ -15,7 +15,7 @@ class Entity
         const int vitares_x = 960;
         const int vitares_y = 544;
 
-        const float pi = 3.1415926;
+        //const float pi = 3.1415926;
 
         //abs_x, abs_y - absolute position on the map
         // pos_x, pos_y - position on the screen
