@@ -115,7 +115,6 @@ bool Base_Init::draw_frame(Layers &lay)
 
         result = show(lay.layer1_obj);
 
-
         //debug grid
         draw_grid();
 
@@ -149,12 +148,15 @@ bool Base_Init::draw_frame(std::vector<Entity *> obj)
 
 bool Base_Init::show(std::vector<Entity *> obj)
 {
+
+
+
      //taking object pointers one by one and drawing their images
         for (auto objimage : obj)
         {
 
          //We won't draw anything outside the boundaries
-         if (objimage->pos_x < -500 || objimage->pos_y < -500 || objimage->pos_x > 1500 || objimage->pos_y > 1400)
+         if (objimage->pos_x < -300 || objimage->pos_y < -300 || objimage->pos_x > 1300 || objimage->pos_y > 1100)
          {
              if(objimage->pos_x < -4000 || objimage->pos_y < -4000 || objimage->pos_x > 4950 || objimage->pos_y > 5400)
              {

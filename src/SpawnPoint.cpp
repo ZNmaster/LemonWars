@@ -16,12 +16,13 @@ SpawnPoint::SpawnPoint(int x, int y, std::vector<Entity *> *obj)
     abs_y = y;
     objvector = obj;
 
-    //image = nullptr;
     image = vita2d_create_empty_texture(1, 1);
 
 
     enemy_spawn_timer = new Timer();
-    number_of_enemies = 12;
+    number_of_enemies = 6;
+
+    enemy1 = vita2d_load_PNG_file("app0:/assets/images/characters/npc/lemon_sprite.png");
 
 
 }
@@ -51,8 +52,8 @@ void SpawnPoint::go_move()
     {
         if (enemy_spawn_timer->expired())
         {
-            Common_Lemon *testlem = new Common_Lemon(level, "app0:/assets/images/characters/npc/lemon_sprite.png",
-                                                 2, 2, abs_x, abs_y);
+            Common_Lemon *testlem = new Common_Lemon(enemy1, level,
+                                                 3, 4, abs_x, abs_y);
             objvector->push_back(testlem);
 
             enemy_spawn_timer->delay_mills(900);
@@ -72,4 +73,6 @@ SpawnPoint::~SpawnPoint()
 {
     //dtor
     vita2d_free_texture (image);
+    vita2d_free_texture (enemy1);
+
 }

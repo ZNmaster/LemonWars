@@ -14,9 +14,14 @@
 class NPC : public MovObj
 {
     public:
+
         NPC();
-        NPC(LevelMap *mymap, const char *filename, int num_horizontal_sprites,
+        NPC(const char *filename, LevelMap *mymap, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0);
+        NPC(vita2d_texture *im, LevelMap *mymap, int num_horizontal_sprites,
+               int num_vertical_sprites, int x0, int y0);
+
+
 
 
         //pointer to a current action func (the func is called by it each frame from go_move)
@@ -74,6 +79,7 @@ class NPC : public MovObj
     private:
         //copy of nav points
         std::vector<Point_int> p_vec;
+        void init_nav_pos();
 };
 
 #endif // NPC_H

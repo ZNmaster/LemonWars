@@ -22,8 +22,15 @@ Rotator::Rotator(float cur_angle, float sin_a, float cos_a, float ang_speed)
         target_angle = alt_targ;
     }
 
-    direction = abs(target_angle - current_angle) / (target_angle - current_angle);
-    timer.start();
+    if (target_angle != current_angle)
+    {
+       direction = abs(target_angle - current_angle) / (target_angle - current_angle);
+       timer.start();
+    }
+    else
+    {
+        finished = 1;
+    }
 
 }
 
