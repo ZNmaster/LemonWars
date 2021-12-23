@@ -41,6 +41,18 @@ void Common_Lemon::go_move()
   calc_screen_pos();
 }
 
+void Common_Lemon::hit(int hitpoints, float projectile_angle, int x, int y)
+{
+    if (!ishit)
+    {
+        ishit = 1;
+        move_it = 1;
+        hit_angle = projectile_angle;
+        splash_x = x;
+        splash_y = y;
+    }
+}
+
 Common_Lemon::~Common_Lemon()
 {
     //dtor

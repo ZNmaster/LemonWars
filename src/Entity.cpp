@@ -22,6 +22,7 @@ Entity::Entity()
     terminated = 0;
     enemy = 0;
     dead = 0;
+    move_it = 0;
 
 
     angle = 0;
@@ -60,6 +61,11 @@ float Entity::distance(int x1, int y1, int x2, int y2)
 
 //interface
 void Entity::go_move()
+{
+
+}
+
+void Entity::hit(int hitpoints, float projectile_angle, int x, int y)
 {
 
 }

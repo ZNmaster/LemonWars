@@ -86,7 +86,7 @@
 	<cmath>
 	<algorithm>
 
-1640209528 source:/home/iurii/LemonWars/src/Base_Init.cpp
+1640271146 source:/home/iurii/LemonWars/src/Base_Init.cpp
 	"Base_Init.h"
 	"Scanner.h"
 	"Letter.h"
@@ -99,11 +99,11 @@
 1637862660 /home/iurii/LemonWars/include/Timer.h
 	<chrono>
 
-1638288365 source:/home/iurii/LemonWars/src/Entity.cpp
+1640272499 source:/home/iurii/LemonWars/src/Entity.cpp
 	"Entity.h"
 	<cmath>
 
-1639789546 /home/iurii/LemonWars/include/Entity.h
+1640272499 /home/iurii/LemonWars/include/Entity.h
 	<vita2d.h>
 
 1638717507 source:/home/iurii/LemonWars/src/GamePlayObj.cpp
@@ -142,7 +142,7 @@
 	"Menu.h"
 	"Game.h"
 
-1640209528 source:/home/iurii/LemonWars/src/Game.cpp
+1640269168 source:/home/iurii/LemonWars/src/Game.cpp
 	"Game.h"
 	"Scanner.h"
 	"LevelMap.h"
@@ -162,11 +162,11 @@
 	"Wallbuilder.h"
 	"MemoryAI.h"
 
-1640209528 source:/home/iurii/LemonWars/src/NPC.cpp
+1640271146 source:/home/iurii/LemonWars/src/NPC.cpp
 	<vector>
 	"NPC.h"
 
-1640209528 /home/iurii/LemonWars/include/NPC.h
+1640272499 /home/iurii/LemonWars/include/NPC.h
 	<vector>
 	"MovObj.h"
 	"Timer.h"
@@ -183,21 +183,22 @@
 1638195649 source:/home/iurii/LemonWars/src/Character.cpp
 	"Character.h"
 
-1639789229 source:/home/iurii/LemonWars/src/Player.cpp
+1640268955 source:/home/iurii/LemonWars/src/Player.cpp
 	"Player.h"
 	"Scanner.h"
 	"Angle.h"
 	<cmath>
 
-1638822676 /home/iurii/LemonWars/include/Player.h
+1640268596 /home/iurii/LemonWars/include/Player.h
 	"MovObj.h"
 	"Weapons.h"
+	"Layers.h"
 
 1629641116 /home/iurii/LemonWars/include/PlayerMap.h
 	<Character.h>
 	<GamePlayObj.h>
 
-1640206270 source:/home/iurii/LemonWars/src/SpawnPoint.cpp
+1640210383 source:/home/iurii/LemonWars/src/SpawnPoint.cpp
 	"SpawnPoint.h"
 	"Common_Lemon.h"
 
@@ -208,10 +209,10 @@
 	"LevelMap.h"
 	"Timer.h"
 
-1640202465 source:/home/iurii/LemonWars/src/Common_Lemon.cpp
+1640271146 source:/home/iurii/LemonWars/src/Common_Lemon.cpp
 	"Common_Lemon.h"
 
-1640202465 /home/iurii/LemonWars/include/Common_Lemon.h
+1640271146 /home/iurii/LemonWars/include/Common_Lemon.h
 	<NPC.h>
 
 1637767598 source:/home/iurii/LemonWars/src/RNG.cpp
@@ -267,12 +268,13 @@
 
 1637767598 /home/iurii/LemonWars/include/Point_float.h
 
-1638975139 /home/iurii/LemonWars/include/Weapons.h
+1640268955 /home/iurii/LemonWars/include/Weapons.h
 	<vector>
 	"Timer.h"
 	"LevelMap.h"
+	"Layers.h"
 
-1638975138 source:/home/iurii/LemonWars/src/Weapons.cpp
+1640269259 source:/home/iurii/LemonWars/src/Weapons.cpp
 	"Weapons.h"
 	"Scanner.h"
 	"LineVec.h"
@@ -286,7 +288,7 @@
 	"Point_float.h"
 	"Gamebooter.h"
 
-1638975139 /home/iurii/LemonWars/include/Projectile.h
+1640269395 /home/iurii/LemonWars/include/Projectile.h
 	<MovObj.h>
 	<vector>
 	"LevelMap.h"

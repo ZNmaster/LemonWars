@@ -40,6 +40,8 @@ class Entity
         float distance(int x1, int y1);
         float distance(int x1, int y1, int x2, int y2);
 
+        virtual void hit(int hitpoints, float projectile_angle, int x, int y);
+
         //radius of the Character
         int radius;
 
@@ -67,6 +69,9 @@ class Entity
 
         //for the objects to be deleted from the rendering vector
         bool dead;
+
+        //flag to tell if we need to move the entity from one layer to another
+        bool move_it;
 
 
     protected:

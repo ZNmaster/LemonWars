@@ -69,8 +69,10 @@ class NPC : public MovObj
 
         Rotator rot;
 
-        virtual void hit(int hitpoints);
-
+        //When a projectile hits the ennemy
+        bool ishit;
+        float hit_angle;
+        int splash_x, splash_y;
 
         virtual ~NPC();
 
@@ -80,6 +82,7 @@ class NPC : public MovObj
         //copy of nav points
         std::vector<Point_int> p_vec;
         void init_nav_pos();
+
 };
 
 #endif // NPC_H

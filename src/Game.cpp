@@ -34,7 +34,7 @@ Game::Game(const char *MapFilename, const char *MemFilename)
     spawn->set_levelmap(level);
     spawn2->set_levelmap(level);
     //player spawn
-    Player *player = new Player(level, &layers.layer0_obj, "app0:/assets/images/characters/player.png", 2, 2, 150, 150);
+    Player *player = new Player(level, &layers, "app0:/assets/images/characters/player.png", 2, 2, 150, 150);
 
     layers.layer1_obj.push_back (player);
 

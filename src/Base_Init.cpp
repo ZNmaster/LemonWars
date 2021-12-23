@@ -149,78 +149,81 @@ bool Base_Init::draw_frame(std::vector<Entity *> obj)
 bool Base_Init::show(std::vector<Entity *> obj)
 {
 
-
-
      //taking object pointers one by one and drawing their images
         for (auto objimage : obj)
         {
 
-         //We won't draw anything outside the boundaries
-         if (objimage->pos_x < -300 || objimage->pos_y < -300 || objimage->pos_x > 1300 || objimage->pos_y > 1100)
+         if (!objimage->dead)
          {
-             if(objimage->pos_x < -4000 || objimage->pos_y < -4000 || objimage->pos_x > 4950 || objimage->pos_y > 5400)
+
+             //We won't draw anything outside the boundaries
+             if (objimage->pos_x < -300 || objimage->pos_y < -300 || objimage->pos_x > 1300 || objimage->pos_y > 1100)
              {
-                 std::stringstream o;
-                 o << "X out of range " << objimage->pos_x;
-                 o << "    Y out of range " << objimage->pos_y;
+                 if(objimage->pos_x < -4000 || objimage->pos_y < -4000 || objimage->pos_x > 4950 || objimage->pos_y > 5400)
+                 {
+                     std::stringstream o;
+                     o << "X out of range " << objimage->pos_x;
+                     o << "    Y out of range " << objimage->pos_y;
 
-                 vita2d_pvf_draw_text(pvf, 50, 50, RGBA8(0,255,0,255), 1.0f, o.str().c_str());
+                     vita2d_pvf_draw_text(pvf, 50, 50, RGBA8(0,255,0,255), 1.0f, o.str().c_str());
+                 }
+                 objimage->go_move();
+                 continue;
              }
-             objimage->go_move();
-             continue;
-         }
 
-         //if some object tells us to stop we stop
-         if (objimage->terminated)
-            {
-                return 1;
-            }
+             //if some object tells us to stop we stop
+             if (objimage->terminated)
+                {
+                    return 1;
+                }
 
-            if (objimage->partial)
-            {
-               // check if the object is partial and scaled
-               if (objimage->scaled)
-               {
-                   vita2d_draw_texture_part_scale(objimage->image, objimage->pos_x, objimage->pos_y,
-                                        objimage->part_x, objimage->part_y,
-                                        objimage->res_of_sprites_x,
-                                        objimage->res_of_sprites_y, objimage->k_x, objimage->k_y);
-               }
+                if (objimage->partial)
+                {
+                   // check if the object is partial and scaled
+                   if (objimage->scaled)
+                   {
+                       vita2d_draw_texture_part_scale(objimage->image, objimage->pos_x, objimage->pos_y,
+                                            objimage->part_x, objimage->part_y,
+                                            objimage->res_of_sprites_x,
+                                            objimage->res_of_sprites_y, objimage->k_x, objimage->k_y);
+                   }
 
-               else if (objimage->angle != 0)
-               {
-                   vita2d_draw_texture_part_scale_rotate(objimage->image, objimage->pos_x+(objimage->res_of_sprites_x / 2), objimage->pos_y+(objimage->res_of_sprites_y / 2),
-                                        objimage->part_x, objimage->part_y,
-                                        objimage->res_of_sprites_x,
-                                        objimage->res_of_sprites_y, 1, 1, objimage->angle);
-               }
+                   else if (objimage->angle != 0)
+                   {
+                       vita2d_draw_texture_part_scale_rotate(objimage->image, objimage->pos_x+(objimage->res_of_sprites_x / 2), objimage->pos_y+(objimage->res_of_sprites_y / 2),
+                                            objimage->part_x, objimage->part_y,
+                                            objimage->res_of_sprites_x,
+                                            objimage->res_of_sprites_y, 1, 1, objimage->angle);
+                   }
 
-               // check if the object is only partial
-               else
+                   // check if the object is only partial
+                   else
 
-               {
-                   vita2d_draw_texture_part(objimage->image, objimage->pos_x, objimage->pos_y,
-                                        objimage->part_x, objimage->part_y,
-                                        objimage->res_of_sprites_x,
-                                        objimage->res_of_sprites_y);
+                   {
+                       vita2d_draw_texture_part(objimage->image, objimage->pos_x, objimage->pos_y,
+                                            objimage->part_x, objimage->part_y,
+                                            objimage->res_of_sprites_x,
+                                            objimage->res_of_sprites_y);
 
 
-               }
-            }
-            // check if the object needs the waved effect enabled
-            else if (objimage->waved)
-               {
-                   draw_texture_waved(objimage->image,objimage->pos_x, objimage->pos_y, objimage->k_x, objimage->k_y);
-               }
-               // for everything else don't apply anything and draw the whole image
-               else
-               {
-                   vita2d_draw_texture(objimage->image, objimage->pos_x, objimage->pos_y);
-               }
+                   }
+                }
+                // check if the object needs the waved effect enabled
+                else if (objimage->waved)
+                   {
+                       draw_texture_waved(objimage->image,objimage->pos_x, objimage->pos_y, objimage->k_x, objimage->k_y);
+                   }
+                   // for everything else don't apply anything and draw the whole image
+                   else
+                   {
+                       vita2d_draw_texture(objimage->image, objimage->pos_x, objimage->pos_y);
+                   }
 
 
-            //calling move method of each object
-            objimage->go_move();
+                //calling move method of each object
+                objimage->go_move();
+
+             }
 
         }
 

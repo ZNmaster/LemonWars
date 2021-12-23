@@ -2,6 +2,8 @@
 #include "LineVec.h"
 #include "Point_float.h"
 #include "Gamebooter.h"
+#include "NPC.h"
+#include <thread>
 
 Projectile::Projectile()
 {
@@ -83,6 +85,13 @@ void Projectile::set_path()
 
 void Projectile::fly()
 {
+    std::thread t1(&Projectile::hitcheck, this);
+    if (t1.joinable())
+    {
+        t1.detach();
+    }
+
+
     move_delta = get_move_delta();
     path.move_by(move_delta);
 
@@ -123,6 +132,25 @@ void Projectile::go_move()
 {
    (this->*carry_on) ();
    calc_screen_pos();
+}
+
+void Projectile::hitcheck()
+{
+    for(auto it = obj->begin() + 1; it < obj->end(); it++)
+    {
+
+        if(distance((*it)->abs_x, (*it)->abs_y) < 70)
+        {
+            if((*it)->enemy && !(*it)->move_it)
+            {
+
+                    (*it)->hit(1000, angle, abs_x, abs_y);
+                    dead = 1;
+                    carry_on = &Projectile::finish;
+            }
+
+        }
+    }
 }
 
 

@@ -10,12 +10,12 @@ Player::Player()
     gun = nullptr;
 }
 
-Player::Player(LevelMap *mymap, std::vector<Entity*> *objvec, const char *filename, int num_horizontal_sprites,
+Player::Player(LevelMap *mymap, Layers *lay, const char *filename, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0)
                : MovObj::MovObj(filename, mymap, num_horizontal_sprites,
                                       num_vertical_sprites, x0, y0)
 {
-    gun = new Weapons (1, mymap, objvec);
+    gun = new Weapons (1, mymap, lay);
 
     //set the sprite according to the gun used
     position = gun->act(position, angle);

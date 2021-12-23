@@ -13,13 +13,14 @@ Weapons::Weapons()
     projectile_image = nullptr;
 }
 
-Weapons::Weapons(unsigned int type, LevelMap *mymap, std::vector<Entity*> *objvec)
+Weapons::Weapons(unsigned int type, LevelMap *mymap, Layers *lay)
 {
     fire_sound_initialized = 0;
     projectile_image = nullptr;
 
     level = mymap;
-    obj = objvec;
+    obj = &lay->layer0_obj;
+    en_layer = &lay->layer1_obj;
 
     charged = 1;
 
@@ -121,7 +122,7 @@ void Weapons::fire()
 
    Gamebooter::soundengine->play_fire_sound();
 
-   Projectile *bullet = new Projectile(projectile_image, level, obj, x0, y0, player_alpha);
+   Projectile *bullet = new Projectile(projectile_image, level, en_layer, x0, y0, player_alpha);
    obj->push_back(bullet);
 
    return;

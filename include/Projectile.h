@@ -49,6 +49,8 @@ class Projectile : public MovObj
 
         int sprite_num;
 
+        void hitcheck();
+
 };
 
 #endif // PROJECTILE_H

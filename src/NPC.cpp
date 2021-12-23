@@ -9,6 +9,8 @@
 NPC::NPC()
 {
     //ctor
+    ishit = 0;
+    enemy = 1;
 }
 NPC::NPC(const char *filename, LevelMap *mymap, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0)
@@ -29,6 +31,8 @@ NPC::NPC(vita2d_texture *im, LevelMap *mymap, int num_horizontal_sprites,
 
 void NPC::init_nav_pos()
 {
+    ishit = 0;
+    enemy = 1;
 
     //set current nav pos to none
     current_nav_pos = -1;
@@ -168,10 +172,6 @@ bool NPC::spotted()
     return 0;
 }
 
-void NPC::hit(int hitpoints)
-{
-
-}
 
 NPC::~NPC()
 {
