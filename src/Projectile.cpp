@@ -2,7 +2,7 @@
 #include "LineVec.h"
 #include "Point_float.h"
 #include "Gamebooter.h"
-#include "NPC.h"
+//#include "NPC.h"
 #include <thread>
 
 Projectile::Projectile()
@@ -123,10 +123,7 @@ void Projectile::explode()
 
 }
 
-void Projectile::finish()
-{
 
-}
 
 void Projectile::go_move()
 {
@@ -152,7 +149,6 @@ void Projectile::hitcheck()
         }
     }
 }
-
 
 Projectile::~Projectile()
 {

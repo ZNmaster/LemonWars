@@ -49,6 +49,15 @@ void MovObj::calc_screen_pos()
       pos_y = int(abs_y - (float)(level->part_y) - (float)(res_of_sprites_y)/2.0);
 }
 
+void MovObj::finish()
+{
+
+}
+
+void MovObj::explode()
+{
+
+}
 
 MovObj::~MovObj()
 {

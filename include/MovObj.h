@@ -41,8 +41,17 @@ class MovObj : public Sprite, public NearestPoint
         //calculates position on the screen based on abs_x and abs_y
         void calc_screen_pos();
 
+        void finish();
+
         //calculates path between 2 nav points
         Pathfinder path;
+
+
+        Timer explosion_timer;
+        int sprite_num;
+
+        virtual void explode();
+
 
         virtual ~MovObj();
 

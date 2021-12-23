@@ -18,9 +18,15 @@ class Common_Lemon : public NPC
         virtual ~Common_Lemon();
         void go_move();
 
+        virtual void layer_moved();
+
+        virtual void explode();
+
+
     protected:
 
     private:
+
 };
 
 #endif // COMMON_LEMON_H

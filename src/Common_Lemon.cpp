@@ -43,14 +43,44 @@ void Common_Lemon::go_move()
 
 void Common_Lemon::hit(int hitpoints, float projectile_angle, int x, int y)
 {
-    if (!ishit)
+    if (!is_hit)
     {
-        ishit = 1;
+        is_hit = 1;
         move_it = 1;
         hit_angle = projectile_angle;
         splash_x = x;
         splash_y = y;
+        carry_on = &Common_Lemon::finish;
     }
+}
+
+void Common_Lemon::layer_moved()
+{
+    move_it = 0;
+    sprite_num = 3;
+    set_sprite(sprite_num);
+    explosion_timer.delay_mills(80);
+
+    carry_on = &NPC::explode;
+
+    //carry_on = &Common_Lemon::lemon_explode;
+}
+
+void Common_Lemon::explode()
+{
+
+   if (explosion_timer.expired())
+   {
+       sprite_num ++;
+       set_sprite(sprite_num);
+       explosion_timer.delay_mills(80);
+   }
+
+   if (sprite_num == 10)
+   {
+       carry_on = &Common_Lemon::finish;
+   }
+
 }
 
 Common_Lemon::~Common_Lemon()

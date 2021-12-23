@@ -69,3 +69,8 @@ void Entity::hit(int hitpoints, float projectile_angle, int x, int y)
 {
 
 }
+
+void Entity::layer_moved()
+{
+
+}

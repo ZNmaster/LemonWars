@@ -41,6 +41,7 @@ class Entity
         float distance(int x1, int y1, int x2, int y2);
 
         virtual void hit(int hitpoints, float projectile_angle, int x, int y);
+        virtual void layer_moved();
 
         //radius of the Character
         int radius;

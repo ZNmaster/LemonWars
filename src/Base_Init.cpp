@@ -122,6 +122,17 @@ bool Base_Init::draw_frame(Layers &lay)
         vita2d_end_drawing();
         vita2d_swap_buffers();
 
+        for(auto it = lay.layer1_obj.begin() + 1; it < lay.layer1_obj.end(); it++)
+        {
+            if ((*it)->move_it)
+            {
+                lay.layer0_obj.push_back(*it);
+                lay.layer1_obj.erase(it);
+                lay.layer0_obj.back()->layer_moved();
+
+            }
+        }
+
         return result;
 }
 

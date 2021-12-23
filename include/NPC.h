@@ -70,7 +70,7 @@ class NPC : public MovObj
         Rotator rot;
 
         //When a projectile hits the ennemy
-        bool ishit;
+        bool is_hit;
         float hit_angle;
         int splash_x, splash_y;
 
