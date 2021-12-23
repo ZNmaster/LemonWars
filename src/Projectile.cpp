@@ -136,7 +136,7 @@ void Projectile::hitcheck()
     for(auto it = obj->begin() + 1; it < obj->end(); it++)
     {
 
-        if(distance((*it)->abs_x, (*it)->abs_y) < 70)
+        if(distance((*it)->abs_x, (*it)->abs_y) < 35)
         {
             if((*it)->enemy && !(*it)->move_it)
             {
