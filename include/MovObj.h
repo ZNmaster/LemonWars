@@ -49,8 +49,11 @@ class MovObj : public Sprite, public NearestPoint
 
         Timer explosion_timer;
         int sprite_num;
+        int sprite_change_delay;
+        int last_sprite;
 
-        virtual void explode();
+        void start_animation();
+        virtual void stop_animation();
 
 
         virtual ~MovObj();

@@ -54,7 +54,24 @@ void MovObj::finish()
 
 }
 
-void MovObj::explode()
+void MovObj::start_animation()
+{
+
+   if (explosion_timer.expired())
+   {
+       sprite_num ++;
+       set_sprite(sprite_num);
+       explosion_timer.delay_mills(sprite_change_delay);
+   }
+
+   if (sprite_num == last_sprite)
+   {
+       stop_animation();
+   }
+
+}
+
+void MovObj::stop_animation()
 {
 
 }

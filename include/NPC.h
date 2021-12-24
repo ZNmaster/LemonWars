@@ -50,6 +50,8 @@ class NPC : public MovObj
         //init pathfinder ant set a path to a target nav point
         void set_path();
 
+        virtual void stop_animation();
+
         //target nav point
         int target_nav_pos;
         //final destination

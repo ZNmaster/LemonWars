@@ -158,6 +158,11 @@ void NPC::set_chase()
 
 }
 
+void NPC::stop_animation()
+{
+    carry_on = &NPC::finish;
+}
+
 bool NPC::spotted()
 {
     //we're gonna add some code for distance and the angle of view here

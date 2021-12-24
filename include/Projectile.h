@@ -25,11 +25,11 @@ class Projectile : public MovObj
         void find_destination();
         void set_path();
         void fly();
-        void explode();
 
         Pathfinder path;
 
         virtual void go_move();
+        virtual void stop_animation();
 
         virtual ~Projectile();
 

@@ -29,12 +29,14 @@ void Projectile::set_scene (std::vector<Entity*> *objvec, float rad)
    speed = 500;
    angle = rad;
    set_sprite(0);
+   sprite_change_delay = 80;
+   last_sprite = 5;
    calc_screen_pos();
 
    if (!level->levelwalls.visible(abs_x, abs_y, level->player_pos_x, level->player_pos_y))
    {
        set_sprite(1);
-       carry_on = &Projectile::explode;
+       carry_on = &Projectile::start_animation;
        Gamebooter::soundengine->play_projectile_explosion_sound();
        explosion_timer.delay_mills(50);
    }
@@ -101,29 +103,15 @@ void Projectile::fly()
     if (path.arrived)
     {
         explosion_timer.delay_mills(50);
-        carry_on = &Projectile::explode;
+        carry_on = &Projectile::start_animation;
         Gamebooter::soundengine->play_projectile_explosion_sound();
     }
 }
 
-void Projectile::explode()
+void Projectile::stop_animation()
 {
-
-   if (explosion_timer.expired())
-   {
-       sprite_num ++;
-       set_sprite(sprite_num);
-       explosion_timer.delay_mills(80);
-   }
-
-   if (sprite_num == 5)
-   {
-       carry_on = &Projectile::finish;
-   }
-
+    carry_on = &Projectile::finish;
 }
-
-
 
 void Projectile::go_move()
 {

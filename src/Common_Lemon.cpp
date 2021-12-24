@@ -10,11 +10,7 @@ Common_Lemon::Common_Lemon(const char *filename, LevelMap *mymap, int num_horizo
                : NPC::NPC(filename, mymap, num_horizontal_sprites,
                                       num_vertical_sprites, x0, y0)
 {
-    angle = 0;
-    set_roam();
-
-    //select sprite #0
-    set_sprite(0);
+    lemon_init();
 
 }
 
@@ -23,12 +19,19 @@ Common_Lemon::Common_Lemon(vita2d_texture *im, LevelMap *mymap, int num_horizont
                : NPC::NPC(im, mymap, num_horizontal_sprites,
                                       num_vertical_sprites, x0, y0)
 {
+    lemon_init();
+}
+
+void Common_Lemon::lemon_init()
+{
     angle = 0;
     set_roam();
 
     //select sprite #0
     set_sprite(0);
 
+    sprite_change_delay = 80;
+    last_sprite = 10;
 }
 
 
@@ -61,27 +64,10 @@ void Common_Lemon::layer_moved()
     set_sprite(sprite_num);
     explosion_timer.delay_mills(80);
 
-    carry_on = &NPC::explode;
-
-    //carry_on = &Common_Lemon::lemon_explode;
-}
-
-void Common_Lemon::explode()
-{
-
-   if (explosion_timer.expired())
-   {
-       sprite_num ++;
-       set_sprite(sprite_num);
-       explosion_timer.delay_mills(80);
-   }
-
-   if (sprite_num == 10)
-   {
-       carry_on = &Common_Lemon::finish;
-   }
+    carry_on = &NPC::start_animation;
 
 }
+
 
 Common_Lemon::~Common_Lemon()
 {
