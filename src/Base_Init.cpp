@@ -128,7 +128,7 @@ bool Base_Init::draw_frame(Layers &lay)
             {
                 lay.layer0_obj.push_back(*it);
                 lay.layer1_obj.erase(it);
-                lay.layer0_obj.back()->layer_moved();
+                lay.layer0_obj.back()->layer_moved(lay.layer0_obj);
 
             }
         }

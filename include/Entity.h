@@ -1,6 +1,8 @@
 #ifndef ENTITY_H
 #define ENTITY_H
+
 #include <vita2d.h>
+#include <vector>
 
 
 class Entity
@@ -41,7 +43,7 @@ class Entity
         float distance(int x1, int y1, int x2, int y2);
 
         virtual void hit(int hitpoints, float projectile_angle, int x, int y);
-        virtual void layer_moved();
+        virtual void layer_moved(std::vector<Entity *> &target_lay);
 
         //radius of the Character
         int radius;

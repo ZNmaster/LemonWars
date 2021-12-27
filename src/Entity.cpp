@@ -70,7 +70,7 @@ void Entity::hit(int hitpoints, float projectile_angle, int x, int y)
 
 }
 
-void Entity::layer_moved()
+void Entity::layer_moved(std::vector<Entity *> &target_lay)
 {
 
 }

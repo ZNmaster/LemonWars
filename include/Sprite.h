@@ -24,6 +24,7 @@ class Sprite : public GamePlayObj
         //sets the current sprite by its number
         void set_sprite(int num);
 
+
     protected:
 
     private:

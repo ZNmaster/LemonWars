@@ -28,6 +28,9 @@ class SpawnPoint : public Entity
         //image of the enemy
         vita2d_texture *enemy1;
 
+        //lemon juice splash of the ennemy
+        vita2d_texture *blood1;
+
         //number of enemies to spawn
         int number_of_enemies;
 

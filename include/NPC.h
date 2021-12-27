@@ -59,7 +59,10 @@ class NPC : public MovObj
 
         //current nav point
         int current_nav_pos;
-        //int nearest, second_nearest;
+
+        vita2d_texture *juice;
+
+
 
         bool spotted();
 

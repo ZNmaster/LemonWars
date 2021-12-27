@@ -1,4 +1,5 @@
 #include "Common_Lemon.h"
+#include "Splash.h"
 
 Common_Lemon::Common_Lemon()
 {
@@ -10,20 +11,24 @@ Common_Lemon::Common_Lemon(const char *filename, LevelMap *mymap, int num_horizo
                : NPC::NPC(filename, mymap, num_horizontal_sprites,
                                       num_vertical_sprites, x0, y0)
 {
+
     lemon_init();
 
 }
 
-Common_Lemon::Common_Lemon(vita2d_texture *im, LevelMap *mymap, int num_horizontal_sprites,
+Common_Lemon::Common_Lemon(vita2d_texture *im, vita2d_texture *blood, LevelMap *mymap, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0)
                : NPC::NPC(im, mymap, num_horizontal_sprites,
                                       num_vertical_sprites, x0, y0)
 {
+
+    juice = blood;
     lemon_init();
 }
 
 void Common_Lemon::lemon_init()
 {
+
     angle = 0;
     set_roam();
 
@@ -57,8 +62,11 @@ void Common_Lemon::hit(int hitpoints, float projectile_angle, int x, int y)
     }
 }
 
-void Common_Lemon::layer_moved()
+void Common_Lemon::layer_moved(std::vector<Entity *> &target_lay)
 {
+    Splash *lemonjuice = new Splash(juice, level, 2, 3, splash_x, splash_y, hit_angle);
+    target_lay.push_back(lemonjuice);
+
     move_it = 0;
     sprite_num = 3;
     set_sprite(sprite_num);

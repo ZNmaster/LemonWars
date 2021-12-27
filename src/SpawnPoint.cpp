@@ -23,6 +23,7 @@ SpawnPoint::SpawnPoint(int x, int y, std::vector<Entity *> *obj)
     number_of_enemies = 6;
 
     enemy1 = vita2d_load_PNG_file("app0:/assets/images/characters/npc/lemon_sprite.png");
+    blood1 = vita2d_load_PNG_file("app0:/assets/images/characters/npc/lemonjuice_splash.png");
 
 
 }
@@ -52,7 +53,7 @@ void SpawnPoint::go_move()
     {
         if (enemy_spawn_timer->expired())
         {
-            Common_Lemon *testlem = new Common_Lemon(enemy1, level,
+            Common_Lemon *testlem = new Common_Lemon(enemy1, blood1, level,
                                                  3, 4, abs_x, abs_y);
             objvector->push_back(testlem);
 
@@ -74,5 +75,6 @@ SpawnPoint::~SpawnPoint()
     //dtor
     vita2d_free_texture (image);
     vita2d_free_texture (enemy1);
+    vita2d_free_texture (blood1);
 
 }
