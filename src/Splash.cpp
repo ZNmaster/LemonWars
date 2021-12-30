@@ -1,4 +1,5 @@
 #include "Splash.h"
+#include "Gamebooter.h"
 
 Splash::Splash()
 {
@@ -17,6 +18,7 @@ Splash::Splash(vita2d_texture *im, LevelMap *mymap, int num_horizontal_sprites,
     last_sprite = 4;
     explosion_timer.delay_mills(sprite_change_delay);
     calc_screen_pos();
+    Gamebooter::soundengine->play_floating_lemon_hit();
 }
 
 void Splash::stop_animation()

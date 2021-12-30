@@ -15,6 +15,10 @@ class Sounds
 
         void play_fire_sound();
         void play_projectile_explosion_sound();
+        void play_floating_lemon_hit();
+        void play_lemon_juice();
+        void play_lemonade();
+        void play_ezpz();
 
 
 
@@ -35,11 +39,16 @@ class Sounds
 
         SoLoud::Wav gun1_fire_sound;
         SoLoud::Wav projectile1_explosion_sound;
+        SoLoud::Wav floating_lemon_hit_sound;
+        SoLoud::Wav lemon_juice;
+        SoLoud::Wav ezpz;
+        SoLoud::Wav lemonade;
 
 
 
         int gunfire_sound_id,
-            projectile_explosion_sound_id;
+            projectile_explosion_sound_id,
+            floating_lemon_hit_sound_id;
 
 };
 
