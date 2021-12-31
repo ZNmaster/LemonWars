@@ -1,5 +1,7 @@
 #include "Player.h"
 #include "Scanner.h"
+#include "Gamebooter.h"
+#include "RNG.h"
 
 #include "Angle.h"
 #include <cmath>
@@ -57,11 +59,6 @@ void Player::go_move()
         calc_stick_rad(Scanner::rstick_x, Scanner::rstick_y);
         angle = Angle::calcangle(sin_a, cos_a);
 
-        /*asin(sin_a);
-        if (cos_a < 0)
-        {
-            angle = pi - angle;
-        }*/
     }
 
     else
@@ -132,9 +129,42 @@ void Player::go_move()
         position = gun->act(position, angle);
         set_sprite(position);
 
+        if(level->bodycount == 16)
+        {
+            Gamebooter::soundengine->play_ezpz();
+            level->bodycount++;
+            level->killstreak = 0;
+        }
+
+        if(level->killstreak > 2)
+        {
+
+            RNG rand;
+            int sound_option;
+            sound_option = rand.int_random(1, 2);
+
+            switch(sound_option)
+            {
+                case 1:
+
+                    Gamebooter::soundengine->play_lemonade();
+                    break;
 
 
+                case 2:
 
+                    Gamebooter::soundengine->play_lemon_juice();
+                    break;
+
+
+                default:
+
+                    Gamebooter::soundengine->play_lemon_juice();
+                    break;
+
+            }
+            level->killstreak = 0;
+        }
 
 }
 

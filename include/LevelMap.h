@@ -4,6 +4,7 @@
 #include "GamePlayObj.h"
 #include "Wallbuilder.h"
 #include "MemoryAI.h"
+#include "Timer.h"
 
 
 class LevelMap : public GamePlayObj
@@ -42,6 +43,11 @@ class LevelMap : public GamePlayObj
         //position of the player
         float player_pos_x,
               player_pos_y;
+
+
+        unsigned int bodycount;
+        unsigned int killstreak;
+        Timer killstreak_timer;
 
 
 

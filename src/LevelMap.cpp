@@ -35,6 +35,10 @@ LevelMap::LevelMap(const char *MapFilename, const char *MemFilename)
 
     levelwalls = Wallbuilder{1};
 
+    bodycount = 0;
+    killstreak = 0;
+
+    killstreak_timer.delay_mills(1000);
 
 }
 

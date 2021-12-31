@@ -86,12 +86,13 @@
 	<cmath>
 	<algorithm>
 
-1640616730 source:/home/iurii/LemonWars/src/Base_Init.cpp
+1640902430 source:/home/iurii/LemonWars/src/Base_Init.cpp
 	"Base_Init.h"
 	"Scanner.h"
 	"Letter.h"
 	<cmath>
 	<sstream>
+	"LevelMap.h"
 
 1637862660 source:/home/iurii/LemonWars/src/Timer.cpp
 	"Timer.h"
@@ -154,14 +155,15 @@
 1637767598 /home/iurii/LemonWars/include/Game.h
 	<Base_Init.h>
 
-1637771450 source:/home/iurii/LemonWars/src/LevelMap.cpp
+1640904701 source:/home/iurii/LemonWars/src/LevelMap.cpp
 	"LevelMap.h"
 	<fstream>
 
-1638198544 /home/iurii/LemonWars/include/LevelMap.h
+1640904807 /home/iurii/LemonWars/include/LevelMap.h
 	"GamePlayObj.h"
 	"Wallbuilder.h"
 	"MemoryAI.h"
+	"Timer.h"
 
 1640378897 source:/home/iurii/LemonWars/src/NPC.cpp
 	<vector>
@@ -184,13 +186,15 @@
 1638195649 source:/home/iurii/LemonWars/src/Character.cpp
 	"Character.h"
 
-1640268955 source:/home/iurii/LemonWars/src/Player.cpp
+1640902824 source:/home/iurii/LemonWars/src/Player.cpp
 	"Player.h"
 	"Scanner.h"
+	"Gamebooter.h"
+	"RNG.h"
 	"Angle.h"
 	<cmath>
 
-1640268596 /home/iurii/LemonWars/include/Player.h
+1640899800 /home/iurii/LemonWars/include/Player.h
 	"MovObj.h"
 	"Weapons.h"
 	"Layers.h"
@@ -199,7 +203,7 @@
 	<Character.h>
 	<GamePlayObj.h>
 
-1640614793 source:/home/iurii/LemonWars/src/SpawnPoint.cpp
+1640900073 source:/home/iurii/LemonWars/src/SpawnPoint.cpp
 	"SpawnPoint.h"
 	"Common_Lemon.h"
 
@@ -210,11 +214,11 @@
 	"LevelMap.h"
 	"Timer.h"
 
-1640616863 source:/home/iurii/LemonWars/src/Common_Lemon.cpp
+1640904779 source:/home/iurii/LemonWars/src/Common_Lemon.cpp
 	"Common_Lemon.h"
 	"Splash.h"
 
-1640616730 /home/iurii/LemonWars/include/Common_Lemon.h
+1640904701 /home/iurii/LemonWars/include/Common_Lemon.h
 	<NPC.h>
 
 1637767598 source:/home/iurii/LemonWars/src/RNG.cpp
@@ -332,8 +336,9 @@
 	"Rotator.h"
 	<cmath>
 
-1640617853 source:/home/iurii/LemonWars/src/Splash.cpp
+1640881335 source:/home/iurii/LemonWars/src/Splash.cpp
 	"Splash.h"
+	"Gamebooter.h"
 
 1640616181 /home/iurii/LemonWars/include/Splash.h
 	<MovObj.h>

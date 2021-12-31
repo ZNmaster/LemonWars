@@ -37,8 +37,8 @@ void Common_Lemon::lemon_init()
 
     sprite_change_delay = 80;
     last_sprite = 10;
-}
 
+}
 
 
 void Common_Lemon::go_move()
@@ -73,6 +73,19 @@ void Common_Lemon::layer_moved(std::vector<Entity *> &target_lay)
     explosion_timer.delay_mills(80);
 
     carry_on = &NPC::start_animation;
+
+    level->bodycount++;
+
+    if(level->killstreak_timer.expired())
+    {
+        level->killstreak = 0;
+        level->killstreak_timer.delay_mills(1000);
+    }
+    else
+    {
+        level->killstreak++;
+        level->killstreak_timer.delay_mills(1000);
+    }
 
 }
 

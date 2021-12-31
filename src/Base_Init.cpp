@@ -4,6 +4,9 @@
 #include <cmath>
 #include <sstream>
 
+//debug
+#include "LevelMap.h"
+
 
 Base_Init::Base_Init()
 {
@@ -236,6 +239,16 @@ bool Base_Init::show(std::vector<Entity *> obj)
 
              }
 
+             /*
+             //debug killstreak
+             LevelMap *test = dynamic_cast<LevelMap*> (objimage);
+             if (test)
+             {
+                 std::stringstream om;
+                 om << "Killstreak " << test->killstreak;
+                 vita2d_pvf_draw_text(pvf, 50, 50, RGBA8(0,255,0,255), 1.0f, om.str().c_str());
+             }*/
+
         }
 
         return 0;
@@ -250,11 +263,6 @@ void Base_Init::free_textures(std::vector<Entity *> &obj)
     }
     obj.clear();
 
-    /*if (loaded_image)
-    {
-        vita2d_free_texture (loaded_image);
-        loaded_image = nullptr;
-    }*/
 }
 
 void Base_Init::create_text_from_font(std::string text, int x, int y,

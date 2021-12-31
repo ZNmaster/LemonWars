@@ -21,6 +21,7 @@ class Player : public MovObj
 
         Weapons *gun;
 
+
         void go_move();
 
         virtual ~Player();
@@ -36,6 +37,7 @@ class Player : public MovObj
 
         //sprite num in the spritesheet
         unsigned int position = 0;
+
 };
 
 #endif // PLAYER_H

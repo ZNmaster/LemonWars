@@ -23,6 +23,8 @@ class Common_Lemon : public NPC
         virtual void layer_moved(std::vector<Entity *> &target_lay);
 
 
+
+
     protected:
 
     private:
