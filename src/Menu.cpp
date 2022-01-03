@@ -5,6 +5,8 @@
 Menu::Menu()
 {
 
+    quit = 0;
+
     //ctor
     GPU_init();
 
@@ -44,7 +46,7 @@ Menu::Menu()
     controls_button->item_num = 5;
     layers.layer0_obj.push_back (controls_button);
     menuitem[controls_button->item_num] = controls_button;
-    MenuFuncPtr [controls_button->item_num] = &Menu::StartCredits;
+    MenuFuncPtr [controls_button->item_num] = &Menu::StartControls;
     menu_item_count++;
 
     MenuItem *credits_button = new MenuItem ("app0:/assets/images/main_menu/credits.png");
@@ -69,7 +71,7 @@ Menu::Menu()
 
 }
 
-void Menu::MenuRun()
+bool Menu::MenuRun()
 {
 
     scanner = new Scanner;
@@ -104,7 +106,10 @@ void Menu::MenuRun()
              if (scanner->front_touch_point_x > menuitem[i]->pos_x && scanner->front_touch_point_x < (menuitem[i]->pos_x + menuitem[i]->loaded_image_res_x) &&
                  scanner->front_touch_point_y > menuitem[i]->pos_y && scanner->front_touch_point_y < (menuitem[i]->pos_y + menuitem[i]->loaded_image_res_y))
                  {
-                    menuitem[current]->waved = 0;
+
+                    //if a menu item is not selected we do not change the flag
+                    if (current) menuitem[current]->waved = 0;
+
                     current = menuitem[i]->item_num;
                     menuitem[current]->waved = 1;
                     menuitem[current]->started = 1;
@@ -118,7 +123,7 @@ void Menu::MenuRun()
      }
 
      //navigation with buttons
-     navigate();
+     else navigate();
 
     }
 
@@ -136,7 +141,7 @@ void Menu::MenuRun()
 
         (this->*StartActiveMenuItem) ();
 
-        return;
+        return quit;
 
 
 }
@@ -145,6 +150,7 @@ void Menu::MenuRun()
 void Menu::StartPlay()
 {
   level1_1();
+
 }
 void Menu::StartLoad()
 {
@@ -161,8 +167,10 @@ void Menu::StartControls()
 
 void Menu::StartExit()
 {
-
+    quit = 1;
 }
+
+
 void Menu::ActivatePlay()
 {
    MenuItemO = 0;

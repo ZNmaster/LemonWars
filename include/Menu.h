@@ -10,7 +10,7 @@ class Menu : public Base_Init
         Menu();
         ~Menu();
 
-        void MenuRun();
+        bool MenuRun();
 
     protected:
 
@@ -52,6 +52,8 @@ class Menu : public Base_Init
 
         // level methods
         void level1_1();
+
+        bool quit;
 
 
 

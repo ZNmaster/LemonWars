@@ -181,7 +181,9 @@ bool Base_Init::show(std::vector<Entity *> obj)
 
                      vita2d_pvf_draw_text(pvf, 50, 50, RGBA8(0,255,0,255), 1.0f, o.str().c_str());
                  }
+
                  objimage->go_move();
+                 if (objimage->terminated) return 1;
                  continue;
              }
 

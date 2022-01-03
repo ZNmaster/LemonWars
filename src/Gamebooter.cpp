@@ -49,8 +49,14 @@ void Gamebooter::Play()
     free_textures(layers.layer0_obj);
     delete scanner;
 
-    Menu MainMenu;
-    MainMenu.MenuRun();
+    bool quit = 0;
+    do
+    {
+      Menu MainMenu;
+      quit = MainMenu.MenuRun();
+    }
+    while(!quit);
+
 
 
     return;
