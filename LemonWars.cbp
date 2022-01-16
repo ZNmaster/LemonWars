@@ -38,10 +38,14 @@
 		<Unit filename="include/Entity.h" />
 		<Unit filename="include/GamePlayObj.h" />
 		<Unit filename="include/Gamebooter.h" />
+		<Unit filename="include/Line.h" />
+		<Unit filename="include/LineVec.h" />
 		<Unit filename="include/Memory.h" />
 		<Unit filename="include/MemoryBuilder.h" />
 		<Unit filename="include/Menu.h" />
 		<Unit filename="include/Pathfinder.h" />
+		<Unit filename="include/Point_float.h" />
+		<Unit filename="include/Point_int.h" />
 		<Unit filename="include/RNG.h" />
 		<Unit filename="include/Scanner.h" />
 		<Unit filename="include/Sprite.h" />
@@ -52,6 +56,8 @@
 		<Unit filename="src/Entity.cpp" />
 		<Unit filename="src/GamePlayObj.cpp" />
 		<Unit filename="src/Gamebooter.cpp" />
+		<Unit filename="src/Line.cpp" />
+		<Unit filename="src/LineVec.cpp" />
 		<Unit filename="src/MemoryBuilder.cpp" />
 		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/Pathfinder.cpp" />

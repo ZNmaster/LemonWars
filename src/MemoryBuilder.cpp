@@ -15,7 +15,7 @@ MemoryBuilder::MemoryBuilder()
   //std::array<std::array<float, 100>, 100> distance;
   //std::array<std::array<int, 100>, 100> path;
 
-  coord_x = {65, 110, 230, 230, 230, 230, 230, 230, 230, 400, 400, 400, 495, 495, 495, 630,
+  coord_x = {65, 110, 230, 260, 260, 260, 260, 260, 260, 400, 400, 400, 495, 495, 495, 630,
              630, 630, 630, 630, 790, 790, 790, 1010, 1010, 1010, 1010, 1010, 1260, 1260, 1260, 1260,
              1260, 1440, 1440, 1440, 1440, 1440, 1700, 1700, 1700, 1700, 1700, 1940, 1940, 1940, 1940,
              1940, 2100, 2100, 2100, 2100, 2100};
@@ -387,11 +387,13 @@ MemoryBuilder::MemoryBuilder()
     }
     level1.number_of_points = number_of_points;
 
-     for(int a = 0; a < number_of_points; a++)
+
+     //path distance from point a to b
+     for(int b = 0; b < number_of_points; b++)
     {
-        for(int b = 0; b < number_of_points; b++)
+        for(int a = 0; a < number_of_points; a++)
         {
-            level1.distance[b][a] = nav_dist(b, a);
+            level1.distance[b][a] = nav_dist(a, b);
         }
 
     }
