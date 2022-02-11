@@ -1,5 +1,4 @@
 #include "Pathfinder.h"
-#include <cmath>
 #include <iostream>
 
 Pathfinder::Pathfinder()
@@ -15,13 +14,10 @@ Pathfinder::Pathfinder(float x1, float y1, float x2, float y2)
 void Pathfinder::reinit(float x1, float y1, float x2, float y2)
 {
     reset();
+    calcline(x1, y1, x2, y2);
+
     current_x = x1;
     current_y = y1;
-    target_x = x2;
-    target_y = y2;
-
-    delta_x = x2 - x1;
-    delta_y = y2 - y1;
 
     if (delta_x == 0 && delta_y == 0)
     {
@@ -29,10 +25,6 @@ void Pathfinder::reinit(float x1, float y1, float x2, float y2)
         return;
     }
 
-    float len = sqrt(delta_x*delta_x + delta_y*delta_y);
-
-    sin_a = delta_y/len;
-    cos_a = delta_x/len;
 
     //checking the angle of the path
     if (abs (delta_x) > abs (delta_y))
@@ -44,20 +36,8 @@ void Pathfinder::reinit(float x1, float y1, float x2, float y2)
         calc_coord = &Pathfinder::go_high;
     }
 
-
-    if (x2 == x1)
+    if (!vertical && !horizontal)
     {
-        vertical = 1;
-    }
-
-    else if (y2 == y1)
-    {
-        horizontal = 1;
-    }
-
-    else
-    {
-
         calc_path(x1, y1, x2, y2);
     }
 
@@ -67,8 +47,8 @@ void Pathfinder::reset()
 {
     current_x = 0;
     current_y = 0;
-    target_x = 0;
-    target_y = 0;
+    x_end = 0;
+    y_end = 0;
 
     vertical = 0;
     horizontal = 0;
@@ -96,15 +76,13 @@ void Pathfinder::go_high(float distance)
 {
    delta_y = distance*sin_a;
 
-   if (delta_y < 1 && delta_y > 0) delta_y = 1;
-   if (delta_y < 0 && delta_y > -1) delta_y = -1;
 
    current_y += delta_y;
 
 
    if (sin_a > 0)
    {
-      if (current_y >= target_y)
+      if (current_y >= y_end)
       {
 
           arrival();
@@ -114,7 +92,7 @@ void Pathfinder::go_high(float distance)
    }
    else
    {
-       if (current_y <= target_y)
+       if (current_y <= y_end)
        {
            arrival();
            return;
@@ -127,14 +105,12 @@ void Pathfinder::go_high(float distance)
 void Pathfinder::go_low(float distance)
 {
    delta_x = distance*cos_a;
-   if (delta_x < 1 && delta_x > 0) delta_x = 1;
-   if (delta_x < 0 && delta_x > -1) delta_x = -1;
 
    current_x += delta_x;
 
    if (cos_a > 0)
    {
-      if (current_x >= target_x)
+      if (current_x >= x_end)
       {
 
           arrival();
@@ -143,7 +119,7 @@ void Pathfinder::go_low(float distance)
    }
    else
    {
-       if (current_x <= target_x)
+       if (current_x <= x_end)
        {
            arrival();
            return;
@@ -156,8 +132,8 @@ void Pathfinder::go_low(float distance)
 void Pathfinder::arrival()
 {
     arrived = 1;
-    current_y = target_y;
-    current_x = target_x;
+    current_y = y_end;
+    current_x = x_end;
 }
 
 Pathfinder::~Pathfinder()

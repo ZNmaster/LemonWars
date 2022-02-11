@@ -10,13 +10,13 @@ LineVec::LineVec()
 LineVec::LineVec(Point_float end_point)
                  : Line::Line(0, 0, end_point.x, end_point.y)
 {
-    calcangle();
+    angle = calcangle(sin_a, cos_a);
 }
 
 LineVec::LineVec(Point_float start_point, Point_float end_point)
                  : Line::Line(start_point.x, start_point.y, end_point.x,  end_point.y)
 {
-    calcangle();
+    angle = calcangle(sin_a, cos_a);
 }
 
 LineVec::LineVec(float length, float rad)
@@ -52,14 +52,14 @@ void LineVec::calcline(float length, float rad)
     y_end = y_start + delta_y;
 }
 
-void LineVec::calcangle()
+/*void LineVec::calcangle()
 {
         angle = asin(sin_a);
         if (cos_a < 0)
         {
             angle = pi - angle;
         }
-}
+}*/
 
 LineVec::~LineVec()
 {

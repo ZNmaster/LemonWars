@@ -2,6 +2,7 @@
 
 Timer::Timer()
 {
+    delay_mills(200);
     //ctor
 }
 
@@ -23,10 +24,10 @@ void Timer::stop()
 }
 
 void Timer::calculate_dur(const std::chrono::high_resolution_clock::time_point &starttime_point,
-                            const std::chrono::high_resolution_clock::time_point &stoptime_point,
-                            int &dur_mills, float &dur_sec)
+                            const std::chrono::high_resolution_clock::time_point &endtime_point,
+                            unsigned int &dur_mills, float &dur_sec)
 {
-    auto dur = stoptime_point - starttime_point;
+    auto dur = endtime_point - starttime_point;
 
     auto int_millis = std::chrono::duration_cast<std::chrono::milliseconds>(dur);
     auto float_secs = std::chrono::duration_cast<std::chrono::duration<float>>(dur);

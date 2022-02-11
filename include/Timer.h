@@ -11,12 +11,12 @@ class Timer
         void start();
         void stop();
         unsigned int delay_ms;
-        int duration_int, delay_duration_int;
+        unsigned int duration_int, delay_duration_int;
         float duration_float, delay_duration_float;
 
         void calculate_dur (const std::chrono::high_resolution_clock::time_point &starttime_point,
-                            const std::chrono::high_resolution_clock::time_point &stoptime_point,
-                            int &dur_mills, float &dur_sec);
+                            const std::chrono::high_resolution_clock::time_point &endtime_point,
+                            unsigned int &dur_mills, float &dur_sec);
 
         void delay_mills (unsigned int delay);
         bool expired();

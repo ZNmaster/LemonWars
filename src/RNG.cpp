@@ -17,7 +17,6 @@ int RNG::int_random(int x_max)
 
     return rand() % (x_max + 1);
 
-
 }
 
 int RNG::int_random(int x_min, int x_max)
