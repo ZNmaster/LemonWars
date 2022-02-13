@@ -1,9 +1,11 @@
 #include <vector>
-
-
 #include "NPC.h"
-
+//#include "Gamebooter.h"
 #define VISIBILITY 1
+
+
+//debug
+
 
 
 NPC::NPC()
@@ -37,9 +39,6 @@ void NPC::init_nav_pos()
     //set current nav pos to none
     current_nav_pos = -1;
 
-    //set reference nav point for find nearest
-    final_nav_pos = 0;
-
     //copy of nav points
     for (int i=0; i<level->levelmem.number_of_points; i++)
     {
@@ -52,8 +51,16 @@ void NPC::init_nav_pos()
 
 void NPC::set_path()
 {
+
    if (target_nav_pos == current_nav_pos)
    {
+       if (what_after_arrival == &NPC::is_final_dest)
+       {
+           set_roam();
+           carry_on = &NPC::find_next;
+           return;
+       }
+
        carry_on = &NPC::wait_a_sec;
        npc_wait_timer.delay_mills(rand.int_random(7000));
    }
@@ -69,7 +76,10 @@ void NPC::set_path()
 
 void NPC::find_nearest()
 {
+
   target_nav_pos = find_nearest_to(abs_x, abs_y, p_vec);
+
+
   if (level->levelmem.distance[final_nav_pos][second_nearest] < level->levelmem.distance[final_nav_pos][target_nav_pos])
   {
       target_nav_pos = second_nearest;
@@ -113,14 +123,18 @@ void NPC::wait_a_sec()
 
 void NPC::walk()
 {
-    if(spot_timer.expired())
+    //spotting enabled in roaming mode only
+    if (what_after_arrival == &NPC::find_next)
     {
+        if(spot_timer.expired())
+      {
         if(spotted())
         {
-        set_sprite(1);
+          set_chase();
         }
     spot_timer.delay_mills(300);
 
+      }
     }
 
     //get the distance to move
@@ -132,10 +146,10 @@ void NPC::walk()
 
     if (path.arrived)
     {
+        //Gamebooter::soundengine->play_beep2();
         current_nav_pos = target_nav_pos;
         carry_on = what_after_arrival;
     }
-
 
         angle = rot.get_angle();
 }
@@ -144,6 +158,12 @@ void NPC::set_roam()
 {
     //set the speed in pixels per second
     speed = 100;
+
+    //select sprite #0
+    set_sprite(0);
+
+    //set reference nav point for find nearest
+    final_nav_pos = 0;
 
     //first action is find nearest
     carry_on = &NPC::find_nearest;
@@ -155,7 +175,10 @@ void NPC::set_roam()
 
 void NPC::set_chase()
 {
-
+   set_sprite(1);
+   carry_on = &NPC::find_nearest_to_player;
+   what_after_arrival = &NPC::is_final_dest;
+   speed = 200;
 }
 
 void NPC::stop_animation()
@@ -175,6 +198,41 @@ bool NPC::spotted()
     }
 
     return 0;
+}
+
+void NPC::is_final_dest()
+{
+
+    if (current_nav_pos == final_nav_pos)
+    {
+        set_roam();
+        carry_on = &NPC::wait_a_sec;
+        return;
+    }
+    else
+    {
+        int wheretogo = level->levelmem.path[final_nav_pos][current_nav_pos];
+
+        if (wheretogo < 0)
+        {
+
+            target_nav_pos = final_nav_pos;
+
+            if (target_nav_pos == current_nav_pos)
+            {
+               set_roam();
+               carry_on = &NPC::wait_a_sec;
+               return;
+            }
+        }
+
+        else
+        {
+           target_nav_pos = wheretogo;
+        }
+
+      carry_on = &NPC::set_path;
+    }
 }
 
 

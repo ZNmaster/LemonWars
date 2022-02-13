@@ -20,6 +20,9 @@ class Sounds
         void play_lemonade();
         void play_ezpz();
 
+        void play_beep();
+        void play_beep2();
+
 
 
 
@@ -43,6 +46,9 @@ class Sounds
         SoLoud::Wav lemon_juice;
         SoLoud::Wav ezpz;
         SoLoud::Wav lemonade;
+
+        SoLoud::Wav beep;
+        SoLoud::Wav beep2;
 
 
 

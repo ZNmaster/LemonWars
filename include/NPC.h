@@ -46,6 +46,8 @@ class NPC : public MovObj
         void set_roam();
         //set chasing mode
         void set_chase();
+        //check if is final destination for chasing
+        void is_final_dest();
 
         //init pathfinder ant set a path to a target nav point
         void set_path();
@@ -54,6 +56,7 @@ class NPC : public MovObj
 
         //target nav point
         int target_nav_pos;
+
         //final destination
         int final_nav_pos;
 

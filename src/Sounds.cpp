@@ -24,6 +24,9 @@ Sounds::Sounds()
 
     ezpz.load("app0:/assets/sounds/player/ezpz2.ogg");
 
+    beep.load("app0:/assets/sounds/beep.ogg");
+    beep2.load("app0:/assets/sounds/beep2.ogg");
+
 }
 
 void Sounds::play_fire_sound()
@@ -72,6 +75,17 @@ void Sounds::play_ezpz()
 {
    SoloudSound.play(ezpz);
 }
+
+void Sounds::play_beep()
+{
+   SoloudSound.play(beep);
+}
+
+void Sounds::play_beep2()
+{
+   SoloudSound.play(beep2);
+}
+
 
 Sounds::~Sounds()
 {
