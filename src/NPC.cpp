@@ -1,10 +1,8 @@
 #include <vector>
 #include "NPC.h"
-//#include "Gamebooter.h"
+#include "Point_float.h"
+#include "LineVec.h"
 #define VISIBILITY 1
-
-
-//debug
 
 
 
@@ -33,8 +31,18 @@ NPC::NPC(vita2d_texture *im, LevelMap *mymap, int num_horizontal_sprites,
 
 void NPC::init_nav_pos()
 {
+    //reset visibility thread flags
+    right_visibility_running = 0;
+    left_visibility_running = 0;
+    right_visible = 0;
+    left_visible = 0;
+
+
     is_hit = 0;
     enemy = 1;
+
+    //set chase mode timer
+    direct_path_check_timer.delay_mills(600);
 
     //set current nav pos to none
     current_nav_pos = -1;
@@ -52,8 +60,10 @@ void NPC::init_nav_pos()
 void NPC::set_path()
 {
 
+   //if the target point is the current location the enemy will:
    if (target_nav_pos == current_nav_pos)
    {
+       //switch to roam if in chasing mode and find next nav point to roam
        if (what_after_arrival == &NPC::is_final_dest)
        {
            set_roam();
@@ -61,15 +71,16 @@ void NPC::set_path()
            return;
        }
 
+       //wait some time if in roaming mode
        carry_on = &NPC::wait_a_sec;
        npc_wait_timer.delay_mills(rand.int_random(7000));
    }
+
    else
    {
        path = Pathfinder(abs_x, abs_y, level->levelmem.coord_x[target_nav_pos], level->levelmem.coord_y[target_nav_pos]);
        carry_on = &NPC::walk;
        rot = Rotator(angle, path.sin_a, path.cos_a, 8);
-
    }
 
 }
@@ -137,6 +148,16 @@ void NPC::walk()
       }
     }
 
+    //checking if direct path is possible in chasing mode
+    else if (what_after_arrival == &NPC::is_final_dest)
+    {
+        if (direct_path_check_timer.expired())
+        {
+
+            direct_path_check_timer.delay_mills(600);
+        }
+    }
+
     //get the distance to move
     move_delta = get_move_delta();
     path.move_by(move_delta);
@@ -146,7 +167,6 @@ void NPC::walk()
 
     if (path.arrived)
     {
-        //Gamebooter::soundengine->play_beep2();
         current_nav_pos = target_nav_pos;
         carry_on = what_after_arrival;
     }
@@ -175,8 +195,16 @@ void NPC::set_roam()
 
 void NPC::set_chase()
 {
+   //set chasing sprite
    set_sprite(1);
+
+   //set state to chase sequence
    carry_on = &NPC::find_nearest_to_player;
+
+   //final destination is a current nav pos
+   final_nav_pos = target_nav_pos;
+
+   //what to do after arrival
    what_after_arrival = &NPC::is_final_dest;
    speed = 200;
 }
@@ -203,21 +231,28 @@ bool NPC::spotted()
 void NPC::is_final_dest()
 {
 
+    //if the enemy has arrived at the final nav point
     if (current_nav_pos == final_nav_pos)
     {
         set_roam();
         carry_on = &NPC::wait_a_sec;
         return;
     }
+
+    //if it's not the final nav point yet
     else
     {
         int wheretogo = level->levelmem.path[final_nav_pos][current_nav_pos];
 
+        //direct path exists
         if (wheretogo < 0)
         {
 
+            //go directly to final nav point
             target_nav_pos = final_nav_pos;
 
+
+            //just in case the enemy is already at the final nav point (normally should never happen)
             if (target_nav_pos == current_nav_pos)
             {
                set_roam();
@@ -226,6 +261,7 @@ void NPC::is_final_dest()
             }
         }
 
+        //go to transit point
         else
         {
            target_nav_pos = wheretogo;
@@ -233,6 +269,52 @@ void NPC::is_final_dest()
 
       carry_on = &NPC::set_path;
     }
+}
+
+void NPC::check_visibility(bool &running_flag, bool &visibility_flag, float side)
+{
+
+
+    //set start point of the line between the player and enemy
+    Point_float start_p;
+    start_p.x = abs_x;
+    start_p.y = abs_y;
+
+    //set end point of the line between the player and enemy
+    Point_float end_p;
+    end_p.x = level->player_pos_x;
+    end_p.y = level->player_pos_y;
+
+    //create vector between the player and enemy
+    LineVec direct_line(start_p, end_p);
+
+    //create vector to point the beginning of the right visibility line
+    LineVec aux_right(start_p, radius, direct_line.angle + side);
+
+    //set start point of the right visibility line between the player and enemy
+    Point_float aux_right_end;
+    aux_right_end.x = aux_right.x_end;
+    aux_right_end.y = aux_right.y_end;
+
+    //creating right visibility vector
+    LineVec right_visibility_line(aux_right_end, direct_line.len, direct_line.angle);
+
+
+
+
+    //create vector to point the beginning of the left visibility line
+    LineVec aux_left(start_p, radius, direct_line.angle - side);
+
+    //set start point of the left visibility line between the player and enemy
+    Point_float aux_left_end;
+    aux_left_end.x = aux_left.x_end;
+    aux_left_end.y = aux_left.y_end;
+
+    //creating left visibility vector
+    LineVec left_visibility_line(aux_left_end, direct_line.len, direct_line.angle);
+
+
+
 }
 
 

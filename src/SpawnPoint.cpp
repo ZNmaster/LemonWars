@@ -20,7 +20,7 @@ SpawnPoint::SpawnPoint(int x, int y, std::vector<Entity *> *obj)
 
 
     enemy_spawn_timer = new Timer();
-    number_of_enemies = 1;
+    number_of_enemies = 8;
 
     enemy1 = vita2d_load_PNG_file("app0:/assets/images/characters/npc/lemon_sprite.png");
     blood1 = vita2d_load_PNG_file("app0:/assets/images/characters/npc/lemonjuice_splash.png");

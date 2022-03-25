@@ -40,6 +40,8 @@ LevelMap::LevelMap(const char *MapFilename, const char *MemFilename)
 
     killstreak_timer.delay_mills(1000);
 
+    player_ptr = nullptr;
+
 }
 
 bool LevelMap::valid_pos(int abs_x, int abs_y, int radius)

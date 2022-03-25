@@ -45,6 +45,9 @@ class LevelMap : public GamePlayObj
               player_pos_y;
 
 
+        void *player_ptr;
+
+
         unsigned int bodycount;
         unsigned int killstreak;
         Timer killstreak_timer;

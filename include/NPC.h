@@ -75,12 +75,21 @@ class NPC : public MovObj
 
         Timer spot_timer;
 
+        Timer direct_path_check_timer;
+
         Rotator rot;
 
         //When a projectile hits the ennemy
         bool is_hit;
         float hit_angle;
         int splash_x, splash_y;
+        static float constexpr right = Angle::pi/2;
+        static float constexpr left = -Angle::pi/2;
+        bool right_visible, left_visible;
+        bool right_visibility_running, left_visibility_running;
+
+
+        void check_visibility(bool &running_flag, bool &visibility_flag, float side);
 
         virtual ~NPC();
 
