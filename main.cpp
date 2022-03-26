@@ -2,18 +2,7 @@
 #include "Gamebooter.h"
 #include "Wallbuilder.h"
 #include "LevelMap.h"
-#include "Scanner.ini"
-#include "Weapons.h"
-#include "Sounds.h"
-
-
-
-unsigned int Weapons::weapon_type = 1;
-Sounds *Gamebooter::soundengine = nullptr;
-
-
-
-
+#include "Init.ini"
 
 //int LevelMap::number_of_enemies = 12;
 

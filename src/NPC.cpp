@@ -1,7 +1,10 @@
 #include <vector>
+#include <thread>
+
 #include "NPC.h"
 #include "Point_float.h"
 #include "LineVec.h"
+
 #define VISIBILITY 1
 
 
@@ -11,6 +14,7 @@ NPC::NPC()
     //ctor
     is_hit = 0;
     enemy = 1;
+    number_of_enemies++;
 }
 NPC::NPC(const char *filename, LevelMap *mymap, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0)
@@ -31,6 +35,8 @@ NPC::NPC(vita2d_texture *im, LevelMap *mymap, int num_horizontal_sprites,
 
 void NPC::init_nav_pos()
 {
+    number_of_enemies++;
+
     //reset visibility thread flags
     right_visibility_running = 0;
     left_visibility_running = 0;
@@ -148,14 +154,10 @@ void NPC::walk()
       }
     }
 
-    //checking if direct path is possible in chasing mode
+    //chasing mode checks
     else if (what_after_arrival == &NPC::is_final_dest)
     {
-        if (direct_path_check_timer.expired())
-        {
 
-            direct_path_check_timer.delay_mills(600);
-        }
     }
 
     //get the distance to move
@@ -172,6 +174,31 @@ void NPC::walk()
     }
 
         angle = rot.get_angle();
+
+    //checking if direct path is possible after coordinates has been changed
+    if (what_after_arrival != &NPC::find_next)
+    {
+        //checking every 600 ms
+        if (direct_path_check_timer.expired())
+        {
+
+            constexpr float right = Angle::pi/2;
+            constexpr float left = -Angle::pi/2;
+
+            std::thread t1(&NPC::check_visibility, this, std::ref(right_visibility_running), std::ref(right_visible), right);
+                if (t1.joinable())
+                {
+                    t1.detach();
+                }
+            std::thread t2(&NPC::check_visibility, this, std::ref(left_visibility_running), std::ref(left_visible), left);
+                if (t2.joinable())
+                {
+                    t2.detach();
+                }
+
+            direct_path_check_timer.delay_mills(600);
+        }
+    }
 }
 
 void NPC::set_roam()
@@ -201,7 +228,7 @@ void NPC::set_chase()
    //set state to chase sequence
    carry_on = &NPC::find_nearest_to_player;
 
-   //final destination is a current nav pos
+   //final destination is a target nav pos
    final_nav_pos = target_nav_pos;
 
    //what to do after arrival
@@ -274,6 +301,7 @@ void NPC::is_final_dest()
 void NPC::check_visibility(bool &running_flag, bool &visibility_flag, float side)
 {
 
+    running_flag = 1;
 
     //set start point of the line between the player and enemy
     Point_float start_p;
@@ -288,31 +316,21 @@ void NPC::check_visibility(bool &running_flag, bool &visibility_flag, float side
     //create vector between the player and enemy
     LineVec direct_line(start_p, end_p);
 
-    //create vector to point the beginning of the right visibility line
-    LineVec aux_right(start_p, radius, direct_line.angle + side);
+    //create vector to point the beginning of the visibility line
+    LineVec aux_vec(start_p, radius, direct_line.angle + side);
 
-    //set start point of the right visibility line between the player and enemy
-    Point_float aux_right_end;
-    aux_right_end.x = aux_right.x_end;
-    aux_right_end.y = aux_right.y_end;
+    //set start point of the side visibility line between the player and enemy
+    Point_float visibility_line_start;
+    visibility_line_start.x = aux_vec.x_end;
+    visibility_line_start.y = aux_vec.y_end;
 
     //creating right visibility vector
-    LineVec right_visibility_line(aux_right_end, direct_line.len, direct_line.angle);
+    LineVec visibility_vec(visibility_line_start, direct_line.len, direct_line.angle);
+
+    visibility_flag = level->levelwalls.visible(visibility_vec.x_start, visibility_vec.y_start, visibility_vec.x_end, visibility_vec.y_end);
 
 
-
-
-    //create vector to point the beginning of the left visibility line
-    LineVec aux_left(start_p, radius, direct_line.angle - side);
-
-    //set start point of the left visibility line between the player and enemy
-    Point_float aux_left_end;
-    aux_left_end.x = aux_left.x_end;
-    aux_left_end.y = aux_left.y_end;
-
-    //creating left visibility vector
-    LineVec left_visibility_line(aux_left_end, direct_line.len, direct_line.angle);
-
+    running_flag = 0;
 
 
 }

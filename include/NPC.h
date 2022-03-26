@@ -22,7 +22,8 @@ class NPC : public MovObj
                int num_vertical_sprites, int x0, int y0);
 
 
-
+        //number of enemies created
+        static unsigned int number_of_enemies;
 
         //pointer to a current action func (the func is called by it each frame from go_move)
         void ( NPC::*carry_on) ();
@@ -83,8 +84,6 @@ class NPC : public MovObj
         bool is_hit;
         float hit_angle;
         int splash_x, splash_y;
-        static float constexpr right = Angle::pi/2;
-        static float constexpr left = -Angle::pi/2;
         bool right_visible, left_visible;
         bool right_visibility_running, left_visibility_running;
 

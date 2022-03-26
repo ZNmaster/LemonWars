@@ -30,14 +30,12 @@
 	"Wallbuilder.h"
 	<iostream>
 
-1638671241 source:/home/iurii/LemonWars/main.cpp
+1648307731 source:/home/iurii/LemonWars/main.cpp
 	"Menu.h"
 	"Gamebooter.h"
 	"Wallbuilder.h"
 	"LevelMap.h"
-	"Scanner.ini"
-	"Weapons.h"
-	"Sounds.h"
+	"Init.ini"
 
 1638927707 /home/iurii/LemonWars/include/Gamebooter.h
 	"Sounds.h"
@@ -165,11 +163,14 @@
 	"MemoryAI.h"
 	"Timer.h"
 
-1640378897 source:/home/iurii/LemonWars/src/NPC.cpp
+1648308135 source:/home/iurii/LemonWars/src/NPC.cpp
 	<vector>
+	<thread>
 	"NPC.h"
+	"Point_float.h"
+	"LineVec.h"
 
-1648230385 /home/iurii/LemonWars/include/NPC.h
+1648307731 /home/iurii/LemonWars/include/NPC.h
 	<vector>
 	"MovObj.h"
 	"Timer.h"
@@ -186,11 +187,12 @@
 1638195649 source:/home/iurii/LemonWars/src/Character.cpp
 	"Character.h"
 
-1648216044 source:/home/iurii/LemonWars/src/Player.cpp
+1648308096 source:/home/iurii/LemonWars/src/Player.cpp
 	"Player.h"
 	"Scanner.h"
 	"Gamebooter.h"
 	"RNG.h"
+	"NPC.h"
 	"Angle.h"
 	<cmath>
 
@@ -343,4 +345,10 @@
 
 1640616181 /home/iurii/LemonWars/include/Splash.h
 	<MovObj.h>
+
+1648307954 /home/iurii/LemonWars/include/Init.ini
+	"Scanner.h"
+	"Weapons.h"
+	"Sounds.h"
+	"NPC.h"
 

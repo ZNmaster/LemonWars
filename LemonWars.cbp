@@ -61,6 +61,7 @@
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/GamePlayObj.h" />
 		<Unit filename="include/Gamebooter.h" />
+		<Unit filename="include/Init.ini" />
 		<Unit filename="include/Layers.h" />
 		<Unit filename="include/Letter.h" />
 		<Unit filename="include/LevelMap.h" />
@@ -82,7 +83,6 @@
 		<Unit filename="include/Rocket.h" />
 		<Unit filename="include/Rotator.h" />
 		<Unit filename="include/Scanner.h" />
-		<Unit filename="include/Scanner.ini" />
 		<Unit filename="include/Sounds.h" />
 		<Unit filename="include/SpawnPoint.h" />
 		<Unit filename="include/Splash.h" />
