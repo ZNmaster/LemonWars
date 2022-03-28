@@ -163,14 +163,14 @@
 	"MemoryAI.h"
 	"Timer.h"
 
-1648308135 source:/home/iurii/LemonWars/src/NPC.cpp
+1648397259 source:/home/iurii/LemonWars/src/NPC.cpp
 	<vector>
 	<thread>
 	"NPC.h"
 	"Point_float.h"
 	"LineVec.h"
 
-1648307731 /home/iurii/LemonWars/include/NPC.h
+1648408736 /home/iurii/LemonWars/include/NPC.h
 	<vector>
 	"MovObj.h"
 	"Timer.h"
@@ -187,16 +187,15 @@
 1638195649 source:/home/iurii/LemonWars/src/Character.cpp
 	"Character.h"
 
-1648308096 source:/home/iurii/LemonWars/src/Player.cpp
+1648397276 source:/home/iurii/LemonWars/src/Player.cpp
 	"Player.h"
 	"Scanner.h"
 	"Gamebooter.h"
 	"RNG.h"
-	"NPC.h"
 	"Angle.h"
 	<cmath>
 
-1640899800 /home/iurii/LemonWars/include/Player.h
+1648397159 /home/iurii/LemonWars/include/Player.h
 	"MovObj.h"
 	"Weapons.h"
 	"Layers.h"
@@ -216,10 +215,9 @@
 	"LevelMap.h"
 	"Timer.h"
 
-1648135428 source:/home/iurii/LemonWars/src/Common_Lemon.cpp
+1648396391 source:/home/iurii/LemonWars/src/Common_Lemon.cpp
 	"Common_Lemon.h"
 	"Splash.h"
-	"Player.h"
 
 1640904701 /home/iurii/LemonWars/include/Common_Lemon.h
 	<NPC.h>
@@ -303,14 +301,14 @@
 	<vector>
 	"LevelMap.h"
 
-1640378896 /home/iurii/LemonWars/include/MovObj.h
+1648396339 /home/iurii/LemonWars/include/MovObj.h
 	"Sprite.h"
 	"LevelMap.h"
 	"Timer.h"
 	"Pathfinder.h"
 	"NearestPoint.h"
 
-1640616079 source:/home/iurii/LemonWars/src/MovObj.cpp
+1648396339 source:/home/iurii/LemonWars/src/MovObj.cpp
 	"MovObj.h"
 
 1644768022 /home/iurii/LemonWars/include/Sounds.h

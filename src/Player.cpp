@@ -171,6 +171,12 @@ void Player::go_move()
 
 }
 
+void Player::hit(int hitpoints, float projectile_angle, int x, int y)
+{
+    terminated = 1;
+    return;
+}
+
 
 void Player::calc_stick_rad(float x, float y)
 {

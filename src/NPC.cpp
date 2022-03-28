@@ -12,9 +12,10 @@
 NPC::NPC()
 {
     //ctor
-    is_hit = 0;
+
     enemy = 1;
     number_of_enemies++;
+    fa_point_index = 100 - number_of_enemies;
 }
 NPC::NPC(const char *filename, LevelMap *mymap, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0)
@@ -37,14 +38,15 @@ void NPC::init_nav_pos()
 {
     number_of_enemies++;
 
+    //set nav point for final approach (player coord)
+    fa_point_index = 100 - number_of_enemies;
+
     //reset visibility thread flags
     right_visibility_running = 0;
     left_visibility_running = 0;
     right_visible = 0;
     left_visible = 0;
 
-
-    is_hit = 0;
     enemy = 1;
 
     //set chase mode timer
@@ -140,6 +142,40 @@ void NPC::wait_a_sec()
 
 void NPC::walk()
 {
+    //check the distance to player
+    if (distance(abs_x, abs_y, level->player_pos_x, level->player_pos_y) <= (level->touch_radius + radius))
+    {
+        Entity *player = reinterpret_cast<Entity*>(level->player_ptr);
+        player->hit(1000, 1, 5, 5);
+        //terminated = 1;
+        return;
+    }
+
+
+    if (!left_visibility_running && !right_visibility_running)
+    {
+        if (right_visible && left_visible)
+        {
+            level->levelmem.coord_x[fa_point_index] = level->player_pos_x;
+            level->levelmem.coord_y[fa_point_index] = level->player_pos_y;
+            target_nav_pos = fa_point_index;
+            current_nav_pos = fa_point_index - 1;
+            final_nav_pos = target_nav_pos;
+            carry_on = &NPC::set_path;
+            what_after_arrival = &NPC::fa_arrived;
+
+            right_visible = 0;
+            left_visible = 0;
+
+            return;
+
+        }
+        right_visible = 0;
+        left_visible = 0;
+
+    }
+
+
     //spotting enabled in roaming mode only
     if (what_after_arrival == &NPC::find_next)
     {
@@ -159,13 +195,13 @@ void NPC::walk()
     {
 
     }
-
     //get the distance to move
     move_delta = get_move_delta();
     path.move_by(move_delta);
 
     abs_x = path.current_x;
     abs_y = path.current_y;
+
 
     if (path.arrived)
     {
@@ -332,6 +368,11 @@ void NPC::check_visibility(bool &running_flag, bool &visibility_flag, float side
 
     running_flag = 0;
 
+
+}
+
+void NPC::fa_arrived()
+{
 
 }
 

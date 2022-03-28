@@ -3,6 +3,7 @@
 MovObj::MovObj()
 {
     //ctor
+    is_hit = 0;
 }
 MovObj::MovObj(const char *filename, LevelMap *mymap, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0)
@@ -22,6 +23,9 @@ MovObj::MovObj(vita2d_texture *im, LevelMap *mymap, int num_horizontal_sprites,
 
 void MovObj::set_pos(LevelMap *mymap, int x0, int y0)
 {
+  //reset hit flag
+  is_hit = 0;
+
   //save the pointer to the Map
   level = mymap;
   //start timer to count the time between the frames

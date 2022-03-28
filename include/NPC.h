@@ -24,6 +24,8 @@ class NPC : public MovObj
 
         //number of enemies created
         static unsigned int number_of_enemies;
+        //final approach index
+        int fa_point_index;
 
         //pointer to a current action func (the func is called by it each frame from go_move)
         void ( NPC::*carry_on) ();
@@ -81,7 +83,6 @@ class NPC : public MovObj
         Rotator rot;
 
         //When a projectile hits the ennemy
-        bool is_hit;
         float hit_angle;
         int splash_x, splash_y;
         bool right_visible, left_visible;
@@ -89,6 +90,7 @@ class NPC : public MovObj
 
 
         void check_visibility(bool &running_flag, bool &visibility_flag, float side);
+        void fa_arrived();
 
         virtual ~NPC();
 
