@@ -157,7 +157,7 @@
 	"LevelMap.h"
 	<fstream>
 
-1648215777 /home/iurii/LemonWars/include/LevelMap.h
+1648561211 /home/iurii/LemonWars/include/LevelMap.h
 	"GamePlayObj.h"
 	"Wallbuilder.h"
 	"MemoryAI.h"
@@ -170,7 +170,7 @@
 	"Point_float.h"
 	"LineVec.h"
 
-1648408736 /home/iurii/LemonWars/include/NPC.h
+1648561211 /home/iurii/LemonWars/include/NPC.h
 	<vector>
 	"MovObj.h"
 	"Timer.h"
@@ -344,9 +344,8 @@
 1640616181 /home/iurii/LemonWars/include/Splash.h
 	<MovObj.h>
 
-1648307954 /home/iurii/LemonWars/include/Init.ini
+1648561211 /home/iurii/LemonWars/include/Init.ini
 	"Scanner.h"
 	"Weapons.h"
 	"Sounds.h"
-	"NPC.h"
 

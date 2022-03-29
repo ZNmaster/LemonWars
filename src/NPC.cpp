@@ -14,8 +14,11 @@ NPC::NPC()
     //ctor
 
     enemy = 1;
-    number_of_enemies++;
-    fa_point_index = 100 - number_of_enemies;
+    level->number_of_enemies_spawned++;
+
+    //set nav point for final approach (player coord)
+    fa_point_index = 100 - level->number_of_enemies_spawned;
+
 }
 NPC::NPC(const char *filename, LevelMap *mymap, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0)
@@ -36,10 +39,10 @@ NPC::NPC(vita2d_texture *im, LevelMap *mymap, int num_horizontal_sprites,
 
 void NPC::init_nav_pos()
 {
-    number_of_enemies++;
+    level->number_of_enemies_spawned++;
 
     //set nav point for final approach (player coord)
-    fa_point_index = 100 - number_of_enemies;
+    fa_point_index = 100 - level->number_of_enemies_spawned;
 
     //reset visibility thread flags
     right_visibility_running = 0;

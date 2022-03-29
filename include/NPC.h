@@ -21,9 +21,6 @@ class NPC : public MovObj
         NPC(vita2d_texture *im, LevelMap *mymap, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0);
 
-
-        //number of enemies created
-        static unsigned int number_of_enemies;
         //final approach index
         int fa_point_index;
 
