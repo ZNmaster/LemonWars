@@ -296,7 +296,7 @@ void NPC::set_chase()
 
    //what to do after arrival
    what_after_arrival = &NPC::is_final_dest;
-   speed = 250;
+   speed = 100;
 }
 
 void NPC::stop_animation()
@@ -400,7 +400,9 @@ void NPC::check_visibility(bool &running_flag, bool &visibility_flag, float side
 
 void NPC::fa_arrived()
 {
-
+   direct_path_check_timer.make_expired();
+   set_new_direct();
+   run_direct_path_check();
 }
 
 
