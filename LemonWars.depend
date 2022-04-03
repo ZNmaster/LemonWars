@@ -92,10 +92,10 @@
 	<sstream>
 	"LevelMap.h"
 
-1637862660 source:/home/iurii/LemonWars/src/Timer.cpp
+1649004062 source:/home/iurii/LemonWars/src/Timer.cpp
 	"Timer.h"
 
-1637862660 /home/iurii/LemonWars/include/Timer.h
+1649004062 /home/iurii/LemonWars/include/Timer.h
 	<chrono>
 
 1648992156 source:/home/iurii/LemonWars/src/Entity.cpp
@@ -163,7 +163,7 @@
 	"MemoryAI.h"
 	"Timer.h"
 
-1648397259 source:/home/iurii/LemonWars/src/NPC.cpp
+1648992814 source:/home/iurii/LemonWars/src/NPC.cpp
 	<vector>
 	<thread>
 	"NPC.h"

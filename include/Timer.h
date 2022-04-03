@@ -7,7 +7,7 @@ class Timer
     public:
         Timer();
         ~Timer();
-        std::chrono::high_resolution_clock::time_point starttime, endtime, delay_starttime, delay_endtime;
+        std::chrono::high_resolution_clock::time_point creation_time, starttime, endtime, delay_starttime, delay_endtime;
         void start();
         void stop();
         unsigned int delay_ms;
@@ -20,6 +20,7 @@ class Timer
 
         void delay_mills (unsigned int delay);
         bool expired();
+        void make_expired();
 
     protected:
 

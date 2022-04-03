@@ -106,7 +106,14 @@ void NPC::find_nearest()
 
   if (level->levelmem.distance[final_nav_pos][second_nearest] < level->levelmem.distance[final_nav_pos][target_nav_pos])
   {
-      target_nav_pos = second_nearest;
+      int x2 = level->levelmem.coord_x[second_nearest];
+      int y2 = level->levelmem.coord_y[second_nearest];
+
+      if (level->levelwalls.visible(abs_x, abs_y, x2, y2))
+      {
+         target_nav_pos = second_nearest;
+      }
+
   }
 
   carry_on = &NPC::set_path;
