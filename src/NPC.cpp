@@ -19,6 +19,7 @@ NPC::NPC()
     //set nav point for final approach (player coord)
     fa_point_index = 100 - level->number_of_enemies_spawned;
 
+
 }
 NPC::NPC(const char *filename, LevelMap *mymap, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0)
@@ -39,6 +40,7 @@ NPC::NPC(vita2d_texture *im, LevelMap *mymap, int num_horizontal_sprites,
 
 void NPC::init_nav_pos()
 {
+    direct_path_check_delay = 600;
     level->number_of_enemies_spawned++;
 
     //set nav point for final approach (player coord)
@@ -53,7 +55,7 @@ void NPC::init_nav_pos()
     enemy = 1;
 
     //set chase mode timer
-    direct_path_check_timer.delay_mills(600);
+    direct_path_check_timer.delay_mills(direct_path_check_delay);
 
     //set current nav pos to none
     current_nav_pos = -1;
@@ -154,30 +156,8 @@ void NPC::walk()
         return;
     }
 
-
-    if (!left_visibility_running && !right_visibility_running)
-    {
-        if (right_visible && left_visible)
-        {
-            level->levelmem.coord_x[fa_point_index] = level->player_pos_x;
-            level->levelmem.coord_y[fa_point_index] = level->player_pos_y;
-            target_nav_pos = fa_point_index;
-            current_nav_pos = fa_point_index - 1;
-            final_nav_pos = target_nav_pos;
-            carry_on = &NPC::set_path;
-            what_after_arrival = &NPC::fa_arrived;
-
-            right_visible = 0;
-            left_visible = 0;
-
-            return;
-
-        }
-        right_visible = 0;
-        left_visible = 0;
-
-    }
-
+    //set direct path if possible
+    set_new_direct();
 
     //spotting enabled in roaming mode only
     if (what_after_arrival == &NPC::find_next)
@@ -217,10 +197,48 @@ void NPC::walk()
     //checking if direct path is possible after coordinates has been changed
     if (what_after_arrival != &NPC::find_next)
     {
-        //checking every 600 ms
+        run_direct_path_check();
+    }
+}
+
+void NPC::set_new_direct()
+{
+    if (!left_visibility_running && !right_visibility_running)
+    {
+        if (right_visible && left_visible)
+        {
+            level->levelmem.coord_x[fa_point_index] = level->player_pos_x;
+            level->levelmem.coord_y[fa_point_index] = level->player_pos_y;
+            target_nav_pos = fa_point_index;
+            current_nav_pos = fa_point_index - 1;
+            final_nav_pos = target_nav_pos;
+            carry_on = &NPC::set_path;
+            what_after_arrival = &NPC::fa_arrived;
+
+            right_visible = 0;
+            left_visible = 0;
+
+            return;
+
+        }
+        right_visible = 0;
+        left_visible = 0;
+
+    }
+}
+
+void NPC::run_direct_path_check()
+{
+    //checking every time indicated by variable direct_path_check_delay (600 or 300 ms)
         if (direct_path_check_timer.expired())
         {
 
+            float direct_path_check_treshold = 240;
+
+            if ((distance(level->player_pos_x, level->player_pos_y) < direct_path_check_treshold) && (direct_path_check_delay > 300))
+            {
+                direct_path_check_delay = 300;
+            }
             constexpr float right = Angle::pi/2;
             constexpr float left = -Angle::pi/2;
 
@@ -235,9 +253,8 @@ void NPC::walk()
                     t2.detach();
                 }
 
-            direct_path_check_timer.delay_mills(600);
+            direct_path_check_timer.delay_mills(direct_path_check_delay);
         }
-    }
 }
 
 void NPC::set_roam()
@@ -272,7 +289,7 @@ void NPC::set_chase()
 
    //what to do after arrival
    what_after_arrival = &NPC::is_final_dest;
-   speed = 200;
+   speed = 250;
 }
 
 void NPC::stop_animation()

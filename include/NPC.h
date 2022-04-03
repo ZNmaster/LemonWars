@@ -52,6 +52,9 @@ class NPC : public MovObj
         //init pathfinder ant set a path to a target nav point
         void set_path();
 
+        void run_direct_path_check();
+        void set_new_direct();
+
         virtual void stop_animation();
 
         //target nav point
@@ -76,6 +79,7 @@ class NPC : public MovObj
         Timer spot_timer;
 
         Timer direct_path_check_timer;
+        unsigned int direct_path_check_delay;
 
         Rotator rot;
 
