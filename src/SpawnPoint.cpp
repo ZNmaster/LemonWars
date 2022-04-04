@@ -8,6 +8,8 @@ SpawnPoint::SpawnPoint()
 
 SpawnPoint::SpawnPoint(int x, int y, std::vector<Entity *> *obj)
 {
+    number_of_spawn_points ++;
+
     visibility_distance = 500;
     activated = 0;
     spawned = 0;
@@ -76,5 +78,7 @@ SpawnPoint::~SpawnPoint()
     vita2d_free_texture (image);
     vita2d_free_texture (enemy1);
     vita2d_free_texture (blood1);
+
+    number_of_spawn_points--;
 
 }

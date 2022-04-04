@@ -155,11 +155,11 @@ void NPC::wait_a_sec()
 void NPC::walk()
 {
     //check the distance to player
-    if (distance(abs_x, abs_y, level->player_pos_x, level->player_pos_y) <= (level->touch_radius + radius))
+    if (distance(abs_x, abs_y, level->player_pos_x, level->player_pos_y) <= (50))
     {
         Entity *player = reinterpret_cast<Entity*>(level->player_ptr);
         player->hit(1000, 1, 5, 5);
-        //terminated = 1;
+
         return;
     }
 
@@ -221,6 +221,7 @@ void NPC::set_new_direct()
             final_nav_pos = target_nav_pos;
             carry_on = &NPC::set_path;
             what_after_arrival = &NPC::fa_arrived;
+            spot_timer.delay_mills(2500);
 
             right_visible = 0;
             left_visible = 0;
@@ -400,9 +401,14 @@ void NPC::check_visibility(bool &running_flag, bool &visibility_flag, float side
 
 void NPC::fa_arrived()
 {
+   move_delta = get_move_delta();
    direct_path_check_timer.make_expired();
    set_new_direct();
    run_direct_path_check();
+   if (spot_timer.expired())
+   {
+       set_roam();
+   }
 }
 
 

@@ -59,5 +59,6 @@ bool Timer::expired()
 
 void Timer::make_expired()
 {
+    delay_ms = 1;
     delay_starttime = creation_time;
 }

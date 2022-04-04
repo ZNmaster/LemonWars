@@ -34,6 +34,8 @@ class SpawnPoint : public Entity
         //number of enemies to spawn
         int number_of_enemies;
 
+        static unsigned int number_of_spawn_points;
+
 
         virtual ~SpawnPoint();
 
