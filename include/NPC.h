@@ -33,6 +33,9 @@ class NPC : public MovObj
         //find nearest nav point to current object
         void find_nearest();
 
+        //finds a nav point where to go
+        virtual void where_to_go();
+
         //find nearest nav point to player
         void find_nearest_to_player();
 
@@ -86,8 +89,13 @@ class NPC : public MovObj
         //When a projectile hits the ennemy
         float hit_angle;
         int splash_x, splash_y;
+
+        //visibility check flags
         bool right_visible, left_visible;
         bool right_visibility_running, left_visibility_running;
+
+        //nearest point checks flags
+        bool find_nearest_running;
 
 
         void check_visibility(bool &running_flag, bool &visibility_flag, float side);

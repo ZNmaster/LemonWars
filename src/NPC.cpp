@@ -52,6 +52,9 @@ void NPC::init_nav_pos()
     right_visible = 0;
     left_visible = 0;
 
+    //reset find nearest flags
+    find_nearest_running = 0;
+
     enemy = 1;
 
     //set chase mode timer
@@ -101,28 +104,48 @@ void NPC::set_path()
 void NPC::find_nearest()
 {
 
-  target_nav_pos = find_nearest_to(abs_x, abs_y, p_vec);
-
-
-  if (level->levelmem.distance[final_nav_pos][second_nearest] < level->levelmem.distance[final_nav_pos][target_nav_pos])
+  //vector of visible points;
+  std::vector<Point_int> visible_points;
+  for (auto point : p_vec)
   {
-      int x2 = level->levelmem.coord_x[second_nearest];
-      int y2 = level->levelmem.coord_y[second_nearest];
-
-      if (level->levelwalls.visible(abs_x, abs_y, x2, y2))
+      if (level->levelwalls.visible(abs_x, abs_y, point.x, point.y))
       {
-         target_nav_pos = second_nearest;
+          visible_points.push_back(point);
       }
+  }
 
+  target_nav_pos = find_nearest_to(abs_x, abs_y, visible_points);
+
+  //set second nearest
+  if ( (level->levelmem.distance[final_nav_pos][second_nearest] < level->levelmem.distance[final_nav_pos][target_nav_pos])
+        && (what_after_arrival == &NPC::is_final_dest)
+     )
+  {
+         target_nav_pos = second_nearest;
   }
 
   carry_on = &NPC::set_path;
+  find_nearest_running = 0;
+}
+
+void NPC::where_to_go()
+{
+    if (!find_nearest_running)
+    {
+        find_nearest_running = 1;
+        std::thread t1(&NPC::find_nearest, this);
+        if (t1.joinable())
+        {
+            t1.detach();
+        }
+    }
+
 }
 
 void NPC::find_nearest_to_player()
 {
     final_nav_pos = find_nearest_to(level->player_pos_x, level->player_pos_y, p_vec);
-    carry_on = &NPC::find_nearest;
+    carry_on = &NPC::where_to_go;
 }
 
 void NPC::find_next()
@@ -277,7 +300,7 @@ void NPC::set_roam()
     final_nav_pos = 0;
 
     //first action is find nearest
-    carry_on = &NPC::find_nearest;
+    carry_on = &NPC::where_to_go;
 
     //
     what_after_arrival = &NPC::find_next;
