@@ -104,25 +104,56 @@ void NPC::set_path()
 void NPC::find_nearest()
 {
 
-  //vector of visible points;
-  std::vector<Point_int> visible_points;
-  for (auto point : p_vec)
-  {
-      if (level->levelwalls.visible(abs_x, abs_y, point.x, point.y))
+  target_nav_pos = find_nearest_to(abs_x, abs_y, p_vec);
+
+
+  //when the nearest point visible
+  if (level->levelwalls.visible(abs_x, abs_y, p_vec[target_nav_pos].x, p_vec[target_nav_pos].y))
       {
-          visible_points.push_back(point);
+        //set second nearest if needed
+        if (
+          //when the distance to final nav pos from second nearest is less than that from nearest
+          (level->levelmem.distance[final_nav_pos][second_nearest] < level->levelmem.distance[final_nav_pos][target_nav_pos])
+            //in chasing mode only
+            && (what_after_arrival == &NPC::is_final_dest)
+           )
+
+            //second nearest visible
+            if(level->levelwalls.visible(abs_x, abs_y, p_vec[second_nearest].x, p_vec[second_nearest].y))
+            {
+               target_nav_pos = second_nearest;
+            }
       }
-  }
+    // the nearest is not visible
+    else
+        {
+            //second nearest visible
+            if(level->levelwalls.visible(abs_x, abs_y, p_vec[second_nearest].x, p_vec[second_nearest].y))
+            {
+               target_nav_pos = second_nearest;
+            }
+            //second nearest not visible
+            else
+            {
+                if(level->levelwalls.visible(abs_x, abs_y, p_vec[third_nearest].x, p_vec[third_nearest].y))
+                {
+                   target_nav_pos = third_nearest;
+                }
 
-  target_nav_pos = find_nearest_to(abs_x, abs_y, visible_points);
-
-  //set second nearest
-  if ( (level->levelmem.distance[final_nav_pos][second_nearest] < level->levelmem.distance[final_nav_pos][target_nav_pos])
-        && (what_after_arrival == &NPC::is_final_dest)
-     )
-  {
-         target_nav_pos = second_nearest;
-  }
+                //if third nearest is not visible then set any visible
+                else
+                {
+                    for (std::vector<Point_int>::size_type i = 0; i < p_vec.size(); i++)
+                    {
+                        if(level->levelwalls.visible(abs_x, abs_y, p_vec[i].x, p_vec[i].y))
+                           {
+                               target_nav_pos = i;
+                               break;
+                           }
+                    }
+                }
+            }
+        }
 
   carry_on = &NPC::set_path;
   find_nearest_running = 0;
