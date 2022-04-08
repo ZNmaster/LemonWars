@@ -8,6 +8,7 @@
 Projectile::Projectile()
 {
     //ctor
+    hitcheck_running = 0;
 }
 
 Projectile::Projectile(vita2d_texture *im, LevelMap *mymap, std::vector<Entity*> *objvec, int x0, int y0, float rad)
@@ -24,6 +25,9 @@ Projectile::Projectile(const char *filename, LevelMap *mymap, std::vector<Entity
 
 void Projectile::set_scene (std::vector<Entity*> *objvec, float rad)
 {
+
+   //reset hitcheck running flag
+   hitcheck_running = 0;
 
    obj = objvec;
    speed = 500;
@@ -141,4 +145,12 @@ void Projectile::hitcheck()
 Projectile::~Projectile()
 {
     //dtor
+
+        //wait until the threads finish the job
+
+    while (hitcheck_running)
+    {
+        std::this_thread::sleep_for (std::chrono::milliseconds(10));
+    }
+
 }

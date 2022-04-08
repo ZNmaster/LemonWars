@@ -1,5 +1,6 @@
 #include <vector>
 #include <thread>
+#include <chrono>
 
 #include "NPC.h"
 #include "Point_float.h"
@@ -304,12 +305,12 @@ void NPC::run_direct_path_check()
             constexpr float right = Angle::pi/2;
             constexpr float left = -Angle::pi/2;
 
-            std::thread t1(&NPC::check_visibility, this, std::ref(right_visibility_running), std::ref(right_visible), right);
+            std::thread t1(&NPC::check_visibility, this, &right_visibility_running, &right_visible, right);
                 if (t1.joinable())
                 {
                     t1.detach();
                 }
-            std::thread t2(&NPC::check_visibility, this, std::ref(left_visibility_running), std::ref(left_visible), left);
+            std::thread t2(&NPC::check_visibility, this, &left_visibility_running, &left_visible, left);
                 if (t2.joinable())
                 {
                     t2.detach();
@@ -363,8 +364,6 @@ bool NPC::spotted()
 {
     //we're gonna add some code for distance and the angle of view here
 
-
-
     if(level->levelwalls.visible(abs_x, abs_y, level->player_pos_x, level->player_pos_y))
     {
         return 1;
@@ -416,10 +415,10 @@ void NPC::is_final_dest()
     }
 }
 
-void NPC::check_visibility(bool &running_flag, bool &visibility_flag, float side)
+void NPC::check_visibility(volatile bool *running_flag, volatile bool *visibility_flag, float side)
 {
 
-    running_flag = 1;
+    *running_flag = 1;
 
     //set start point of the line between the player and enemy
     Point_float start_p;
@@ -445,10 +444,10 @@ void NPC::check_visibility(bool &running_flag, bool &visibility_flag, float side
     //creating right visibility vector
     LineVec visibility_vec(visibility_line_start, direct_line.len, direct_line.angle);
 
-    visibility_flag = level->levelwalls.visible(visibility_vec.x_start, visibility_vec.y_start, visibility_vec.x_end, visibility_vec.y_end);
+    *visibility_flag = level->levelwalls.visible(visibility_vec.x_start, visibility_vec.y_start, visibility_vec.x_end, visibility_vec.y_end);
 
 
-    running_flag = 0;
+    *running_flag = 0;
 
 
 }
@@ -469,4 +468,12 @@ void NPC::fa_arrived()
 NPC::~NPC()
 {
     //dtor
+
+    //wait until the threads finish the job
+
+    while (right_visibility_running || left_visibility_running || find_nearest_running)
+    {
+        std::this_thread::sleep_for (std::chrono::milliseconds(10));
+    }
+
 }

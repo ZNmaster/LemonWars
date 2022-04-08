@@ -91,14 +91,14 @@ class NPC : public MovObj
         int splash_x, splash_y;
 
         //visibility check flags
-        bool right_visible, left_visible;
-        bool right_visibility_running, left_visibility_running;
+        bool volatile right_visible, left_visible;
+        bool volatile right_visibility_running, left_visibility_running;
 
         //nearest point checks flags
-        bool find_nearest_running;
+        bool volatile find_nearest_running;
 
 
-        void check_visibility(bool &running_flag, bool &visibility_flag, float side);
+        void check_visibility(volatile bool *running_flag, volatile bool *visibility_flag, float side);
         void fa_arrived();
 
         virtual ~NPC();
