@@ -1,4 +1,6 @@
 #include "LineVec.h"
+#include "Geometry.h"
+
 #include <cmath>
 
 
@@ -60,6 +62,24 @@ void LineVec::calcline(float length, float rad)
             angle = pi - angle;
         }
 }*/
+
+
+LineVec LineVec::operator +(LineVec b)
+{
+    EPoint_float start_point(x_start, y_start);
+
+    float delta_x = b.x_end - b.x_start;
+    float delta_y = b.y_end - b.y_start;
+
+    Point_float end_point;
+    end_point.x = x_end + delta_x;
+    end_point.y = y_end + delta_y;
+
+    LineVec result_vec(start_point, end_point);
+
+
+    return result_vec;
+}
 
 LineVec::~LineVec()
 {

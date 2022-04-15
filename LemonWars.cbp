@@ -61,6 +61,7 @@
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/GamePlayObj.h" />
 		<Unit filename="include/Gamebooter.h" />
+		<Unit filename="include/Geometry.h" />
 		<Unit filename="include/Init.ini" />
 		<Unit filename="include/Layers.h" />
 		<Unit filename="include/Letter.h" />
@@ -98,6 +99,7 @@
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/GamePlayObj.cpp" />
 		<Unit filename="src/Gamebooter.cpp" />
+		<Unit filename="src/Geometry.cpp" />
 		<Unit filename="src/Letter.cpp" />
 		<Unit filename="src/LevelMap.cpp" />
 		<Unit filename="src/Levels.cpp" />
