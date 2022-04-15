@@ -218,9 +218,6 @@ void NPC::walk()
         return;
     }
 
-    //set direct path if possible
-    set_new_direct();
-
     //spotting enabled in roaming mode only
     if (what_after_arrival == &NPC::find_next)
     {
@@ -255,6 +252,9 @@ void NPC::walk()
     }
 
         angle = rot.get_angle();
+
+    //set direct path if possible
+    set_new_direct();
 
     //checking if direct path is possible after coordinates has been changed
     if (what_after_arrival != &NPC::find_next)

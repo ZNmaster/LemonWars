@@ -38,6 +38,10 @@ float Rotator::get_angle()
 {
     if (finished)
     {
+        if (abs(current_angle) > 4)
+        {
+            current_angle = alt_angle(current_angle);
+        }
         return current_angle;
     }
 
