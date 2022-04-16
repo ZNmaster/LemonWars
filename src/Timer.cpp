@@ -2,8 +2,8 @@
 
 Timer::Timer()
 {
-    delay_mills(200);
     creation_time = std::chrono::high_resolution_clock::now();
+    delay_mills(200);
     //ctor
 }
 

@@ -44,18 +44,13 @@ bool Game::StartGame()
 
 {
 
-    scanner = new Scanner;
-    scanner->Scan();
+    Scanner scanner;
+    scanner.Scan();
 
 
     while (!draw_frame(layers))
     {
-
-     if (scanner)
-     {
-         scanner->Scan();
-     }
-
+         scanner.Scan();
     }
 
     GPU_finish();
@@ -63,10 +58,6 @@ bool Game::StartGame()
     free_textures(layers.layer1_obj);
 
 
-    if (scanner)
-    {
-        delete scanner;
-    }
     return 0;
 
 }

@@ -44,8 +44,6 @@ class Base_Init
 
         Layers layers;
 
-        //input scanner
-        Scanner *scanner;
 
         Timer grid_toggle_timer;
 

@@ -3,6 +3,8 @@
 
 SpawnPoint::SpawnPoint()
 {
+    activated = 0;
+    spawned = 0;
     //ctor
 }
 
@@ -68,6 +70,7 @@ void SpawnPoint::go_move()
         {
             spawned = 1;
             delete enemy_spawn_timer;
+            enemy_spawn_timer = nullptr;
         }
     }
 }
@@ -80,5 +83,10 @@ SpawnPoint::~SpawnPoint()
     vita2d_free_texture (blood1);
 
     number_of_spawn_points--;
+
+    if (enemy_spawn_timer)
+    {
+        delete enemy_spawn_timer;
+    }
 
 }

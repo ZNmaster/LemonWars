@@ -74,25 +74,24 @@ Menu::Menu()
 bool Menu::MenuRun()
 {
 
-    scanner = new Scanner;
-    scanner->stick_nav = 1;
-    scanner->Scan();
+    Scanner scanner;
+    scanner.stick_nav = 1;
+    scanner.Scan();
 
     while (!draw_frame(layers.layer0_obj))
     {
 
-     if (scanner)
-     {
-         scanner->Scan();
-     }
+
+     scanner.Scan();
+
 
      //entering active menu item
      if (Scanner::go_pressed && current >0)
      {
          menuitem[current]->started = 1;
 
-         delete scanner;
-         scanner = nullptr;
+         scanner.Block();
+
      }
 
      //touch screen scan
@@ -103,8 +102,8 @@ bool Menu::MenuRun()
          for (int i=1; i<=menu_item_count; i++)
          {
              //checking the coordinates
-             if (scanner->front_touch_point_x > menuitem[i]->pos_x && scanner->front_touch_point_x < (menuitem[i]->pos_x + menuitem[i]->loaded_image_res_x) &&
-                 scanner->front_touch_point_y > menuitem[i]->pos_y && scanner->front_touch_point_y < (menuitem[i]->pos_y + menuitem[i]->loaded_image_res_y))
+             if (scanner.front_touch_point_x > menuitem[i]->pos_x && scanner.front_touch_point_x < (menuitem[i]->pos_x + menuitem[i]->loaded_image_res_x) &&
+                 scanner.front_touch_point_y > menuitem[i]->pos_y && scanner.front_touch_point_y < (menuitem[i]->pos_y + menuitem[i]->loaded_image_res_y))
                  {
 
                     //if a menu item is not selected we do not change the flag
@@ -113,8 +112,9 @@ bool Menu::MenuRun()
                     current = menuitem[i]->item_num;
                     menuitem[current]->waved = 1;
                     menuitem[current]->started = 1;
-                    delete scanner;
-                    scanner = nullptr;
+
+                    scanner.Block();
+
                     break;
                  }
          }
@@ -132,10 +132,6 @@ bool Menu::MenuRun()
     GPU_finish();
     free_textures(layers.layer0_obj);
 
-    if (scanner)
-    {
-        delete scanner;
-    }
 
         StartActiveMenuItem = MenuFuncPtr[current];
 

@@ -13,9 +13,6 @@ Gamebooter::Gamebooter()
     //GPU initialization
     GPU_init();
 
-    //Input scanner
-    scanner = new Scanner;
-    scanner->Scan();
 
     // create obj title screen and rocket
 
@@ -35,6 +32,9 @@ void Gamebooter::Play()
     //soloud
 
     //s.SoloudSound.play(background_music);
+
+    Scanner *scanner = new Scanner;
+
 
 
     // draw a new frame until any game object tells us to stop

@@ -5,6 +5,7 @@
 Scanner::Scanner()
 {
     //ctor
+    blocked = 0;
     ResetAll();
     memset(&pad, 0, sizeof(pad));
 
@@ -73,6 +74,8 @@ void Scanner::ResetAll()
 void Scanner::Scan()
 {
     ResetAll();
+
+    if (blocked) return;
 
     sceCtrlPeekBufferPositive(0, &pad, 1);
     sceTouchPeek(0, &touch, 1);
@@ -206,6 +209,16 @@ void Scanner::calc_stick_relative(Point_int stick, float &stick_x, float &stick_
         }
     }
 
+}
+
+void Scanner::Block()
+{
+    blocked = 1;
+}
+
+void Scanner::Deblock()
+{
+    blocked = 0;
 }
 
 Scanner::~Scanner()

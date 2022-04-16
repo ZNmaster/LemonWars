@@ -37,6 +37,9 @@ class Scanner
 
         void ResetAll();
 
+        void Block();
+        void Deblock();
+
         SceCtrlData pad;
         SceTouchData touch;
 
@@ -55,6 +58,8 @@ class Scanner
 
         //the number of pressed D-pad buttons
         int count_pressed;
+
+        bool blocked;
 
 
 };
