@@ -91,6 +91,8 @@ void Projectile::set_path()
 
 void Projectile::fly()
 {
+
+    hitcheck_running = 1;
     std::thread t1(&Projectile::hitcheck, this);
     if (t1.joinable())
     {
@@ -125,6 +127,8 @@ void Projectile::go_move()
 
 void Projectile::hitcheck()
 {
+    hitcheck_running = 1;
+
     for(auto it = obj->begin() + 1; it < obj->end(); it++)
     {
 
@@ -140,6 +144,8 @@ void Projectile::hitcheck()
 
         }
     }
+
+    hitcheck_running = 0;
 }
 
 Projectile::~Projectile()

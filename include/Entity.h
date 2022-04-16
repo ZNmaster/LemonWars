@@ -76,6 +76,8 @@ class Entity
         //flag to tell if we need to move the entity from one layer to another
         bool move_it;
 
+        static unsigned int number_of_entities;
+
 
     protected:
 

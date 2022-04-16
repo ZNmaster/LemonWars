@@ -163,7 +163,11 @@ bool Base_Init::draw_frame(std::vector<Entity *> obj)
 bool Base_Init::show(std::vector<Entity *> obj)
 {
 
+
+
      //taking object pointers one by one and drawing their images
+
+
         for (auto objimage : obj)
         {
 
@@ -252,6 +256,11 @@ bool Base_Init::show(std::vector<Entity *> obj)
              }*/
 
         }
+
+     //debug
+     std::stringstream oo;
+     oo << "Etities: " << Entity::number_of_entities;
+     vita2d_pvf_draw_text(pvf, 50, 200, RGBA8(0,255,0,255), 1.0f, oo.str().c_str());
 
         return 0;
 }

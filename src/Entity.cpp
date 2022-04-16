@@ -4,6 +4,8 @@
 
 Entity::Entity()
 {
+
+    number_of_entities ++;
     //reset flags, factors and coordinates
 
     //int and float
@@ -44,6 +46,8 @@ Entity::Entity(int a)
 
 Entity::~Entity()
 {
+
+    number_of_entities --;
     //dtor
 
 }

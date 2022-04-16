@@ -305,6 +305,10 @@ void NPC::run_direct_path_check()
             constexpr float right = Angle::pi/2;
             constexpr float left = -Angle::pi/2;
 
+
+            right_visibility_running = 1;
+            left_visibility_running = 1;
+
             std::thread t1(&NPC::check_visibility, this, &right_visibility_running, &right_visible, right);
                 if (t1.joinable())
                 {
