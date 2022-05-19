@@ -8,6 +8,8 @@
 #include "Scanner.h"
 #include "Layers.h"
 
+#include "Debug_Log.h"
+
 //#include <vita2d.h>
 
 
@@ -46,10 +48,6 @@ class Base_Init
 
 
         Timer grid_toggle_timer;
-
-        //vita2d_texture *loaded_image;
-
-
 
 
     protected:

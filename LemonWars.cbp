@@ -57,6 +57,7 @@
 		<Unit filename="include/Angle.h" />
 		<Unit filename="include/Base_Init.h" />
 		<Unit filename="include/Common_Lemon.h" />
+		<Unit filename="include/Debug_Log.h" />
 		<Unit filename="include/Entity.h" />
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/GamePlayObj.h" />
@@ -95,6 +96,7 @@
 		<Unit filename="src/Angle.cpp" />
 		<Unit filename="src/Base_Init.cpp" />
 		<Unit filename="src/Common_Lemon.cpp" />
+		<Unit filename="src/Debug_Log.cpp" />
 		<Unit filename="src/Entity.cpp" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/GamePlayObj.cpp" />

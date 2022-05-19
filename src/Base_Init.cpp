@@ -4,8 +4,11 @@
 #include <cmath>
 #include <sstream>
 
+
+
 //debug
 #include "LevelMap.h"
+#include "Player.h"
 
 
 Base_Init::Base_Init()
@@ -17,8 +20,6 @@ Base_Init::Base_Init()
     layers.layer0_obj.reserve(1000);
     layers.layer1_obj.reserve(1000);
 
-    //loaded_image = nullptr;
-    //ctor
 }
 
 void Base_Init::GPU_init(unsigned int megabytes)
@@ -45,7 +46,7 @@ void Base_Init::GPU_finish()
     //stop drawing
     vita2d_wait_rendering_done();
     vita2d_fini();
-    //vita2d_free_pvf(pvf);
+    vita2d_free_pvf(pvf);
 }
 
 void Base_Init::draw_grid()
@@ -109,6 +110,7 @@ void Base_Init::draw_grid(int stride)
 
 bool Base_Init::draw_frame(Layers &lay)
 {
+
         vita2d_start_drawing();
 		vita2d_clear_screen();
 
@@ -125,6 +127,8 @@ bool Base_Init::draw_frame(Layers &lay)
         vita2d_end_drawing();
         vita2d_swap_buffers();
 
+
+        //moving images layer down
         for(auto it = lay.layer1_obj.begin() + 1; it < lay.layer1_obj.end(); it++)
         {
             if ((*it)->move_it)
@@ -142,6 +146,7 @@ bool Base_Init::draw_frame(Layers &lay)
 
 bool Base_Init::draw_frame(std::vector<Entity *> obj)
 {
+
         //calling funcs at the start of each frame
         vita2d_start_drawing();
 		vita2d_clear_screen();
@@ -163,13 +168,12 @@ bool Base_Init::draw_frame(std::vector<Entity *> obj)
 bool Base_Init::show(std::vector<Entity *> obj)
 {
 
-
-
      //taking object pointers one by one and drawing their images
-
 
         for (auto objimage : obj)
         {
+
+         if (!objimage->image) continue;
 
          if (!objimage->dead)
          {
@@ -202,65 +206,88 @@ bool Base_Init::show(std::vector<Entity *> obj)
                    // check if the object is partial and scaled
                    if (objimage->scaled)
                    {
+                       //debug_file.log("drawing partial scaled");
+                       //debug_file.writedown();
+
                        vita2d_draw_texture_part_scale(objimage->image, objimage->pos_x, objimage->pos_y,
                                             objimage->part_x, objimage->part_y,
                                             objimage->res_of_sprites_x,
                                             objimage->res_of_sprites_y, objimage->k_x, objimage->k_y);
+
+                      //debug_file.log("finished drawing partial scaled");
+                      //debug_file.writedown();
                    }
 
                    else if (objimage->angle != 0)
                    {
+                       //debug_file.log("drawing partial scaled rotated");
+                       //debug_file.writedown();
+
+
                        vita2d_draw_texture_part_scale_rotate(objimage->image, objimage->pos_x+(objimage->res_of_sprites_x / 2), objimage->pos_y+(objimage->res_of_sprites_y / 2),
                                             objimage->part_x, objimage->part_y,
                                             objimage->res_of_sprites_x,
                                             objimage->res_of_sprites_y, 1, 1, objimage->angle);
+
+                       //debug_file.log("finished drawing partial scaled rotated");
+                       //debug_file.writedown();
                    }
 
                    // check if the object is only partial
                    else
 
                    {
+                       //debug_file.log("drawing partial");
+                       //debug_file.writedown();
+
                        vita2d_draw_texture_part(objimage->image, objimage->pos_x, objimage->pos_y,
                                             objimage->part_x, objimage->part_y,
                                             objimage->res_of_sprites_x,
                                             objimage->res_of_sprites_y);
 
-
+                       //debug_file.log("finished drawing partial");
+                       //debug_file.writedown();
                    }
                 }
                 // check if the object needs the waved effect enabled
                 else if (objimage->waved)
                    {
+                       //debug_file.log("drawing waved");
+                       //debug_file.writedown();
+
                        draw_texture_waved(objimage->image,objimage->pos_x, objimage->pos_y, objimage->k_x, objimage->k_y);
+
+
+                       //debug_file.log("finished drawing waved");
+                       //debug_file.writedown();
                    }
                    // for everything else don't apply anything and draw the whole image
                    else
                    {
+                       //debug_file.log("drawing plain");
+                       //debug_file.writedown();
+
                        vita2d_draw_texture(objimage->image, objimage->pos_x, objimage->pos_y);
+
+
+                       //debug_file.log("finished drawing plain");
+                       //debug_file.writedown();
+
                    }
+
+                //debug_file.log("calling go_move");
+                //debug_file.writedown();
 
 
                 //calling move method of each object
                 objimage->go_move();
 
+                //debug_file.log("finished calling go_move");
+                //debug_file.writedown();
              }
-
-             /*
-             //debug killstreak
-             LevelMap *test = dynamic_cast<LevelMap*> (objimage);
-             if (test)
-             {
-                 std::stringstream om;
-                 om << "Killstreak " << test->killstreak;
-                 vita2d_pvf_draw_text(pvf, 50, 50, RGBA8(0,255,0,255), 1.0f, om.str().c_str());
-             }*/
 
         }
 
-     //debug
-     std::stringstream oo;
-     oo << "Etities: " << Entity::number_of_entities;
-     vita2d_pvf_draw_text(pvf, 50, 200, RGBA8(0,255,0,255), 1.0f, oo.str().c_str());
 
         return 0;
 }

@@ -309,6 +309,18 @@ void NPC::run_direct_path_check()
             right_visibility_running = 1;
             left_visibility_running = 1;
 
+            check_visibility(&right_visibility_running, &right_visible, right);
+
+            if (right_visible)
+            {
+                check_visibility(&left_visibility_running, &left_visible, left);
+            }
+            else
+            {
+                left_visibility_running = 0;
+            }
+
+            /*
             std::thread t1(&NPC::check_visibility, this, &right_visibility_running, &right_visible, right);
                 if (t1.joinable())
                 {
@@ -318,7 +330,7 @@ void NPC::run_direct_path_check()
                 if (t2.joinable())
                 {
                     t2.detach();
-                }
+                }*/
 
             direct_path_check_timer.delay_mills(direct_path_check_delay);
         }

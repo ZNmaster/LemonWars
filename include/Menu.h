@@ -21,7 +21,7 @@ class Menu : public Base_Init
         int menu_item_count;
 
         //the current number of selected menu item
-        int current;
+        unsigned int current;
 
         void StartPlay();
         void StartLoad();
@@ -33,6 +33,8 @@ class Menu : public Base_Init
         void ActivateLoad();
         void ActivateCredits();
         void ActivateControls();
+
+        void RunSelected (unsigned int item);
 
         //menu navigation method
         void navigate();

@@ -1,9 +1,13 @@
 #include "Menu.h"
 #include "GamePlayObj.h"
+#include "Debug_Log.h"
 
 
 Menu::Menu()
 {
+
+    Debug_Log debug_file("ux0:/data/menu.txt");
+    debug_file.log("Creating menu");
 
     quit = 0;
 
@@ -74,6 +78,9 @@ Menu::Menu()
 bool Menu::MenuRun()
 {
 
+    Debug_Log debug_file("ux0:/data/menu.txt");
+    debug_file.log("Starting menu");
+
     Scanner scanner;
     scanner.stick_nav = 1;
     scanner.Scan();
@@ -133,12 +140,13 @@ bool Menu::MenuRun()
     free_textures(layers.layer0_obj);
 
 
-        StartActiveMenuItem = MenuFuncPtr[current];
 
-        (this->*StartActiveMenuItem) ();
+    debug_file.log("Running selected item");
+    debug_file.writedown();
+
+        RunSelected(current);
 
         return quit;
-
 
 }
 
@@ -261,6 +269,34 @@ void Menu::navigate()
      }
     }
 }
+
+void Menu::RunSelected (unsigned int item)
+{
+    switch (item)
+    {
+    case 1:
+        StartPlay();
+        break;
+    case 2:
+        StartCredits();
+        break;
+    case 3:
+        StartExit();
+        break;
+    case 4:
+        StartLoad();
+        break;
+    case 5:
+        StartControls();
+        break;
+    default:
+        StartExit();
+        break;
+    }
+
+
+}
+
 Menu::~Menu()
 {
     free_textures(layers.layer0_obj);

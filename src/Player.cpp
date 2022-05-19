@@ -25,8 +25,10 @@ Player::Player(LevelMap *mymap, Layers *lay, const char *filename, int num_horiz
     //set the speed in pixels per second
     speed = 200;
 
-    //set player pointer in the map
+    //set player pointer and coordinates in the map
     mymap->player_ptr = this;
+    mymap->player_pos_x = abs_x;
+    mymap->player_pos_y = abs_y;
 
     //select sprite #0
     set_sprite(position);

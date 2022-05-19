@@ -1,31 +1,32 @@
 #include "SpawnPoint.h"
 #include "Common_Lemon.h"
+#include <cstdint>
 
 SpawnPoint::SpawnPoint()
 {
     activated = 0;
     spawned = 0;
+    enemy_spawn_timer.delay_mills(100);
     //ctor
 }
 
-SpawnPoint::SpawnPoint(int x, int y, std::vector<Entity *> *obj)
+SpawnPoint::SpawnPoint(int x, int y, std::vector<Entity *> *obj) : SpawnPoint::SpawnPoint()
 {
     number_of_spawn_points ++;
 
     visibility_distance = 500;
-    activated = 0;
-    spawned = 0;
 
     abs_x = x;
     abs_y = y;
     objvector = obj;
 
-    image = vita2d_create_empty_texture(1, 1);
+    image = vita2d_create_empty_texture(2, 2);
 
     number_of_enemies = 8;
 
     enemy1 = vita2d_load_PNG_file("app0:/assets/images/characters/npc/lemon_sprite.png");
     blood1 = vita2d_load_PNG_file("app0:/assets/images/characters/npc/lemonjuice_splash.png");
+
 
 
 }
