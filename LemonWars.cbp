@@ -104,6 +104,7 @@
 		<Unit filename="src/Title.cpp" />
 		<Unit filename="src/Wallbuilder.cpp" />
 		<Unit filename="src/Weapons.cpp" />
+		<Unit filename="src/vita2d.cpp" />
 		<Unit filename="src/vita2d_texture.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

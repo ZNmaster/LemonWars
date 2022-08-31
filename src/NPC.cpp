@@ -169,10 +169,6 @@ bool NPC::spotted()
 
 
 
-    if(level->levelwalls.visible(abs_x, abs_y, level->player_pos_x, level->player_pos_y))
-    {
-        return 1;
-    }
 
     return 0;
 }

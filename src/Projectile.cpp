@@ -33,17 +33,6 @@ void Projectile::set_scene (std::vector<Entity*> *objvec, float rad)
    last_sprite = 5;
    calc_screen_pos();
 
-   if (!level->levelwalls.visible(abs_x, abs_y, level->player_pos_x, level->player_pos_y))
-   {
-       set_sprite(1);
-       carry_on = &Projectile::start_animation;
-       //Gamebooter::soundengine->play_projectile_explosion_sound();
-       explosion_timer.delay_mills(50);
-   }
-   else
-   {
-       carry_on = &Projectile::find_destination;
-   }
 
    sprite_num = 1;
 
@@ -64,15 +53,6 @@ void Projectile::find_destination()
 
     dest_x = destination.x_end;
     dest_y = destination.y_end;
-    if (level->levelwalls.intersected(abs_x, abs_y, dest_x, dest_y))
-    {
-         int point_index = find_nearest_to(abs_x, abs_y, level->levelwalls.intersection_points);
-
-         Point_int dest;
-         dest = level->levelwalls.intersection_points[point_index];
-         dest_x = dest.x;
-         dest_y = dest.y;
-    }
     carry_on = &Projectile::set_path;
 
 }
@@ -87,12 +67,6 @@ void Projectile::set_path()
 
 void Projectile::fly()
 {
-    std::thread t1(&Projectile::hitcheck, this);
-    if (t1.joinable())
-    {
-        t1.detach();
-    }
-
 
     move_delta = get_move_delta();
     path.move_by(move_delta);
