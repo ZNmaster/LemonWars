@@ -237,6 +237,7 @@ void NPC::walk()
     {
 
     }
+
     //get the distance to move
     move_delta = get_move_delta();
     path.move_by(move_delta);
@@ -251,16 +252,19 @@ void NPC::walk()
         carry_on = what_after_arrival;
     }
 
-        angle = rot.get_angle();
-
-    //set direct path if possible
-    set_new_direct();
 
     //checking if direct path is possible after coordinates has been changed
     if (what_after_arrival != &NPC::find_next)
     {
         run_direct_path_check();
     }
+
+    //set direct path if possible
+    set_new_direct();
+
+    angle = rot.get_angle();
+
+
 }
 
 void NPC::set_new_direct()
@@ -278,10 +282,10 @@ void NPC::set_new_direct()
             what_after_arrival = &NPC::fa_arrived;
             spot_timer.delay_mills(2500);
 
-            right_visible = 0;
-            left_visible = 0;
+            //right_visible = 0;
+            //left_visible = 0;
 
-            return;
+            //return;
 
         }
         right_visible = 0;

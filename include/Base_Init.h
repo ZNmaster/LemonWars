@@ -8,8 +8,6 @@
 #include "Scanner.h"
 #include "Layers.h"
 
-#include "Debug_Log.h"
-
 //#include <vita2d.h>
 
 

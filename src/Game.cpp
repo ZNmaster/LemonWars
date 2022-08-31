@@ -4,9 +4,6 @@
 #include "Player.h"
 #include "SpawnPoint.h"
 #include "Common_Lemon.h"
-#include "Debug_Log.h"
-
-
 
 
 Game::Game()
@@ -17,8 +14,8 @@ Game::Game()
 Game::Game(const char *MapFilename, const char *MemFilename)
 
 {
-    Debug_Log debug_file("ux0:/data/game.txt");
-    debug_file.log("Creating game");
+    //Debug_Log debug_file("ux0:/data/game.txt");
+    //debug_file.log("Creating game");
     //debug_file.writedown();
 
     GPU_init(2);
@@ -48,12 +45,13 @@ Game::Game(const char *MapFilename, const char *MemFilename)
 bool Game::StartGame()
 
 {
-    Debug_Log debug_file("ux0:/data/game.txt");
-    debug_file.log("Starting game");
+    //Debug_Log debug_file("ux0:/data/game.txt");
+    //debug_file.log("Starting game");
 
     Scanner scanner;
     scanner.Scan();
 
+    /*
     //debug
     Entity *test_ptr = nullptr;
     debug_file.log("Test nullptr: ", test_ptr);
@@ -76,7 +74,7 @@ bool Game::StartGame()
 
 
     debug_file.log("Created scanner", "Running drawframe");
-    debug_file.writedown();
+    debug_file.writedown();*/
 
 
     while (!draw_frame(layers))
@@ -84,7 +82,7 @@ bool Game::StartGame()
          scanner.Scan();
     }
 
-    debug_file.log("Finished drawframe");
+    //debug_file.log("Finished drawframe");
 
     GPU_finish();
     free_textures(layers.layer0_obj);

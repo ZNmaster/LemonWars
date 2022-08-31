@@ -27,7 +27,9 @@ void Base_Init::GPU_init(unsigned int megabytes)
     // initializing libvita and setting background color
     vita2d_init_advanced(megabytes * 1024 * 1024);
 	vita2d_set_clear_color(RGBA8(0x40, 0x40, 0x40, 0xFF));
-	pvf = vita2d_load_default_pvf();
+
+    pvf = vita2d_load_default_pvf();
+
 }
 
 
