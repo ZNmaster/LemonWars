@@ -165,7 +165,7 @@
 	"MemoryAI.h"
 	"Timer.h"
 
-1650157013 source:/home/iurii/LemonWars/src/NPC.cpp
+1661960866 source:/home/iurii/LemonWars/src/NPC.cpp
 	<vector>
 	<thread>
 	<chrono>
@@ -173,7 +173,7 @@
 	"Point_float.h"
 	"LineVec.h"
 
-1649430085 /home/iurii/LemonWars/include/NPC.h
+1661966595 /home/iurii/LemonWars/include/NPC.h
 	<vector>
 	"MovObj.h"
 	"Timer.h"
@@ -181,6 +181,7 @@
 	"RNG.h"
 	"Point_int.h"
 	"Rotator.h"
+	"Target.h"
 
 1638204070 /home/iurii/LemonWars/include/Character.h
 	<Sprite.h>
@@ -338,7 +339,7 @@
 	"Timer.h"
 	"Angle.h"
 
-1650062132 source:/home/iurii/LemonWars/src/Rotator.cpp
+1661969617 source:/home/iurii/LemonWars/src/Rotator.cpp
 	"Rotator.h"
 	<cmath>
 
@@ -370,4 +371,15 @@
 	<fstream>
 	<chrono>
 	<string>
+
+1661969652 /home/iurii/LemonWars/include/Target.h
+	"LevelMap.h"
+	"Entity.h"
+	"LineVec.h"
+
+1661963320 source:/home/iurii/LemonWars/src/Target.cpp
+	"Target.h"
+	"Point_float.h"
+	"Angle.h"
+	<cmath>
 

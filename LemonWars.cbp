@@ -89,6 +89,7 @@
 		<Unit filename="include/SpawnPoint.h" />
 		<Unit filename="include/Splash.h" />
 		<Unit filename="include/Sprite.h" />
+		<Unit filename="include/Target.h" />
 		<Unit filename="include/Timer.h" />
 		<Unit filename="include/Wallbuilder.h" />
 		<Unit filename="include/Weapons.h" />
@@ -124,6 +125,7 @@
 		<Unit filename="src/SpawnPoint.cpp" />
 		<Unit filename="src/Splash.cpp" />
 		<Unit filename="src/Sprite.cpp" />
+		<Unit filename="src/Target.cpp" />
 		<Unit filename="src/Timer.cpp" />
 		<Unit filename="src/Wallbuilder.cpp" />
 		<Unit filename="src/Weapons.cpp" />

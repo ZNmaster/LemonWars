@@ -9,6 +9,7 @@
 #include "RNG.h"
 #include "Point_int.h"
 #include "Rotator.h"
+#include "Target.h"
 
 
 class NPC : public MovObj
@@ -55,7 +56,7 @@ class NPC : public MovObj
         //init pathfinder ant set a path to a target nav point
         void set_path();
 
-        void run_direct_path_check();
+        //void run_direct_path_check();
         void set_new_direct();
 
         virtual void stop_animation();
@@ -85,20 +86,15 @@ class NPC : public MovObj
         unsigned int direct_path_check_delay;
 
         Rotator rot;
+        Target target_to_chase;
 
         //When a projectile hits the ennemy
         float hit_angle;
         int splash_x, splash_y;
 
-        //visibility check flags
-        bool volatile right_visible, left_visible;
-        bool volatile right_visibility_running, left_visibility_running;
-
         //nearest point checks flags
         bool volatile find_nearest_running;
 
-
-        void check_visibility(volatile bool *running_flag, volatile bool *visibility_flag, float side);
         void fa_arrived();
 
         virtual ~NPC();
@@ -109,6 +105,7 @@ class NPC : public MovObj
         //copy of nav points
         std::vector<Point_int> p_vec;
         void init_nav_pos();
+
 
 };
 

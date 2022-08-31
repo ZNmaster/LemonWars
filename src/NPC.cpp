@@ -6,7 +6,7 @@
 #include "Point_float.h"
 #include "LineVec.h"
 
-#define VISIBILITY 1
+//#define VISIBILITY 1
 
 
 
@@ -47,12 +47,6 @@ void NPC::init_nav_pos()
     //set nav point for final approach (player coord)
     fa_point_index = 100 - level->number_of_enemies_spawned;
 
-    //reset visibility thread flags
-    right_visibility_running = 0;
-    left_visibility_running = 0;
-    right_visible = 0;
-    left_visible = 0;
-
     //reset find nearest flags
     find_nearest_running = 0;
 
@@ -72,6 +66,9 @@ void NPC::init_nav_pos()
       p.y = level->levelmem.coord_y[i];
       p_vec.push_back(p);
     }
+
+    //set target object
+    target_to_chase = Target(level);
 }
 
 void NPC::set_path()
@@ -210,10 +207,10 @@ void NPC::wait_a_sec()
 void NPC::walk()
 {
     //check the distance to player
-    if (distance(abs_x, abs_y, level->player_pos_x, level->player_pos_y) <= (50))
+    if (target_to_chase.distance(abs_x, abs_y) <= (50))
     {
-        Entity *player = reinterpret_cast<Entity*>(level->player_ptr);
-        player->hit(1000, 1, 5, 5);
+
+        target_to_chase.player->hit(1000, 1, 5, 5);
 
         return;
     }
@@ -230,12 +227,6 @@ void NPC::walk()
     spot_timer.delay_mills(300);
 
       }
-    }
-
-    //chasing mode checks
-    else if (what_after_arrival == &NPC::is_final_dest)
-    {
-
     }
 
     //get the distance to move
@@ -256,23 +247,20 @@ void NPC::walk()
     //checking if direct path is possible after coordinates has been changed
     if (what_after_arrival != &NPC::find_next)
     {
-        run_direct_path_check();
+        if (target_to_chase.direct_path_available(abs_x, abs_y, radius))
+        {
+            //set direct path if possible
+            set_new_direct();
+        }
+        //run_direct_path_check();
     }
 
-    //set direct path if possible
-    set_new_direct();
-
     angle = rot.get_angle();
-
 
 }
 
 void NPC::set_new_direct()
 {
-    if (!left_visibility_running && !right_visibility_running)
-    {
-        if (right_visible && left_visible)
-        {
             level->levelmem.coord_x[fa_point_index] = level->player_pos_x;
             level->levelmem.coord_y[fa_point_index] = level->player_pos_y;
             target_nav_pos = fa_point_index;
@@ -281,63 +269,6 @@ void NPC::set_new_direct()
             carry_on = &NPC::set_path;
             what_after_arrival = &NPC::fa_arrived;
             spot_timer.delay_mills(2500);
-
-            //right_visible = 0;
-            //left_visible = 0;
-
-            //return;
-
-        }
-        right_visible = 0;
-        left_visible = 0;
-
-    }
-}
-
-void NPC::run_direct_path_check()
-{
-    //checking every time indicated by variable direct_path_check_delay (600 or 300 ms)
-        if (direct_path_check_timer.expired())
-        {
-
-            float direct_path_check_treshold = 240;
-
-            if ((distance(level->player_pos_x, level->player_pos_y) < direct_path_check_treshold) && (direct_path_check_delay > 300))
-            {
-                direct_path_check_delay = 300;
-            }
-            constexpr float right = Angle::pi/2;
-            constexpr float left = -Angle::pi/2;
-
-
-            right_visibility_running = 1;
-            left_visibility_running = 1;
-
-            check_visibility(&right_visibility_running, &right_visible, right);
-
-            if (right_visible)
-            {
-                check_visibility(&left_visibility_running, &left_visible, left);
-            }
-            else
-            {
-                left_visibility_running = 0;
-            }
-
-            /*
-            std::thread t1(&NPC::check_visibility, this, &right_visibility_running, &right_visible, right);
-                if (t1.joinable())
-                {
-                    t1.detach();
-                }
-            std::thread t2(&NPC::check_visibility, this, &left_visibility_running, &left_visible, left);
-                if (t2.joinable())
-                {
-                    t2.detach();
-                }*/
-
-            direct_path_check_timer.delay_mills(direct_path_check_delay);
-        }
 }
 
 void NPC::set_roam()
@@ -384,12 +315,8 @@ bool NPC::spotted()
 {
     //we're gonna add some code for distance and the angle of view here
 
-    if(level->levelwalls.visible(abs_x, abs_y, level->player_pos_x, level->player_pos_y))
-    {
-        return 1;
-    }
+    return level->levelwalls.visible(abs_x, abs_y, level->player_pos_x, level->player_pos_y);
 
-    return 0;
 }
 
 void NPC::is_final_dest()
@@ -435,65 +362,30 @@ void NPC::is_final_dest()
     }
 }
 
-void NPC::check_visibility(volatile bool *running_flag, volatile bool *visibility_flag, float side)
-{
-
-    *running_flag = 1;
-
-    //set start point of the line between the player and enemy
-    Point_float start_p;
-    start_p.x = abs_x;
-    start_p.y = abs_y;
-
-    //set end point of the line between the player and enemy
-    Point_float end_p;
-    end_p.x = level->player_pos_x;
-    end_p.y = level->player_pos_y;
-
-    //create vector between the player and enemy
-    LineVec direct_line(start_p, end_p);
-
-    //create vector to point the beginning of the visibility line
-    LineVec aux_vec(start_p, radius, direct_line.angle + side);
-
-    //set start point of the side visibility line between the player and enemy
-    Point_float visibility_line_start;
-    visibility_line_start.x = aux_vec.x_end;
-    visibility_line_start.y = aux_vec.y_end;
-
-    //creating right visibility vector
-    LineVec visibility_vec(visibility_line_start, direct_line.len, direct_line.angle);
-
-    *visibility_flag = level->levelwalls.visible(visibility_vec.x_start, visibility_vec.y_start, visibility_vec.x_end, visibility_vec.y_end);
-
-
-    *running_flag = 0;
-
-
-}
-
 void NPC::fa_arrived()
 {
+   //distance to move (we don't use it here, but it is need to avoid teleportation)
    move_delta = get_move_delta();
    direct_path_check_timer.make_expired();
-   set_new_direct();
-   run_direct_path_check();
+   if (target_to_chase.direct_path_available(abs_x, abs_y, radius))
+   {
+      set_new_direct();
+   }
+
    if (spot_timer.expired())
    {
        set_roam();
    }
 }
 
-
 NPC::~NPC()
 {
     //dtor
 
     //wait until the threads finish the job
-
-    while (right_visibility_running || left_visibility_running || find_nearest_running)
+    while (find_nearest_running)
     {
-        std::this_thread::sleep_for (std::chrono::milliseconds(10));
+        std::this_thread::sleep_for (std::chrono::milliseconds(100));
     }
 
 }

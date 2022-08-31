@@ -15,6 +15,13 @@ Rotator::Rotator(float cur_angle, float sin_a, float cos_a, float ang_speed)
     speed = ang_speed;
     current_angle = cur_angle;
     target_angle = calcangle(sin_a, cos_a);
+
+    //reset big angle
+    if (abs(current_angle) > 4)
+        {
+            current_angle = alt_angle(current_angle);
+        }
+
     float alt_targ = alt_angle(target_angle);
     //Check if alternative angle is better to use
     if (abs(target_angle - current_angle) > abs(alt_targ - current_angle))
