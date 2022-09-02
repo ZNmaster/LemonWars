@@ -1,6 +1,6 @@
 #include "Player.h"
 #include "Scanner.h"
-//#include "Gamebooter.h"
+#include "Gamebooter.h"
 #include "RNG.h"
 
 #include "Angle.h"
@@ -24,6 +24,11 @@ Player::Player(LevelMap *mymap, Layers *lay, const char *filename, int num_horiz
 
     //set the speed in pixels per second
     speed = 200;
+
+    //set player pointer and coordinates in the map
+    mymap->player_ptr = this;
+    mymap->player_pos_x = abs_x;
+    mymap->player_pos_y = abs_y;
 
     //select sprite #0
     set_sprite(position);
@@ -129,9 +134,49 @@ void Player::go_move()
         position = gun->act(position, angle);
         set_sprite(position);
 
-
+        if(level->bodycount == 16)
+        {
+            Gamebooter::soundengine->play_ezpz();
+            level->bodycount++;
             level->killstreak = 0;
+        }
 
+        if(level->killstreak > 2)
+        {
+
+            RNG rand;
+            int sound_option;
+            sound_option = rand.int_random(1, 2);
+
+            switch(sound_option)
+            {
+                case 1:
+
+                    Gamebooter::soundengine->play_lemonade();
+                    break;
+
+
+                case 2:
+
+                    Gamebooter::soundengine->play_lemon_juice();
+                    break;
+
+
+                default:
+
+                    Gamebooter::soundengine->play_lemon_juice();
+                    break;
+
+            }
+            level->killstreak = 0;
+        }
+
+}
+
+void Player::hit(int hitpoints, float projectile_angle, int x, int y)
+{
+    terminated = 1;
+    return;
 }
 
 

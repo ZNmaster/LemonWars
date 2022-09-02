@@ -1,28 +1,71 @@
 #include "Gamebooter.h"
-#include <iostream>
 #include "Menu.h"
-#include "Scanner.h"
+#include "Rocket.h"
+
+
 
 Gamebooter::Gamebooter()
 {
+
+    soundengine = &s;
     //ctor
 
-    std::cout << "Loading assets..." << std::endl;
+    //GPU initialization
+    GPU_init();
+
+
+    // create obj title screen and rocket
+
+
+
+    GamePlayObj * title_screen = new GamePlayObj ("app0:Title_screen.png");
+    layers.layer0_obj.push_back (title_screen);
+
+    Rocket *rocket = new Rocket("app0:/assets/images/titlescreen/rocket.png");
+    layers.layer0_obj.push_back (rocket);
 
 
 }
 
 void Gamebooter::Play()
 {
-    std::cout << "Loading menu..." << std::endl;
-    Scanner scanner1;
-    Menu MainMenu;
-    MainMenu.MenuRun();
+    //soloud
+
+    //s.SoloudSound.play(background_music);
+
+    Scanner *scanner = new Scanner;
+
+
+
+    // draw a new frame until any game object tells us to stop
+    while (!draw_frame(layers.layer0_obj))
+    {
+     scanner->Scan();
+    }
+
+    GPU_finish();
+
+    //deleting title screen objects and input scanner
+    free_textures(layers.layer0_obj);
+    delete scanner;
+
+    bool quit = 0;
+    do
+    {
+      Menu MainMenu;
+      quit = MainMenu.MenuRun();
+    }
+    while(!quit);
+
+
+
+    return;
 }
 
 
 Gamebooter::~Gamebooter()
 {
+    free_textures(layers.layer0_obj);
     //dtor
-    std::cout << "Exiting game..." << std::endl;
+
 }

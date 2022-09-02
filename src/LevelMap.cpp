@@ -4,11 +4,13 @@
 LevelMap::LevelMap()
 {
     //ctor
+    number_of_enemies_spawned = 0;
 }
 
 LevelMap::LevelMap(const char *MapFilename, const char *MemFilename)
           : GamePlayObj::GamePlayObj(MapFilename)
 {
+
     mapres_x = loaded_image_res_x;
     mapres_y = loaded_image_res_y;
 
@@ -37,8 +39,13 @@ LevelMap::LevelMap(const char *MapFilename, const char *MemFilename)
 
     bodycount = 0;
     killstreak = 0;
+    number_of_enemies_spawned = 0;
 
     killstreak_timer.delay_mills(1000);
+
+    player_ptr = nullptr;
+    player_pos_x = 0;
+    player_pos_y = 0;
 
 }
 

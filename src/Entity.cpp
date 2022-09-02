@@ -4,6 +4,8 @@
 
 Entity::Entity()
 {
+
+    number_of_entities ++;
     //reset flags, factors and coordinates
 
     //int and float
@@ -44,19 +46,22 @@ Entity::Entity(int a)
 
 Entity::~Entity()
 {
+
+    number_of_entities --;
     //dtor
 
 }
 
 float Entity::distance(int x1, int y1)
 {
-
-    return sqrt(pow((abs_x-x1), 2) + pow((abs_y-y1), 2));
+    return distance(abs_x, abs_y, x1, y1);
 }
 
 float Entity::distance(int x1, int y1, int x2, int y2)
 {
-    return sqrt(pow((x2-x1), 2) + pow((y2-y1), 2));
+    int deltaX = x2-x1;
+    int deltaY = y2-y1;
+    return sqrt(deltaX*deltaX + deltaY*deltaY);
 }
 
 //interface

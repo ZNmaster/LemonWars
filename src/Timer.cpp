@@ -2,6 +2,7 @@
 
 Timer::Timer()
 {
+    creation_time = std::chrono::high_resolution_clock::now();
     delay_mills(200);
     //ctor
 }
@@ -54,4 +55,10 @@ bool Timer::expired()
         return 1;
     }
     return 0;
+}
+
+void Timer::make_expired()
+{
+    delay_ms = 1;
+    delay_starttime = creation_time;
 }

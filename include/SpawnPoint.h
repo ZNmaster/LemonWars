@@ -23,7 +23,7 @@ class SpawnPoint : public Entity
         void set_levelmap(LevelMap *mymap);
 
         //delay between spawns
-        Timer *enemy_spawn_timer;
+        Timer enemy_spawn_timer;
 
         //image of the enemy
         vita2d_texture *enemy1;
@@ -33,6 +33,8 @@ class SpawnPoint : public Entity
 
         //number of enemies to spawn
         int number_of_enemies;
+
+        static unsigned int number_of_spawn_points;
 
 
         virtual ~SpawnPoint();

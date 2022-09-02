@@ -16,13 +16,8 @@ int main()
 
   std::cout << "level created!" << std::endl;
 
-  Player *player1 = new Player(level, lay, "player", 1, 1, 100, 100);
-
-  delete player1;
-
-  delete level;
-
   delete lay;
+  delete level;
 
 
   return 0;

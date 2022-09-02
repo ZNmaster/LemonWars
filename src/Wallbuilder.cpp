@@ -40,6 +40,8 @@ Wallbuilder::Wallbuilder(int level)
         y_end = {0};
         array_size = 1;
     }
+
+    //return;
 }
 
 bool Wallbuilder::pos_valid(int x0, int y0, int radius)

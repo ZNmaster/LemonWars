@@ -2,6 +2,7 @@
 #include "Scanner.h"
 #include "LineVec.h"
 #include "Projectile.h"
+#include "Sounds.h"
 #include "Gamebooter.h"
 
 
@@ -119,7 +120,7 @@ void Weapons::fire()
    int x0 = (int)projectile_vector.x_end;
    int y0 = (int)projectile_vector.y_end;
 
-   //Gamebooter::soundengine->play_fire_sound();
+   Gamebooter::soundengine->play_fire_sound();
 
    Projectile *bullet = new Projectile(projectile_image, level, en_layer, x0, y0, player_alpha);
    obj->push_back(bullet);

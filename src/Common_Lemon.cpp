@@ -30,10 +30,8 @@ void Common_Lemon::lemon_init()
 {
 
     angle = 0;
-    set_roam();
 
-    //select sprite #0
-    set_sprite(0);
+    set_roam();
 
     sprite_change_delay = 80;
     last_sprite = 10;
@@ -43,6 +41,9 @@ void Common_Lemon::lemon_init()
 
 void Common_Lemon::go_move()
 {
+
+  //to reset move timer
+  move_delta = get_move_delta();
 
   (this->*carry_on) ();
 

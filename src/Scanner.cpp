@@ -5,7 +5,9 @@
 Scanner::Scanner()
 {
     //ctor
+    blocked = 0;
     ResetAll();
+    memset(&pad, 0, sizeof(pad));
 
     hyst = 15;
     stick_zero = 127;
@@ -14,6 +16,9 @@ Scanner::Scanner()
     stick_zero_rx = 127;
     stick_zero_ry = 127;
 
+    sceTouchSetSamplingState(SCE_TOUCH_PORT_FRONT, SCE_TOUCH_SAMPLING_STATE_START);
+    sceTouchEnableTouchForce(SCE_TOUCH_PORT_FRONT);
+    sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
 
 
 
@@ -70,12 +75,85 @@ void Scanner::Scan()
 {
     ResetAll();
 
+    if (blocked) return;
+
+    sceCtrlPeekBufferPositive(0, &pad, 1);
+    sceTouchPeek(0, &touch, 1);
 
     count_pressed = 0;
 
+    Point_int stick = read_stick(pad.lx, pad.ly);
 
+    calc_stick_relative(stick, lstick_x, lstick_y, left_stick_moved);
 
     int old_hyst = hyst;
+
+    stick = read_stick(pad.rx, pad.ry);
+
+
+    calc_stick_relative(stick, rstick_x, rstick_y, right_stick_moved);
+
+
+    if (pad.buttons & SCE_CTRL_START)
+    {
+            start_pressed = 1;
+            //count_pressed++;
+    }
+
+    if (pad.buttons & SCE_CTRL_SELECT)
+    {
+            select_pressed = 1;
+    }
+
+    if (pad.buttons & SCE_CTRL_CROSS)
+    {
+            go_pressed = 1;
+    }
+
+    if(pad.buttons & SCE_CTRL_RTRIGGER)
+    {
+        fire_pressed = 1;
+    }
+
+    if (count_pressed == 0)
+    {
+
+        if (pad.buttons & SCE_CTRL_UP)
+            {
+                 up_pressed = 1;
+                 count_pressed++;
+            }
+        if (pad.buttons & SCE_CTRL_DOWN)
+            {
+                 down_pressed = 1;
+                 count_pressed++;
+            }
+        if (pad.buttons & SCE_CTRL_RIGHT)
+            {
+                 right_pressed = 1;
+                 count_pressed++;
+            }
+        if (pad.buttons & SCE_CTRL_LEFT)
+            {
+                 left_pressed = 1;
+                 count_pressed++;
+            }
+
+    }
+
+    if (count_pressed > 1)
+    {
+        pad_multiple_pressed = 1;
+    }
+
+
+        if (touch.reportNum)
+        {
+            front_touch = 1;
+            //save touch point x ; y of the touchscreen and adjust to display resolution
+            front_touch_point_x = touch.report[0].x/2;
+            front_touch_point_y = touch.report[0].y/2;
+        }
 
 
 }
@@ -133,9 +211,21 @@ void Scanner::calc_stick_relative(Point_int stick, float &stick_x, float &stick_
 
 }
 
+void Scanner::Block()
+{
+    blocked = 1;
+}
+
+void Scanner::Deblock()
+{
+    blocked = 0;
+}
+
 Scanner::~Scanner()
 {
     //dtor
+    sceTouchDisableTouchForce(SCE_TOUCH_PORT_FRONT);
+    sceTouchSetSamplingState(SCE_TOUCH_PORT_FRONT, SCE_TOUCH_SAMPLING_STATE_STOP);
 
     stick_nav = 0;
     ResetAll();

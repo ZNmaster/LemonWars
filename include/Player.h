@@ -17,6 +17,8 @@ class Player : public MovObj
                int num_horizontal_sprites, int num_vertical_sprites,
                int x0, int y0);
 
+        virtual void hit(int hitpoints, float projectile_angle, int x, int y);
+
 
 
         Weapons *gun;

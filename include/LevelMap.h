@@ -45,6 +45,12 @@ class LevelMap : public GamePlayObj
               player_pos_y;
 
 
+        void *player_ptr;
+
+        //the number of the enemies spawned
+        unsigned int number_of_enemies_spawned;
+
+
         unsigned int bodycount;
         unsigned int killstreak;
         Timer killstreak_timer;

@@ -1,6 +1,10 @@
 #ifndef SCANNER_H
 #define SCANNER_H
 
+#include <psp2/ctrl.h>
+#include <psp2/kernel/processmgr.h>
+#include <psp2/touch.h>
+
 #include "Point_int.h"
 
 class Scanner
@@ -33,6 +37,11 @@ class Scanner
 
         void ResetAll();
 
+        void Block();
+        void Deblock();
+
+        SceCtrlData pad;
+        SceTouchData touch;
 
         unsigned int hyst, stick_zero, stick_zero_rx, stick_zero_ry, stick_zero_lx, stick_zero_ly;
 
@@ -49,6 +58,8 @@ class Scanner
 
         //the number of pressed D-pad buttons
         int count_pressed;
+
+        bool blocked;
 
 
 };

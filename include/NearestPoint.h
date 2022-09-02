@@ -16,7 +16,7 @@ class NearestPoint
         int find_nearest_to(int from_x, int from_y, std::vector<Point_int> target_points);
 
         //indexes of the nearest points
-        int nearest, second_nearest;
+        int nearest, second_nearest, third_nearest;
 
     protected:
 

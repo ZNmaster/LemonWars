@@ -18,12 +18,14 @@ int NearestPoint::find_nearest_to(int from_x, int from_y, std::vector<Point_int>
        {
            ref_dist_sec = ref_dist;
            ref_dist = dist;
+           third_nearest = second_nearest;
            second_nearest = nearest;
            nearest = i;
        }
        else if(dist<=ref_dist_sec)
        {
            ref_dist_sec = dist;
+           third_nearest = second_nearest;
            second_nearest = i;
        }
 

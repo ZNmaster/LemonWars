@@ -9,6 +9,7 @@
 #include "RNG.h"
 #include "Point_int.h"
 #include "Rotator.h"
+#include "Target.h"
 
 
 class NPC : public MovObj
@@ -21,8 +22,8 @@ class NPC : public MovObj
         NPC(vita2d_texture *im, LevelMap *mymap, int num_horizontal_sprites,
                int num_vertical_sprites, int x0, int y0);
 
-
-
+        //final approach index
+        int fa_point_index;
 
         //pointer to a current action func (the func is called by it each frame from go_move)
         void ( NPC::*carry_on) ();
@@ -32,6 +33,9 @@ class NPC : public MovObj
 
         //find nearest nav point to current object
         void find_nearest();
+
+        //finds a nav point where to go
+        virtual void where_to_go();
 
         //find nearest nav point to player
         void find_nearest_to_player();
@@ -46,14 +50,20 @@ class NPC : public MovObj
         void set_roam();
         //set chasing mode
         void set_chase();
+        //check if is final destination for chasing
+        void is_final_dest();
 
         //init pathfinder ant set a path to a target nav point
         void set_path();
+
+        //void run_direct_path_check();
+        void set_new_direct();
 
         virtual void stop_animation();
 
         //target nav point
         int target_nav_pos;
+
         //final destination
         int final_nav_pos;
 
@@ -72,12 +82,20 @@ class NPC : public MovObj
 
         Timer spot_timer;
 
+        Timer direct_path_check_timer;
+        unsigned int direct_path_check_delay;
+
         Rotator rot;
+        Target target_to_chase;
 
         //When a projectile hits the ennemy
-        bool is_hit;
         float hit_angle;
         int splash_x, splash_y;
+
+        //nearest point checks flags
+        bool volatile find_nearest_running;
+
+        void fa_arrived();
 
         virtual ~NPC();
 
@@ -87,6 +105,7 @@ class NPC : public MovObj
         //copy of nav points
         std::vector<Point_int> p_vec;
         void init_nav_pos();
+
 
 };
 

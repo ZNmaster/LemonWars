@@ -52,6 +52,9 @@ class MovObj : public Sprite, public NearestPoint
         int sprite_change_delay;
         int last_sprite;
 
+        //hit flag
+        bool is_hit;
+
         void start_animation();
         virtual void stop_animation();
 

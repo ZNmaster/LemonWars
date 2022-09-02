@@ -44,6 +44,8 @@ class Projectile : public MovObj
 
         void hitcheck();
 
+        bool volatile hitcheck_running;
+
 };
 
 #endif // PROJECTILE_H
