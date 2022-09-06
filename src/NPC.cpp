@@ -87,6 +87,7 @@ void NPC::set_path()
 
        //wait some time if in roaming mode
        carry_on = &NPC::wait_a_sec;
+       spot_timer.delay_mills(300);
        npc_wait_timer.delay_mills(rand.int_random(7000));
    }
 
@@ -197,6 +198,16 @@ void NPC::find_next()
 void NPC::wait_a_sec()
 {
 
+   //the enemy can see the player while waiting
+   if (spot_timer.expired())
+   {
+       if(spotted())
+        {
+          set_chase();
+        }
+        spot_timer.delay_mills(300);
+   }
+
    if (npc_wait_timer.expired())
    {
        carry_on = &NPC::find_next;
@@ -210,7 +221,7 @@ void NPC::walk()
     if (target_to_chase.distance(abs_x, abs_y) <= (50))
     {
 
-        target_to_chase.player->hit(1000, 1, 5, 5);
+        //target_to_chase.player->hit(1000, 1, 5, 5);
 
         return;
     }
@@ -224,7 +235,7 @@ void NPC::walk()
         {
           set_chase();
         }
-    spot_timer.delay_mills(300);
+        spot_timer.delay_mills(300);
 
       }
     }
@@ -235,6 +246,7 @@ void NPC::walk()
 
     abs_x = path.current_x;
     abs_y = path.current_y;
+    angle = rot.get_angle();
 
 
     if (path.arrived)
@@ -255,8 +267,6 @@ void NPC::walk()
         //run_direct_path_check();
     }
 
-    angle = rot.get_angle();
-
 }
 
 void NPC::set_new_direct()
@@ -268,7 +278,7 @@ void NPC::set_new_direct()
             final_nav_pos = target_nav_pos;
             carry_on = &NPC::set_path;
             what_after_arrival = &NPC::fa_arrived;
-            spot_timer.delay_mills(2500);
+            spot_timer.delay_mills(300);
 }
 
 void NPC::set_roam()

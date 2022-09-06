@@ -24,15 +24,15 @@ Game::Game(const char *MapFilename, const char *MemFilename)
     SpawnPoint *spawn = new SpawnPoint(650, 1200, &layers.layer1_obj);
     layers.layer0_obj.push_back (spawn);
 
-    SpawnPoint *spawn2 = new SpawnPoint(650, 1600, &layers.layer1_obj);
-    layers.layer0_obj.push_back (spawn2);
+    //SpawnPoint *spawn2 = new SpawnPoint(650, 1600, &layers.layer1_obj);
+    //layers.layer0_obj.push_back (spawn2); set levelmap!!!!!
 
     LevelMap *level = new LevelMap(MapFilename, MemFilename);
     layers.layer0_obj.push_back (level);
 
     //save level map pointer in spawn point
     spawn->set_levelmap(level);
-    spawn2->set_levelmap(level);
+    //spawn2->set_levelmap(level);
 
     //player spawn
     Player *player = new Player(level, &layers, "app0:/assets/images/characters/player.png", 2, 2, 150, 150);
