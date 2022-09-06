@@ -15,6 +15,8 @@ class Target
         bool direct_path_available (float abs_x, float abs_y, float radius);
         float distance(float abs_x, float abs_y);
 
+        float direct_angle;
+
         Entity *player;
 
     protected:

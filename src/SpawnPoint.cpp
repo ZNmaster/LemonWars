@@ -22,7 +22,7 @@ SpawnPoint::SpawnPoint(int x, int y, std::vector<Entity *> *obj) : SpawnPoint::S
 
     image = vita2d_create_empty_texture(2, 2);
 
-    number_of_enemies = 1;
+    number_of_enemies = 8;
 
     enemy1 = vita2d_load_PNG_file("app0:/assets/images/characters/npc/lemon_sprite.png");
     blood1 = vita2d_load_PNG_file("app0:/assets/images/characters/npc/lemonjuice_splash.png");

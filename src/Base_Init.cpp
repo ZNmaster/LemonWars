@@ -4,13 +4,6 @@
 #include <cmath>
 #include <sstream>
 
-
-
-//debug
-#include "LevelMap.h"
-#include "Player.h"
-
-
 Base_Init::Base_Init()
 {
     grid_activated = 0;

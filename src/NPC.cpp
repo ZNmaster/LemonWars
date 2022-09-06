@@ -197,7 +197,7 @@ void NPC::find_next()
 
 void NPC::wait_a_sec()
 {
-
+   move_delta = get_move_delta();
    //the enemy can see the player while waiting
    if (spot_timer.expired())
    {
@@ -221,7 +221,7 @@ void NPC::walk()
     if (target_to_chase.distance(abs_x, abs_y) <= (50))
     {
 
-        //target_to_chase.player->hit(1000, 1, 5, 5);
+        target_to_chase.player->hit(1000, 1, 5, 5);
 
         return;
     }
@@ -246,6 +246,7 @@ void NPC::walk()
 
     abs_x = path.current_x;
     abs_y = path.current_y;
+
     angle = rot.get_angle();
 
 
