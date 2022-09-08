@@ -15,6 +15,7 @@ Target::Target(LevelMap *mymap)
 {
     level = mymap;
     player = reinterpret_cast<Entity*>(level->player_ptr);
+    direct_angle = 0;
     //ctor
 }
 
@@ -23,7 +24,7 @@ bool Target::visible(float abs_x, float abs_y)
     return level->levelwalls.visible(abs_x, abs_y, level->player_pos_x, level->player_pos_y);
 }
 
-bool Target::direct_path_available (float abs_x, float abs_y, float radius, float &direct_view_angle)
+bool Target::direct_path_available (float abs_x, float abs_y, float radius)
 {
 
     constexpr float right = Angle::pi/2;
@@ -41,7 +42,8 @@ bool Target::direct_path_available (float abs_x, float abs_y, float radius, floa
 
     //create vector between the player and enemy
     direct_line = LineVec(start_p, end_p);
-    direct_view_angle = direct_line.angle;
+
+    direct_angle = direct_line.angle;
 
     //create vector to point the beginning of the visibility line
     LineVec left_aux_vec(start_p, radius, direct_line.angle + left);

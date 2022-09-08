@@ -87,14 +87,12 @@ void NPC::set_path()
 
        //wait some time if in roaming mode
        carry_on = &NPC::wait_a_sec;
+       spot_timer.delay_mills(300);
        npc_wait_timer.delay_mills(rand.int_random(7000));
    }
 
-   //set path if the target nav pos is different to current nav pos
    else
    {
-
-
        path = Pathfinder(abs_x, abs_y, level->levelmem.coord_x[target_nav_pos], level->levelmem.coord_y[target_nav_pos]);
        carry_on = &NPC::walk;
        rot = Rotator(angle, path.sin_a, path.cos_a, 8);
@@ -199,6 +197,16 @@ void NPC::find_next()
 
 void NPC::wait_a_sec()
 {
+   move_delta = get_move_delta();
+   //the enemy can see the player while waiting
+   if (spot_timer.expired())
+   {
+       if(spotted())
+        {
+          set_chase();
+        }
+        spot_timer.delay_mills(300);
+   }
 
    if (npc_wait_timer.expired())
    {
@@ -227,7 +235,7 @@ void NPC::walk()
         {
           set_chase();
         }
-    spot_timer.delay_mills(300);
+        spot_timer.delay_mills(300);
 
       }
     }
@@ -238,6 +246,8 @@ void NPC::walk()
 
     abs_x = path.current_x;
     abs_y = path.current_y;
+
+    angle = rot.get_angle();
 
 
     if (path.arrived)
@@ -250,19 +260,13 @@ void NPC::walk()
     //checking if direct path is possible after coordinates has been changed
     if (what_after_arrival != &NPC::find_next)
     {
-        //new possible angle to set
-        float direct_view_angle = angle;
-
-        if (target_to_chase.direct_path_available(abs_x, abs_y, radius, direct_view_angle))
+        if (target_to_chase.direct_path_available(abs_x, abs_y, radius))
         {
             //set direct path if possible
             set_new_direct();
-            angle = direct_view_angle;
         }
         //run_direct_path_check();
     }
-
-    angle = rot.get_angle();
 
 }
 
@@ -275,7 +279,7 @@ void NPC::set_new_direct()
             final_nav_pos = target_nav_pos;
             carry_on = &NPC::set_path;
             what_after_arrival = &NPC::fa_arrived;
-            spot_timer.delay_mills(2500);
+            spot_timer.delay_mills(300);
 }
 
 void NPC::set_roam()

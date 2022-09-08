@@ -12,8 +12,10 @@ class Target
         Target();
         Target(LevelMap *mymap);
         bool visible(float abs_x, float abs_y);
-        bool direct_path_available (float abs_x, float abs_y, float radius, float &direct_view_angle);
+        bool direct_path_available (float abs_x, float abs_y, float radius);
         float distance(float abs_x, float abs_y);
+
+        float direct_angle;
 
         Entity *player;
 

@@ -8,7 +8,7 @@
 #include "Scanner.h"
 #include "Layers.h"
 
-//#include <vita2d.h>
+#include <vita2d.h>
 
 
 class Base_Init

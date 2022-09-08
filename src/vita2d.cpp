@@ -33,3 +33,5 @@ vita2d_texture *vita2d_create_empty_texture(unsigned int w, unsigned int h)
    return new vita2d_texture;
 }
 
+
+
