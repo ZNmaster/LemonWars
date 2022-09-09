@@ -46,7 +46,7 @@ void vita2d_set_clear_color(unsigned int color)
 
 vita2d_pvf *vita2d_load_default_pvf()
 {
-
+   return nullptr;
 }
 
 int vita2d_init()
