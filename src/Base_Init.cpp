@@ -9,6 +9,7 @@
 //debug
 #include "LevelMap.h"
 #include "Player.h"
+//#include "vita2d.h"
 
 
 Base_Init::Base_Init()

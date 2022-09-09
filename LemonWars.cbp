@@ -34,8 +34,16 @@
 			<Add option="-Wall" />
 			<Add option="-std=c++11" />
 			<Add option="-fexceptions" />
+			<Add directory="include" />
+			<Add directory="include/vita2d" />
 		</Compiler>
+		<Linker>
+			<Add library="pthreads" />
+			<Add directory="include" />
+			<Add directory="include/vita2d" />
+		</Linker>
 		<Unit filename="include/Angle.h" />
+		<Unit filename="include/Base_Init.h" />
 		<Unit filename="include/Common_Lemon.h" />
 		<Unit filename="include/Entity.h" />
 		<Unit filename="include/GamePlayObj.h" />
@@ -64,6 +72,7 @@
 		<Unit filename="include/Rotator.h" />
 		<Unit filename="include/Scanner.h" />
 		<Unit filename="include/Scanner.ini" />
+		<Unit filename="include/Sounds.h" />
 		<Unit filename="include/SpawnPoint.h" />
 		<Unit filename="include/Splash.h" />
 		<Unit filename="include/Sprite.h" />
@@ -71,16 +80,19 @@
 		<Unit filename="include/Title.h" />
 		<Unit filename="include/Wallbuilder.h" />
 		<Unit filename="include/Weapons.h" />
-		<Unit filename="include/vita2d.h" />
-		<Unit filename="include/vita2d_texture.h" />
+		<Unit filename="include/vita2d/vita2d.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Angle.cpp" />
+		<Unit filename="src/Base_Init.cpp" />
 		<Unit filename="src/Common_Lemon.cpp" />
 		<Unit filename="src/Entity.cpp" />
+		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/GamePlayObj.cpp" />
 		<Unit filename="src/Gamebooter.cpp" />
+		<Unit filename="src/Geometry.cpp" />
 		<Unit filename="src/Letter.cpp" />
 		<Unit filename="src/LevelMap.cpp" />
+		<Unit filename="src/Levels.cpp" />
 		<Unit filename="src/Line.cpp" />
 		<Unit filename="src/LineEq.cpp" />
 		<Unit filename="src/LineVec.cpp" />
@@ -97,15 +109,17 @@
 		<Unit filename="src/Rocket.cpp" />
 		<Unit filename="src/Rotator.cpp" />
 		<Unit filename="src/Scanner.cpp" />
+		<Unit filename="src/Sounds.cpp" />
 		<Unit filename="src/SpawnPoint.cpp" />
 		<Unit filename="src/Splash.cpp" />
 		<Unit filename="src/Sprite.cpp" />
+		<Unit filename="src/Target.cpp" />
 		<Unit filename="src/Timer.cpp" />
 		<Unit filename="src/Title.cpp" />
 		<Unit filename="src/Wallbuilder.cpp" />
 		<Unit filename="src/Weapons.cpp" />
-		<Unit filename="src/vita2d.cpp" />
-		<Unit filename="src/vita2d_texture.cpp" />
+		<Unit filename="src/sce_mock.cpp" />
+		<Unit filename="src/vita2d_mock.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

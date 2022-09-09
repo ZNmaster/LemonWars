@@ -2,6 +2,7 @@
 #define VITA2D_TEXTURE_H
 
 
+/*
 class vita2d_texture
 {
     public:
@@ -23,5 +24,6 @@ class vita2d_pvf
 
     private:
 };
+*/
 
 #endif // VITA2D_TEXTURE_H
