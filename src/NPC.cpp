@@ -6,8 +6,6 @@
 #include "Point_float.h"
 #include "LineVec.h"
 
-//#define VISIBILITY 1
-
 
 
 NPC::NPC()
@@ -85,13 +83,14 @@ void NPC::nav_reset()
 
 void NPC::set_path()
 {
-
+    /*
    //if in chasing mode and there is no direct path checked switch back to roam (additional protection from no-clip)
    if (direct_chase && !dpa_ && what_after_arrival == &NPC::is_final_dest)
    {
        nav_reset();
        return;
    }
+   */
 
    //if the target point is the current location the enemy will:
    if (target_nav_pos == current_nav_pos)
@@ -225,8 +224,10 @@ void NPC::wait_a_sec()
        if(spotted())
         {
           set_chase();
+          return;
         }
         spot_timer.delay_mills(300);
+
    }
 
    if (npc_wait_timer.expired())
@@ -255,6 +256,7 @@ void NPC::walk()
         if(spotted())
         {
           set_chase();
+          return;
         }
         spot_timer.delay_mills(300);
 
@@ -281,7 +283,10 @@ void NPC::walk()
     //checking if direct path is possible after coordinates has been changed
     if (what_after_arrival != &NPC::find_next)
     {
-        if (target_to_chase.direct_path_available(abs_x, abs_y, radius))
+
+     //we use dpa_ to double check in set path
+     dpa_ = target_to_chase.direct_path_available(abs_x, abs_y, radius);
+       if (dpa_)
         {
             //set direct path if possible
             set_new_direct();
@@ -301,7 +306,6 @@ void NPC::set_new_direct()
             carry_on = &NPC::set_path;
             what_after_arrival = &NPC::fa_arrived;
             spot_timer.delay_mills(300);
-            dpa_ = 1;
             direct_chase = 1;
 }
 
@@ -399,7 +403,10 @@ void NPC::fa_arrived()
    //distance to move (we don't use it here, but it is need to avoid teleportation)
    move_delta = get_move_delta();
    direct_path_check_timer.make_expired();
-   if (target_to_chase.direct_path_available(abs_x, abs_y, radius))
+
+   //we use dpa_ to double check in set path
+   dpa_ = target_to_chase.direct_path_available(abs_x, abs_y, radius);
+   if (dpa_)
    {
       set_new_direct();
    }
