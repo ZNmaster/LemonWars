@@ -20,6 +20,9 @@ NPC::NPC()
     //set nav point for final approach (player coord)
     fa_point_index = 100 - level->number_of_enemies_spawned;
 
+    dpa_ = 0;
+    direct_chase = 0;
+
 
 }
 NPC::NPC(const char *filename, LevelMap *mymap, int num_horizontal_sprites,
@@ -41,7 +44,8 @@ NPC::NPC(vita2d_texture *im, LevelMap *mymap, int num_horizontal_sprites,
 
 void NPC::init_nav_pos()
 {
-    direct_path_check_delay = 600;
+
+    nav_reset();
     level->number_of_enemies_spawned++;
 
     //set nav point for final approach (player coord)
@@ -51,12 +55,6 @@ void NPC::init_nav_pos()
     find_nearest_running = 0;
 
     enemy = 1;
-
-    //set chase mode timer
-    direct_path_check_timer.delay_mills(direct_path_check_delay);
-
-    //set current nav pos to none
-    current_nav_pos = -1;
 
     //copy of nav points
     for (int i=0; i<level->levelmem.number_of_points; i++)
@@ -71,8 +69,29 @@ void NPC::init_nav_pos()
     target_to_chase = Target(level);
 }
 
+void NPC::nav_reset()
+{
+    dpa_ = 0;
+    direct_chase = 0;
+    direct_path_check_delay = 600;
+            //set chase mode timer
+    direct_path_check_timer.delay_mills(direct_path_check_delay);
+
+    //set current nav pos to none
+    current_nav_pos = -1;
+    set_roam();
+
+}
+
 void NPC::set_path()
 {
+
+   //if in chasing mode and there is no direct path checked switch back to roam (additional protection from no-clip)
+   if (direct_chase && !dpa_ && what_after_arrival == &NPC::is_final_dest)
+   {
+       nav_reset();
+       return;
+   }
 
    //if the target point is the current location the enemy will:
    if (target_nav_pos == current_nav_pos)
@@ -80,8 +99,7 @@ void NPC::set_path()
        //switch to roam if in chasing mode and find next nav point to roam
        if (what_after_arrival == &NPC::is_final_dest)
        {
-           set_roam();
-           carry_on = &NPC::find_next;
+           nav_reset();
            return;
        }
 
@@ -97,6 +115,9 @@ void NPC::set_path()
        carry_on = &NPC::walk;
        rot = Rotator(angle, path.sin_a, path.cos_a, 8);
    }
+
+   dpa_ = 0;
+   direct_chase = 0;
 
 }
 
@@ -280,6 +301,8 @@ void NPC::set_new_direct()
             carry_on = &NPC::set_path;
             what_after_arrival = &NPC::fa_arrived;
             spot_timer.delay_mills(300);
+            dpa_ = 1;
+            direct_chase = 1;
 }
 
 void NPC::set_roam()
@@ -336,8 +359,7 @@ void NPC::is_final_dest()
     //if the enemy has arrived at the final nav point
     if (current_nav_pos == final_nav_pos)
     {
-        set_roam();
-        carry_on = &NPC::wait_a_sec;
+        nav_reset();
         return;
     }
 
@@ -357,8 +379,7 @@ void NPC::is_final_dest()
             //just in case the enemy is already at the final nav point (normally should never happen)
             if (target_nav_pos == current_nav_pos)
             {
-               set_roam();
-               carry_on = &NPC::wait_a_sec;
+               nav_reset();
                return;
             }
         }
@@ -385,7 +406,7 @@ void NPC::fa_arrived()
 
    if (spot_timer.expired())
    {
-       set_roam();
+       nav_reset();
    }
 }
 

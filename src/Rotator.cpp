@@ -24,6 +24,7 @@ Rotator::Rotator(float cur_angle, float sin_a, float cos_a, float ang_speed)
         }
 
     float alt_targ = alt_angle(target_angle);
+
     //Check if alternative angle is better to use
     if (abs(target_angle - current_angle) > abs(alt_targ - current_angle))
     {
@@ -33,7 +34,9 @@ Rotator::Rotator(float cur_angle, float sin_a, float cos_a, float ang_speed)
     if (target_angle != current_angle)
     {
 
-       if ((target_angle - current_angle) > 0)
+       direction = (target_angle > current_angle) ? 1 : -1;
+
+       /*if ((target_angle - current_angle) > 0)
        {
            direction = 1;
        }
@@ -42,6 +45,7 @@ Rotator::Rotator(float cur_angle, float sin_a, float cos_a, float ang_speed)
        {
            direction = -1;
        }
+       */
 
        timer.start();
     }

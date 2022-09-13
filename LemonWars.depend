@@ -30,13 +30,9 @@
 	"Wallbuilder.h"
 	<iostream>
 
-1650980625 source:/home/iurii/LemonWars/main.cpp
-	"Menu.h"
+1663078970 source:/home/iurii/LemonWars/main.cpp
 	"Gamebooter.h"
-	"Wallbuilder.h"
-	"LevelMap.h"
 	"Init.ini"
-	"Debug_Log.h"
 
 1638927707 /home/iurii/LemonWars/include/Gamebooter.h
 	"Sounds.h"
@@ -142,7 +138,7 @@
 	"Menu.h"
 	"Game.h"
 
-1662482030 source:/home/iurii/LemonWars/src/Game.cpp
+1662488434 source:/home/iurii/LemonWars/src/Game.cpp
 	"Game.h"
 	"Scanner.h"
 	"LevelMap.h"
@@ -171,7 +167,7 @@
 	"Point_float.h"
 	"LineVec.h"
 
-1661966595 /home/iurii/LemonWars/include/NPC.h
+1663083099 /home/iurii/LemonWars/include/NPC.h
 	<vector>
 	"MovObj.h"
 	"Timer.h"
@@ -206,7 +202,7 @@
 	<Character.h>
 	<GamePlayObj.h>
 
-1662481994 source:/home/iurii/LemonWars/src/SpawnPoint.cpp
+1662488434 source:/home/iurii/LemonWars/src/SpawnPoint.cpp
 	"SpawnPoint.h"
 	"Common_Lemon.h"
 	<cstdint>
@@ -218,7 +214,7 @@
 	"LevelMap.h"
 	"Timer.h"
 
-1648396391 source:/home/iurii/LemonWars/src/Common_Lemon.cpp
+1663078970 source:/home/iurii/LemonWars/src/Common_Lemon.cpp
 	"Common_Lemon.h"
 	"Splash.h"
 
@@ -337,7 +333,7 @@
 	"Timer.h"
 	"Angle.h"
 
-1662488390 source:/home/iurii/LemonWars/src/Rotator.cpp
+1663080151 source:/home/iurii/LemonWars/src/Rotator.cpp
 	"Rotator.h"
 	<cmath>
 
@@ -370,12 +366,12 @@
 	<chrono>
 	<string>
 
-1662483807 /home/iurii/LemonWars/include/Target.h
+1663081610 /home/iurii/LemonWars/include/Target.h
 	"LevelMap.h"
 	"Entity.h"
 	"LineVec.h"
 
-1662483858 source:/home/iurii/LemonWars/src/Target.cpp
+1663081610 source:/home/iurii/LemonWars/src/Target.cpp
 	"Target.h"
 	"Point_float.h"
 	"Angle.h"

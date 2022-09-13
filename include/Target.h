@@ -13,6 +13,7 @@ class Target
         Target(LevelMap *mymap);
         bool visible(float abs_x, float abs_y);
         bool direct_path_available (float abs_x, float abs_y, float radius);
+        bool direct_path_available (float abs_x, float abs_y, float target_x, float target_y, float radius);
         float distance(float abs_x, float abs_y);
 
         float direct_angle;

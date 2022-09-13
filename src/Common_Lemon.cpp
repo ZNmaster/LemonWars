@@ -31,7 +31,7 @@ void Common_Lemon::lemon_init()
 
     angle = 0;
 
-    set_roam();
+    //set_roam();
 
     sprite_change_delay = 80;
     last_sprite = 10;
