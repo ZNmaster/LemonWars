@@ -30,6 +30,18 @@ return 0;
 
 }
 
+bool ArraySearch::run_tests(int x, int y)
+{
+return 0;
+
+}
+
+bool ArraySearch::run_tests(int x)
+{
+return 0;
+
+}
+
 bool ArraySearch::scan_array()
 {
 
@@ -48,14 +60,14 @@ for (int i = x_start; i <= x_end; i++)
    {
        for (int k = y_start; k <= y_end; k++)
        {
-           int temp_prog = (i * k)*100/arraySize;
+           int temp_prog = ((i - x_start) * (k - y_start))*100/arraySize;
            //std::cout << "\r" << temp_prog << "% done. ";
            if (temp_prog > progress)
            {
                progress = temp_prog;
                std::cout << "\rProcessing array... " << progress << "% done. ";
            }
-       run_tests();
+       run_tests(i, k);
 
        }
    }

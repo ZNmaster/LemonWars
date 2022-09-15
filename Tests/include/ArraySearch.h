@@ -1,6 +1,8 @@
 #ifndef ARRAYSEARCH_H
 #define ARRAYSEARCH_H
 
+#include <vector>
+
 
 class ArraySearch
 {
@@ -10,7 +12,11 @@ class ArraySearch
 
         virtual bool scan_array();
         virtual bool run_tests();
+        virtual bool run_tests(int x);
+        virtual bool run_tests(int x, int y);
         virtual ~ArraySearch();
+
+        std::vector<int> visible_point_x, visible_point_y;
 
     protected:
 

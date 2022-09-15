@@ -201,7 +201,7 @@ bool Wallbuilder::intersection(int x1, int y1, int x2, int y2, bool visibility_o
            //other walls
            else
            {
-
+              std::cout << "Error: other walls not defined" << std::endl;
            }
         }
 
@@ -210,6 +210,7 @@ bool Wallbuilder::intersection(int x1, int y1, int x2, int y2, bool visibility_o
     //returns
     if(intersection_points.size() == 0)
     {
+        //std::cout << "no intersection points" << std::endl;
         return 0;
     }
     else
