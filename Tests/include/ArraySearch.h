@@ -10,6 +10,8 @@ class ArraySearch
         ArraySearch ();
         ArraySearch (int coordX_start, int coordY_start, int coordX_end, int coordY_end);
 
+        void check(int visibility_point_x, int visibility_point_y);
+
         virtual bool scan_array();
         virtual bool run_tests();
         virtual bool run_tests(int x);
@@ -17,6 +19,11 @@ class ArraySearch
         virtual ~ArraySearch();
 
         std::vector<int> visible_point_x, visible_point_y;
+
+
+
+        //point coordinates to check
+        int p_x, p_y;
 
     protected:
 

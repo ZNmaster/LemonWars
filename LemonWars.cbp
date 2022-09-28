@@ -45,13 +45,16 @@
 			<Add directory="include/vita2d" />
 		</Linker>
 		<Unit filename="Tests/include/ArraySearch.h" />
+		<Unit filename="Tests/include/DPathChecker.h" />
 		<Unit filename="Tests/include/VisChecker.h" />
 		<Unit filename="Tests/src/ArraySearch.cpp" />
+		<Unit filename="Tests/src/DPathChecker.cpp" />
 		<Unit filename="Tests/src/VisChecker.cpp" />
 		<Unit filename="include/Angle.h" />
 		<Unit filename="include/Base_Init.h" />
 		<Unit filename="include/Common_Lemon.h" />
 		<Unit filename="include/Entity.h" />
+		<Unit filename="include/Game.h" />
 		<Unit filename="include/GamePlayObj.h" />
 		<Unit filename="include/Gamebooter.h" />
 		<Unit filename="include/Layers.h" />

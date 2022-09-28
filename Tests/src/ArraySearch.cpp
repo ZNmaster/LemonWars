@@ -81,6 +81,15 @@ return 0;
 
 }
 
+void ArraySearch::check(int visibility_point_x, int visibility_point_y)
+{
+    visible_point_x.clear();
+    visible_point_y.clear();
+    p_x = visibility_point_x;
+    p_y = visibility_point_y;
+    scan_array();
+}
+
 ArraySearch::~ArraySearch()
 {
     //dtor
