@@ -54,6 +54,14 @@ void LineVec::calcline(float length, float rad)
     y_end = y_start + delta_y;
 }
 
+LineVec LineVec::opposite(LineVec a)
+{
+    EPoint_float start_point(a.x_end, a.y_end);
+    EPoint_float end_point(a.x_start, a.y_start);
+
+    return LineVec(start_point, end_point);
+}
+
 LineVec LineVec::operator +(LineVec b)
 {
     EPoint_float start_point(x_start, y_start);
@@ -70,6 +78,23 @@ LineVec LineVec::operator +(LineVec b)
 
     return result_vec;
 }
+
+LineVec LineVec::operator -(LineVec b)
+{
+    return *this + opposite(b);
+}
+
+LineVec LineVec::operator *(LineVec b)
+{
+    EPoint_float start_point(x_start, y_start);
+
+    float length = len*b.len;
+    float ang = angle + b.angle;
+
+    return LineVec(start_point, length, ang);
+}
+
+
 
 LineVec::~LineVec()
 {

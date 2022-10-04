@@ -19,9 +19,12 @@ class LineVec : public Line, public Angle
 
 
         float angle;
-        //const float pi = 3.1415926;
+
+        LineVec opposite(LineVec a);
 
         LineVec operator +(LineVec b);
+        LineVec operator -(LineVec b);
+        LineVec operator *(LineVec b);
 
         ~LineVec();
     protected:
