@@ -24,7 +24,10 @@ float Line::length(float dx, float dy)
 
 float Line::length(float x1, float y1, float x2,  float y2)
 {
-     return sqrt(pow((x2-x1), 2) + pow((y2-y1), 2));
+     float a = x2-x1;
+     float b = y2-y1;
+
+     return sqrt(a*a + b*b);
 }
 
 void Line::calcline (float x1, float y1, float x2,  float y2)

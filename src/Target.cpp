@@ -27,12 +27,6 @@ bool Target::visible(float abs_x, float abs_y)
 bool Target::direct_path_available (float abs_x, float abs_y, float radius)
 {
 
-    return direct_path_available (abs_x, abs_y, level->player_pos_x, level->player_pos_y, radius);
-
-}
-
-bool Target::direct_path_available (float abs_x, float abs_y, float target_x, float target_y, float radius)
-{
     constexpr float right = Angle::pi/2;
     constexpr float left = -Angle::pi/2;
 
@@ -43,14 +37,34 @@ bool Target::direct_path_available (float abs_x, float abs_y, float target_x, fl
 
     //set end point of the line between the player and enemy
     Point_float end_p;
-    end_p.x = target_x;
-    end_p.y = target_y;
+    end_p.x = level->player_pos_x;
+    end_p.y = level->player_pos_y;
 
     //create vector between the player and enemy
     direct_line = LineVec(start_p, end_p);
 
     direct_angle = direct_line.angle;
 
+    //the vectors point to the beginnings of right and left visibility lines
+    LineVec left_aux_vec(start_p, radius, direct_angle + left);
+    LineVec right_aux_vec(start_p, radius, direct_angle + right);
+
+    //the vectors point to the ends of right and left visibility lines
+    LineVec left_aux_vec_end = direct_line + left_aux_vec;
+    LineVec right_aux_vec_end = direct_line + right_aux_vec;
+
+    if (visible(abs_x, abs_y))
+    {
+        if (level->levelwalls.visible(left_aux_vec.x_end, left_aux_vec.y_end, left_aux_vec_end.x_end, left_aux_vec_end.y_end))
+        {
+        return level->levelwalls.visible(right_aux_vec.x_end, right_aux_vec.y_end, right_aux_vec_end.x_end, right_aux_vec_end.y_end);
+        }
+    }
+
+
+
+
+    /*
     //create vector to point the beginning of the visibility line
     LineVec left_aux_vec(start_p, radius, direct_line.angle + left);
     LineVec right_aux_vec(start_p, radius, direct_line.angle + right);
@@ -59,7 +73,9 @@ bool Target::direct_path_available (float abs_x, float abs_y, float target_x, fl
     {
         return side_visible(right_aux_vec);
     }
+    */
     return 0;
+
 }
 
 float Target::distance(float abs_x, float abs_y)

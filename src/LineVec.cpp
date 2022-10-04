@@ -54,16 +54,6 @@ void LineVec::calcline(float length, float rad)
     y_end = y_start + delta_y;
 }
 
-/*void LineVec::calcangle()
-{
-        angle = asin(sin_a);
-        if (cos_a < 0)
-        {
-            angle = pi - angle;
-        }
-}*/
-
-
 LineVec LineVec::operator +(LineVec b)
 {
     EPoint_float start_point(x_start, y_start);
