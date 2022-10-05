@@ -5,7 +5,7 @@
 
 #include "Timer.h"
 #include "LevelMap.h"
-#include "Layers.h"
+//#include "Layers.h"
 
 
 
@@ -13,7 +13,7 @@ class Weapons
 {
     public:
         Weapons();
-        Weapons(unsigned int type, LevelMap *mymap, Layers *lay);
+        Weapons(unsigned int type, LevelMap *mymap, std::vector<std::vector<Entity *> *> &lay);
 
         static unsigned int weapon_type;
         unsigned int act(unsigned int sprite_num, float alpha);

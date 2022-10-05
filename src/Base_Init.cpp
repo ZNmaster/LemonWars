@@ -9,9 +9,11 @@ Base_Init::Base_Init()
     grid_activated = 0;
     rad = 0;
 
+    layers.push_back(&layer0);
+    layers.push_back(&layer1);
     //we need to reserve enough room for our pointers to avoid GPU crash when auto expanding vector
-    layers.layer0_obj.reserve(1000);
-    layers.layer1_obj.reserve(1000);
+    (*layers[0]).reserve(1000);
+    (*layers[1]).reserve(1000);
 
 }
 
@@ -103,17 +105,19 @@ void Base_Init::draw_grid(int stride)
 
 }
 
-bool Base_Init::draw_frame(Layers &lay)
+bool Base_Init::draw_frame(std::vector<std::vector<Entity *> *> &lay)
 {
 
         vita2d_start_drawing();
 		vita2d_clear_screen();
 
+        bool result = 0;
 
-        bool result = show(lay.layer0_obj);
-        if (result) return result;
-
-        result = show(lay.layer1_obj);
+        for (auto layvec : lay)
+        {
+            result = show(*layvec);
+            if (result) break;
+        }
 
         //debug grid
         draw_grid();
@@ -124,13 +128,13 @@ bool Base_Init::draw_frame(Layers &lay)
 
 
         //moving images layer down
-        for(auto it = lay.layer1_obj.begin() + 1; it < lay.layer1_obj.end(); it++)
+        for(auto it = (*lay[1]).begin() + 1; it < (*lay[1]).end(); it++)
         {
-            if ((*it)->move_it)
+            if ((*it)->move_to_bottom)
             {
-                lay.layer0_obj.push_back(*it);
-                lay.layer1_obj.erase(it);
-                lay.layer0_obj.back()->layer_moved(lay.layer0_obj);
+                (*lay[0]).push_back(*it);
+                (*lay[1]).erase(it);
+                (*lay[0]).back()->layer_moved(*lay[0]);
 
             }
         }

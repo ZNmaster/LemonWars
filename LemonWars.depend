@@ -38,13 +38,12 @@
 	"Sounds.h"
 	"Base_Init.h"
 
-1652971705 /home/iurii/LemonWars/include/Base_Init.h
+1664974084 /home/iurii/LemonWars/include/Base_Init.h
 	<vector>
 	<string>
 	"Timer.h"
 	"Entity.h"
 	"Scanner.h"
-	"Layers.h"
 
 1650133121 /home/iurii/LemonWars/include/Scanner.h
 	<psp2/ctrl.h>
@@ -58,7 +57,7 @@
 	"LineEq.h"
 	"Point_int.h"
 
-1650133121 source:/home/iurii/LemonWars/src/Gamebooter.cpp
+1664973607 source:/home/iurii/LemonWars/src/Gamebooter.cpp
 	"Gamebooter.h"
 	"Menu.h"
 	"Rocket.h"
@@ -67,7 +66,7 @@
 	"Base_Init.h"
 	"MenuItem.h"
 
-1652971816 source:/home/iurii/LemonWars/src/Menu.cpp
+1664974084 source:/home/iurii/LemonWars/src/Menu.cpp
 	"Menu.h"
 	"GamePlayObj.h"
 
@@ -81,7 +80,7 @@
 	<cmath>
 	<algorithm>
 
-1662488376 source:/home/iurii/LemonWars/src/Base_Init.cpp
+1664974177 source:/home/iurii/LemonWars/src/Base_Init.cpp
 	"Base_Init.h"
 	"Scanner.h"
 	"Letter.h"
@@ -94,11 +93,11 @@
 1649004062 /home/iurii/LemonWars/include/Timer.h
 	<chrono>
 
-1650135015 source:/home/iurii/LemonWars/src/Entity.cpp
+1664971144 source:/home/iurii/LemonWars/src/Entity.cpp
 	"Entity.h"
 	<cmath>
 
-1650134964 /home/iurii/LemonWars/include/Entity.h
+1664971108 /home/iurii/LemonWars/include/Entity.h
 	<vita2d.h>
 	<vector>
 
@@ -138,7 +137,7 @@
 	"Menu.h"
 	"Game.h"
 
-1662488434 source:/home/iurii/LemonWars/src/Game.cpp
+1664973560 source:/home/iurii/LemonWars/src/Game.cpp
 	"Game.h"
 	"Scanner.h"
 	"LevelMap.h"
@@ -185,7 +184,7 @@
 1638195649 source:/home/iurii/LemonWars/src/Character.cpp
 	"Character.h"
 
-1652969144 source:/home/iurii/LemonWars/src/Player.cpp
+1664973560 source:/home/iurii/LemonWars/src/Player.cpp
 	"Player.h"
 	"Scanner.h"
 	"Gamebooter.h"
@@ -193,10 +192,9 @@
 	"Angle.h"
 	<cmath>
 
-1648397159 /home/iurii/LemonWars/include/Player.h
+1664973560 /home/iurii/LemonWars/include/Player.h
 	"MovObj.h"
 	"Weapons.h"
-	"Layers.h"
 
 1629641116 /home/iurii/LemonWars/include/PlayerMap.h
 	<Character.h>
@@ -214,7 +212,7 @@
 	"LevelMap.h"
 	"Timer.h"
 
-1663078970 source:/home/iurii/LemonWars/src/Common_Lemon.cpp
+1664972601 source:/home/iurii/LemonWars/src/Common_Lemon.cpp
 	"Common_Lemon.h"
 	"Splash.h"
 
@@ -263,7 +261,7 @@
 	"NearestPoint.h"
 	"Line.h"
 
-1664394506 source:/home/iurii/LemonWars/src/LineVec.cpp
+1664888035 source:/home/iurii/LemonWars/src/LineVec.cpp
 	"LineVec.h"
 	"Geometry.h"
 	<cmath>
@@ -275,11 +273,10 @@
 
 1637767598 /home/iurii/LemonWars/include/Point_float.h
 
-1640268955 /home/iurii/LemonWars/include/Weapons.h
+1664973560 /home/iurii/LemonWars/include/Weapons.h
 	<vector>
 	"Timer.h"
 	"LevelMap.h"
-	"Layers.h"
 
 1640269259 source:/home/iurii/LemonWars/src/Weapons.cpp
 	"Weapons.h"

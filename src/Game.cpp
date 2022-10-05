@@ -21,23 +21,23 @@ Game::Game(const char *MapFilename, const char *MemFilename)
     GPU_init(2);
 
     //lemon spawns
-    SpawnPoint *spawn = new SpawnPoint(650, 1200, &layers.layer1_obj);
-    layers.layer0_obj.push_back (spawn);
+    SpawnPoint *spawn = new SpawnPoint(650, 1200, layers[1]);
+    (*layers[0]).push_back (spawn);
 
-    SpawnPoint *spawn2 = new SpawnPoint(650, 1600, &layers.layer1_obj);
-    layers.layer0_obj.push_back (spawn2);
+    SpawnPoint *spawn2 = new SpawnPoint(650, 1600, layers[1]);
+    (*layers[0]).push_back (spawn2);
 
     LevelMap *level = new LevelMap(MapFilename, MemFilename);
-    layers.layer0_obj.push_back (level);
+    (*layers[0]).push_back (level);
 
     //save level map pointer in spawn point
     spawn->set_levelmap(level);
     spawn2->set_levelmap(level);
 
     //player spawn
-    Player *player = new Player(level, &layers, "app0:/assets/images/characters/player.png", 2, 2, 150, 150);
+    Player *player = new Player(level, layers, "app0:/assets/images/characters/player.png", 2, 2, 150, 150);
 
-    layers.layer1_obj.push_back (player);
+    (*layers[1]).push_back (player);
 
 
 }
@@ -85,8 +85,8 @@ bool Game::StartGame()
     //debug_file.log("Finished drawframe");
 
     GPU_finish();
-    free_textures(layers.layer0_obj);
-    free_textures(layers.layer1_obj);
+    free_textures(*layers[0]);
+    free_textures(*layers[1]);
 
 
     return 0;

@@ -6,7 +6,7 @@
 #include "Timer.h"
 #include "Entity.h"
 #include "Scanner.h"
-#include "Layers.h"
+//#include "Layers.h"
 
 //#include <vita2d.h>
 
@@ -30,7 +30,7 @@ class Base_Init
         void draw_grid(int stride);
 
         bool draw_frame(std::vector<Entity *> obj);
-        bool draw_frame(Layers &lay);
+        bool draw_frame(std::vector<std::vector<Entity *> *> &lay);
 
 
         void free_textures(std::vector<Entity *> &obj);
@@ -42,7 +42,15 @@ class Base_Init
         void create_text_from_font(std::string text, int x, int y,
                                    const char *filename, std::vector<Entity *> &obj);
 
-        Layers layers;
+        //layers;
+        std::vector<Entity *> layer0;
+        std::vector<Entity *> layer1;
+        std::vector<Entity *> layer2;
+        std::vector<Entity *> layer3;
+
+        //vector of pointers to layers
+        std::vector<std::vector<Entity *> *> layers;
+
 
 
         Timer grid_toggle_timer;

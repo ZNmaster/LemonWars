@@ -24,8 +24,8 @@ Entity::Entity()
     terminated = 0;
     enemy = 0;
     dead = 0;
-    move_it = 0;
-
+    move_to_bottom = 0;
+    move_to_top = 0;
 
     angle = 0;
 

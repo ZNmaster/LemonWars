@@ -13,14 +13,14 @@ Weapons::Weapons()
     projectile_image = nullptr;
 }
 
-Weapons::Weapons(unsigned int type, LevelMap *mymap, Layers *lay)
+Weapons::Weapons(unsigned int type, LevelMap *mymap, std::vector<std::vector<Entity *> *> &lay)
 {
     fire_sound_initialized = 0;
     projectile_image = nullptr;
 
     level = mymap;
-    obj = &lay->layer0_obj;
-    en_layer = &lay->layer1_obj;
+    obj = lay[0];
+    en_layer = lay[1];
 
     charged = 1;
 
