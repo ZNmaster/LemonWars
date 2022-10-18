@@ -12,7 +12,5 @@ int main()
 
         Game1.Play();
 
-
-
     return 0;
 }
