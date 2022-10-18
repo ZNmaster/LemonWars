@@ -27,6 +27,12 @@ void MenuItem::go_move()
     }
 }
 
+void MenuItem::layer_moved(std::vector<Entity *> &target_lay)
+{
+    move_to_bottom = 0;
+    move_to_top = 0;
+}
+
 MenuItem::~MenuItem()
 {
     //dtor

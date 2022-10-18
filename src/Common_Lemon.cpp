@@ -66,6 +66,7 @@ void Common_Lemon::layer_moved(std::vector<Entity *> &target_lay)
     target_lay.push_back(lemonjuice);
 
     move_to_bottom = 0;
+    move_to_top = 0;
     sprite_num = 3;
     set_sprite(sprite_num);
     explosion_timer.delay_mills(80);
