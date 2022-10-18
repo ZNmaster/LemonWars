@@ -54,6 +54,7 @@ class Menu : public Base_Init
 
         // level methods
         void level1_1();
+        std::string Get_Level_Filename();
 
         bool quit;
 

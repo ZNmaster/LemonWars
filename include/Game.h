@@ -2,13 +2,14 @@
 #define GAME_H
 
 #include <Base_Init.h>
+#include "LevelData.h"
 
 
 class Game : public Base_Init
 {
     public:
         Game();
-        Game(const char *MapFilename, const char *MemFilename);
+        Game(const char *LevelDataFilename);
         ~Game();
 
         bool StartGame();
@@ -16,6 +17,8 @@ class Game : public Base_Init
     protected:
 
     private:
+        LevelData levelmem;
+
 };
 
 #endif // GAME_H

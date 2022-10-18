@@ -66,11 +66,11 @@
 		<Unit filename="include/Init.ini" />
 		<Unit filename="include/Layers.h" />
 		<Unit filename="include/Letter.h" />
+		<Unit filename="include/LevelData.h" />
 		<Unit filename="include/LevelMap.h" />
 		<Unit filename="include/Line.h" />
 		<Unit filename="include/LineEq.h" />
 		<Unit filename="include/LineVec.h" />
-		<Unit filename="include/MemoryAI.h" />
 		<Unit filename="include/Menu.h" />
 		<Unit filename="include/MenuItem.h" />
 		<Unit filename="include/MovObj.h" />

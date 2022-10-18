@@ -3,7 +3,7 @@
 
 #include "GamePlayObj.h"
 #include "Wallbuilder.h"
-#include "MemoryAI.h"
+#include "LevelData.h"
 #include "Timer.h"
 
 
@@ -13,7 +13,7 @@ class LevelMap : public GamePlayObj
         //int number_of_enemies;
 
         LevelMap();
-        LevelMap(const char *MapFilename, const char *MemFilename);
+        LevelMap(LevelData *lev);
         virtual ~LevelMap();
 
         //position validator
@@ -25,7 +25,7 @@ class LevelMap : public GamePlayObj
         int touch_radius = 50;
 
         //nav points memory
-        MemoryAI levelmem;
+        LevelData *levelmem;
 
 
         virtual void go_move();

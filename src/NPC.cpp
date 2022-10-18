@@ -47,7 +47,7 @@ void NPC::init_nav_pos()
     level->number_of_enemies_spawned++;
 
     //set nav point for final approach (player coord)
-    fa_point_index = 100 - level->number_of_enemies_spawned;
+    fa_point_index = 150 - level->number_of_enemies_spawned;
 
     //reset find nearest flags
     find_nearest_running = 0;
@@ -55,11 +55,11 @@ void NPC::init_nav_pos()
     enemy = 1;
 
     //copy of nav points
-    for (int i=0; i<level->levelmem.number_of_points; i++)
+    for (int i=0; i<level->levelmem->number_of_points; i++)
     {
       Point_int p;
-      p.x = level->levelmem.coord_x[i];
-      p.y = level->levelmem.coord_y[i];
+      p.x = level->levelmem->coord_x[i];
+      p.y = level->levelmem->coord_y[i];
       p_vec.push_back(p);
     }
 
@@ -110,7 +110,7 @@ void NPC::set_path()
 
    else
    {
-       path = Pathfinder(abs_x, abs_y, level->levelmem.coord_x[target_nav_pos], level->levelmem.coord_y[target_nav_pos]);
+       path = Pathfinder(abs_x, abs_y, level->levelmem->coord_x[target_nav_pos], level->levelmem->coord_y[target_nav_pos]);
        carry_on = &NPC::walk;
        rot = Rotator(angle, path.sin_a, path.cos_a, 8);
    }
@@ -132,7 +132,7 @@ void NPC::find_nearest()
         //set second nearest if needed
         if (
           //when the distance to final nav pos from second nearest is less than that from nearest
-          (level->levelmem.distance[final_nav_pos][second_nearest] < level->levelmem.distance[final_nav_pos][target_nav_pos])
+          (level->levelmem->distance[final_nav_pos][second_nearest] < level->levelmem->distance[final_nav_pos][target_nav_pos])
             //in chasing mode only
             && (what_after_arrival == &NPC::is_final_dest)
            )
@@ -201,9 +201,9 @@ void NPC::find_nearest_to_player()
 void NPC::find_next()
 {
     std::vector<int> possible_nav_points;
-    for(int i = 0; i < level->levelmem.number_of_points; i++)
+    for(int i = 0; i < level->levelmem->number_of_points; i++)
     {
-        if (level->levelmem.path[i][current_nav_pos] == -1)
+        if (level->levelmem->path[i][current_nav_pos] == -1)
         {
             possible_nav_points.push_back(i);
         }
@@ -298,8 +298,8 @@ void NPC::walk()
 
 void NPC::set_new_direct()
 {
-            level->levelmem.coord_x[fa_point_index] = level->player_pos_x;
-            level->levelmem.coord_y[fa_point_index] = level->player_pos_y;
+            level->levelmem->coord_x[fa_point_index] = level->player_pos_x;
+            level->levelmem->coord_y[fa_point_index] = level->player_pos_y;
             target_nav_pos = fa_point_index;
             current_nav_pos = fa_point_index - 1;
             final_nav_pos = target_nav_pos;
@@ -370,7 +370,7 @@ void NPC::is_final_dest()
     //if it's not the final nav point yet
     else
     {
-        int wheretogo = level->levelmem.path[final_nav_pos][current_nav_pos];
+        int wheretogo = level->levelmem->path[final_nav_pos][current_nav_pos];
 
         //direct path exists
         if (wheretogo < 0)

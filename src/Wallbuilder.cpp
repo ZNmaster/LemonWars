@@ -12,8 +12,19 @@ Wallbuilder::Wallbuilder()
     y_end [0] = 17;
 }
 
-Wallbuilder::Wallbuilder(int level)
+Wallbuilder::Wallbuilder(const LevelData &data)
 {
+
+    array_size = data.number_of_walls;
+
+        for(std::int16_t i = 0; i < array_size; i++)
+        {
+             x_start[i] = data.wall_x_start[i];
+             y_start[i] = data.wall_y_start[i];
+             x_end[i] = data.wall_x_end[i];
+             y_end[i] = data.wall_y_end[i];
+        }
+    /*
     switch(level)
     {
     case 1 :
@@ -40,6 +51,9 @@ Wallbuilder::Wallbuilder(int level)
         y_end = {0};
         array_size = 1;
     }
+
+    //return;
+    */
 }
 
 bool Wallbuilder::pos_valid(int x0, int y0, int radius)
@@ -53,7 +67,7 @@ bool Wallbuilder::pos_valid(int x0, int y0, int radius)
     //constant part of c for both vertical and horizontal walls
     int c_part_2 = x0*x0 + y0*y0 - radius*radius;
 
-    for(unsigned int i = 0; i<array_size; i++)
+    for(int i = 0; i<array_size; i++)
     {
         if (x_start[i] == x_end[i])
         {
@@ -121,7 +135,7 @@ bool Wallbuilder::intersection(int x1, int y1, int x2, int y2, bool visibility_o
 
      AB = LineEq(x1, y1, x2, y2);
 
-     for(unsigned int i = 0; i<array_size; i++)
+     for(int i = 0; i<array_size; i++)
      {
         Point_int p;
 
@@ -199,7 +213,7 @@ bool Wallbuilder::intersection(int x1, int y1, int x2, int y2, bool visibility_o
            //other walls
            else
            {
-
+              std::cout << "Error: other walls not defined" << std::endl;
            }
         }
 
@@ -208,6 +222,7 @@ bool Wallbuilder::intersection(int x1, int y1, int x2, int y2, bool visibility_o
     //returns
     if(intersection_points.size() == 0)
     {
+        //std::cout << "no intersection points" << std::endl;
         return 0;
     }
     else

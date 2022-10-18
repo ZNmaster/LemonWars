@@ -1,3 +1,4 @@
+#include <fstream>
 #include "Game.h"
 #include "Scanner.h"
 #include "LevelMap.h"
@@ -11,12 +12,15 @@ Game::Game()
     //ctor
 }
 
-Game::Game(const char *MapFilename, const char *MemFilename)
+Game::Game(const char *LevelDataFilename)
 
 {
-    //Debug_Log debug_file("ux0:/data/game.txt");
-    //debug_file.log("Creating game");
-    //debug_file.writedown();
+
+    //open level data filename
+    std::fstream myFile2;
+    myFile2.open(LevelDataFilename, std::ios::in | std::ios::binary);
+    myFile2.read((char *)&levelmem, sizeof(LevelData));
+    myFile2.close();
 
     GPU_init(2);
 
@@ -27,7 +31,7 @@ Game::Game(const char *MapFilename, const char *MemFilename)
     SpawnPoint *spawn2 = new SpawnPoint(650, 1600, layers[1]);
     (*layers[0]).push_back (spawn2);
 
-    LevelMap *level = new LevelMap(MapFilename, MemFilename);
+    LevelMap *level = new LevelMap(&levelmem);
     (*layers[0]).push_back (level);
 
     //save level map pointer in spawn point
