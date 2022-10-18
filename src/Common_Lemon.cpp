@@ -31,7 +31,7 @@ void Common_Lemon::lemon_init()
 
     angle = 0;
 
-    set_roam();
+    //set_roam();
 
     sprite_change_delay = 80;
     last_sprite = 10;
@@ -41,9 +41,6 @@ void Common_Lemon::lemon_init()
 
 void Common_Lemon::go_move()
 {
-
-  //to reset move timer
-  move_delta = get_move_delta();
 
   (this->*carry_on) ();
 
@@ -55,7 +52,7 @@ void Common_Lemon::hit(int hitpoints, float projectile_angle, int x, int y)
     if (!is_hit)
     {
         is_hit = 1;
-        move_it = 1;
+        move_to_bottom = 1;
         hit_angle = projectile_angle;
         splash_x = x;
         splash_y = y;
@@ -68,7 +65,8 @@ void Common_Lemon::layer_moved(std::vector<Entity *> &target_lay)
     Splash *lemonjuice = new Splash(juice, level, 2, 3, splash_x, splash_y, hit_angle);
     target_lay.push_back(lemonjuice);
 
-    move_it = 0;
+    move_to_bottom = 0;
+    move_to_top = 0;
     sprite_num = 3;
     set_sprite(sprite_num);
     explosion_timer.delay_mills(80);

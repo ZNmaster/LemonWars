@@ -20,13 +20,13 @@ Menu::Menu()
     //creating menu objects
 
     GamePlayObj *background_1 = new GamePlayObj ("app0:/assets/images/main_menu/Background.png");
-    layers.layer0_obj.push_back (background_1);
+    (*layers[0]).push_back (background_1);
 
     MenuItem *play_button = new MenuItem ("app0:/assets/images/main_menu/play.png");
     play_button->pos_x = 200;
     play_button->pos_y = 200;
     play_button->item_num = 1;
-    layers.layer0_obj.push_back (play_button);
+    (*layers[0]).push_back (play_button);
     menuitem[play_button->item_num] = play_button;
     MenuFuncPtr [play_button->item_num] = &Menu::StartPlay;
     menu_item_count++;
@@ -35,7 +35,7 @@ Menu::Menu()
     load_button->pos_x = 600;
     load_button->pos_y = 200;
     load_button->item_num = 4;
-    layers.layer0_obj.push_back (load_button);
+    (*layers[0]).push_back (load_button);
     menuitem[load_button->item_num] = load_button;
     MenuFuncPtr [load_button->item_num] = &Menu::StartLoad;
     menu_item_count++;
@@ -44,7 +44,7 @@ Menu::Menu()
     controls_button->pos_x = 600;
     controls_button->pos_y = 330;
     controls_button->item_num = 5;
-    layers.layer0_obj.push_back (controls_button);
+    (*layers[0]).push_back (controls_button);
     menuitem[controls_button->item_num] = controls_button;
     MenuFuncPtr [controls_button->item_num] = &Menu::StartControls;
     menu_item_count++;
@@ -53,7 +53,7 @@ Menu::Menu()
     credits_button->pos_x = 200;
     credits_button->pos_y = 330;
     credits_button->item_num = 2;
-    layers.layer0_obj.push_back (credits_button);
+    (*layers[0]).push_back (credits_button);
     menuitem[credits_button->item_num] = credits_button;
     MenuFuncPtr [credits_button->item_num] = &Menu::StartCredits;
     menu_item_count++;
@@ -62,12 +62,12 @@ Menu::Menu()
     exit_button->pos_x = 400;
     exit_button->pos_y = 420;
     exit_button->item_num = 3;
-    layers.layer0_obj.push_back (exit_button);
+    (*layers[0]).push_back (exit_button);
     menuitem[exit_button->item_num] = exit_button;
     MenuFuncPtr [exit_button->item_num] = &Menu::StartExit;
     menu_item_count++;
 
-    create_text_from_font("LemonWars", 250, 80, "app0:/assets/fonts/default_font.png", layers.layer0_obj);
+    create_text_from_font("LemonWars", 250, 80, "app0:/assets/fonts/default_font.png", (*layers[0]));
 
 }
 
@@ -78,7 +78,7 @@ bool Menu::MenuRun()
     scanner.stick_nav = 1;
     scanner.Scan();
 
-    while (!draw_frame(layers.layer0_obj))
+    while (!draw_frame((*layers[0])))
     {
 
 
@@ -130,7 +130,7 @@ bool Menu::MenuRun()
     //deleting title screen objects and input scanner
 
     GPU_finish();
-    free_textures(layers.layer0_obj);
+    free_textures((*layers[0]));
 
         RunSelected(current);
 
@@ -287,6 +287,6 @@ void Menu::RunSelected (unsigned int item)
 
 Menu::~Menu()
 {
-    free_textures(layers.layer0_obj);
+    free_textures((*layers[0]));
     //dtor
 }

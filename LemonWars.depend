@@ -8,13 +8,14 @@
 	"Sounds.h"
 	"Base_Init.h"
 
-1664369324 source:/home/vladyslav/LemonWars/main.cpp
+1666017062 source:/home/vladyslav/LemonWars/main.cpp
 	<iostream>
-	<array>
+	<fstream>
+	<cstring>
+	<string>
 	"Init.ini"
-	"Wallbuilder.h"
-	"VisChecker.h"
-	"DPathChecker.h"
+	"MemoryBuilder.h"
+	"LevelData.h"
 
 1662730216 /home/vladyslav/LemonWars/include/Menu.h
 	"Base_Init.h"
@@ -34,13 +35,14 @@
 	<psp2/touch.h>
 	"Point_int.h"
 
-1662730216 /home/vladyslav/LemonWars/include/Wallbuilder.h
+1665792007 /home/vladyslav/LemonWars/include/Wallbuilder.h
 	<array>
 	<vector>
 	"LineEq.h"
 	"Point_int.h"
+	"LevelData.h"
 
-1663266929 source:/home/vladyslav/LemonWars/src/Wallbuilder.cpp
+1665792007 source:/home/vladyslav/LemonWars/src/Wallbuilder.cpp
 	"Wallbuilder.h"
 	<iostream>
 	<cmath>
@@ -94,15 +96,16 @@
 1662730216 /home/vladyslav/LemonWars/include/Pathfinder.h
 	"Line.h"
 
-1662730216 /home/vladyslav/LemonWars/include/MemoryBuilder.h
-	"Memory.h"
+1665754188 /home/vladyslav/LemonWars/include/MemoryBuilder.h
+	"LevelData.h"
 	"Entity.h"
 
-1662730217 source:/home/vladyslav/LemonWars/src/MemoryBuilder.cpp
+1666016867 source:/home/vladyslav/LemonWars/src/MemoryBuilder.cpp
 	"MemoryBuilder.h"
 	<array>
 	<iostream>
 	<fstream>
+	<cstring>
 
 1662730216 /home/vladyslav/LemonWars/include/Memory.h
 
@@ -164,10 +167,10 @@
 	"Pathfinder.h"
 	"NearestPoint.h"
 
-1662730216 /home/vladyslav/LemonWars/include/LevelMap.h
+1665793427 /home/vladyslav/LemonWars/include/LevelMap.h
 	"GamePlayObj.h"
 	"Wallbuilder.h"
-	"MemoryAI.h"
+	"LevelData.h"
 	"Timer.h"
 
 1662730216 /home/vladyslav/LemonWars/include/MemoryAI.h
@@ -190,7 +193,7 @@
 1662730216 /home/vladyslav/LemonWars/include/Letter.h
 	<Sprite.h>
 
-1662730217 source:/home/vladyslav/LemonWars/src/LevelMap.cpp
+1665793503 source:/home/vladyslav/LemonWars/src/LevelMap.cpp
 	"LevelMap.h"
 	<fstream>
 
@@ -426,7 +429,7 @@
 1662730217 source:/home/vladyslav/LemonWars/src/Geometry.cpp
 	"Geometry.h"
 
-1662730217 source:/home/vladyslav/LemonWars/src/Target.cpp
+1664458437 source:/home/vladyslav/LemonWars/src/Target.cpp
 	"Target.h"
 	"Point_float.h"
 	"Angle.h"
@@ -438,14 +441,16 @@
 	<psp2/touch.h>
 	<iostream>
 
-1662730217 source:/home/vladyslav/LemonWars/src/Levels.cpp
+1665793571 source:/home/vladyslav/LemonWars/src/Levels.cpp
 	"Menu.h"
 	"Game.h"
 
-1662730216 /home/vladyslav/LemonWars/include/Game.h
+1665793536 /home/vladyslav/LemonWars/include/Game.h
+	<fstream>
 	<Base_Init.h>
+	"LevelData.h"
 
-1662730217 source:/home/vladyslav/LemonWars/src/Game.cpp
+1666015084 source:/home/vladyslav/LemonWars/src/Game.cpp
 	"Game.h"
 	"Scanner.h"
 	"LevelMap.h"
@@ -461,7 +466,7 @@
 1664286206 /home/vladyslav/LemonWars/Tests/include/ArraySearch.h
 	<vector>
 
-1664286206 source:/home/vladyslav/LemonWars/Tests/src/VisChecker.cpp
+1665793979 source:/home/vladyslav/LemonWars/Tests/src/VisChecker.cpp
 	"VisChecker.h"
 	<iostream>
 
@@ -469,12 +474,15 @@
 	"ArraySearch.h"
 	"Wallbuilder.h"
 
-1664369312 /home/vladyslav/LemonWars/Tests/include/DPathChecker.h
+1665793946 /home/vladyslav/LemonWars/Tests/include/DPathChecker.h
 	"ArraySearch.h"
 	"Game.h"
 	"Target.h"
 
-1664370132 source:/home/vladyslav/LemonWars/Tests/src/DPathChecker.cpp
+1665793946 source:/home/vladyslav/LemonWars/Tests/src/DPathChecker.cpp
 	"DPathChecker.h"
 	<iostream>
+
+1666016867 /home/vladyslav/LemonWars/include/LevelData.h
+	<cstdint>
 

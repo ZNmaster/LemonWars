@@ -21,7 +21,7 @@ class DPathChecker : public ArraySearch
     protected:
 
     private:
-        Game game;
+        Game *game;
         Entity *ent1;
         LevelMap *lev;
         Target target1;

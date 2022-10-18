@@ -4,8 +4,15 @@
 
 void Menu::level1_1()
 {
-    Game level1_1("app0:/assets/images/levels/1_1/Level1_1.png", "app0:/assets/memory/level1.dat");
+
+    std::string filename = Get_Level_Filename();
+    Game level1_1(filename.c_str());
     bool gameover = level1_1.StartGame();
 
 
+}
+
+std::string Menu::Get_Level_Filename()
+{
+    return "app0:/assets/memory/level1003.dat";
 }

@@ -105,6 +105,12 @@ class NPC : public MovObj
         //copy of nav points
         std::vector<Point_int> p_vec;
         void init_nav_pos();
+        void nav_reset();
+
+        //direct path available flag
+        bool dpa_;
+
+        bool direct_chase;
 
 
 };

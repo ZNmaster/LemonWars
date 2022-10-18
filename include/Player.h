@@ -3,7 +3,7 @@
 
 #include "MovObj.h"
 #include "Weapons.h"
-#include "Layers.h"
+//#include "Layers.h"
 
 
 class Player : public MovObj
@@ -13,7 +13,7 @@ class Player : public MovObj
 
         Player();
 
-        Player(LevelMap *mymap, Layers *lay, const char *filename,
+        Player(LevelMap *mymap, std::vector<std::vector<Entity *> *> &lay, const char *filename,
                int num_horizontal_sprites, int num_vertical_sprites,
                int x0, int y0);
 

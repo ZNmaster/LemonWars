@@ -1,48 +1,57 @@
 #include <iostream>
-#include <array>
-
+#include <fstream>
+#include <cstring>
+#include <string>
 #include "Init.ini"
-
-#include "Wallbuilder.h"
-#include "VisChecker.h"
-#include "DPathChecker.h"
+#include "MemoryBuilder.h"
+#include "LevelData.h"
 
 
 
 int main()
 {
-  //rectangular area to check {x1, y2, x2, y2}
-  std::array<int, 4> a = {200, 1090, 820, 1280};
-
-  //point coordinates x, y
-  std::array<int, 2> point = {400, 800};
-
-  int number_of_tests = 4;
 
 
-  for (int i = 0; i < number_of_tests; i++)
-  {
-     VisChecker myarea (a[0], a[1], a[2], a[3]);
+    //MemoryBuilder aaa;
+    //return 0;
 
-     myarea.check(point[0], point[1]);
+    std::string name = "level1.dat";
 
-     for (unsigned int i = 0; i < myarea.visible_point_x.size(); i++)
-      {
-        std::cout << "Point (" << myarea.visible_point_x[i] << ", " << myarea.visible_point_y[i] << ") is visible" << std::endl;
-      }
-  }
+    LevelData level1;
+    strncpy(level1.filename0,"level1.dat", 100);
 
-for (int i = 0; i < number_of_tests; i++)
-  {
-     DPathChecker myarea (a[0], a[1], a[2], a[3]);
+    std::cout << level1.filename0 <<  std::endl;
 
-     myarea.check(point[0], point[1]);
+    std::fstream myFile2;
+    myFile2.open(name.c_str(), std::ios::in | std::ios::binary);
 
-     for (unsigned int i = 0; i < myarea.visible_point_x.size(); i++)
-      {
-        std::cout << "Point (" << myarea.visible_point_x[i] << ", " << myarea.visible_point_y[i] << ") is pathable" << std::endl;
-      }
-  }
+    myFile2.read((char *)&level1, sizeof(LevelData));
+
+    myFile2.close();
+
+    for(int16_t to_ = 0; to_ < level1.number_of_points; to_ ++)
+    {
+        for(int16_t from_ = 0; from_ < level1.number_of_points; from_ ++)
+        {
+
+            std::cout << level1.distance[to_][from_] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    for(std::int16_t i = 0; i < level1.number_of_walls; i++)
+    {
+        std::cout << level1.wall_x_end[i] << " ";
+    }
+    std::cout << std::endl;
+
+
+    //std::cout << str <<  std::endl;
+
+    std::cout << level1.spawn_coord_x[1] <<  std::endl;
+    std::cout << level1.spawn_coord_y[1] <<  std::endl;
+
+
 
 
   return 0;

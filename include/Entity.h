@@ -74,7 +74,8 @@ class Entity
         bool dead;
 
         //flag to tell if we need to move the entity from one layer to another
-        bool move_it;
+        bool move_to_bottom;
+        bool move_to_top;
 
         static unsigned int number_of_entities;
 

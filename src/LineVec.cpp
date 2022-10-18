@@ -16,7 +16,7 @@ LineVec::LineVec(Point_float end_point)
 }
 
 LineVec::LineVec(Point_float start_point, Point_float end_point)
-                 : Line::Line(start_point.x, start_point.y, end_point.x, end_point.y)
+                 : Line::Line(start_point.x, start_point.y, end_point.x,  end_point.y)
 {
     angle = calcangle(sin_a, cos_a);
 }
@@ -54,15 +54,13 @@ void LineVec::calcline(float length, float rad)
     y_end = y_start + delta_y;
 }
 
-/*void LineVec::calcangle()
+LineVec LineVec::opposite(LineVec a)
 {
-        angle = asin(sin_a);
-        if (cos_a < 0)
-        {
-            angle = pi - angle;
-        }
-}*/
+    EPoint_float start_point(a.x_end, a.y_end);
+    EPoint_float end_point(a.x_start, a.y_start);
 
+    return LineVec(start_point, end_point);
+}
 
 LineVec LineVec::operator +(LineVec b)
 {
@@ -80,6 +78,23 @@ LineVec LineVec::operator +(LineVec b)
 
     return result_vec;
 }
+
+LineVec LineVec::operator -(LineVec b)
+{
+    return *this + opposite(b);
+}
+
+LineVec LineVec::operator *(LineVec b)
+{
+    EPoint_float start_point(x_start, y_start);
+
+    float length = len*b.len;
+    float ang = angle + b.angle;
+
+    return LineVec(start_point, length, ang);
+}
+
+
 
 LineVec::~LineVec()
 {

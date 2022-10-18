@@ -19,7 +19,7 @@ VisChecker::VisChecker(int coordX_start, int coordY_start, int coordX_end, int c
     //first level
     int level = 1;
 
-    walls = Wallbuilder(level);
+    walls = Wallbuilder();
     //ctor
 }
 

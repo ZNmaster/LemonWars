@@ -134,7 +134,7 @@ void Projectile::hitcheck()
 
         if(distance((*it)->abs_x, (*it)->abs_y) < 35)
         {
-            if((*it)->enemy && !(*it)->move_it)
+            if((*it)->enemy && !(*it)->move_to_bottom)
             {
 
                     (*it)->hit(1000, angle, abs_x, abs_y);

@@ -21,9 +21,9 @@ DPathChecker::DPathChecker(int coordX_start, int coordY_start, int coordX_end, i
     //first level
     int level = 1;
 
-    game = Game("Level1_1.png", "level1.dat");;
+    game = new Game("level1.dat");
 
-    ent1 = game.layers.layer0_obj[2];
+    ent1 = game->layers.layer0_obj[2];
 
     lev = dynamic_cast<LevelMap*>(ent1);
 
@@ -59,7 +59,7 @@ bool DPathChecker::run_tests(int x, int y)
 
     if (a != b)
     {
-        std::cout << "Warning: forward and backward pathes are not equally available: from (" << p_x << ", " << p_y << ")"
+        std::cout << "Warning: forward and backward pathes are not equally available:" << std::endl << "from (" << p_x << ", " << p_y << ")"
                   <<" to (" << x << ", " << y << ") is " << a << std::endl;
 
         std::cout << "from (" << x << ", " << y << ")" <<" to (" << p_x << ", " << p_y << ") is " << b << std::endl;
@@ -82,5 +82,6 @@ bool DPathChecker::run_tests(int x, int y)
 
 DPathChecker::~DPathChecker()
 {
+    if (game) delete game;
     //dtor
 }

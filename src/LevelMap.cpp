@@ -1,5 +1,5 @@
 #include "LevelMap.h"
-#include <fstream>
+
 
 LevelMap::LevelMap()
 {
@@ -7,19 +7,14 @@ LevelMap::LevelMap()
     number_of_enemies_spawned = 0;
 }
 
-LevelMap::LevelMap(const char *MapFilename, const char *MemFilename)
-          : GamePlayObj::GamePlayObj(MapFilename)
+LevelMap::LevelMap(LevelData *lev)
+          : GamePlayObj::GamePlayObj(lev->filename0)
 {
 
     mapres_x = loaded_image_res_x;
     mapres_y = loaded_image_res_y;
 
-    std::fstream myFile2;
-    myFile2.open(MemFilename, std::ios::in | std::ios::binary);
-
-    myFile2.read((char *)&levelmem, sizeof(MemoryAI));
-
-    myFile2.close();
+    levelmem = lev;
 
     partial = 1;
     part_x = 0;
@@ -35,7 +30,7 @@ LevelMap::LevelMap(const char *MapFilename, const char *MemFilename)
     res_of_sprites_x = vitares_x;
     res_of_sprites_y = vitares_y;
 
-    levelwalls = Wallbuilder{1};
+    levelwalls = Wallbuilder{*levelmem};
 
     bodycount = 0;
     killstreak = 0;

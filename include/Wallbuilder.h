@@ -4,13 +4,14 @@
 #include <vector>
 #include "LineEq.h"
 #include "Point_int.h"
+#include "LevelData.h"
 
 
 class Wallbuilder
 {
     private:
         static const unsigned int max_array_size = 50;
-        unsigned int array_size;
+        int array_size;
 
         // walls coordinates
         std::array<int, max_array_size> x_start;
@@ -21,7 +22,7 @@ class Wallbuilder
     public:
         Wallbuilder();
 
-        Wallbuilder(int level);
+        Wallbuilder(const LevelData &data);
 
         ~Wallbuilder();
 

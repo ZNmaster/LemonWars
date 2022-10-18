@@ -6,8 +6,6 @@
 #include "Point_float.h"
 #include "LineVec.h"
 
-//#define VISIBILITY 1
-
 
 
 NPC::NPC()
@@ -19,6 +17,9 @@ NPC::NPC()
 
     //set nav point for final approach (player coord)
     fa_point_index = 100 - level->number_of_enemies_spawned;
+
+    dpa_ = 0;
+    direct_chase = 0;
 
 
 }
@@ -41,29 +42,24 @@ NPC::NPC(vita2d_texture *im, LevelMap *mymap, int num_horizontal_sprites,
 
 void NPC::init_nav_pos()
 {
-    direct_path_check_delay = 600;
+
+    nav_reset();
     level->number_of_enemies_spawned++;
 
     //set nav point for final approach (player coord)
-    fa_point_index = 100 - level->number_of_enemies_spawned;
+    fa_point_index = 150 - level->number_of_enemies_spawned;
 
     //reset find nearest flags
     find_nearest_running = 0;
 
     enemy = 1;
 
-    //set chase mode timer
-    direct_path_check_timer.delay_mills(direct_path_check_delay);
-
-    //set current nav pos to none
-    current_nav_pos = -1;
-
     //copy of nav points
-    for (int i=0; i<level->levelmem.number_of_points; i++)
+    for (int i=0; i<level->levelmem->number_of_points; i++)
     {
       Point_int p;
-      p.x = level->levelmem.coord_x[i];
-      p.y = level->levelmem.coord_y[i];
+      p.x = level->levelmem->coord_x[i];
+      p.y = level->levelmem->coord_y[i];
       p_vec.push_back(p);
     }
 
@@ -71,8 +67,30 @@ void NPC::init_nav_pos()
     target_to_chase = Target(level);
 }
 
+void NPC::nav_reset()
+{
+    dpa_ = 0;
+    direct_chase = 0;
+    direct_path_check_delay = 600;
+            //set chase mode timer
+    direct_path_check_timer.delay_mills(direct_path_check_delay);
+
+    //set current nav pos to none
+    current_nav_pos = -1;
+    set_roam();
+
+}
+
 void NPC::set_path()
 {
+    /*
+   //if in chasing mode and there is no direct path checked switch back to roam (additional protection from no-clip)
+   if (direct_chase && !dpa_ && what_after_arrival == &NPC::is_final_dest)
+   {
+       nav_reset();
+       return;
+   }
+   */
 
    //if the target point is the current location the enemy will:
    if (target_nav_pos == current_nav_pos)
@@ -80,8 +98,7 @@ void NPC::set_path()
        //switch to roam if in chasing mode and find next nav point to roam
        if (what_after_arrival == &NPC::is_final_dest)
        {
-           set_roam();
-           carry_on = &NPC::find_next;
+           nav_reset();
            return;
        }
 
@@ -93,10 +110,13 @@ void NPC::set_path()
 
    else
    {
-       path = Pathfinder(abs_x, abs_y, level->levelmem.coord_x[target_nav_pos], level->levelmem.coord_y[target_nav_pos]);
+       path = Pathfinder(abs_x, abs_y, level->levelmem->coord_x[target_nav_pos], level->levelmem->coord_y[target_nav_pos]);
        carry_on = &NPC::walk;
        rot = Rotator(angle, path.sin_a, path.cos_a, 8);
    }
+
+   dpa_ = 0;
+   direct_chase = 0;
 
 }
 
@@ -112,7 +132,7 @@ void NPC::find_nearest()
         //set second nearest if needed
         if (
           //when the distance to final nav pos from second nearest is less than that from nearest
-          (level->levelmem.distance[final_nav_pos][second_nearest] < level->levelmem.distance[final_nav_pos][target_nav_pos])
+          (level->levelmem->distance[final_nav_pos][second_nearest] < level->levelmem->distance[final_nav_pos][target_nav_pos])
             //in chasing mode only
             && (what_after_arrival == &NPC::is_final_dest)
            )
@@ -181,9 +201,9 @@ void NPC::find_nearest_to_player()
 void NPC::find_next()
 {
     std::vector<int> possible_nav_points;
-    for(int i = 0; i < level->levelmem.number_of_points; i++)
+    for(int i = 0; i < level->levelmem->number_of_points; i++)
     {
-        if (level->levelmem.path[i][current_nav_pos] == -1)
+        if (level->levelmem->path[i][current_nav_pos] == -1)
         {
             possible_nav_points.push_back(i);
         }
@@ -204,8 +224,10 @@ void NPC::wait_a_sec()
        if(spotted())
         {
           set_chase();
+          return;
         }
         spot_timer.delay_mills(300);
+
    }
 
    if (npc_wait_timer.expired())
@@ -234,6 +256,7 @@ void NPC::walk()
         if(spotted())
         {
           set_chase();
+          return;
         }
         spot_timer.delay_mills(300);
 
@@ -260,7 +283,10 @@ void NPC::walk()
     //checking if direct path is possible after coordinates has been changed
     if (what_after_arrival != &NPC::find_next)
     {
-        if (target_to_chase.direct_path_available(abs_x, abs_y, radius))
+
+     //we use dpa_ to double check in set path
+     dpa_ = target_to_chase.direct_path_available(abs_x, abs_y, radius);
+       if (dpa_)
         {
             //set direct path if possible
             set_new_direct();
@@ -272,14 +298,15 @@ void NPC::walk()
 
 void NPC::set_new_direct()
 {
-            level->levelmem.coord_x[fa_point_index] = level->player_pos_x;
-            level->levelmem.coord_y[fa_point_index] = level->player_pos_y;
+            level->levelmem->coord_x[fa_point_index] = level->player_pos_x;
+            level->levelmem->coord_y[fa_point_index] = level->player_pos_y;
             target_nav_pos = fa_point_index;
             current_nav_pos = fa_point_index - 1;
             final_nav_pos = target_nav_pos;
             carry_on = &NPC::set_path;
             what_after_arrival = &NPC::fa_arrived;
             spot_timer.delay_mills(300);
+            direct_chase = 1;
 }
 
 void NPC::set_roam()
@@ -336,15 +363,14 @@ void NPC::is_final_dest()
     //if the enemy has arrived at the final nav point
     if (current_nav_pos == final_nav_pos)
     {
-        set_roam();
-        carry_on = &NPC::wait_a_sec;
+        nav_reset();
         return;
     }
 
     //if it's not the final nav point yet
     else
     {
-        int wheretogo = level->levelmem.path[final_nav_pos][current_nav_pos];
+        int wheretogo = level->levelmem->path[final_nav_pos][current_nav_pos];
 
         //direct path exists
         if (wheretogo < 0)
@@ -357,8 +383,7 @@ void NPC::is_final_dest()
             //just in case the enemy is already at the final nav point (normally should never happen)
             if (target_nav_pos == current_nav_pos)
             {
-               set_roam();
-               carry_on = &NPC::wait_a_sec;
+               nav_reset();
                return;
             }
         }
@@ -378,14 +403,17 @@ void NPC::fa_arrived()
    //distance to move (we don't use it here, but it is need to avoid teleportation)
    move_delta = get_move_delta();
    direct_path_check_timer.make_expired();
-   if (target_to_chase.direct_path_available(abs_x, abs_y, radius))
+
+   //we use dpa_ to double check in set path
+   dpa_ = target_to_chase.direct_path_available(abs_x, abs_y, radius);
+   if (dpa_)
    {
       set_new_direct();
    }
 
    if (spot_timer.expired())
    {
-       set_roam();
+       nav_reset();
    }
 }
 

@@ -45,6 +45,26 @@ bool Target::direct_path_available (float abs_x, float abs_y, float radius)
 
     direct_angle = direct_line.angle;
 
+    //the vectors point to the beginnings of right and left visibility lines
+    LineVec left_aux_vec(start_p, radius, direct_angle + left);
+    LineVec right_aux_vec(start_p, radius, direct_angle + right);
+
+    //the vectors point to the ends of right and left visibility lines
+    LineVec left_aux_vec_end = direct_line + left_aux_vec;
+    LineVec right_aux_vec_end = direct_line + right_aux_vec;
+
+    if (visible(abs_x, abs_y))
+    {
+        if (level->levelwalls.visible(left_aux_vec.x_end, left_aux_vec.y_end, left_aux_vec_end.x_end, left_aux_vec_end.y_end))
+        {
+        return level->levelwalls.visible(right_aux_vec.x_end, right_aux_vec.y_end, right_aux_vec_end.x_end, right_aux_vec_end.y_end);
+        }
+    }
+
+
+
+
+    /*
     //create vector to point the beginning of the visibility line
     LineVec left_aux_vec(start_p, radius, direct_line.angle + left);
     LineVec right_aux_vec(start_p, radius, direct_line.angle + right);
@@ -53,6 +73,7 @@ bool Target::direct_path_available (float abs_x, float abs_y, float radius)
     {
         return side_visible(right_aux_vec);
     }
+    */
     return 0;
 
 }
