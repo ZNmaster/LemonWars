@@ -29,7 +29,7 @@ void GamePlayObj::set_texture()
     if (!image)
     {
         external_image = 0;
-        image = vita2d_load_PNG_buffer(&_binary_missing_png_start);
+        image = nullptr;
     }
 
     started = 0;

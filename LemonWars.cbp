@@ -38,6 +38,8 @@
 			<Add option="-fexceptions" />
 			<Add directory="include" />
 			<Add directory="include/vita2d" />
+			<Add directory="Tests/include" />
+			<Add directory="Tests/src" />
 		</Compiler>
 		<Linker>
 			<Add option="-pthread" />

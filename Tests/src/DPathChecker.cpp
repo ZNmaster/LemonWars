@@ -19,17 +19,17 @@ DPathChecker::DPathChecker(int coordX_start, int coordY_start, int coordX_end, i
     p_y = 0;
 
     //first level
-    int level = 1;
 
     game = new Game("level1.dat");
 
-    ent1 = game->layers.layer0_obj[2];
+    ent1 = (*(game->layers[0]))[0];
 
     lev = dynamic_cast<LevelMap*>(ent1);
 
-     if (level)
+     if (lev)
     {
         target1 = Target(lev);
+        std::cout << "Map has been found " << std::endl;
 
     }
 
