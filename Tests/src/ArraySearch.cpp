@@ -8,11 +8,16 @@ ArraySearch::ArraySearch() : ArraySearch::ArraySearch (0, 0, 1, 1)
 }
 
 ArraySearch::ArraySearch (int coordX_start, int coordY_start, int coordX_end, int coordY_end)
-                         : x_start(coordX_start),
+                         /*: x_start(coordX_start),
                            y_start(coordY_start),
                            x_end(coordX_end),
-                           y_end(coordY_end)
+                           y_end(coordY_end)*/
 {
+   default_proccessing = "\rProcessing array... ";
+   processing = default_proccessing;
+
+   set_coord(coordX_start, coordY_start, coordX_end, coordY_end);
+
    if ((x_start < 0) || (x_end < 0) || (y_start < 0) || (y_end < 0))
    {
        std::cout << "Negative coordinates " << x_start << ", " << y_start << ", " << x_end << ", " <<y_end << std::endl;
@@ -22,6 +27,14 @@ ArraySearch::ArraySearch (int coordX_start, int coordY_start, int coordX_end, in
    if (x_start > x_end) std::swap(x_start, x_end);
    if (y_start > y_end) std::swap(y_start, y_end);
    //scan_array();
+}
+
+void ArraySearch::set_coord (int coordX_start, int coordY_start, int coordX_end, int coordY_end)
+{
+    x_start = coordX_start;
+    y_start = coordY_start;
+    x_end = coordX_end;
+    y_end = coordY_end;
 }
 
 bool ArraySearch::run_tests()
@@ -47,7 +60,7 @@ bool ArraySearch::scan_array()
 
 int progress = 0;
 
-std::cout << "\r\nProcessing array... " << progress << "% done. ";
+std::cout << processing << progress << "% done. ";
 
 const int delta_x = x_end - x_start;
 const int delta_y = y_end - y_start;
@@ -65,14 +78,14 @@ for (int i = x_start; i <= x_end; i++)
            if (temp_prog > progress)
            {
                progress = temp_prog;
-               std::cout << "\rProcessing array... " << progress << "% done. ";
+               std::cout << processing << progress << "% done. ";
            }
        run_tests(i, k);
 
        }
    }
    // fill the image with color
-   std::cout << "\rProcessing array... 100% done. \r\n";
+   std::cout << processing << "100% done. \r\n";
 
 
 

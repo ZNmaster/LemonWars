@@ -8,14 +8,14 @@
 	"Sounds.h"
 	"Base_Init.h"
 
-1666104568 source:/home/vladyslav/LemonWars/main.cpp
+1666198213 source:/home/vladyslav/LemonWars/main.cpp
 	<iostream>
 	<fstream>
 	<cstring>
 	<string>
 	"Gamebooter.h"
 	"Init.ini"
-	"DPathChecker.h"
+	"Navigator.h"
 
 1666100482 /home/vladyslav/LemonWars/include/Menu.h
 	"Base_Init.h"
@@ -455,13 +455,14 @@
 	"SpawnPoint.h"
 	"Common_Lemon.h"
 
-1664286206 source:/home/vladyslav/LemonWars/Tests/src/ArraySearch.cpp
+1666203710 source:/home/vladyslav/LemonWars/Tests/src/ArraySearch.cpp
 	"ArraySearch.h"
 	<utility>
 	<iostream>
 
-1664286206 /home/vladyslav/LemonWars/Tests/include/ArraySearch.h
+1666203710 /home/vladyslav/LemonWars/Tests/include/ArraySearch.h
 	<vector>
+	<string>
 
 1665793979 source:/home/vladyslav/LemonWars/Tests/src/VisChecker.cpp
 	"VisChecker.h"
@@ -471,15 +472,45 @@
 	"ArraySearch.h"
 	"Wallbuilder.h"
 
-1665793946 /home/vladyslav/LemonWars/Tests/include/DPathChecker.h
+1666190902 /home/vladyslav/LemonWars/Tests/include/DPathChecker.h
 	"ArraySearch.h"
 	"Game.h"
 	"Target.h"
 
-1666105057 source:/home/vladyslav/LemonWars/Tests/src/DPathChecker.cpp
+1666190902 source:/home/vladyslav/LemonWars/Tests/src/DPathChecker.cpp
 	"DPathChecker.h"
 	<iostream>
 
 1666016866 /home/vladyslav/LemonWars/include/LevelData.h
 	<cstdint>
+
+1666016867 source:/home/vladyslav/LemonWars/Tests/src/MemoryBuilder.cpp
+	"MemoryBuilder.h"
+	<array>
+	<iostream>
+	<fstream>
+	<cstring>
+
+1665754188 /home/vladyslav/LemonWars/Tests/include/MemoryBuilder.h
+	"LevelData.h"
+	"Entity.h"
+
+1666203445 source:/home/vladyslav/LemonWars/Tests/src/Navigator.cpp
+	"Navigator.h"
+	<array>
+	<iostream>
+	<fstream>
+	<cstring>
+
+1666201061 /home/vladyslav/LemonWars/Tests/include/Navigator.h
+	"ArrayFiller.h"
+
+1666203307 source:/home/vladyslav/LemonWars/Tests/src/ArrayFiller.cpp
+	"ArrayFiller.h"
+	"Navigator.h"
+
+1666203050 /home/vladyslav/LemonWars/Tests/include/ArrayFiller.h
+	<iostream>
+	"ArraySearch.h"
+	"LevelData.h"
 

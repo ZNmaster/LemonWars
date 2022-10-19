@@ -46,11 +46,17 @@
 			<Add directory="include" />
 			<Add directory="include/vita2d" />
 		</Linker>
+		<Unit filename="Tests/include/ArrayFiller.h" />
 		<Unit filename="Tests/include/ArraySearch.h" />
 		<Unit filename="Tests/include/DPathChecker.h" />
+		<Unit filename="Tests/include/MemoryBuilder.h" />
+		<Unit filename="Tests/include/Navigator.h" />
 		<Unit filename="Tests/include/VisChecker.h" />
+		<Unit filename="Tests/src/ArrayFiller.cpp" />
 		<Unit filename="Tests/src/ArraySearch.cpp" />
 		<Unit filename="Tests/src/DPathChecker.cpp" />
+		<Unit filename="Tests/src/MemoryBuilder.cpp" />
+		<Unit filename="Tests/src/Navigator.cpp" />
 		<Unit filename="Tests/src/VisChecker.cpp" />
 		<Unit filename="include/Angle.h" />
 		<Unit filename="include/Base_Init.h" />
@@ -68,7 +74,6 @@
 		<Unit filename="include/LineVec.h" />
 		<Unit filename="include/Memory.h" />
 		<Unit filename="include/MemoryAI.h" />
-		<Unit filename="include/MemoryBuilder.h" />
 		<Unit filename="include/Menu.h" />
 		<Unit filename="include/MenuItem.h" />
 		<Unit filename="include/MovObj.h" />
@@ -108,7 +113,6 @@
 		<Unit filename="src/Line.cpp" />
 		<Unit filename="src/LineEq.cpp" />
 		<Unit filename="src/LineVec.cpp" />
-		<Unit filename="src/MemoryBuilder.cpp" />
 		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/MenuItem.cpp" />
 		<Unit filename="src/MovObj.cpp" />
