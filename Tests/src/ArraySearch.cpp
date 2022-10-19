@@ -86,6 +86,7 @@ for (int i = x_start; i <= x_end; i++)
    }
    // fill the image with color
    std::cout << processing << "100% done. \r\n";
+   processing = default_proccessing;
 
 
 

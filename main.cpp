@@ -11,7 +11,7 @@
 int main()
 {
 
-  Navigator newone;
+  Navigator newone("testlevel.dat");
 
   newone.Create();
 

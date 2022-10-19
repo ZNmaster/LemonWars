@@ -1,4 +1,5 @@
 #include "Navigator.h"
+#include "LevelMap.h"
 #include <array>
 #include <iostream>
 #include <fstream>
@@ -79,15 +80,16 @@ Navigator::Navigator(const char *LevelDataFilename)
 
 bool Navigator::Create()
 {
+   LevelMap mymap(&level1);
 
    a.set_array(&level1);
    //a.show_array();
-   a.fill_all(&level1.path, -22);
-   //a.show_array();
+   a.fill_all(&level1.path, -1111);
+   a.show_array();
    a.call_owner_and_fill(this, 656);
 
    //a.show_array(&level1.distance);
-   //a.show_array(&level1.path);
+   a.show_array(&level1.path);
 
 
    return false;

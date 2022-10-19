@@ -1,5 +1,6 @@
 #include "ArrayFiller.h"
 #include "Navigator.h"
+#include <sstream>
 
 ArrayFiller::ArrayFiller()
 {
@@ -15,7 +16,6 @@ bool ArrayFiller::run_tests(int x, int y)
    if (x == x_end && y == y_end)
    {
        do_job = &ArrayFiller::do_nothing;
-       processing = default_proccessing;
    }
    return 0;
 }
@@ -23,6 +23,10 @@ bool ArrayFiller::run_tests(int x, int y)
 
 void ArrayFiller::call_owner_and_fill(Navigator *own, std::int16_t v)
 {
+    std::stringstream o;
+    o << "\rAsking permission and filling array with (" << v << ")... ";
+    processing = o.str();
+
     filling_value = v;
     m_owner = own;
     do_job = &ArrayFiller::call_owner;
@@ -47,6 +51,10 @@ void ArrayFiller::fill_element(int to_, int from_)
 
 void ArrayFiller::fill_all(std::int16_t (*arr)[150][150], std::int16_t v)
 {
+    std::stringstream o;
+    o << "\rFilling array with (" << v << ")... ";
+    processing = o.str();
+
     array1 = arr;
     //array_set = true;
     filling_value = v;
