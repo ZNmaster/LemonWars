@@ -94,6 +94,11 @@ bool Navigator::Create()
    //a.show_array(&level1.distance);
    a.show_array(&level1.path);
 
+   Load_Data(level2, "level1.dat");
+   a.show_array(&level2.path);
+
+   a.compare(&level2);
+
 
    return false;
 }

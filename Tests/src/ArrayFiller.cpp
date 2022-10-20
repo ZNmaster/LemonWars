@@ -1,6 +1,7 @@
 #include "ArrayFiller.h"
 #include "Navigator.h"
-#include <sstream>
+#include <iostream>
+
 
 ArrayFiller::ArrayFiller()
 {
@@ -62,10 +63,32 @@ void ArrayFiller::fill_all(std::int16_t (*arr)[150][150], std::int16_t v)
     scan_array();
 }
 
-
-
-void ArrayFiller::set_compare()
+void ArrayFiller::compare_element(int to_, int from_)
 {
+    if ((*array1)[to_][from_] > -1000)
+    {
+        if ((*array1)[to_][from_] != (*array2)[to_][from_])
+        {
+            o2 << "The path " << from_ << " " << to_ << " does not match\r\n";
+        }
+    }
+}
+
+void ArrayFiller::compare(LevelData *lev)
+{
+    o2.clear();
+    set_ref_array(lev);
+
+    //set message
+    std::stringstream o;
+    o << "\rComparing arrays... ";
+    processing = o.str();
+
+    do_job = &ArrayFiller::compare_element;
+
+    scan_array();
+    std::cout << "Finished comparing arrays\r\n";
+    std::cout << o2.str() << std::endl;
 
 }
 void ArrayFiller::set_array (LevelData *lev)
@@ -79,7 +102,7 @@ void ArrayFiller::set_array (LevelData *lev)
 void ArrayFiller::set_ref_array (LevelData *lev)
 {
    level2 = lev;
-   //array2 = &lev->path;
+   array2 = &lev->path;
 }
 
 void ArrayFiller::show_array(std::int16_t (*arr)[150][150])

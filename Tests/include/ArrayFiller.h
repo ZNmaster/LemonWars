@@ -1,6 +1,7 @@
 #ifndef ARRAYFILLER_H
 #define ARRAYFILLER_H
 #include <iostream>
+#include <sstream>
 
 #include "ArraySearch.h"
 #include "LevelData.h"
@@ -14,7 +15,6 @@ class ArrayFiller : public ArraySearch
         ArrayFiller();
         void do_nothing(int v, int w);
 
-        void fill_element(int to_, int from_);
         std::int16_t filling_value;
 
         LevelData *level1;
@@ -37,7 +37,7 @@ class ArrayFiller : public ArraySearch
         void call_owner_and_fill(Navigator *own, std::int16_t v);
         void call_owner(int x, int y);
         void show_array();
-        void set_compare();
+        void compare(LevelData *lev);
         void set_array (LevelData *lev);
         void set_ref_array (LevelData *lev);
         void run();
@@ -51,6 +51,9 @@ class ArrayFiller : public ArraySearch
     private:
         bool array_set = false;
         Navigator *m_owner = nullptr;
+        void compare_element(int to_, int from_);
+        void fill_element(int to_, int from_);
+        std::stringstream o2;
 };
 
 #endif // ARRAYFILLER_H
