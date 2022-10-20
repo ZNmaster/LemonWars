@@ -1,6 +1,7 @@
 #ifndef NAVIGATOR_H
 #define NAVIGATOR_H
 #include "ArrayFiller.h"
+#include "Target.h"
 
 
 class Navigator
@@ -18,11 +19,15 @@ class Navigator
 
         ArrayFiller a;
 
+        LevelMap *level = nullptr;
+        Target target_to_chase;
+
 
 
     protected:
 
     private:
+
         LevelData level1,
                   level2;
 };

@@ -80,13 +80,16 @@ Navigator::Navigator(const char *LevelDataFilename)
 
 bool Navigator::Create()
 {
-   LevelMap mymap(&level1);
+
+
+   level = new LevelMap(&level1);
+   target_to_chase = Target(level);
 
    a.set_array(&level1);
    //a.show_array();
    a.fill_all(&level1.path, -1111);
-   a.show_array();
-   a.call_owner_and_fill(this, 656);
+   //a.show_array();
+   a.call_owner_and_fill(this, -1);
 
    //a.show_array(&level1.distance);
    a.show_array(&level1.path);
@@ -106,12 +109,21 @@ void Navigator::Load_Data (LevelData &dat, const char *LevelDataFilename)
 
 bool Navigator::approved (int to_, int from_)
 {
-    if (from_ == 0) return false;
-    if (to_ % from_) return false;
-    return true;
+
+    if (from_ == to_) return true;
+
+    float radius = 50;
+    level->player_pos_x = level1.coord_x[to_];
+    level->player_pos_y = level1.coord_y[to_];
+
+    return target_to_chase.direct_path_available(level1.coord_x[from_], level1.coord_y[from_], radius);
+
 }
 
 Navigator::~Navigator()
 {
+
+    if (level) delete level;
+
     //dtor
 }

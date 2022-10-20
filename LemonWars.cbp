@@ -93,6 +93,7 @@
 		<Unit filename="include/SpawnPoint.h" />
 		<Unit filename="include/Splash.h" />
 		<Unit filename="include/Sprite.h" />
+		<Unit filename="include/Target.h" />
 		<Unit filename="include/Timer.h" />
 		<Unit filename="include/Title.h" />
 		<Unit filename="include/Wallbuilder.h" />
