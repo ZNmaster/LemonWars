@@ -12,7 +12,7 @@ int main()
 {
 
   Navigator newone("testlevel.dat");
-
+  //Navigator newone;
   newone.Create();
 
 

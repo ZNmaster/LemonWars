@@ -30,6 +30,8 @@ class Navigator
 
         LevelData level1,
                   level2;
+
+        std::array<int, 150> copies;
 };
 
 #endif // NAVIGATOR_H

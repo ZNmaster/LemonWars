@@ -2,6 +2,7 @@
 #define ARRAYFILLER_H
 #include <iostream>
 #include <sstream>
+#include <array>
 
 #include "ArraySearch.h"
 #include "LevelData.h"
@@ -41,6 +42,8 @@ class ArrayFiller : public ArraySearch
         void set_array (LevelData *lev);
         void set_ref_array (LevelData *lev);
         void run();
+        void find_copies(std::int16_t (*arr)[150][150], std::array<int, 150> &copies);
+        void show_columns (int a, int b = -1, int c = -1, int d = -1, int e = -1, int f = -1, int g = -1);
 
         virtual ~ArrayFiller();
 
