@@ -91,14 +91,76 @@ void ArrayFiller::compare(LevelData *lev)
     std::cout << o2.str() << std::endl;
 
 }
+
+void ArrayFiller::dist(int to_, int from_)
+{
+    if (to_ == from_) return;
+    float change_to = nav_dist(to_, from_);
+
+    if ((*array2)[to_][from_] != change_to)
+    {
+        (*array2)[to_][from_] = change_to;
+        changes++;
+    }
+}
+
+void ArrayFiller::recalc_distance()
+{
+
+       set_default();
+       processing = "\rRecalculating distance... ";
+       do_job = &ArrayFiller::dist;
+       scan_array();
+
+}
+
+float ArrayFiller::nav_dist(std::int16_t point_1, std::int16_t point_2)
+{
+    //do not calculate unknown path
+    if ((*array1)[point_2][point_1] < -1) return 32000;
+
+    if ((*array1)[point_2][point_1] == -1)
+    {
+        return (*array2)[point_2][point_1];  //calc_dist.distance(level1.coord_x[point_2], level1.coord_y[point_2], level1.coord_x[point_1], level1.coord_y[point_1]);
+    }
+    else
+    {
+        return nav_dist(point_1, (*array1)[point_2][point_1]) + nav_dist((*array1)[point_2][point_1], point_2);
+    }
+}
+
+
 void ArrayFiller::set_array (LevelData *lev)
 {
    level1 = lev;
-   set_coord(0, 0 , lev->number_of_points - 1, lev->number_of_points - 1);
-   array1 = &lev->path;
+   default_x = lev->number_of_points - 1;
+   default_y = lev->number_of_points - 1;
+   default_array1 = &lev->path;
+   default_array2 = &lev->distance;
+
    array_set = true;
+   set_default();
+   //set_coord(0, 0 , lev->number_of_points - 1, lev->number_of_points - 1);
+   //array1 = &lev->path;
+
 
 }
+
+void ArrayFiller::set_default()
+{
+    if (!array_set)
+    {
+        std::cout << "Warning! Array is not set\r\n";
+        return;
+
+    }
+    array1 = default_array1;
+    array2 = default_array2;
+    set_coord(0, 0 , default_x, default_y);
+
+
+}
+
 void ArrayFiller::set_ref_array (LevelData *lev)
 {
    level2 = lev;
@@ -178,7 +240,7 @@ void ArrayFiller::find_copies(std::int16_t (*arr)[150][150], std::array<int, 150
 
 void ArrayFiller::show_columns (int a, int b, int c, int d, int e, int f, int g)
 {
-    for (unsigned int i = 0; i < y_end; i++)
+    for (int i = 0; i < y_end; i++)
     {
        std::cout << (*array1)[i][a] << "  ";
        if (b >= 0) std::cout << (*array1)[i][b] << "  ";

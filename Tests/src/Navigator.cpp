@@ -102,6 +102,7 @@ bool Navigator::Create()
    target_to_chase = Target(level);
 
    a.set_array(&level1);
+
    a.fill_all(&level1.distance, 32000);
 
    a.fill_all(&level1.path, -1111);
@@ -111,19 +112,71 @@ bool Navigator::Create()
    Load_Data(level2, "level1.dat");
    a.compare(&level2);
 
-   //a.show_array(&level1.distance);
-
    a.find_copies(&level1.path, copies);
 
-   for (auto element : copies)
-   {
-       std::cout << element << " ";
-   }
 
    std::cout << std::endl;
 
+   int dist_changes;
 
-   a.show_columns(12, 14, 17);
+   do
+   {
+
+    dist_changes = 0;
+
+
+   for (int where_i_am = 0; where_i_am < level1.number_of_points; where_i_am++)
+   {
+       for (int i_go_to = 0; i_go_to < level1.number_of_points; i_go_to++)
+       {
+
+        int is_there_any_path = level1.path[i_go_to][where_i_am];
+
+        //there is a path
+        if (is_there_any_path > -2)
+        {
+            int via = i_go_to;
+
+            for (int from_there_i_go_to = 0; from_there_i_go_to < level1.number_of_points; from_there_i_go_to++)
+                {
+                    int path_to_destination = level1.path[from_there_i_go_to][via];
+
+                    if (path_to_destination == -1)
+                    {
+                         std::int16_t distance = level1.distance[from_there_i_go_to][where_i_am];
+                         std::int16_t new_distance = level1.distance[via][where_i_am] + level1.distance[from_there_i_go_to][via];
+
+                         if (level1.path[from_there_i_go_to][where_i_am] != -1 && new_distance < distance)
+                         {
+                             if (level1.path[via][where_i_am] != -1)
+                             {
+                                 level1.path[from_there_i_go_to][where_i_am] = level1.path[via][where_i_am];
+                             }
+                             else
+                             {
+                                 level1.path[from_there_i_go_to][where_i_am] = via;
+                             }
+
+                             level1.distance[from_there_i_go_to][where_i_am] = new_distance;
+
+                             dist_changes ++;
+                         }
+                    }
+                }
+
+            }
+        }
+   }
+
+
+   }
+
+   while (dist_changes);
+   a.recalc_distance();
+
+   a.show_array(&level1.path);
+
+   a.compare(&level2);
 
 
    return false;

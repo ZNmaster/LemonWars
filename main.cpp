@@ -20,19 +20,6 @@ int main()
 
 
 
-  /*int distance[150][150];
-
-  int (*dist_ptr)[150][150];
-
-  dist_ptr = &distance;
-  (*dist_ptr)[0][0] = 12345;
-
-  std::cout << distance[0][0];*/
-
-
-
-
-
 
   return 0;
 

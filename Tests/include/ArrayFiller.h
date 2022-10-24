@@ -24,6 +24,8 @@ class ArrayFiller : public ArraySearch
         std::int16_t (*array1)[150][150] = nullptr;
         std::int16_t (*array2)[150][150] = nullptr;
 
+
+
         //pointer to the current job
         void (ArrayFiller::*do_job) (int, int);
 
@@ -47,6 +49,10 @@ class ArrayFiller : public ArraySearch
 
         virtual ~ArrayFiller();
 
+        void recalc_distance();
+
+        float nav_dist(std::int16_t point_1, std::int16_t point_2);
+
 
 
     protected:
@@ -56,7 +62,13 @@ class ArrayFiller : public ArraySearch
         Navigator *m_owner = nullptr;
         void compare_element(int to_, int from_);
         void fill_element(int to_, int from_);
+        void set_default();
+        void dist(int to_, int from_);
+
         std::stringstream o2;
+        std::int16_t (*default_array1)[150][150] = nullptr;
+        std::int16_t (*default_array2)[150][150] = nullptr;
+        int default_x, default_y;
 };
 
 #endif // ARRAYFILLER_H

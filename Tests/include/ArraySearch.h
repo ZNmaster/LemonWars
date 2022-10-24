@@ -29,6 +29,9 @@ class ArraySearch
         //point coordinates to check
         int p_x, p_y;
 
+
+        unsigned int changes = 0;
+
     protected:
         int x_start, y_start, x_end, y_end;
 
