@@ -22,16 +22,20 @@ class Navigator
         LevelMap *level = nullptr;
         Target target_to_chase;
 
+        LevelData level1,
+                  level2;
+
 
 
     protected:
 
     private:
 
-        LevelData level1,
-                  level2;
+
 
         std::array<int, 150> copies;
+
+        int calc_path();
 
 };
 

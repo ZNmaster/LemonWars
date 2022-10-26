@@ -117,7 +117,48 @@ bool Navigator::Create()
 
    std::cout << std::endl;
 
-   int dist_changes;
+
+   calc_path();
+
+   a.show_array(&level1.distance);
+   std::cout << "--------------------------------------------------- " << std::endl;
+
+   //a.show_array(&level2.distance);
+
+   std::int16_t ref_array[150][150];
+
+   a.copy_array(&level1.distance, &ref_array);
+
+   int ch2 = 0;
+
+   //do
+   //{
+       ch2 = a.recalc_distance();
+       std::cout << "Changes after recalc: " << ch2 << std::endl;
+   //}
+   //while (ch2);
+
+   for (auto p : a.points)
+   {
+       std::cout << "From " << p.y << " to " <<  p.x << " has been changed. " << " Was "<< ref_array[p.x][p.y] << " now " << level1.distance[p.x][p.y];
+       if (abs(ref_array[p.x][p.y] - level1.distance[p.x][p.y]) < 2) std::cout << " OK!!!!" <<  std::endl;
+
+   }
+
+   std::cout << "Total distance before recalc: " << a.array_add(&ref_array) << std::endl;
+   std::cout << "Total distance after recalc: " << a.array_add(&level1.distance) << std::endl;
+
+   //a.show_array(&level1.distance);
+
+   a.check_nav_table();
+
+
+   return false;
+}
+
+int Navigator::calc_path()
+{
+    int dist_changes;
 
    do
    {
@@ -167,19 +208,12 @@ bool Navigator::Create()
             }
         }
    }
-
+   //std::cout << "Changes of path: " << dist_changes << std::endl;
 
    }
-
    while (dist_changes);
-   a.recalc_distance();
 
-   a.show_array(&level1.path);
-
-   a.compare(&level2);
-
-
-   return false;
+   return dist_changes;
 }
 
 void Navigator::Load_Data (LevelData &dat, const char *LevelDataFilename)

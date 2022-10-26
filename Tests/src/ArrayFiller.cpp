@@ -99,19 +99,72 @@ void ArrayFiller::dist(int to_, int from_)
 
     if ((*array2)[to_][from_] != change_to)
     {
+        EPoint_int p(to_, from_);
+        points.push_back(p);
         (*array2)[to_][from_] = change_to;
         changes++;
     }
 }
 
-void ArrayFiller::recalc_distance()
+void ArrayFiller::check_nav_table()
 {
+    set_default();
+    processing = "\rChecking nav table... ";
+    do_job = &ArrayFiller::navigate;
+    points.clear();
+    scan_array();
+    if (points.size() > 0)
+    {
+            for (auto p : points)
+            {
+                std::cout << "Direct path from " << p.y << " to " <<  p.x << " NOT available " <<  std::endl;
+            }
+    }
+    else
+    {
+        std::cout << "All navigation pathes available " <<  std::endl;
+    }
 
+}
+void ArrayFiller::navigate(int to_, int from_)
+{
+    if (!direct_path_available(to_, from_))
+    {
+        EPoint_int p(to_, from_);
+        points.push_back(p);
+    }
+
+}
+
+bool ArrayFiller::direct_path_available(int to_, int from_)
+{
+    if (to_ == from_) return true;
+    if ((*array1)[to_][from_] == -1)
+    {
+        float coord_x_from = m_owner->level1.coord_x[from_];
+        float coord_y_from = m_owner->level1.coord_y[from_];
+
+        m_owner->level->player_pos_x = m_owner->level1.coord_x[to_];
+        m_owner->level->player_pos_y = m_owner->level1.coord_y[to_];
+
+        //float coord_x_to = m_owner->level1.coord_x[to_];
+        //float coord_y_to = m_owner->level1.coord_y[to_];
+        return m_owner->target_to_chase.direct_path_available(coord_x_from, coord_y_from, 50);
+    }
+    else
+    {
+        return direct_path_available((*array1)[to_][from_], from_) && direct_path_available(to_, (*array1)[to_][from_]);
+    }
+}
+
+unsigned int ArrayFiller::recalc_distance()
+{
+       changes = 0;
        set_default();
        processing = "\rRecalculating distance... ";
        do_job = &ArrayFiller::dist;
        scan_array();
-
+       return changes;
 }
 
 float ArrayFiller::nav_dist(std::int16_t point_1, std::int16_t point_2)
@@ -127,6 +180,40 @@ float ArrayFiller::nav_dist(std::int16_t point_1, std::int16_t point_2)
     {
         return nav_dist(point_1, (*array1)[point_2][point_1]) + nav_dist((*array1)[point_2][point_1], point_2);
     }
+}
+
+void ArrayFiller::copy_array (std::int16_t (*source)[150][150], std::int16_t (*dest)[150][150])
+{
+    if (!array_set)
+    {
+        std::cout << "Warning! Array is not set\r\n";
+        return;
+
+    }
+    array1 = source;
+    array2 = dest;
+    do_job = &ArrayFiller::direct_copy;
+    processing = "\rCopying array... ";
+    scan_array();
+    set_default();
+}
+
+void ArrayFiller::direct_copy (int i, int k)
+{
+    (*array2)[i][k] = (*array1)[i][k];
+}
+
+std::int64_t ArrayFiller::array_add (std::int16_t (*arr)[150][150])
+{
+    int a = 0;
+    for (std::int16_t i = 0; i < 150; i++)
+    {
+        for (std::int16_t k = 0; k < 150; k++)
+        {
+            a += (*arr)[i][k];
+        }
+    }
+    return a;
 }
 
 

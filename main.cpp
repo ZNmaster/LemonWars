@@ -16,11 +16,6 @@ int main()
   newone.Create();
 
 
-
-
-
-
-
   return 0;
 
 

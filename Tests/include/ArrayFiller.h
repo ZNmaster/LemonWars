@@ -3,9 +3,11 @@
 #include <iostream>
 #include <sstream>
 #include <array>
+#include <vector>
 
 #include "ArraySearch.h"
 #include "LevelData.h"
+#include "Geometry.h"
 
 class Navigator;
 
@@ -23,6 +25,8 @@ class ArrayFiller : public ArraySearch
 
         std::int16_t (*array1)[150][150] = nullptr;
         std::int16_t (*array2)[150][150] = nullptr;
+
+        std::vector<EPoint_int> points;
 
 
 
@@ -46,12 +50,15 @@ class ArrayFiller : public ArraySearch
         void run();
         void find_copies(std::int16_t (*arr)[150][150], std::array<int, 150> &copies);
         void show_columns (int a, int b = -1, int c = -1, int d = -1, int e = -1, int f = -1, int g = -1);
+        void copy_array (std::int16_t (*source)[150][150], std::int16_t (*dest)[150][150]);
+        std::int64_t array_add (std::int16_t (*arr)[150][150]);
+        void check_nav_table();
 
         virtual ~ArrayFiller();
 
-        void recalc_distance();
+        unsigned int recalc_distance();
 
-        float nav_dist(std::int16_t point_1, std::int16_t point_2);
+
 
 
 
@@ -62,13 +69,17 @@ class ArrayFiller : public ArraySearch
         Navigator *m_owner = nullptr;
         void compare_element(int to_, int from_);
         void fill_element(int to_, int from_);
+        void navigate(int to_, int from_);
         void set_default();
         void dist(int to_, int from_);
+        void direct_copy (int i, int k);
+        float nav_dist(std::int16_t point_1, std::int16_t point_2);
 
         std::stringstream o2;
         std::int16_t (*default_array1)[150][150] = nullptr;
         std::int16_t (*default_array2)[150][150] = nullptr;
         int default_x, default_y;
+        bool direct_path_available(int to_, int from_);
 };
 
 #endif // ARRAYFILLER_H
