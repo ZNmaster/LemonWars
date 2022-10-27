@@ -44,7 +44,7 @@ class ArrayFiller : public ArraySearch
         void call_owner_and_fill(Navigator *own, std::int16_t v);
         void call_owner(int x, int y);
         void show_array();
-        void compare(LevelData *lev);
+        //void compare(LevelData *lev);
         void set_array (LevelData *lev);
         void set_ref_array (LevelData *lev);
         void run();
@@ -52,14 +52,16 @@ class ArrayFiller : public ArraySearch
         void show_columns (int a, int b = -1, int c = -1, int d = -1, int e = -1, int f = -1, int g = -1);
         void copy_array (std::int16_t (*source)[150][150], std::int16_t (*dest)[150][150]);
         std::int64_t array_add (std::int16_t (*arr)[150][150]);
+        //compare 2 arrays
+        void compare(std::int16_t (*arr1)[150][150], std::int16_t (*arr2)[150][150]);
+        //compare default array with arr2
+        void compare(std::int16_t (*arr2)[150][150]);
+
         void check_nav_table();
 
         virtual ~ArrayFiller();
 
         unsigned int recalc_distance();
-
-
-
 
 
     protected:
@@ -74,12 +76,12 @@ class ArrayFiller : public ArraySearch
         void dist(int to_, int from_);
         void direct_copy (int i, int k);
         float nav_dist(std::int16_t point_1, std::int16_t point_2);
+        bool array_not_set();
 
         std::stringstream o2;
         std::int16_t (*default_array1)[150][150] = nullptr;
         std::int16_t (*default_array2)[150][150] = nullptr;
         int default_x, default_y;
-        bool direct_path_available(int to_, int from_);
 };
 
 #endif // ARRAYFILLER_H

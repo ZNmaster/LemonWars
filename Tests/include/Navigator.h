@@ -17,19 +17,21 @@ class Navigator
 
         bool approved (int to_, int from_);
 
+        //checks navigation possibilities between any 2 points
+        bool path_available(int to_, int from_);
+
         ArrayFiller a;
 
         LevelMap *level = nullptr;
         Target target_to_chase;
-
-        LevelData level1,
-                  level2;
 
 
 
     protected:
 
     private:
+        LevelData level1,
+                  level2;
 
 
 

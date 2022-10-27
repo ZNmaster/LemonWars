@@ -69,15 +69,24 @@ void ArrayFiller::compare_element(int to_, int from_)
     {
         if ((*array1)[to_][from_] != (*array2)[to_][from_])
         {
-            o2 << "The path " << from_ << " " << to_ << " does not match\r\n";
+            o2 << "The element (col) (row) " << from_ << " " << to_ << " does not match: (" << (*array1)[to_][from_] <<") and (" << (*array2)[to_][from_] << ")\r\n";
         }
     }
 }
 
-void ArrayFiller::compare(LevelData *lev)
+void ArrayFiller::compare(std::int16_t (*arr1)[150][150], std::int16_t (*arr2)[150][150])
 {
-    o2.clear();
-    set_ref_array(lev);
+    if (array_not_set()) return;
+
+    array1 = arr1;
+    compare (arr2);
+}
+
+void ArrayFiller::compare(std::int16_t (*arr2)[150][150])
+{
+    if (array_not_set()) return;
+
+    array2 = arr2;
 
     //set message
     std::stringstream o;
@@ -89,6 +98,9 @@ void ArrayFiller::compare(LevelData *lev)
     scan_array();
     std::cout << "Finished comparing arrays\r\n";
     std::cout << o2.str() << std::endl;
+
+    //clear o2 stream
+    std::stringstream().swap(o2);
 
 }
 
@@ -128,33 +140,12 @@ void ArrayFiller::check_nav_table()
 }
 void ArrayFiller::navigate(int to_, int from_)
 {
-    if (!direct_path_available(to_, from_))
+    if (!m_owner->path_available(to_, from_))
     {
         EPoint_int p(to_, from_);
         points.push_back(p);
     }
 
-}
-
-bool ArrayFiller::direct_path_available(int to_, int from_)
-{
-    if (to_ == from_) return true;
-    if ((*array1)[to_][from_] == -1)
-    {
-        float coord_x_from = m_owner->level1.coord_x[from_];
-        float coord_y_from = m_owner->level1.coord_y[from_];
-
-        m_owner->level->player_pos_x = m_owner->level1.coord_x[to_];
-        m_owner->level->player_pos_y = m_owner->level1.coord_y[to_];
-
-        //float coord_x_to = m_owner->level1.coord_x[to_];
-        //float coord_y_to = m_owner->level1.coord_y[to_];
-        return m_owner->target_to_chase.direct_path_available(coord_x_from, coord_y_from, 50);
-    }
-    else
-    {
-        return direct_path_available((*array1)[to_][from_], from_) && direct_path_available(to_, (*array1)[to_][from_]);
-    }
 }
 
 unsigned int ArrayFiller::recalc_distance()
@@ -184,12 +175,8 @@ float ArrayFiller::nav_dist(std::int16_t point_1, std::int16_t point_2)
 
 void ArrayFiller::copy_array (std::int16_t (*source)[150][150], std::int16_t (*dest)[150][150])
 {
-    if (!array_set)
-    {
-        std::cout << "Warning! Array is not set\r\n";
-        return;
+    if (array_not_set()) return;
 
-    }
     array1 = source;
     array2 = dest;
     do_job = &ArrayFiller::direct_copy;
@@ -205,10 +192,10 @@ void ArrayFiller::direct_copy (int i, int k)
 
 std::int64_t ArrayFiller::array_add (std::int16_t (*arr)[150][150])
 {
-    int a = 0;
-    for (std::int16_t i = 0; i < 150; i++)
+    std::int64_t a = 0;
+    for (std::int16_t i = 0; i < x_end; i++)
     {
-        for (std::int16_t k = 0; k < 150; k++)
+        for (std::int16_t k = 0; k < y_end; k++)
         {
             a += (*arr)[i][k];
         }
@@ -227,20 +214,14 @@ void ArrayFiller::set_array (LevelData *lev)
 
    array_set = true;
    set_default();
-   //set_coord(0, 0 , lev->number_of_points - 1, lev->number_of_points - 1);
-   //array1 = &lev->path;
 
 
 }
 
 void ArrayFiller::set_default()
 {
-    if (!array_set)
-    {
-        std::cout << "Warning! Array is not set\r\n";
-        return;
+    if (array_not_set()) return;
 
-    }
     array1 = default_array1;
     array2 = default_array2;
     set_coord(0, 0 , default_x, default_y);
@@ -256,11 +237,8 @@ void ArrayFiller::set_ref_array (LevelData *lev)
 
 void ArrayFiller::show_array(std::int16_t (*arr)[150][150])
 {
-    if (!array_set)
-    {
-        std::cout << "Warning! Array is not set" << std::endl;
-        return;
-    }
+
+    if (array_not_set()) return;
 
     for (int i = x_start; i <= x_end; i++)
    {
@@ -278,7 +256,7 @@ void ArrayFiller::show_array(std::int16_t (*arr)[150][150])
 
 void ArrayFiller::show_array()
 {
-    if(array1) show_array(array1);
+    show_array(array1);
 
 }
 
@@ -353,10 +331,25 @@ bool ArrayFiller::exec()
     return 0;
 }
 
+bool ArrayFiller::array_not_set()
+{
+    if (!array_set)
+    {
+        std::cout << "Warning! Array is not set\r\n";
+        return true;
+
+    }
+    return false;
+}
+
+
 void ArrayFiller::do_nothing(int v, int w)
 {
 
 }
+
+
+
 ArrayFiller::~ArrayFiller()
 {
     //dtor

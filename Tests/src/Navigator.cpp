@@ -110,33 +110,29 @@ bool Navigator::Create()
    a.call_owner_and_fill(this, -1);
 
    Load_Data(level2, "level1.dat");
-   a.compare(&level2);
+
+   a.compare(&level2.path);
 
    a.find_copies(&level1.path, copies);
-
 
    std::cout << std::endl;
 
 
    calc_path();
 
-   a.show_array(&level1.distance);
    std::cout << "--------------------------------------------------- " << std::endl;
 
-   //a.show_array(&level2.distance);
 
    std::int16_t ref_array[150][150];
 
    a.copy_array(&level1.distance, &ref_array);
 
+
    int ch2 = 0;
 
-   //do
-   //{
+
        ch2 = a.recalc_distance();
        std::cout << "Changes after recalc: " << ch2 << std::endl;
-   //}
-   //while (ch2);
 
    for (auto p : a.points)
    {
@@ -148,10 +144,7 @@ bool Navigator::Create()
    std::cout << "Total distance before recalc: " << a.array_add(&ref_array) << std::endl;
    std::cout << "Total distance after recalc: " << a.array_add(&level1.distance) << std::endl;
 
-   //a.show_array(&level1.distance);
-
    a.check_nav_table();
-
 
    return false;
 }
@@ -227,6 +220,7 @@ void Navigator::Load_Data (LevelData &dat, const char *LevelDataFilename)
 
 bool Navigator::approved (int to_, int from_)
 {
+    float radius = 50;
 
     if (from_ == to_)
     {
@@ -234,7 +228,8 @@ bool Navigator::approved (int to_, int from_)
         return true;
     }
 
-    float radius = 50;
+
+    //Do not use path available func, it is little different because here we need to check all possible pathes between all the points
     level->player_pos_x = level1.coord_x[to_];
     level->player_pos_y = level1.coord_y[to_];
 
@@ -244,6 +239,30 @@ bool Navigator::approved (int to_, int from_)
 
     return available;
 
+}
+
+bool Navigator::path_available(int to_, int from_)
+{
+    float radius = 50;
+
+    //to_ and from_ are the same point
+    if (to_ == from_) return true;
+
+
+    if (level1.path[to_][from_] == -1)
+    {
+        float coord_x_from = level1.coord_x[from_];
+        float coord_y_from = level1.coord_y[from_];
+
+        level->player_pos_x = level1.coord_x[to_];
+        level->player_pos_y = level1.coord_y[to_];
+
+        return target_to_chase.direct_path_available(coord_x_from, coord_y_from, radius);
+    }
+    else
+    {
+        return path_available(level1.path[to_][from_], from_) && path_available(to_, level1.path[to_][from_]);
+    }
 }
 
 Navigator::~Navigator()
