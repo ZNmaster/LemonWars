@@ -96,6 +96,8 @@ Navigator::Navigator(const char *LevelDataFilename)
 
 bool Navigator::Create()
 {
+   X_size = 2250;
+
    copies.fill(-100);
 
    level = new LevelMap(&level1);
@@ -145,6 +147,36 @@ bool Navigator::Create()
    std::cout << "Total distance after recalc: " << a.array_add(&level1.distance) << std::endl;
 
    a.check_nav_table();
+
+   try
+   {
+      access_map = new std::int8_t [X_size][Y_max];
+   }
+   catch (...)
+   {
+       std::cout << "Array problem \r\n";
+       return 0;
+   }
+
+   reset_access_map();
+
+   std::cout << "Visibility " << level->levelwalls.visible(1, 29, 0, 29)<< std::endl;
+
+   //player spawn position (100, 100)
+   set_accessible(100, 100);
+
+       for (int i = 0; i < X_size; i++)
+    {
+        for (int k = 0; k < Y_max; k++)
+        {
+            if (access_map[i][k] == 0) std::cout  <<  " 0 ";
+
+        }
+        std::cout  << std::endl;
+    }
+
+
+
 
    return false;
 }
@@ -265,10 +297,60 @@ bool Navigator::path_available(int to_, int from_)
     }
 }
 
+void Navigator::set_accessible(int x, int y)
+{
+    rec++;
+    //std::cout << "\rRec depth " << rec << "             ";
+
+    access_map[x][y] = 1;
+
+    int x2, y2;
+    x2 = x;
+    y2 = y-1;
+    if(accessible(x, y, x2, y2)) set_accessible(x2, y2);
+    x2 = x-1;
+    y2 = y;
+    if(accessible(x, y, x2, y2)) set_accessible(x2, y2);
+    x2 = x+1;
+    y2 = y;
+    if(accessible(x, y, x2, y2)) set_accessible(x2, y2);
+    x2 = x;
+    y2 = y+1;
+    if(accessible(x, y, x2, y2)) set_accessible(x2, y2);
+
+    rec--;
+}
+
+bool Navigator::accessible(int x1, int y1, int x2, int y2)
+{
+    if(x2 < 0 || y2 < 0 || x2 >= X_size || y2 >= Y_max) return 0;
+
+    if(access_map[x2][y2] < 0)
+    {
+        bool visible = level->levelwalls.visible(x1, y1, x2, y2);
+        if(!visible) access_map[x2][y2] = 0;
+
+        return visible;
+    }
+    return 0;
+}
+
+void Navigator::reset_access_map()
+{
+    for (int i = 0; i < X_size; i++)
+    {
+        for (int k = 0; k < Y_max; k++)
+        {
+            access_map[i][k] = -1;
+        }
+    }
+}
+
 Navigator::~Navigator()
 {
 
     if (level) delete level;
+    if (access_map) delete[] access_map;
 
     //dtor
 }

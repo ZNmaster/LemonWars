@@ -27,11 +27,24 @@ class Navigator
 
 
 
+
     protected:
 
     private:
         LevelData level1,
                   level2;
+
+        static int constexpr Y_max = 1940;
+        int X_size;
+        std::int8_t (*access_map)[Y_max];
+        void set_accessible (int x, int y);
+
+        void reset_access_map();
+
+        bool accessible(int x1, int y1, int x2, int y2);
+
+        int rec = 0;
+
 
 
 
