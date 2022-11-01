@@ -1,7 +1,10 @@
 #ifndef NAVIGATOR_H
 #define NAVIGATOR_H
+#include <vector>
 #include "ArrayFiller.h"
 #include "Target.h"
+#include "Line.h"
+
 
 
 class Navigator
@@ -44,6 +47,9 @@ class Navigator
         bool accessible(int x1, int y1, int x2, int y2);
 
         int rec = 0;
+
+        void create_rectangles();
+        std::vector<Line> rectangles;
 
 
 

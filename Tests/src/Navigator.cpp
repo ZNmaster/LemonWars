@@ -84,12 +84,14 @@ Navigator::Navigator()
     myFile.write((char *)&level1, sizeof(LevelData));
     myFile.close();
 
+    rectangles.clear();
     //ctor
 }
 
 Navigator::Navigator(const char *LevelDataFilename)
 {
     Load_Data(level1, LevelDataFilename);
+    rectangles.clear();
 
     //ctor
 }
@@ -160,22 +162,27 @@ bool Navigator::Create()
 
    reset_access_map();
 
-   std::cout << "Visibility " << level->levelwalls.visible(1, 29, 0, 29)<< std::endl;
-
    //player spawn position (100, 100)
    set_accessible(100, 100);
 
-       for (int i = 0; i < X_size; i++)
+
+    //replace all initial -1 (not checked) by 0 (not accessible)
+    for (int i = 0; i < X_size; i++)
     {
         for (int k = 0; k < Y_max; k++)
         {
-            if (access_map[i][k] == 0) std::cout  <<  " 0 ";
-
+            if (access_map[i][k] == -1) access_map[i][k] = 0;
         }
-        std::cout  << std::endl;
     }
 
+    create_rectangles();
+    std::cout << "Total rectangles: " << rectangles.size() << std::endl;
 
+    for (std::vector<Line>::size_type m = 0; m < rectangles.size(); m++)
+    {
+        std::cout << "From: (" << rectangles[m].x_start << "," << rectangles[m].y_start << ") To: ("
+                  << rectangles[m].x_end << "," << rectangles[m].y_end << ")" << std::endl;
+    }
 
 
    return false;
@@ -344,6 +351,64 @@ void Navigator::reset_access_map()
             access_map[i][k] = -1;
         }
     }
+}
+
+void Navigator::create_rectangles()
+{
+    //start coord x of the horizontal line (sequence of accessible points)
+    int x_start = -1;
+    int x_end = -1;
+
+    for (int y = 0; y < Y_max; y++)
+    {
+
+        x_start = -1;
+        x_end = -1;
+
+        for (int x = 0; x < X_size; x++)
+        {
+
+            if (access_map[x][y] == 1)
+            {
+                if (x_start < 0)
+                {
+                    x_start = x;
+                }
+
+                //waiting for last accessible point in the line
+                if (access_map[x+1][y] == 0)
+                {
+                    x_end = x;
+
+                    bool changed = 0;
+                    for (std::vector<Line>::size_type m = 0; m < rectangles.size(); m++)
+                    {
+                       //the line belongs to previously created rectangle
+                       if ( (int)rectangles[m].x_start == x_start && (int)rectangles[m].x_end == x_end && (int)rectangles[m].y_end == (y-1))
+                       {
+                           rectangles[m].calcline(rectangles[m].x_start, rectangles[m].y_start, x_end, y);
+
+                           changed = 1;
+                       }
+                       //creating a new rectangle
+
+                    }
+
+                    if (!changed) rectangles.push_back(Line (x_start, y, x_end, y));
+
+
+                    x_start = -1;
+                    x_end = -1;
+
+
+                }
+
+            }
+
+        }
+
+    }
+
 }
 
 Navigator::~Navigator()
